@@ -18,14 +18,16 @@ namespace SistemaFarmacia.Vistas.Operaciones
                         
         public frmPrincipal(Usuario usuario)
         {
+            usuario.IdUsuario = 1;
+            usuario.Nombre = "Luis F.";
+            usuario.ApellidoPaterno = "Osuna";
+            usuario.ApellidoPaterno = "Leyva";
+            usuario.NombreUsuario = "LFOL";
+
             InitializeComponent();
-
             _frmPrincipalController = new frmPrincipalController(this);
-
             _contextoAplicacion = new ContextoAplicacion();
-
-            _contextoAplicacion.Usuario = usuario;   
-            
+            _contextoAplicacion.Usuario = usuario;               
         }                          
 
         private void CargarMenu()
@@ -123,11 +125,14 @@ namespace SistemaFarmacia.Vistas.Operaciones
         private void processMenuItem(object sender, EventArgs e)
         {          
             Assembly assembly = Assembly.GetEntryAssembly();
-            string nombreForma = ((ToolStripMenuItem)sender).Tag.ToString();
-            bool estaFormuarioAbierto = EstaFormuarioAbierto(nombreForma);       
-            string nameSpace = "Beroky.Tienda.Vistas.";
-            nombreForma = string.Format("{0}{1}", nameSpace, nombreForma);
-            Type tipoDeForma = assembly.GetType(nombreForma);       
+            string nombreForma = ((ToolStripMenuItem)sender).Tag.ToString();            
+            string[] elementosForma = nombreForma.Split('.');
+            string carpeta = elementosForma[0];
+            string vista = elementosForma[1];
+            bool estaFormuarioAbierto = EstaFormuarioAbierto(vista);       
+            string nameSpace = "SistemaFarmacia.Vistas";
+            string vistaCompleta = string.Format("{0}.{1}.{2}", nameSpace, carpeta, vista);
+            Type tipoDeForma = assembly.GetType(vistaCompleta);       
             Form forma = (Form)Activator.CreateInstance(tipoDeForma, _contextoAplicacion);
             forma.MdiParent = this;          
             
@@ -147,7 +152,6 @@ namespace SistemaFarmacia.Vistas.Operaciones
             if (existeVista)
             {
                 Form vistaAbierta = vistasAbiertas.Find(elemento => elemento.Name == nombreVista);
-
                 vistaAbierta.Focus();
             }
 
@@ -157,15 +161,10 @@ namespace SistemaFarmacia.Vistas.Operaciones
         private void Frm_Principal_Load(object sender, EventArgs e)
         {
             string nombreUsuario = string.Format("Nombre: {0} {1} {2}", _contextoAplicacion.Usuario.ApellidoPaterno, _contextoAplicacion.Usuario.ApellidoMaterno, _contextoAplicacion.Usuario.Nombre);
-
             tsslNombre.Text = nombreUsuario;
-
             tsslServidor.Text = string.Format("Servidor: {0}", _frmPrincipalController.Servidor);
-
             tsslBaseDatos.Text = string.Format("Base datos: {0}", _frmPrincipalController.NombreBaseDatos);
-
             tsslUsuario.Text = string.Format("Usuario: {0}", _contextoAplicacion.Usuario.NombreUsuario);
-
             CargarMenu();
         }
     }

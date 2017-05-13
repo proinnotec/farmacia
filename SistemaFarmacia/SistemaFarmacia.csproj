@@ -63,6 +63,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatProductos.Designer.cs">
+      <DependentUpon>frmCatProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Dialogos\Dlg_Confirmacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,9 +139,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Vistas\Catalogos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SistemaFarmacia.Entidades\SistemaFarmacia.Entidades.csproj">
       <Project>{6055c91f-db13-4c8e-96a1-b79a950bea61}</Project>

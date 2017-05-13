@@ -12,8 +12,6 @@ namespace SistemaFarmacia.Entidades.Negocio
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
         public string NombreUsuario { get; set; }
-        public string UserPassword { get; set; }
-        public bool RequiereCambioPassword { get; set; }
-        public int VigenciaEnDias { get; set; }        
+        public string UserPassword { get; set; }        
     }
 }

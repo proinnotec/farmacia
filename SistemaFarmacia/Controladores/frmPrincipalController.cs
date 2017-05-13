@@ -1,8 +1,9 @@
-﻿//using SistemaFarmacia.Entidades.Negocio;
+﻿using SistemaFarmacia.Entidades.Negocio;
 using SistemaFarmacia.Vistas.Operaciones;
-//using ProInnotec.Core.Entidades.ManejoExcepciones;
-//using System.Collections.Generic;
-//using System.Linq;
+using ProInnotec.Core.Entidades.ManejoExcepciones;
+using System.Collections.Generic;
+using System.Linq;
+using SistemaFarmacia.Servicios.Operaciones;
 
 namespace SistemaFarmacia.Controladores
 {
@@ -10,7 +11,7 @@ namespace SistemaFarmacia.Controladores
     {
         private frmPrincipal _vista;
 
-        //ServicioDatosMenu servicioDatosMenu;
+        ServicioDatosMenu _servicioDatosMenu;
 
         public string Servidor { get; set; }
 
@@ -20,7 +21,7 @@ namespace SistemaFarmacia.Controladores
         {
             _vista = vista;
 
-            //servicioDatosMenu = new ServicioDatosMenu(BaseDeDatosTienda);
+            _servicioDatosMenu = new ServicioDatosMenu(BaseDeDatosTienda);
 
             Servidor = InstanciaServidor;
 
@@ -29,37 +30,37 @@ namespace SistemaFarmacia.Controladores
 
         public void CargarMenu(int idUsuario)
         {
-            //ExcepcionPersonalizada excepcion = servicioDatosMenu.ConsultarMenu(idUsuario);
+            ExcepcionPersonalizada excepcion = _servicioDatosMenu.ConsultarMenu(idUsuario);
 
-            //if (excepcion == null)
-            //{
-            //    List<ElementoMenu> _listaMenu = new List<ElementoMenu>();               
+            if (excepcion == null)
+            {
+                List<ElementoMenu> _listaMenu = new List<ElementoMenu>();
 
-            //    _listaMenu = servicioDatosMenu.ListaMenu;
+                _listaMenu = _servicioDatosMenu.ListaMenu;
 
-            //    bool existePadre = _listaMenu.Exists(elemento => elemento.IdPadre == 0);
+                bool existePadre = _listaMenu.Exists(elemento => elemento.IdPadre == 0);
 
-            //    if (existePadre == true)
-            //    {
-            //        int idMenu = _listaMenu.First(elemento => elemento.IdPadre == 0).IdMenu;
+                if (existePadre == true)
+                {
+                    int idMenu = _listaMenu.First(elemento => elemento.IdPadre == 0).IdMenu;
 
-            //        _vista.CrearMenu(_listaMenu, idMenu);
+                    _vista.CrearMenu(_listaMenu, idMenu);
 
-            //    }
-            //    else
-            //    {
-            //        string mensaje = "Usted no tiene un perfil asignado.";
+                }
+                else
+                {
+                    string mensaje = "Usted no tiene un perfil asignado.";
 
-            //        _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, false);
-            //    }
+                    _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, false);
+                }
 
-            //}
-            //else
-            //{
-            //    _vista.MostrarDialogoResultado(_vista.Text, excepcion.Message, excepcion.InnerException.ToString(), false);
-            //}
+            }
+            else
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, excepcion.Message, excepcion.InnerException.ToString(), false);
+            }
         }
 
-       
+
     }
 }

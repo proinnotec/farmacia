@@ -28,7 +28,6 @@ namespace SistemaFarmacia.Vistas.Base
 
             InitializeComponent();
 
-
             ConfiguracionVista();
         }
 

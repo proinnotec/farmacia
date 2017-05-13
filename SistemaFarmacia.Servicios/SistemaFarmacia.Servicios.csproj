@@ -50,9 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FabricaBaseDatos\FabricaBaseDeDatos.cs" />
+    <Compile Include="Operaciones\ServicioDatosMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaFarmacia.Entidades\SistemaFarmacia.Entidades.csproj">
+      <Project>{6055c91f-db13-4c8e-96a1-b79a950bea61}</Project>
+      <Name>SistemaFarmacia.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Ensamblados\ProInnoTec.Core.Servicios.dll" />
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
