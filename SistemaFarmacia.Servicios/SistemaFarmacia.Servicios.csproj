@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FabricaBaseDatos\FabricaBaseDeDatos.cs" />
+    <Compile Include="Negocio\Catalogos\ServicioCatalogoTiposAjustes.cs" />
     <Compile Include="Operaciones\ServicioDatosMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +63,9 @@
   <ItemGroup>
     <Content Include="Ensamblados\ProInnoTec.Core.Servicios.dll" />
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Negocio\Almacen\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
