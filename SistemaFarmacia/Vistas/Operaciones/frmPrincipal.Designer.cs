@@ -82,8 +82,8 @@
             // 
             // tsslUsuario
             // 
-            this.tsslUsuario.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.tsslUsuario.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.tsslUsuario.Name = "tsslUsuario";
             this.tsslUsuario.Size = new System.Drawing.Size(50, 19);
@@ -91,8 +91,8 @@
             // 
             // tsslNombre
             // 
-            this.tsslNombre.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.tsslNombre.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.tsslNombre.Name = "tsslNombre";
             this.tsslNombre.Size = new System.Drawing.Size(55, 19);
@@ -100,8 +100,8 @@
             // 
             // tsslServidor
             // 
-            this.tsslServidor.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.tsslServidor.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.tsslServidor.Name = "tsslServidor";
             this.tsslServidor.Size = new System.Drawing.Size(53, 19);
@@ -109,8 +109,8 @@
             // 
             // tsslBaseDatos
             // 
-            this.tsslBaseDatos.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.tsslBaseDatos.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.tsslBaseDatos.Name = "tsslBaseDatos";
             this.tsslBaseDatos.Size = new System.Drawing.Size(67, 19);
@@ -144,22 +144,22 @@
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // familiasDeProductosToolStripMenuItem
             // 
             this.familiasDeProductosToolStripMenuItem.Name = "familiasDeProductosToolStripMenuItem";
-            this.familiasDeProductosToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.familiasDeProductosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // proveedoresToolStripMenuItem
             // 
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // entradasToolStripMenuItem
             // 
@@ -171,32 +171,32 @@
             this.devolucionesClienteToolStripMenuItem});
             this.entradasToolStripMenuItem.Name = "entradasToolStripMenuItem";
             this.entradasToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.entradasToolStripMenuItem.Text = "Almacen";
+            this.entradasToolStripMenuItem.Text = "Almacén";
             // 
             // almacénToolStripMenuItem
             // 
             this.almacénToolStripMenuItem.Name = "almacénToolStripMenuItem";
-            this.almacénToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.almacénToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // AjustesToolStripMenuItem1
             // 
             this.AjustesToolStripMenuItem1.Name = "AjustesToolStripMenuItem1";
-            this.AjustesToolStripMenuItem1.Size = new System.Drawing.Size(67, 22);
+            this.AjustesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             // 
             // devolucionesToolStripMenuItem
             // 
             this.devolucionesToolStripMenuItem.Name = "devolucionesToolStripMenuItem";
-            this.devolucionesToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.devolucionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // impresiónEtiquetasToolStripMenuItem
             // 
             this.impresiónEtiquetasToolStripMenuItem.Name = "impresiónEtiquetasToolStripMenuItem";
-            this.impresiónEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.impresiónEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // devolucionesClienteToolStripMenuItem
             // 
             this.devolucionesClienteToolStripMenuItem.Name = "devolucionesClienteToolStripMenuItem";
-            this.devolucionesClienteToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.devolucionesClienteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // ventasToolStripMenuItem
             // 

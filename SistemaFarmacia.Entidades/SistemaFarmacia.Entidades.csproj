@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contextos\ContextoAplicacion.cs" />
+    <Compile Include="Negocio\Almacen\Ajustes\AjustesProductos.cs" />
+    <Compile Include="Negocio\Almacen\Ajustes\AjustesProductosDetalles.cs" />
+    <Compile Include="Negocio\Catalogos\CatSucursal.cs" />
+    <Compile Include="Negocio\Catalogos\CatTipoAjustes.cs" />
     <Compile Include="Negocio\ClaseBase.cs" />
     <Compile Include="Negocio\ElementoMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
