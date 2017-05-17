@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.cmbTiposAjustes = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
+            // 
+            // cmbTiposAjustes
+            // 
+            this.cmbTiposAjustes.FormattingEnabled = true;
+            this.cmbTiposAjustes.Location = new System.Drawing.Point(248, 59);
+            this.cmbTiposAjustes.Name = "cmbTiposAjustes";
+            this.cmbTiposAjustes.Size = new System.Drawing.Size(121, 21);
+            this.cmbTiposAjustes.TabIndex = 0;
             // 
             // frmAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1303, 610);
+            this.Controls.Add(this.cmbTiposAjustes);
             this.Name = "frmAjustes";
             this.Text = "frmAjustes";
+            this.Load += new System.EventHandler(this.frmAjustes_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ComboBox cmbTiposAjustes;
     }
 }
