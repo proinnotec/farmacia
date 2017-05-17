@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controladores\BaseController.cs" />
+    <Compile Include="Controladores\Catalogos\frmCatFamiliasController.cs" />
     <Compile Include="Controladores\Catalogos\TiposAjustesController.cs" />
     <Compile Include="Controladores\frmPrincipalController.cs" />
     <Compile Include="Controladores\Procesos\AjustesController.cs" />
@@ -64,6 +65,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatFamilias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatFamilias.Designer.cs">
+      <DependentUpon>frmCatFamilias.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Catalogos\frmCatProductos.cs">
       <SubType>Form</SubType>
@@ -121,6 +128,9 @@
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmCatFamilias.resx">
+      <DependentUpon>frmCatFamilias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Dialogos\Dlg_Confirmacion.resx">
       <DependentUpon>Dlg_Confirmacion.cs</DependentUpon>

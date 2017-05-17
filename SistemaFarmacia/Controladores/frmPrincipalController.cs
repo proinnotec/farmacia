@@ -10,11 +10,8 @@ namespace SistemaFarmacia.Controladores
     public class frmPrincipalController : BaseController
     {
         private frmPrincipal _vista;
-
         ServicioDatosMenu _servicioDatosMenu;
-
         public string Servidor { get; set; }
-
         public string BaseDatos { get; set; }
 
         public frmPrincipalController(frmPrincipal vista)

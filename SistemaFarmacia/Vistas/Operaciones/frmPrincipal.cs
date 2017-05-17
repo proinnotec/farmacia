@@ -13,7 +13,6 @@ namespace SistemaFarmacia.Vistas.Operaciones
     public partial class frmPrincipal : frmBase
     {
         public ContextoAplicacion _contextoAplicacion { get; set; }
-
         private frmPrincipalController _frmPrincipalController { get; set; }   
                         
         public frmPrincipal(Usuario usuario)
