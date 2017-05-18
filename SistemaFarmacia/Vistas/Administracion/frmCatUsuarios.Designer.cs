@@ -32,16 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridUsuarios = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
-            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnEliminar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApellidoPaterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApellidoMaterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +88,59 @@
             this.gridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridUsuarios.Size = new System.Drawing.Size(639, 175);
             this.gridUsuarios.TabIndex = 5;
+            this.gridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellClick);
+            // 
+            // IdUsuario
+            // 
+            this.IdUsuario.DataPropertyName = "IdUsuario";
+            this.IdUsuario.HeaderText = "IdUsuario";
+            this.IdUsuario.Name = "IdUsuario";
+            this.IdUsuario.ReadOnly = true;
+            this.IdUsuario.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.FillWeight = 194.3342F;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // ApellidoPaterno
+            // 
+            this.ApellidoPaterno.DataPropertyName = "ApellidoPaterno";
+            this.ApellidoPaterno.FillWeight = 63.65982F;
+            this.ApellidoPaterno.HeaderText = "Apellido Paterno";
+            this.ApellidoPaterno.Name = "ApellidoPaterno";
+            this.ApellidoPaterno.ReadOnly = true;
+            // 
+            // ApellidoMaterno
+            // 
+            this.ApellidoMaterno.DataPropertyName = "ApellidoMaterno";
+            this.ApellidoMaterno.FillWeight = 69.38658F;
+            this.ApellidoMaterno.HeaderText = "Apellido Materno";
+            this.ApellidoMaterno.Name = "ApellidoMaterno";
+            this.ApellidoMaterno.ReadOnly = true;
+            // 
+            // NombreUsuario
+            // 
+            this.NombreUsuario.DataPropertyName = "NombreUsuario";
+            this.NombreUsuario.FillWeight = 76.14212F;
+            this.NombreUsuario.HeaderText = "Nombre Usuario";
+            this.NombreUsuario.Name = "NombreUsuario";
+            this.NombreUsuario.ReadOnly = true;
+            // 
+            // EsActivo
+            // 
+            this.EsActivo.DataPropertyName = "EsActivo";
+            this.EsActivo.FalseValue = "0";
+            this.EsActivo.FillWeight = 96.47724F;
+            this.EsActivo.HeaderText = "Activo";
+            this.EsActivo.Name = "EsActivo";
+            this.EsActivo.ReadOnly = true;
+            this.EsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.EsActivo.TrueValue = "1";
             // 
             // btnNuevo
             // 
@@ -100,17 +153,17 @@
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
             // 
-            // btnEliminar
+            // btnActDes
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.LightGray;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(404, 279);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 9;
-            this.btnEliminar.Text = "Baja";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Visible = false;
+            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
+            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActDes.Location = new System.Drawing.Point(383, 279);
+            this.btnActDes.Name = "btnActDes";
+            this.btnActDes.Size = new System.Drawing.Size(96, 23);
+            this.btnActDes.TabIndex = 9;
+            this.btnActDes.Text = "Activar / Baja";
+            this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
             // 
             // btnCancelar
             // 
@@ -135,63 +188,18 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
             // 
-            // IdUsuario
-            // 
-            this.IdUsuario.DataPropertyName = "IdUsuario";
-            this.IdUsuario.HeaderText = "IdUsuario";
-            this.IdUsuario.Name = "IdUsuario";
-            this.IdUsuario.ReadOnly = true;
-            this.IdUsuario.Visible = false;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // ApellidoPaterno
-            // 
-            this.ApellidoPaterno.DataPropertyName = "ApellidoPaterno";
-            this.ApellidoPaterno.HeaderText = "Apellido Paterno";
-            this.ApellidoPaterno.Name = "ApellidoPaterno";
-            this.ApellidoPaterno.ReadOnly = true;
-            // 
-            // ApellidoMaterno
-            // 
-            this.ApellidoMaterno.DataPropertyName = "ApellidoMaterno";
-            this.ApellidoMaterno.HeaderText = "Apellido Materno";
-            this.ApellidoMaterno.Name = "ApellidoMaterno";
-            this.ApellidoMaterno.ReadOnly = true;
-            // 
-            // NombreUsuario
-            // 
-            this.NombreUsuario.DataPropertyName = "NombreUsuario";
-            this.NombreUsuario.HeaderText = "Nombre Usuario";
-            this.NombreUsuario.Name = "NombreUsuario";
-            this.NombreUsuario.ReadOnly = true;
-            // 
-            // EsActivo
-            // 
-            this.EsActivo.DataPropertyName = "EsActivo";
-            this.EsActivo.HeaderText = "Activo";
-            this.EsActivo.Name = "EsActivo";
-            this.EsActivo.ReadOnly = true;
-            this.EsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.EsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // frmCatUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 314);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnActDes);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.gridUsuarios);
             this.Name = "frmCatUsuarios";
-            this.Text = "frmCatUsuarios";
+            this.Text = "Catálogo de Usuarios";
             this.Load += new System.EventHandler(this.frmCatUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).EndInit();
             this.ResumeLayout(false);
@@ -202,7 +210,7 @@
 
         private ControlesPersonalizados.GridPersonalizado gridUsuarios;
         private ControlesPersonalizados.BotonPersonalizado btnNuevo;
-        private ControlesPersonalizados.BotonPersonalizado btnEliminar;
+        private ControlesPersonalizados.BotonPersonalizado btnActDes;
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdUsuario;

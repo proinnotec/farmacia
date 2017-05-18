@@ -61,5 +61,44 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                     conexion.Dispose();
             }
         }
+
+        public ExcepcionPersonalizada ActivarDesactivarUsuario(Usuario usuario)
+        {
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatUsuariosActivarDesactivar", conexion);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", usuario.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                IDataParameter parametroEsActivo = _baseDatos.CrearParametro("@EsActivo", usuario.EsActivo, ParameterDirection.Input);
+                comando.Parameters.Add(parametroEsActivo);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                {
+                    throw new Exception("No se afectaron filas (spU_CatUsuariosActivarDesactivar).");
+                }
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del usuario.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                    conexion.Dispose();
+            }
+        }
     }
 }

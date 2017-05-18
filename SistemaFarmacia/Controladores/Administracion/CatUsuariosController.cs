@@ -36,5 +36,18 @@ namespace SistemaFarmacia.Controladores.Administracion
 
             _vista.AsigarListaUsuarios(lista);
         }
+
+        public void ActivarDesactivarUsuario(Usuario usuario)
+        {
+            ExcepcionPersonalizada resultado = _servicioCatalogoUsuarios.ActivarDesactivarUsuario(usuario);
+
+            if (resultado != null)
+            {
+                string mensaje = "Hubo un error al intentar realizar la operación con el usuario.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+            }
+
+            ObtenerUsuarios();
+        }
     }
 }

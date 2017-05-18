@@ -10,6 +10,7 @@ namespace SistemaFarmacia.Entidades.Enumerados
     {
         Alta = 1,
         Edicion = 2,
-        Baja = 3
+        Baja = 3,
+        Reactivacion = 4
     }
 }
