@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\Administracion\AgregaEditaUsuariosController.cs" />
     <Compile Include="Controladores\Administracion\CatUsuariosController.cs" />
     <Compile Include="Controladores\BaseController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatFamiliasController.cs" />
@@ -66,6 +67,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Administracion\frmAgregaEditaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Administracion\frmAgregaEditaUsuario.Designer.cs">
+      <DependentUpon>frmAgregaEditaUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Administracion\frmCatUsuarios.cs">
       <SubType>Form</SubType>
@@ -135,6 +142,9 @@
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Administracion\frmAgregaEditaUsuario.resx">
+      <DependentUpon>frmAgregaEditaUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Administracion\frmCatUsuarios.resx">
       <DependentUpon>frmCatUsuarios.cs</DependentUpon>

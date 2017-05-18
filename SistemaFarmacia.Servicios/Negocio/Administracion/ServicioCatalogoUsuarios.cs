@@ -100,5 +100,53 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                     conexion.Dispose();
             }
         }
+
+        public ExcepcionPersonalizada GuardarUsuario(Usuario usuario)
+        {
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_CatUsuarios", conexion);
+
+                IDataParameter parametroNombre = _baseDatos.CrearParametro("@Nombre", usuario.Nombre, ParameterDirection.Input);
+                comando.Parameters.Add(parametroNombre);
+
+                IDataParameter parametroApellidoPaterno = _baseDatos.CrearParametro("@APaterno", usuario.ApellidoPaterno, ParameterDirection.Input);
+                comando.Parameters.Add(parametroApellidoPaterno);
+
+                IDataParameter parametroApellidoMaterno = _baseDatos.CrearParametro("@AMaterno", usuario.ApellidoMaterno, ParameterDirection.Input);
+                comando.Parameters.Add(parametroApellidoMaterno);
+
+                IDataParameter parametroUsuario = _baseDatos.CrearParametro("@Usuario", usuario.NombreUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroUsuario);
+
+                IDataParameter parametroPassword = _baseDatos.CrearParametro("@Password", usuario.UserPassword, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPassword);
+                                
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                {
+                    throw new Exception("No se afectaron filas (spI_CatUsuarios).");
+                }
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar el usuario.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                    conexion.Dispose();
+            }
+        }
     }
 }

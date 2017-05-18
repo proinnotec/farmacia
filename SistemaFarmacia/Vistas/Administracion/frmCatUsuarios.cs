@@ -39,6 +39,11 @@ namespace SistemaFarmacia.Vistas.Administracion
 
         private void frmCatUsuarios_Load(object sender, EventArgs e)
         {
+            ObtenerUsuarios();
+        }
+
+        public void ObtenerUsuarios()
+        {
             _catUsuariosController.ObtenerUsuarios();
         }
 
@@ -105,6 +110,14 @@ namespace SistemaFarmacia.Vistas.Administracion
         private void gridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             CargarDatosDeGridAObjeto();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            _enumeradoAccion = EnumeradoAccion.Alta;
+
+            frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_usuarioLocal, _enumeradoAccion, this);
+            vistaEdicion.ShowDialog();
         }
     }
 }
