@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\Administracion\CatUsuariosController.cs" />
     <Compile Include="Controladores\BaseController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatFamiliasController.cs" />
     <Compile Include="Controladores\Catalogos\TiposAjustesController.cs" />
@@ -65,6 +66,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Administracion\frmCatUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Administracion\frmCatUsuarios.Designer.cs">
+      <DependentUpon>frmCatUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Catalogos\frmCatFamilias.cs">
       <SubType>Form</SubType>
@@ -128,6 +135,9 @@
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Administracion\frmCatUsuarios.resx">
+      <DependentUpon>frmCatUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmCatFamilias.resx">
       <DependentUpon>frmCatFamilias.cs</DependentUpon>

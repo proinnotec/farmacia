@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FabricaBaseDatos\FabricaBaseDeDatos.cs" />
+    <Compile Include="Negocio\Administracion\ServicioCatalogoUsuarios.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoFamilias.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoTiposAjustes.cs" />
     <Compile Include="Operaciones\ServicioDatosMenu.cs" />
