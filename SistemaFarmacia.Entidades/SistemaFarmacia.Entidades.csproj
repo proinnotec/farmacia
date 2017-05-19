@@ -49,6 +49,7 @@
     <Compile Include="Negocio\Catalogos\CatTipoAjustes.cs" />
     <Compile Include="Negocio\ClaseBase.cs" />
     <Compile Include="Negocio\ElementoMenu.cs" />
+    <Compile Include="Negocio\Perfiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Negocio\Usuario.cs" />
   </ItemGroup>

@@ -39,6 +39,8 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                     usuario.ApellidoMaterno = lector["ApellidoMaterno"].ToString();
                     usuario.NombreUsuario = lector["NombreUsuario"].ToString();
                     usuario.UserPassword = lector["UserPassword"].ToString();
+                    usuario.IdPerfil = (int)lector["IdPerfil"];
+                    usuario.Perfil = lector["Perfil"].ToString();
                     usuario.EsActivo = (bool)lector["EsActivo"];
 
                     ListaUsuarios.Add(usuario);
@@ -125,7 +127,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
 
                 IDataParameter parametroPassword = _baseDatos.CrearParametro("@Password", usuario.UserPassword, ParameterDirection.Input);
                 comando.Parameters.Add(parametroPassword);
-                                
+
+                IDataParameter parametroPerfil = _baseDatos.CrearParametro("@IdPerfil", usuario.IdPerfil, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPerfil);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
@@ -138,7 +143,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
             }
             catch (Exception excepcionCapturada)
             {
-                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar el usuario.", excepcionCapturada);
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar al usuario.", excepcionCapturada);
                 return excepcion;
             }
             finally
@@ -146,6 +151,60 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                 if (conexion != null && conexion.State != ConnectionState.Closed)
                     conexion.Close();
                     conexion.Dispose();
+            }
+        }
+
+        public ExcepcionPersonalizada ActualizarUsuario(Usuario usuario)
+        {
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatUsuarios", conexion);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", usuario.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                IDataParameter parametroNombre = _baseDatos.CrearParametro("@Nombre", usuario.Nombre, ParameterDirection.Input);
+                comando.Parameters.Add(parametroNombre);
+
+                IDataParameter parametroApellidoPaterno = _baseDatos.CrearParametro("@APaterno", usuario.ApellidoPaterno, ParameterDirection.Input);
+                comando.Parameters.Add(parametroApellidoPaterno);
+
+                IDataParameter parametroApellidoMaterno = _baseDatos.CrearParametro("@AMaterno", usuario.ApellidoMaterno, ParameterDirection.Input);
+                comando.Parameters.Add(parametroApellidoMaterno);
+
+                IDataParameter parametroUsuario = _baseDatos.CrearParametro("@Usuario", usuario.NombreUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroUsuario);
+
+                IDataParameter parametroPassword = _baseDatos.CrearParametro("@Password", usuario.UserPassword, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPassword);
+
+                IDataParameter parametroPerfil = _baseDatos.CrearParametro("@IdPerfil", usuario.IdPerfil, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPerfil);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                {
+                    throw new Exception("No se afectaron filas (spU_CatUsuarios).");
+                }
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible actualizar la información del usuario.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                conexion.Dispose();
             }
         }
     }

@@ -26,6 +26,7 @@ namespace SistemaFarmacia.Controladores.Administracion
             {
                 string mensaje = "Hubo un error al intentar obtener la información de los usuarios, no se pueden cargar los datos.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+
             }
 
             List<Usuario> lista = _servicioCatalogoUsuarios.ListaUsuarios;
@@ -37,11 +38,16 @@ namespace SistemaFarmacia.Controladores.Administracion
         {
             ExcepcionPersonalizada resultado = _servicioCatalogoUsuarios.ActivarDesactivarUsuario(usuario);
 
+            string mensaje = string.Empty;
+
             if (resultado != null)
             {
-                string mensaje = "Hubo un error al intentar realizar la operación con el usuario.";
+                mensaje = "Hubo un error al intentar realizar la operación con el usuario.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
             }
+
+            mensaje = "Se ha guardado correctamente la información del usuario.";
+            _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
 
             ObtenerUsuarios();
         }

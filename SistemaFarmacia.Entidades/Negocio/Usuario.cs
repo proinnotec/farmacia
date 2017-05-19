@@ -6,6 +6,9 @@
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
         public string NombreUsuario { get; set; }
-        public string UserPassword { get; set; }        
+        public string UserPassword { get; set; }
+        public int IdPerfil { get; set; }
+        public string Perfil { get; set; }
+
     }
 }

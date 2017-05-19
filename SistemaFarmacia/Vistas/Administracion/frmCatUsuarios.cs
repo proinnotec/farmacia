@@ -63,7 +63,16 @@ namespace SistemaFarmacia.Vistas.Administracion
             _usuarioLocal.ApellidoPaterno = gridUsuarios.SelectedRows[0].Cells["ApellidoPaterno"].Value.ToString();
             _usuarioLocal.ApellidoMaterno = gridUsuarios.SelectedRows[0].Cells["ApellidoMaterno"].Value.ToString();
             _usuarioLocal.NombreUsuario = gridUsuarios.SelectedRows[0].Cells["NombreUsuario"].Value.ToString();
+            _usuarioLocal.UserPassword = gridUsuarios.SelectedRows[0].Cells["UserPassword"].Value.ToString();
+            _usuarioLocal.IdPerfil = (int)gridUsuarios.SelectedRows[0].Cells["IdPerfil"].Value;
+            _usuarioLocal.Perfil = gridUsuarios.SelectedRows[0].Cells["Perfil"].Value.ToString();
             _usuarioLocal.EsActivo = (bool)gridUsuarios.SelectedRows[0].Cells["EsActivo"].Value;
+
+            if (_usuarioLocal.EsActivo)
+                btnActDes.Text = "Dar de Baja";
+
+            else
+                btnActDes.Text = "Activar";
         }
 
         bool ConfirmarActivacionDesactivacion(string accion)
@@ -116,8 +125,25 @@ namespace SistemaFarmacia.Vistas.Administracion
         {
             _enumeradoAccion = EnumeradoAccion.Alta;
 
-            frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_usuarioLocal, _enumeradoAccion, this);
+            frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_enumeradoAccion, this);
             vistaEdicion.ShowDialog();
         }
+
+        private void gridUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!_usuarioLocal.EsActivo)
+            {
+                string mensaje = string.Format("{0} {1} {2} {3}", "No se puede editar el registro de", _usuarioLocal.Nombre, _usuarioLocal.ApellidoPaterno, "porque está dado de baja, favor de verificar"); 
+                MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+                return;
+            }
+                
+            _enumeradoAccion = EnumeradoAccion.Edicion;
+
+            frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_enumeradoAccion, this, _usuarioLocal);
+            vistaEdicion.ShowDialog();
+
+        }
+
     }
 }

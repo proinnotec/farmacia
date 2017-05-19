@@ -39,6 +39,7 @@
             this.txtAMaterno = new System.Windows.Forms.MaskedTextBox();
             this.txtUsuario = new System.Windows.Forms.MaskedTextBox();
             this.txtPass = new System.Windows.Forms.MaskedTextBox();
+            this.cmbPerfiles = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -129,16 +130,26 @@
             // txtPass
             // 
             this.txtPass.Location = new System.Drawing.Point(594, 70);
-            this.txtPass.Mask = "*";
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(109, 20);
             this.txtPass.TabIndex = 18;
+            this.txtPass.UseSystemPasswordChar = true;
+            // 
+            // cmbPerfiles
+            // 
+            this.cmbPerfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPerfiles.FormattingEnabled = true;
+            this.cmbPerfiles.Location = new System.Drawing.Point(74, 141);
+            this.cmbPerfiles.Name = "cmbPerfiles";
+            this.cmbPerfiles.Size = new System.Drawing.Size(239, 21);
+            this.cmbPerfiles.TabIndex = 19;
             // 
             // frmAgregaEditaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 336);
+            this.Controls.Add(this.cmbPerfiles);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.txtAMaterno);
@@ -171,5 +182,6 @@
         private System.Windows.Forms.MaskedTextBox txtAMaterno;
         private System.Windows.Forms.MaskedTextBox txtUsuario;
         private System.Windows.Forms.MaskedTextBox txtPass;
+        private System.Windows.Forms.ComboBox cmbPerfiles;
     }
 }

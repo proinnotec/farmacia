@@ -28,41 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gridUsuarios = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApellidoPaterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApellidoMaterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdPerfil = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Perfil = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
+            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Location = new System.Drawing.Point(29, 287);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.TabIndex = 10;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnActDes
+            // 
+            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
+            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActDes.Location = new System.Drawing.Point(122, 287);
+            this.btnActDes.Name = "btnActDes";
+            this.btnActDes.Size = new System.Drawing.Size(96, 23);
+            this.btnActDes.TabIndex = 9;
+            this.btnActDes.Text = "Activar / Baja";
+            this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(576, 287);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.Text = "Salir";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // gridUsuarios
             // 
             this.gridUsuarios.AllowUserToAddRows = false;
             this.gridUsuarios.AllowUserToDeleteRows = false;
             this.gridUsuarios.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.gridUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridUsuarios.BackgroundColor = System.Drawing.Color.White;
             this.gridUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdUsuario,
@@ -70,24 +109,28 @@
             this.ApellidoPaterno,
             this.ApellidoMaterno,
             this.NombreUsuario,
+            this.UserPassword,
+            this.IdPerfil,
+            this.Perfil,
             this.EsActivo});
             this.gridUsuarios.EnableHeadersVisualStyles = false;
-            this.gridUsuarios.Location = new System.Drawing.Point(12, 21);
+            this.gridUsuarios.Location = new System.Drawing.Point(12, 5);
             this.gridUsuarios.MultiSelect = false;
             this.gridUsuarios.Name = "gridUsuarios";
             this.gridUsuarios.ReadOnly = true;
             this.gridUsuarios.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridUsuarios.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridUsuarios.RowTemplate.Height = 20;
             this.gridUsuarios.RowTemplate.ReadOnly = true;
             this.gridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsuarios.Size = new System.Drawing.Size(639, 175);
+            this.gridUsuarios.Size = new System.Drawing.Size(639, 268);
             this.gridUsuarios.TabIndex = 5;
             this.gridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellClick);
+            this.gridUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellDoubleClick);
             // 
             // IdUsuario
             // 
@@ -129,6 +172,29 @@
             this.NombreUsuario.Name = "NombreUsuario";
             this.NombreUsuario.ReadOnly = true;
             // 
+            // UserPassword
+            // 
+            this.UserPassword.DataPropertyName = "UserPassword";
+            this.UserPassword.HeaderText = "Password";
+            this.UserPassword.Name = "UserPassword";
+            this.UserPassword.ReadOnly = true;
+            this.UserPassword.Visible = false;
+            // 
+            // IdPerfil
+            // 
+            this.IdPerfil.DataPropertyName = "IdPerfil";
+            this.IdPerfil.HeaderText = "IdPerfil";
+            this.IdPerfil.Name = "IdPerfil";
+            this.IdPerfil.ReadOnly = true;
+            this.IdPerfil.Visible = false;
+            // 
+            // Perfil
+            // 
+            this.Perfil.DataPropertyName = "Perfil";
+            this.Perfil.HeaderText = "Perfil";
+            this.Perfil.Name = "Perfil";
+            this.Perfil.ReadOnly = true;
+            // 
             // EsActivo
             // 
             this.EsActivo.DataPropertyName = "EsActivo";
@@ -140,42 +206,6 @@
             this.EsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.EsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.EsActivo.TrueValue = "1";
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
-            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(29, 279);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnNuevo.TabIndex = 10;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // btnActDes
-            // 
-            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
-            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActDes.Location = new System.Drawing.Point(383, 279);
-            this.btnActDes.Name = "btnActDes";
-            this.btnActDes.Size = new System.Drawing.Size(96, 23);
-            this.btnActDes.TabIndex = 9;
-            this.btnActDes.Text = "Activar / Baja";
-            this.btnActDes.UseVisualStyleBackColor = false;
-            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(576, 279);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 8;
-            this.btnCancelar.Text = "Salir";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmCatUsuarios
             // 
@@ -205,6 +235,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ApellidoPaterno;
         private System.Windows.Forms.DataGridViewTextBoxColumn ApellidoMaterno;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserPassword;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdPerfil;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Perfil;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
     }
 }
