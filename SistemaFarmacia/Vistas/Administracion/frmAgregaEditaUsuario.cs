@@ -22,7 +22,7 @@ namespace SistemaFarmacia.Vistas.Administracion
         Usuario _usuarioGuardar;
         AgregaEditaUsuariosController _agregaEditaUsuariosController;
 
-        public frmAgregaEditaUsuario(EnumeradoAccion accion, frmCatUsuarios vistaLlamada, Usuario usuario = null)
+        public frmAgregaEditaUsuario(EnumeradoAccion accion, frmCatUsuarios vistaLlamada, Usuario usuario)
         {
             InitializeComponent();
             _usuarioGuardar = new Usuario();
@@ -60,10 +60,10 @@ namespace SistemaFarmacia.Vistas.Administracion
             cmbPerfiles.DisplayMember = "Nombre";
             cmbPerfiles.ValueMember = "IdPerfil";
 
-            if (_usuarioGuardar != null)
+            //if (_usuarioGuardar != null)
                 cmbPerfiles.SelectedValue = _usuarioGuardar.IdPerfil;
-            else
-                cmbPerfiles.SelectedValue = 0;
+            //else
+              //  cmbPerfiles.SelectedValue = 0;
 
         }
 

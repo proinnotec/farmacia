@@ -69,10 +69,11 @@ namespace SistemaFarmacia.Vistas.Administracion
             _usuarioLocal.EsActivo = (bool)gridUsuarios.SelectedRows[0].Cells["EsActivo"].Value;
 
             if (_usuarioLocal.EsActivo)
-                btnActDes.Text = "Dar de Baja";
+                btnActDes.BackgroundImage = Resource.bloquear;
 
             else
-                btnActDes.Text = "Activar";
+                btnActDes.BackgroundImage = Resource.activar;
+
         }
 
         bool ConfirmarActivacionDesactivacion(string accion)
@@ -125,7 +126,9 @@ namespace SistemaFarmacia.Vistas.Administracion
         {
             _enumeradoAccion = EnumeradoAccion.Alta;
 
-            frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_enumeradoAccion, this);
+            Usuario usuarioNuevo = new Usuario();
+
+            frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_enumeradoAccion, this, usuarioNuevo);
             vistaEdicion.ShowDialog();
         }
 

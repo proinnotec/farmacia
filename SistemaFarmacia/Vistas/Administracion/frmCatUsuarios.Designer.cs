@@ -31,10 +31,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.gridUsuarios = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.gridUsuarios = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApellidoPaterno = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,42 +46,6 @@
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsuarios)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
-            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(29, 287);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnNuevo.TabIndex = 10;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // btnActDes
-            // 
-            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
-            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActDes.Location = new System.Drawing.Point(122, 287);
-            this.btnActDes.Name = "btnActDes";
-            this.btnActDes.Size = new System.Drawing.Size(96, 23);
-            this.btnActDes.TabIndex = 9;
-            this.btnActDes.Text = "Activar / Baja";
-            this.btnActDes.UseVisualStyleBackColor = false;
-            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(576, 287);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 8;
-            this.btnCancelar.Text = "Salir";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // gridUsuarios
             // 
@@ -127,10 +91,52 @@
             this.gridUsuarios.RowTemplate.Height = 20;
             this.gridUsuarios.RowTemplate.ReadOnly = true;
             this.gridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridUsuarios.Size = new System.Drawing.Size(639, 268);
+            this.gridUsuarios.Size = new System.Drawing.Size(799, 327);
             this.gridUsuarios.TabIndex = 5;
             this.gridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellClick);
             this.gridUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellDoubleClick);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
+            this.btnNuevo.BackgroundImage = global::SistemaFarmacia.Resource._new;
+            this.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Location = new System.Drawing.Point(817, 5);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(50, 50);
+            this.btnNuevo.TabIndex = 10;
+            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnActDes
+            // 
+            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
+            this.btnActDes.BackgroundImage = global::SistemaFarmacia.Resource.bloquear;
+            this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnActDes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActDes.Location = new System.Drawing.Point(817, 79);
+            this.btnActDes.Name = "btnActDes";
+            this.btnActDes.Size = new System.Drawing.Size(50, 50);
+            this.btnActDes.TabIndex = 9;
+            this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
+            this.btnCancelar.BackgroundImage = global::SistemaFarmacia.Resource.exit;
+            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(817, 282);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(50, 50);
+            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // IdUsuario
             // 
@@ -143,7 +149,7 @@
             // Nombre
             // 
             this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.FillWeight = 194.3342F;
+            this.Nombre.FillWeight = 103.1952F;
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
@@ -151,7 +157,7 @@
             // ApellidoPaterno
             // 
             this.ApellidoPaterno.DataPropertyName = "ApellidoPaterno";
-            this.ApellidoPaterno.FillWeight = 63.65982F;
+            this.ApellidoPaterno.FillWeight = 137.2427F;
             this.ApellidoPaterno.HeaderText = "Apellido Paterno";
             this.ApellidoPaterno.Name = "ApellidoPaterno";
             this.ApellidoPaterno.ReadOnly = true;
@@ -159,7 +165,7 @@
             // ApellidoMaterno
             // 
             this.ApellidoMaterno.DataPropertyName = "ApellidoMaterno";
-            this.ApellidoMaterno.FillWeight = 69.38658F;
+            this.ApellidoMaterno.FillWeight = 88.7018F;
             this.ApellidoMaterno.HeaderText = "Apellido Materno";
             this.ApellidoMaterno.Name = "ApellidoMaterno";
             this.ApellidoMaterno.ReadOnly = true;
@@ -167,7 +173,7 @@
             // NombreUsuario
             // 
             this.NombreUsuario.DataPropertyName = "NombreUsuario";
-            this.NombreUsuario.FillWeight = 76.14212F;
+            this.NombreUsuario.FillWeight = 97.33788F;
             this.NombreUsuario.HeaderText = "Nombre Usuario";
             this.NombreUsuario.Name = "NombreUsuario";
             this.NombreUsuario.ReadOnly = true;
@@ -191,6 +197,7 @@
             // Perfil
             // 
             this.Perfil.DataPropertyName = "Perfil";
+            this.Perfil.FillWeight = 127.8371F;
             this.Perfil.HeaderText = "Perfil";
             this.Perfil.Name = "Perfil";
             this.Perfil.ReadOnly = true;
@@ -199,7 +206,7 @@
             // 
             this.EsActivo.DataPropertyName = "EsActivo";
             this.EsActivo.FalseValue = "0";
-            this.EsActivo.FillWeight = 96.47724F;
+            this.EsActivo.FillWeight = 45.68527F;
             this.EsActivo.HeaderText = "Activo";
             this.EsActivo.Name = "EsActivo";
             this.EsActivo.ReadOnly = true;
@@ -211,7 +218,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 314);
+            this.ClientSize = new System.Drawing.Size(879, 373);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnActDes);
             this.Controls.Add(this.btnCancelar);
