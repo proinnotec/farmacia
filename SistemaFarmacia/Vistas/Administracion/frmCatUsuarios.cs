@@ -36,13 +36,13 @@ namespace SistemaFarmacia.Vistas.Administracion
         private void frmCatUsuarios_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Agregar usuario");
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+
+            ToolTip ToolTipRecargar = new ToolTip();
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
 
             ToolTip ToolTipSalir = new ToolTip();
             ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
-
-            ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar lista de usuarios");
 
             ObtenerUsuarios();
         }
@@ -78,7 +78,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             if (_usuarioLocal.EsActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja al usuario";
+                mensajeToolTip = "Dar de baja el registro";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -86,7 +86,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar al usuario";
+                mensajeToolTip = "Reactivar el registro";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -153,7 +153,7 @@ namespace SistemaFarmacia.Vistas.Administracion
         {
             if (!_usuarioLocal.EsActivo)
             {
-                string mensaje = string.Format("{0} {1} {2} {3}", "No se puede editar el registro de", _usuarioLocal.Nombre, _usuarioLocal.ApellidoPaterno, "porque está dado de baja, favor de verificar"); 
+                string mensaje = string.Format("{0} {1} {2} {3}", "No se puede editar el registro de", _usuarioLocal.Nombre, _usuarioLocal.ApellidoPaterno, "porque está dado de baja. Si quiere hacer cambios tendrá que reactivar el registro, favor de verificar"); 
                 MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
                 return;
             }

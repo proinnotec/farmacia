@@ -41,7 +41,10 @@ namespace SistemaFarmacia.Vistas.Administracion
 
         private void frmAgregaEditaUsuario_Load(object sender, EventArgs e)
         {
-            if(_accion == EnumeradoAccion.Edicion)
+            ToolTip ToolTipGuardar = new ToolTip();
+            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+
+            if (_accion == EnumeradoAccion.Edicion)
                 AsignarDatosAControles();
 
             _agregaEditaUsuariosController.ConsultarPerfiles();
@@ -50,7 +53,6 @@ namespace SistemaFarmacia.Vistas.Administracion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             GuardarUsuario();
-
         }
 
         public void LlenarComboAjustes(List<Perfiles> lista)
@@ -59,12 +61,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             cmbPerfiles.DataSource = lista;
             cmbPerfiles.DisplayMember = "Nombre";
             cmbPerfiles.ValueMember = "IdPerfil";
-
-            //if (_usuarioGuardar != null)
-                cmbPerfiles.SelectedValue = _usuarioGuardar.IdPerfil;
-            //else
-              //  cmbPerfiles.SelectedValue = 0;
-
+            cmbPerfiles.SelectedValue = _usuarioGuardar.IdPerfil;
         }
 
         public void Cerrar()

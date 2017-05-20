@@ -44,6 +44,7 @@
     <Compile Include="Enumerados\EnumeradoAccion.cs" />
     <Compile Include="Negocio\Almacen\Ajustes\AjustesProductos.cs" />
     <Compile Include="Negocio\Almacen\Ajustes\AjustesProductosDetalles.cs" />
+    <Compile Include="Negocio\Catalogos\CatDescuentos.cs" />
     <Compile Include="Negocio\Catalogos\CatFamilias.cs" />
     <Compile Include="Negocio\Catalogos\CatProducto.cs" />
     <Compile Include="Negocio\Catalogos\CatSucursal.cs" />

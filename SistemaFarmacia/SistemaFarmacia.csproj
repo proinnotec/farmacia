@@ -53,6 +53,7 @@
     <Compile Include="Controladores\Administracion\AgregaEditaUsuariosController.cs" />
     <Compile Include="Controladores\Administracion\CatUsuariosController.cs" />
     <Compile Include="Controladores\BaseController.cs" />
+    <Compile Include="Controladores\Catalogos\CatDescuentosController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatFamiliasController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatProductoController.cs" />
     <Compile Include="Controladores\Catalogos\frmListaProductosContoller.cs" />
@@ -84,6 +85,18 @@
     </Compile>
     <Compile Include="Vistas\Administracion\frmCatUsuarios.Designer.cs">
       <DependentUpon>frmCatUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmAgregaEditaDescuentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmAgregaEditaDescuentos.Designer.cs">
+      <DependentUpon>frmAgregaEditaDescuentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatDescuentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatDescuentos.Designer.cs">
+      <DependentUpon>frmCatDescuentos.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Catalogos\frmCatFamilias.cs">
       <SubType>Form</SubType>
@@ -160,6 +173,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Administracion\frmCatUsuarios.resx">
       <DependentUpon>frmCatUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmAgregaEditaDescuentos.resx">
+      <DependentUpon>frmAgregaEditaDescuentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmCatDescuentos.resx">
+      <DependentUpon>frmCatDescuentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmCatFamilias.resx">
       <DependentUpon>frmCatFamilias.cs</DependentUpon>
