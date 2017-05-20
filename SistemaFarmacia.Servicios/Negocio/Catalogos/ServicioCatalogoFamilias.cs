@@ -11,7 +11,6 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
     public class ServicioCatalogoFamilias
     {
         private IBaseDeDatos _baseDatos;
-
         public List<CatFamilias> ListaFamilias { get; private set; }
 
         public ServicioCatalogoFamilias(IBaseDeDatos baseDatos)
@@ -56,7 +55,6 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     conexion.Close();
                     conexion.Dispose();
             }
-
         }
 
         public ExcepcionPersonalizada EliminarFamilia(CatFamilias familia)

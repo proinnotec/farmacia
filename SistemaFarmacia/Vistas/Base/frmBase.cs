@@ -36,6 +36,7 @@ namespace SistemaFarmacia.Vistas.Base
             BackColor = Color.White;
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            this.WindowState = FormWindowState.Normal;
         }
 
         public DialogResult MostrarDialogoResultado(string tituloVentana, string mensajeUsuario, string mensajeExcepcion, bool operacion)

@@ -11,10 +11,10 @@ namespace SistemaFarmacia.Vistas.Catalogos
 {
     public partial class frmCatFamilias : frmBase
     {
-        public ContextoAplicacion _contextoAplicacion { get; set; }
-        private frmCatFamiliasController _frmCatFamiliasController { get; set; }
+        public ContextoAplicacion _contextoAplicacion;
+        private frmCatFamiliasController _frmCatFamiliasController;
         private EnumeradoAccion _enumeradoAccion;
-        private int _IdFamilia;
+        private int _idFamilia;
 
         public frmCatFamilias(ContextoAplicacion contextoAplicacion)
         {
@@ -22,7 +22,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             _contextoAplicacion = contextoAplicacion;
             _frmCatFamiliasController = new frmCatFamiliasController(this);
             _enumeradoAccion = EnumeradoAccion.Alta;
-            _IdFamilia = 0;
+            _idFamilia = 0;
             AsigarListaFamilias(_frmCatFamiliasController.ListaFamilias());
         }
 
@@ -44,7 +44,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             txtDescripcion.Text = string.Empty;
             _enumeradoAccion = EnumeradoAccion.Alta;
             btnEliminar.Visible = false;
-            _IdFamilia = 0;            
+            _idFamilia = 0;
         }
 
         bool ValidarFormulario()
@@ -77,7 +77,16 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         bool ConfirmarGuardado()
         {
-            string mensaje = "¿Seguro que desea guardar la familia?";
+            string mensaje = string.Empty;
+
+            if (_enumeradoAccion == EnumeradoAccion.Alta)
+            {
+                mensaje = "¿Son correctos los datos de la familia?";
+            }
+            else
+            {
+                mensaje = "¿Seguro que desea editar la familia?";
+            }
 
             DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
 
@@ -89,7 +98,6 @@ namespace SistemaFarmacia.Vistas.Catalogos
             {
                 return false;
             }
-
         }
 
         CatFamilias ContextoFamilia()
@@ -101,7 +109,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             if (_enumeradoAccion != EnumeradoAccion.Alta)
             {
-                familia.IdFamiliaProducto = _IdFamilia;
+                familia.IdFamiliaProducto = _idFamilia;
             }            
 
             return familia;
@@ -138,8 +146,13 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void gridFamilia_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (gridFamilia.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
             txtDescripcion.Text = gridFamilia.SelectedRows[0].Cells["Descripcion"].Value.ToString();
-            _IdFamilia = (int)gridFamilia.SelectedRows[0].Cells["IdFamiliaProducto"].Value;            
+            _idFamilia = (int)gridFamilia.SelectedRows[0].Cells["IdFamiliaProducto"].Value;
             btnEliminar.Visible = true;
             _enumeradoAccion = EnumeradoAccion.Edicion;
         }

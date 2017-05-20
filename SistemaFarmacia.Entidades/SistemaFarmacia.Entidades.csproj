@@ -45,8 +45,10 @@
     <Compile Include="Negocio\Almacen\Ajustes\AjustesProductos.cs" />
     <Compile Include="Negocio\Almacen\Ajustes\AjustesProductosDetalles.cs" />
     <Compile Include="Negocio\Catalogos\CatFamilias.cs" />
+    <Compile Include="Negocio\Catalogos\CatProducto.cs" />
     <Compile Include="Negocio\Catalogos\CatSucursal.cs" />
     <Compile Include="Negocio\Catalogos\CatTipoAjustes.cs" />
+    <Compile Include="Negocio\Catalogos\CodigoBarraProducto.cs" />
     <Compile Include="Negocio\ClaseBase.cs" />
     <Compile Include="Negocio\ElementoMenu.cs" />
     <Compile Include="Negocio\Perfiles.cs" />

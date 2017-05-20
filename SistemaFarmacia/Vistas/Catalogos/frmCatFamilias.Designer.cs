@@ -45,7 +45,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(23, 204);
+            this.txtDescripcion.Location = new System.Drawing.Point(27, 224);
             this.txtDescripcion.MaxLength = 80;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(499, 20);
@@ -54,7 +54,7 @@
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(23, 188);
+            this.lblDescripcion.Location = new System.Drawing.Point(27, 208);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(124, 13);
             this.lblDescripcion.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.LightGray;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(447, 243);
+            this.btnGuardar.Location = new System.Drawing.Point(451, 263);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(366, 243);
+            this.btnCancelar.Location = new System.Drawing.Point(370, 263);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 3;
@@ -108,7 +108,7 @@
             this.IdFamiliaProducto,
             this.Descripcion});
             this.gridFamilia.EnableHeadersVisualStyles = false;
-            this.gridFamilia.Location = new System.Drawing.Point(23, 12);
+            this.gridFamilia.Location = new System.Drawing.Point(27, 43);
             this.gridFamilia.MultiSelect = false;
             this.gridFamilia.Name = "gridFamilia";
             this.gridFamilia.ReadOnly = true;
@@ -144,7 +144,7 @@
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.LightGray;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(285, 243);
+            this.btnEliminar.Location = new System.Drawing.Point(27, 263);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 5;
@@ -157,7 +157,7 @@
             // 
             this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(26, 243);
+            this.btnNuevo.Location = new System.Drawing.Point(27, 12);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 23);
             this.btnNuevo.TabIndex = 6;
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 288);
+            this.ClientSize = new System.Drawing.Size(538, 299);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.gridFamilia);

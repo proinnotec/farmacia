@@ -60,6 +60,9 @@
     <Compile Include="ControlesPersonalizados\BotonPersonalizado.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ControlesPersonalizados\ComboPersonalizado.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ControlesPersonalizados\GridPersonalizado.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -86,11 +89,17 @@
     <Compile Include="Vistas\Catalogos\frmCatFamilias.Designer.cs">
       <DependentUpon>frmCatFamilias.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Catalogos\frmCatProductos.cs">
+    <Compile Include="Vistas\Catalogos\frmCatProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Catalogos\frmCatProductos.Designer.cs">
-      <DependentUpon>frmCatProductos.cs</DependentUpon>
+    <Compile Include="Vistas\Catalogos\frmCatProducto.Designer.cs">
+      <DependentUpon>frmCatProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmListaProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmListaProductos.Designer.cs">
+      <DependentUpon>frmListaProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Dialogos\Dlg_Confirmacion.cs">
       <SubType>Form</SubType>
@@ -152,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmCatFamilias.resx">
       <DependentUpon>frmCatFamilias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmCatProducto.resx">
+      <DependentUpon>frmCatProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmListaProductos.resx">
+      <DependentUpon>frmListaProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Dialogos\Dlg_Confirmacion.resx">
       <DependentUpon>Dlg_Confirmacion.cs</DependentUpon>

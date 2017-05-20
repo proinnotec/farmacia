@@ -53,6 +53,7 @@
     <Compile Include="Negocio\Administracion\ServicioCatalogoPerfiles.cs" />
     <Compile Include="Negocio\Administracion\ServicioCatalogoUsuarios.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoFamilias.cs" />
+    <Compile Include="Negocio\Catalogos\ServicioCatalogoProductos.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoTiposAjustes.cs" />
     <Compile Include="Operaciones\ServicioDatosMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
