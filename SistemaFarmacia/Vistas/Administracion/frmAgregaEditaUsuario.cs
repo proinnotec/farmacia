@@ -97,21 +97,21 @@ namespace SistemaFarmacia.Vistas.Administracion
             string mensaje = string.Empty;
 
             if (string.IsNullOrEmpty(nombre))
-                mensaje = "Capture el nombre, ";
+                mensaje = " Capture el nombre \n";
 
             if (string.IsNullOrEmpty(aPaterno))
-                mensaje = mensaje + " Capture el apellido paterno, ";
+                mensaje = mensaje + " Capture el apellido paterno \n";
 
             if (string.IsNullOrEmpty(aMaterno))
-                mensaje = mensaje + " Capture el apellido materno, ";
+                mensaje = mensaje + " Capture el apellido materno \n";
 
             if (string.IsNullOrEmpty(usuarioLogin))
-                mensaje = mensaje + " Capture el usuario, ";
+                mensaje = mensaje + " Capture el usuario \n";
 
             if (string.IsNullOrEmpty(password))
-                mensaje = mensaje + " Capture el password";
+                mensaje = mensaje + " Capture el password \n";
 
-            if(perfil <= 0)
+            if (perfil <= 0)
                 mensaje = mensaje + " Seleccione un perfil para el usuario";
 
             if (mensaje.Length > 0)
@@ -119,10 +119,16 @@ namespace SistemaFarmacia.Vistas.Administracion
                 MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
                 return;
             }
-                
+
+            bool validaUsuarioLogin = false;
+
             _usuarioGuardar.Nombre = nombre;
             _usuarioGuardar.ApellidoPaterno = aPaterno;
             _usuarioGuardar.ApellidoMaterno = aMaterno;
+
+            if (_usuarioGuardar.NombreUsuario != usuarioLogin)
+                validaUsuarioLogin = true;
+
             _usuarioGuardar.NombreUsuario = usuarioLogin;
             _usuarioGuardar.UserPassword = password;
             _usuarioGuardar.IdPerfil = perfil;
@@ -130,7 +136,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             if (!ConfirmarGuardado())
                 return;
 
-            _agregaEditaUsuariosController.GuardarUsuario(_usuarioGuardar, _accion);
+            _agregaEditaUsuariosController.GuardarUsuario(_usuarioGuardar, _accion, validaUsuarioLogin);
 
         }
         

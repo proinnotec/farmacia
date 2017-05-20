@@ -38,10 +38,38 @@ namespace SistemaFarmacia.Controladores.Administracion
 
         }
 
-        public void GuardarUsuario(Usuario usuario, EnumeradoAccion accion)
+        public void GuardarUsuario(Usuario usuario, EnumeradoAccion accion, bool validaNombreUsuario)
         {
             ExcepcionPersonalizada resultado = null;
+            string mensaje = string.Empty;
 
+            if(validaNombreUsuario)
+            {
+                resultado = _servicioCatalogoUsuarios.ValidarNombreUsuario(usuario);
+
+                if (resultado != null)
+                {
+                    mensaje = "Hubo un error al intentar consultar el nombre del usuario.";
+                    _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                    return;
+                }
+
+                List<Usuario> listaUsuariosEncontrados = _servicioCatalogoUsuarios.ListaUsuariosEncontrados;
+
+                if (listaUsuariosEncontrados.Count > 0)
+                {
+                    string mensajeUsuarioEncontrado = string.Format("{0} {1} {2}", "No se puede asignar el nombre de usuario", usuario.NombreUsuario, "porque ya se encuentra asignado a:");
+
+                    foreach (Usuario usuarioEncontrado in listaUsuariosEncontrados)
+                    {
+                        mensajeUsuarioEncontrado = string.Format("{0} {1} {2} {3}", mensajeUsuarioEncontrado, usuarioEncontrado.Nombre, usuarioEncontrado.ApellidoPaterno, usuarioEncontrado.ApellidoMaterno);
+                    }
+
+                    _vista.MostrarDialogoResultado(_vista.Text, mensajeUsuarioEncontrado, "", false);
+                    return;
+                }
+            }
+            
             switch (accion)
             {
                 case EnumeradoAccion.Alta:
@@ -52,13 +80,12 @@ namespace SistemaFarmacia.Controladores.Administracion
                     resultado = _servicioCatalogoUsuarios.ActualizarUsuario(usuario);
                     break;
             }
-
-            string mensaje = string.Empty;
-
+            
             if (resultado != null)
             {
                 mensaje = "Hubo un error al intentar guardar los datos del usuario.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
             }
 
             mensaje = "Se ha guardado correctamente la información del usuario.";

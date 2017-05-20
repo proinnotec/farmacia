@@ -12,6 +12,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
         private IBaseDeDatos _baseDatos;
 
         public List<Usuario> ListaUsuarios { get; private set; }
+        public List<Usuario> ListaUsuariosEncontrados { get; private set; }
         public ServicioCatalogoUsuarios(IBaseDeDatos baseDeDatos)
         {
             _baseDatos = baseDeDatos;
@@ -61,6 +62,57 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                 if (conexion != null && conexion.State != ConnectionState.Closed)
                     conexion.Close();
                     conexion.Dispose();
+            }
+        }
+
+
+        public ExcepcionPersonalizada ValidarNombreUsuario(Usuario usuario)
+        {
+            IDbConnection conexion = null;
+            ListaUsuariosEncontrados = new List<Usuario>();
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_CatUsuarios", conexion);
+
+                IDataParameter parametroUsuario = _baseDatos.CrearParametro("@NombreUsuario", usuario.NombreUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroUsuario);
+
+                IDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Usuario usuarioEncontrado = new Usuario();
+                    usuarioEncontrado.IdUsuario = (int)lector["IdUsuario"];
+                    usuarioEncontrado.Nombre = lector["Nombre"].ToString();
+                    usuarioEncontrado.ApellidoPaterno = lector["ApellidoPaterno"].ToString();
+                    usuarioEncontrado.ApellidoMaterno = lector["ApellidoMaterno"].ToString();
+                    usuarioEncontrado.NombreUsuario = lector["NombreUsuario"].ToString();
+                    usuarioEncontrado.UserPassword = lector["UserPassword"].ToString();
+                    usuarioEncontrado.IdPerfil = (int)lector["IdPerfil"];
+                    usuarioEncontrado.Perfil = lector["Perfil"].ToString();
+                    usuarioEncontrado.EsActivo = (bool)lector["EsActivo"];
+
+                    ListaUsuariosEncontrados.Add(usuarioEncontrado);
+
+                }
+
+                lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener la lista de usuarios.", excepcionCapturada);
+                return excepcion;
+
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                conexion.Dispose();
             }
         }
 

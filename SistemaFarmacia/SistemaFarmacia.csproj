@@ -220,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
+    <None Include="Resources\reload.jpg" />
     <None Include="Resources\save.png" />
     <None Include="Resources\new.jpg" />
     <None Include="Resources\exit.jpg" />

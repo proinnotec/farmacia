@@ -5,12 +5,6 @@ using SistemaFarmacia.Entidades.Negocio;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Administracion
@@ -21,6 +15,7 @@ namespace SistemaFarmacia.Vistas.Administracion
         private CatUsuariosController _catUsuariosController;
         private EnumeradoAccion _enumeradoAccion;
         private Usuario _usuarioLocal;
+        ToolTip _toolTipActivaDesactiva;
 
         public frmCatUsuarios(ContextoAplicacion contextoAplicacion)
         {
@@ -28,7 +23,8 @@ namespace SistemaFarmacia.Vistas.Administracion
             _contextoAplicacion = _contextoAplicacion;
             _catUsuariosController = new CatUsuariosController(this);
             _usuarioLocal = new Usuario();
-            
+            _toolTipActivaDesactiva = new ToolTip();
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -39,6 +35,15 @@ namespace SistemaFarmacia.Vistas.Administracion
 
         private void frmCatUsuarios_Load(object sender, EventArgs e)
         {
+            ToolTip ToolTipNuevo = new ToolTip();
+            ToolTipNuevo.SetToolTip(btnNuevo, "Agregar usuario");
+
+            ToolTip ToolTipSalir = new ToolTip();
+            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
+
+            ToolTip ToolTipRecargar = new ToolTip();
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar lista de usuarios");
+
             ObtenerUsuarios();
         }
 
@@ -68,12 +73,24 @@ namespace SistemaFarmacia.Vistas.Administracion
             _usuarioLocal.Perfil = gridUsuarios.SelectedRows[0].Cells["Perfil"].Value.ToString();
             _usuarioLocal.EsActivo = (bool)gridUsuarios.SelectedRows[0].Cells["EsActivo"].Value;
 
+            string mensajeToolTip = string.Empty;
+
             if (_usuarioLocal.EsActivo)
+            {
                 btnActDes.BackgroundImage = Resource.bloquear;
+                mensajeToolTip = "Dar de baja al usuario";
 
+                _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
+
+            }
             else
+            {
                 btnActDes.BackgroundImage = Resource.activar;
+                mensajeToolTip = "Reactivar al usuario";
 
+                _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
+
+            }
         }
 
         bool ConfirmarActivacionDesactivacion(string accion)
@@ -148,5 +165,9 @@ namespace SistemaFarmacia.Vistas.Administracion
 
         }
 
+        private void btnRecargar_Click(object sender, EventArgs e)
+        {
+            ObtenerUsuarios();
+        }
     }
 }
