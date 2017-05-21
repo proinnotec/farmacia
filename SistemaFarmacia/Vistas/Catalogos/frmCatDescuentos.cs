@@ -24,7 +24,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         public frmCatDescuentos(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
-            _contextoAplicacion = _contextoAplicacion;
+            _contextoAplicacion = contextoAplicacion;
             _toolTipActivaDesactiva = new ToolTip();
             _catDescuentosController = new CatDescuentosController(this);
             _descuentoLocal = new CatDescuentos();
@@ -52,7 +52,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             this.Dispose();
         }
 
-        private void ConsultarDescuentos()
+        public void ConsultarDescuentos()
         {
             _catDescuentosController.ConsultarDescuentos();
         }
@@ -71,6 +71,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             _descuentoLocal.IdDescuento = (int)gridDescuentos.SelectedRows[0].Cells["IdDescuento"].Value;
             _descuentoLocal.Porcentaje = (decimal)gridDescuentos.SelectedRows[0].Cells["Porcentaje"].Value;
             _descuentoLocal.Descripcion = gridDescuentos.SelectedRows[0].Cells["Descripcion"].Value.ToString();
+            _descuentoLocal.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
             _descuentoLocal.EsActivo = (bool)gridDescuentos.SelectedRows[0].Cells["EsActivo"].Value;
 
             string mensajeToolTip = string.Empty;
@@ -100,20 +101,66 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            EnumeradoAccion enumeradoAccion = EnumeradoAccion.Alta;
+            EnumeradoAccion enumeradoAccion  = EnumeradoAccion.Alta;
 
             CatDescuentos descuentoNuevo = new CatDescuentos();
-
-            frmAgregaEditaDescuentos vistaEdicion = new frmAgregaEditaDescuentos(enumeradoAccion, this, descuentoNuevo);
+            
+            frmAgregaEditaDescuentos vistaEdicion = new frmAgregaEditaDescuentos(_contextoAplicacion, enumeradoAccion, this, descuentoNuevo);
             vistaEdicion.ShowDialog();
         }
 
         private void gridDescuentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (!_descuentoLocal.EsActivo)
+            {
+                string mensaje = string.Format("{0} {1} {2}", "No se puede editar el registro de", _descuentoLocal.Descripcion, "porque está dado de baja. Si quiere hacer cambios tendrá que reactivar el registro, favor de verificar");
+                MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+                return;
+            }
+
             EnumeradoAccion enumeradoAccion = EnumeradoAccion.Edicion;
 
-            frmAgregaEditaDescuentos vistaEdicion = new frmAgregaEditaDescuentos(enumeradoAccion, this, _descuentoLocal);
+            frmAgregaEditaDescuentos vistaEdicion = new frmAgregaEditaDescuentos(_contextoAplicacion, enumeradoAccion, this, _descuentoLocal);
             vistaEdicion.ShowDialog();
+        }
+
+        private void gridDescuentos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CargarDatosDeGridAObjeto();
+        }
+
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            string accion;
+
+            if (_descuentoLocal.EsActivo)
+            {
+                accion = "dar de baja";
+                _descuentoLocal.EsActivo = false;
+            }
+            else
+            {
+                accion = "reactivar";
+                _descuentoLocal.EsActivo = true;
+            }
+
+            bool respuesta = ConfirmarActivacionDesactivacion(accion);
+
+            if (respuesta)
+                _catDescuentosController.ActivarDesactivarDescuento(_descuentoLocal);
+        }
+
+        bool ConfirmarActivacionDesactivacion(string accion)
+        {
+            string mensaje = string.Format("{0} {1} {2} {3}{4}", "¿Seguro que desea", accion, "el descuento de", _descuentoLocal.Descripcion, "?");
+
+            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
+
+            if (respuesta == DialogResult.Yes)
+                return true;
+
+            else
+                return false;
         }
     }
 }

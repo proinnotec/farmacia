@@ -74,26 +74,16 @@
             // 
             this.nudPorcentaje.DecimalPlaces = 2;
             this.nudPorcentaje.Location = new System.Drawing.Point(13, 58);
-            this.nudPorcentaje.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.nudPorcentaje.Name = "nudPorcentaje";
             this.nudPorcentaje.Size = new System.Drawing.Size(120, 22);
             this.nudPorcentaje.TabIndex = 1;
-            this.nudPorcentaje.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(153, 58);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(260, 22);
-            this.txtDescripcion.TabIndex = 0;
+            this.txtDescripcion.TabIndex = 2;
             // 
             // btnGuardar
             // 
@@ -105,9 +95,10 @@
             this.btnGuardar.Location = new System.Drawing.Point(452, 12);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(50, 50);
-            this.btnGuardar.TabIndex = 9;
+            this.btnGuardar.TabIndex = 3;
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // frmAgregaEditaDescuentos
             // 

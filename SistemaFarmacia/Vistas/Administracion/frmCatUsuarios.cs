@@ -24,7 +24,6 @@ namespace SistemaFarmacia.Vistas.Administracion
             _catUsuariosController = new CatUsuariosController(this);
             _usuarioLocal = new Usuario();
             _toolTipActivaDesactiva = new ToolTip();
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -107,7 +106,6 @@ namespace SistemaFarmacia.Vistas.Administracion
             {
                 return false;
             }
-
         }
 
         private void btnActDes_Click(object sender, EventArgs e)

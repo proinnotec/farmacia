@@ -53,6 +53,7 @@
     <Compile Include="Controladores\Administracion\AgregaEditaUsuariosController.cs" />
     <Compile Include="Controladores\Administracion\CatUsuariosController.cs" />
     <Compile Include="Controladores\BaseController.cs" />
+    <Compile Include="Controladores\Catalogos\AgregaEditaDescuentosController.cs" />
     <Compile Include="Controladores\Catalogos\CatDescuentosController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatFamiliasController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatProductoController.cs" />

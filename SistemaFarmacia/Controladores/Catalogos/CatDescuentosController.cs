@@ -17,8 +17,8 @@ namespace SistemaFarmacia.Controladores.Catalogos
 
         public CatDescuentosController(frmCatDescuentos vista)
         {
-            _vista = vista;
             _servicioCatalogoDescuentos = new ServicioCatalogoDescuentos(BaseDeDatosTienda);
+            _vista = vista;
         }
 
         public void ConsultarDescuentos()
@@ -29,12 +29,30 @@ namespace SistemaFarmacia.Controladores.Catalogos
             {
                 string mensaje = "Hubo un error al intentar obtener la información de los descuentos, no se pueden cargar los datos.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
-
+                return;
             }
 
             List<CatDescuentos> lista = _servicioCatalogoDescuentos.ListaCatDescuentos;
 
             _vista.AsignarListaDescuentos(lista);
+        }
+
+        public void ActivarDesactivarDescuento(CatDescuentos descuento)
+        {
+            string mensaje = string.Empty;
+            ExcepcionPersonalizada resultado = _servicioCatalogoDescuentos.ActivarDesactivarDescuento(descuento);
+
+            if (resultado != null)
+            {
+                mensaje = "Hubo un error al intentar actualizar la información de los descuentos.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
+            }
+            
+            mensaje = "Se ha guardado correctamente la información del usuario.";
+            _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
+
+            ConsultarDescuentos();
         }
     }
 }

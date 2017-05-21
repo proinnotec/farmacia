@@ -61,5 +61,132 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 conexion.Dispose();
             }
         }
+
+        public ExcepcionPersonalizada GuardarDescuento(CatDescuentos descuento)
+        {
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_CatDescuentos", conexion);
+
+                IDataParameter parametroPorcentaje = _baseDatos.CrearParametro("@Porcentaje", descuento.Porcentaje, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPorcentaje);
+
+                IDataParameter parametroDescripcion = _baseDatos.CrearParametro("@Descripcion", descuento.Descripcion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroDescripcion);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", descuento.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                {
+                    throw new Exception("No se afectaron filas (spI_CatDescuentos).");
+                }
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar el descuento.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                conexion.Dispose();
+            }
+        }
+
+        public ExcepcionPersonalizada ActualizarDescuento(CatDescuentos descuento)
+        {
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatDescuentos", conexion);
+
+                IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", descuento.IdDescuento, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdDescuento);
+
+                IDataParameter parametroPorcentaje = _baseDatos.CrearParametro("@Porcentaje", descuento.Porcentaje, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPorcentaje);
+
+                IDataParameter parametroDescripcion = _baseDatos.CrearParametro("@Descripcion", descuento.Descripcion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroDescripcion);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", descuento.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                {
+                    throw new Exception("No se afectaron filas (spU_CatDescuentos).");
+                }
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible actualizar el descuento.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                conexion.Dispose();
+            }
+        }
+
+        public ExcepcionPersonalizada ActivarDesactivarDescuento(CatDescuentos descuento)
+        {
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatDescuentosActivarDesactivar", conexion);
+
+                IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", descuento.IdDescuento, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdDescuento);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", descuento.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                IDataParameter parametroEsActivo = _baseDatos.CrearParametro("@EsActivo", descuento.EsActivo, ParameterDirection.Input);
+                comando.Parameters.Add(parametroEsActivo);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                    throw new Exception("No se afectaron filas (spU_CatDescuentosActivarDesactivar).");
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del descuento.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                conexion.Dispose();
+            }
+        }
     }
 }
