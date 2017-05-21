@@ -57,9 +57,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
         {
             CatProducto producto = new CatProducto();
             producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
-            frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);
-            frmCatProducto.MdiParent = (Form)Application.OpenForms.Cast<Form>().ToList().Find(elemento => elemento.Name == "frmPrincipal");
-            frmCatProducto.Show();
+            frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);           
+            frmCatProducto.ShowDialog();
+
+            if (frmCatProducto.nudClaveProducto.Value > 0)
+            {
+                producto = frmCatProducto.ContextoProducto();
+                cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
+                AsigarListaProductos(_frmCatProductosContoller.ListaProductos(producto.IdFamiliaProducto));
+            }
         }
 
         private void gridProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -74,10 +80,14 @@ namespace SistemaFarmacia.Vistas.Catalogos
             producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;            
 
             frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);
-            frmCatProducto.MdiParent = (Form)Application.OpenForms.Cast<Form>().ToList().Find(elemento => elemento.Name == "frmPrincipal");
-            frmCatProducto.Show();
-            cmbFamilias.SelectedIndex = -1;
-            gridProductos.DataSource = null;
+            frmCatProducto.ShowDialog();
+
+            if (frmCatProducto.nudClaveProducto.Value > 0)
+            {                                
+                producto = frmCatProducto.ContextoProducto();
+                cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
+                AsigarListaProductos(_frmCatProductosContoller.ListaProductos(producto.IdFamiliaProducto));
+            }
         }
     }
 }

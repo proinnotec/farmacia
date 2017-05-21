@@ -28,7 +28,7 @@ namespace SistemaFarmacia.Controladores.Catalogos
             {
                 string mensaje = "El producto se editó correctamente.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
-                _vista.LimpiarFormulario();
+                //_vista.LimpiarFormulario();
             }
             else
             {
@@ -43,7 +43,7 @@ namespace SistemaFarmacia.Controladores.Catalogos
             {
                 string mensaje = "El producto se guardó correctamente.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
-                _vista.LimpiarFormulario();
+                //_vista.LimpiarFormulario();
             }
             else
             {

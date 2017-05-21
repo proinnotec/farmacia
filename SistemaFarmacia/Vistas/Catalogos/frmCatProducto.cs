@@ -19,7 +19,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
     {
         EnumeradoAccion _enumeradoAccion;
         private frmCatProductoController _frmCatProductoController;
-        int _idUsuario;     
+        int _idUsuario;             
 
         public frmCatProducto(CatProducto Producto, List<CatFamilias> ListaFamilias)
         {
@@ -137,7 +137,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             gridCodigoBarra.Rows.Clear();
         }
 
-        CatProducto ContextoProducto()
+        public CatProducto ContextoProducto()
         {
             CatProducto producto = new CatProducto();
             producto.ClaveProducto = (int)nudClaveProducto.Value;
@@ -208,8 +208,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            LimpiarFormulario();
             this.Close();
-            this.Dispose();
+            this.Dispose();        
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -231,14 +232,18 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_enumeradoAccion == EnumeradoAccion.Alta)
             {
                 _frmCatProductoController.GuardarProducto(producto);
+                this.Close();
+                Cursor.Current = Cursors.Default;
             }
 
             if (_enumeradoAccion == EnumeradoAccion.Edicion)
             {
                 _frmCatProductoController.EditarProducto(producto);
+                this.Close();
+                Cursor.Current = Cursors.Default;
             }
 
-            Cursor.Current = Cursors.Default;
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
