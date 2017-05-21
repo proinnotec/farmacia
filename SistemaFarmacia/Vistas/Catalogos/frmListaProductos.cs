@@ -17,8 +17,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
 {
     public partial class frmListaProductos : frmBase
     {
-        public ContextoAplicacion _contextoAplicacion { get; set; }
-        private frmListaProductosContoller _frmCatProductosContoller { get; set; }
+        public ContextoAplicacion _contextoAplicacion;
+        private frmListaProductosContoller _frmCatProductosContoller;
+        public CatProducto Producto { get; set; }
 
         public frmListaProductos(ContextoAplicacion contextoAplicacion)
         {
@@ -68,17 +69,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return;
             }
 
-            CatProducto producto = new CatProducto();
-            producto.ClaveProducto = (int) gridProductos.SelectedRows[0].Cells["ClaveProducto"].Value;
-            producto.Descripcion = gridProductos.SelectedRows[0].Cells["Descripcion"].Value.ToString();
-            producto.Precio = (decimal)gridProductos.SelectedRows[0].Cells["Precio"].Value;
-            producto.AplicaDescuentoCatalogo = (bool)gridProductos.SelectedRows[0].Cells["AplicaDescuentoCatalogo"].Value;
-            producto.IdFamiliaProducto = (int)gridProductos.SelectedRows[0].Cells["IdFamiliaProducto"].Value;
+            List<CatProducto> listaProductos = (List<CatProducto>)gridProductos.DataSource;
+            CatProducto producto = listaProductos.Find(elemento => elemento.ClaveProducto == (int) gridProductos.SelectedRows[0].Cells["ClaveProducto"].Value);
             producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;            
 
             frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);
             frmCatProducto.MdiParent = (Form)Application.OpenForms.Cast<Form>().ToList().Find(elemento => elemento.Name == "frmPrincipal");
             frmCatProducto.Show();
+            cmbFamilias.SelectedIndex = -1;
+            gridProductos.DataSource = null;
         }
     }
 }

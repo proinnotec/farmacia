@@ -41,7 +41,6 @@
             this.nudClaveProducto = new System.Windows.Forms.NumericUpDown();
             this.chkAplicaDescuento = new System.Windows.Forms.CheckBox();
             this.gridCodigoBarra = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
-            this.CodigoBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCodigoBarra = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -49,6 +48,7 @@
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnEliminar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.CodigoBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClaveProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCodigoBarra)).BeginInit();
@@ -174,13 +174,6 @@
             this.gridCodigoBarra.Size = new System.Drawing.Size(387, 150);
             this.gridCodigoBarra.TabIndex = 10;
             // 
-            // CodigoBarras
-            // 
-            this.CodigoBarras.DataPropertyName = "CodigoBarras";
-            this.CodigoBarras.HeaderText = "Código de barras";
-            this.CodigoBarras.Name = "CodigoBarras";
-            this.CodigoBarras.ReadOnly = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -253,6 +246,13 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // CodigoBarras
+            // 
+            this.CodigoBarras.DataPropertyName = "CodigoBarras";
+            this.CodigoBarras.HeaderText = "Código de barras";
+            this.CodigoBarras.Name = "CodigoBarras";
+            this.CodigoBarras.ReadOnly = true;
             // 
             // frmCatProducto
             // 

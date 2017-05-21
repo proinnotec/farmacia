@@ -19,7 +19,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
     {
         EnumeradoAccion _enumeradoAccion;
         private frmCatProductoController _frmCatProductoController;
-        int _idUsuario;
+        int _idUsuario;     
 
         public frmCatProducto(CatProducto Producto, List<CatFamilias> ListaFamilias)
         {
@@ -28,11 +28,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
             Inicializa();
             _frmCatProductoController = new frmCatProductoController(this);
             AsigarListaFamilias(ListaFamilias);
+            _idUsuario = Producto.IdUsuario;
+
             if (_enumeradoAccion != EnumeradoAccion.Alta)
             {
                 AsignarValores(Producto);
-            }         
-            _idUsuario = Producto.IdUsuario;
+            }
         }
 
         private void AsigarListaFamilias(List<CatFamilias> listaFamilias)
@@ -52,6 +53,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
             nudPrecio.Value = producto.Precio;
             chkAplicaDescuento.Checked = producto.AplicaDescuentoCatalogo;
             cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
+
+            foreach (CodigoBarraProducto codigoBarra in producto.ListaCodigoBarra)
+            {
+                gridCodigoBarra.Rows.Add(codigoBarra.CodigoBarras);
+            }
         }
 
         bool ValidarFormulario()
@@ -128,8 +134,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             nudPrecio.Value = 0;
             chkAplicaDescuento.Checked = false;
             cmbFamilias.SelectedIndex = -1;
-            gridCodigoBarra.AutoGenerateColumns = false;
-            gridCodigoBarra.DataSource = null;
+            gridCodigoBarra.Rows.Clear();
         }
 
         CatProducto ContextoProducto()
@@ -140,8 +145,14 @@ namespace SistemaFarmacia.Vistas.Catalogos
             producto.Descripcion = txtDescripcion.Text;
             producto.IdFamiliaProducto = (int)cmbFamilias.SelectedValue;
             producto.Precio = nudPrecio.Value;
-            producto.ListaCodigoBarra = (List<CodigoBarraProducto>)gridCodigoBarra.DataSource;
-            producto.IdUsuario = _idUsuario;
+            producto.ListaCodigoBarra = new List<CodigoBarraProducto>();
+
+            foreach (DataGridViewRow fila in gridCodigoBarra.Rows)
+            {
+                producto.ListaCodigoBarra.Add(new CodigoBarraProducto { CodigoBarras = fila.Cells["CodigoBarras"].Value.ToString() });
+            }
+
+            producto.IdUsuario = _idUsuario; 
             return producto;
         }
 
@@ -179,26 +190,20 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return;
             }
 
-            if (gridCodigoBarra.DataSource == null)
-            {
-                gridCodigoBarra.AutoGenerateColumns = false;
-                gridCodigoBarra.DataSource = null;
-                gridCodigoBarra.DataSource = new List<CodigoBarraProducto>();
+            if (gridCodigoBarra.Rows.Count > 0)
+            {                
+                int filas = gridCodigoBarra.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["CodigoBarras"].Value.ToString().Equals(txtCodigoBarra.Text.Trim())).Count();                
+                if (filas > 0)
+                {
+                    MostrarDialogoResultado(this.Text, "El código de barra ya existe, no se agregó.", string.Empty, false);
+                    txtCodigoBarra.Focus();
+                    return;
+                }
             }
 
-            List<CodigoBarraProducto> listaCodigoBarra = (List<CodigoBarraProducto>)gridCodigoBarra.DataSource;
-            CodigoBarraProducto codigoBarra = new CodigoBarraProducto { CodigoBarras = txtCodigoBarra.Text.Trim() };
-
-            if (listaCodigoBarra.Exists(elemento => elemento.CodigoBarras == txtCodigoBarra.Text.Trim()))
-            {
-                MostrarDialogoResultado(this.Text, "El código de barra ya existe.", string.Empty, false);
-                return;
-            }
-
-            listaCodigoBarra.Add(codigoBarra);
-            gridCodigoBarra.AutoGenerateColumns = false;
-            gridCodigoBarra.DataSource = null;
-            gridCodigoBarra.DataSource = listaCodigoBarra;            
+            gridCodigoBarra.Rows.Add(txtCodigoBarra.Text.Trim());
+            txtCodigoBarra.Text = string.Empty;
+            txtCodigoBarra.Focus();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -230,7 +235,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             if (_enumeradoAccion == EnumeradoAccion.Edicion)
             {
-                //_frmCatFamiliasController.EditarFamilia(familia);
+                _frmCatProductoController.EditarProducto(producto);
             }
 
             Cursor.Current = Cursors.Default;
@@ -254,26 +259,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void tbnQuitar_Click(object sender, EventArgs e)
         {
-            if (gridCodigoBarra.DataSource == null)
-            {
-                MostrarDialogoResultado(this.Text, "No hay códigos que quitar.", string.Empty, false);
-                return;
-            }
-
             if (gridCodigoBarra.SelectedRows.Count == 0)
             {
                 MostrarDialogoResultado(this.Text, "Seleccione un código de barra.", string.Empty, false);
                 return;
             }
 
-            List<CodigoBarraProducto> listaCodigoBarra = (List<CodigoBarraProducto>)gridCodigoBarra.DataSource;
-            string codigoBarra = gridCodigoBarra.SelectedRows[0].Cells["CodigoBarras"].ToString();
-            listaCodigoBarra.Remove(listaCodigoBarra.Find(elemento => elemento.CodigoBarras == codigoBarra));
-            gridCodigoBarra.AutoGenerateColumns = false;
-            gridCodigoBarra.DataSource = null;
-            gridCodigoBarra.DataSource = listaCodigoBarra;
-
-
+            string codigoBarra = gridCodigoBarra.SelectedRows[0].Cells["CodigoBarras"].Value.ToString();
+            DataGridViewRow row = gridCodigoBarra.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["CodigoBarras"].Value.ToString().Equals(codigoBarra)).First();
+            gridCodigoBarra.Rows.Remove(row);
         }
     }
 }

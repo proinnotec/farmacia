@@ -58,6 +58,7 @@
     <Compile Include="Negocio\Catalogos\ServicioCatalogoTiposAjustes.cs" />
     <Compile Include="Operaciones\ServicioDatosMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilerias\Serializar.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SistemaFarmacia.Entidades\SistemaFarmacia.Entidades.csproj">

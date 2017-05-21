@@ -21,6 +21,21 @@ namespace SistemaFarmacia.Controladores.Catalogos
             _servicioCatalogoProductos = new ServicioCatalogoProductos(BaseDeDatosTienda);
         }
 
+        public void EditarProducto(CatProducto producto)
+        {
+            ExcepcionPersonalizada excepcionEditarProducto = _servicioCatalogoProductos.EditarProducto(producto);
+            if (excepcionEditarProducto == null)
+            {
+                string mensaje = "El producto se editó correctamente.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
+                _vista.LimpiarFormulario();
+            }
+            else
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, excepcionEditarProducto.Message.ToString(), excepcionEditarProducto.InnerException.ToString(), false);
+            }
+        }
+
         public void GuardarProducto(CatProducto producto)
         {
             ExcepcionPersonalizada excepcionGuardarProducto = _servicioCatalogoProductos.GuardarProducto(producto);
