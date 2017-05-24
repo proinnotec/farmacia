@@ -119,12 +119,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
         public ExcepcionPersonalizada ActivarDesactivarUsuario(Usuario usuario)
         {
             IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatUsuariosActivarDesactivar", conexion);
+                comando.Transaction = transaccion;
 
                 IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", usuario.IdUsuario, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdUsuario);
@@ -132,19 +135,25 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                 IDataParameter parametroEsActivo = _baseDatos.CrearParametro("@EsActivo", usuario.EsActivo, ParameterDirection.Input);
                 comando.Parameters.Add(parametroEsActivo);
 
+                IDataParameter parametroIdUsuarioRegistra = _baseDatos.CrearParametro("@IdUsuarioRegistra", usuario.IdUsuarioRegistra, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuarioRegistra);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
-                {
                     throw new Exception("No se afectaron filas (spU_CatUsuariosActivarDesactivar).");
-                }
 
+                transaccion.Commit();
                 return null;
 
             }
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del usuario.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
                 return excepcion;
             }
             finally
@@ -158,12 +167,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
         public ExcepcionPersonalizada GuardarUsuario(Usuario usuario)
         {
             IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_CatUsuarios", conexion);
+                comando.Transaction = transaccion;
 
                 IDataParameter parametroNombre = _baseDatos.CrearParametro("@Nombre", usuario.Nombre, ParameterDirection.Input);
                 comando.Parameters.Add(parametroNombre);
@@ -183,19 +195,25 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                 IDataParameter parametroPerfil = _baseDatos.CrearParametro("@IdPerfil", usuario.IdPerfil, ParameterDirection.Input);
                 comando.Parameters.Add(parametroPerfil);
 
+                IDataParameter parametroIdUsuarioRegistra = _baseDatos.CrearParametro("@IdUsuarioRegistra", usuario.IdUsuarioRegistra, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuarioRegistra);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
-                {
                     throw new Exception("No se afectaron filas (spI_CatUsuarios).");
-                }
 
+                transaccion.Commit();
                 return null;
 
             }
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar al usuario.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
                 return excepcion;
             }
             finally
@@ -209,12 +227,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
         public ExcepcionPersonalizada ActualizarUsuario(Usuario usuario)
         {
             IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatUsuarios", conexion);
+                comando.Transaction = transaccion;
 
                 IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", usuario.IdUsuario, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdUsuario);
@@ -237,19 +258,25 @@ namespace SistemaFarmacia.Servicios.Negocio.Administracion
                 IDataParameter parametroPerfil = _baseDatos.CrearParametro("@IdPerfil", usuario.IdPerfil, ParameterDirection.Input);
                 comando.Parameters.Add(parametroPerfil);
 
+                IDataParameter parametroIdUsuarioRegistra = _baseDatos.CrearParametro("@IdUsuarioRegistra", usuario.IdUsuarioRegistra, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuarioRegistra);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
-                {
                     throw new Exception("No se afectaron filas (spU_CatUsuarios).");
-                }
 
+                transaccion.Commit();
                 return null;
 
             }
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible actualizar la información del usuario.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
                 return excepcion;
             }
             finally

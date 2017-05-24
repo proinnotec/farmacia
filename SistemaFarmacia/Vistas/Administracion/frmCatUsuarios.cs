@@ -20,10 +20,11 @@ namespace SistemaFarmacia.Vistas.Administracion
         public frmCatUsuarios(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
-            _contextoAplicacion = _contextoAplicacion;
+            _contextoAplicacion = contextoAplicacion;
             _catUsuariosController = new CatUsuariosController(this);
             _usuarioLocal = new Usuario();
             _toolTipActivaDesactiva = new ToolTip();
+            _usuarioLocal.IdUsuarioRegistra = contextoAplicacion.Usuario.IdUsuario;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -142,6 +143,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             _enumeradoAccion = EnumeradoAccion.Alta;
 
             Usuario usuarioNuevo = new Usuario();
+            usuarioNuevo.IdUsuarioRegistra = _contextoAplicacion.Usuario.IdUsuario;
 
             frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_enumeradoAccion, this, usuarioNuevo);
             vistaEdicion.ShowDialog();

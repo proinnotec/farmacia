@@ -65,12 +65,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         public ExcepcionPersonalizada GuardarDescuento(CatDescuentos descuento)
         {
             IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_CatDescuentos", conexion);
+                comando.Transaction = transaccion;
 
                 IDataParameter parametroPorcentaje = _baseDatos.CrearParametro("@Porcentaje", descuento.Porcentaje, ParameterDirection.Input);
                 comando.Parameters.Add(parametroPorcentaje);
@@ -84,16 +87,19 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
-                {
                     throw new Exception("No se afectaron filas (spI_CatDescuentos).");
-                }
 
+                transaccion.Commit();
                 return null;
 
             }
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar el descuento.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
                 return excepcion;
             }
             finally
@@ -107,12 +113,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         public ExcepcionPersonalizada ActualizarDescuento(CatDescuentos descuento)
         {
             IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatDescuentos", conexion);
+                comando.Transaction = transaccion;
 
                 IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", descuento.IdDescuento, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdDescuento);
@@ -129,16 +138,19 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
-                {
                     throw new Exception("No se afectaron filas (spU_CatDescuentos).");
-                }
 
+                transaccion.Commit();
                 return null;
 
             }
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible actualizar el descuento.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
                 return excepcion;
             }
             finally
@@ -152,12 +164,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         public ExcepcionPersonalizada ActivarDesactivarDescuento(CatDescuentos descuento)
         {
             IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatDescuentosActivarDesactivar", conexion);
+                comando.Transaction = transaccion;
 
                 IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", descuento.IdDescuento, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdDescuento);
@@ -173,12 +188,17 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 if (filasAfectadas.Equals(0))
                     throw new Exception("No se afectaron filas (spU_CatDescuentosActivarDesactivar).");
 
+                transaccion.Commit();
                 return null;
 
             }
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del descuento.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
                 return excepcion;
             }
             finally

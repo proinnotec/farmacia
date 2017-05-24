@@ -9,6 +9,7 @@
         public string UserPassword { get; set; }
         public int IdPerfil { get; set; }
         public string Perfil { get; set; }
+        public int IdUsuarioRegistra { get; set; }
 
     }
 }
