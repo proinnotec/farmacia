@@ -21,6 +21,22 @@ namespace SistemaFarmacia.Controladores.Catalogos
             _vista = vista;
         }
 
+        public void ConsultarDescuentoConfiguracion(int idDescuento)
+        {
+            ExcepcionPersonalizada resultado = _servicioCatalogoDescuentos.ConsultarDescuentoConfiguracion(idDescuento);
+
+            if (resultado != null)
+            {
+                string mensaje = "Hubo un error al intentar obtener la información de las configuraciones de descuentos, no se pueden cargar los datos.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
+            }
+
+            List<ConfiguracionDescuento> lista = _servicioCatalogoDescuentos.ListaConfiguracionDescuento;
+
+            _vista.AsignarListaDescuentos(lista);
+        }
+
         public void GuardarDescuentoConfiguracion(ConfiguracionDescuento configuracion)
         {
             string mensaje = string.Empty;

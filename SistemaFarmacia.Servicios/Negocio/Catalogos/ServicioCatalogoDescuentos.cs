@@ -14,6 +14,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
     {
         private IBaseDeDatos _baseDatos;
         public List<CatDescuentos> ListaCatDescuentos { get; private set; }
+        public List<ConfiguracionDescuento> ListaConfiguracionDescuento { get; set; }
 
         public ServicioCatalogoDescuentos(IBaseDeDatos baseDatos)
         {
@@ -209,7 +210,6 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             }
         }
 
-
         public ExcepcionPersonalizada GuardarConfiguracion(ConfiguracionDescuento descuentoConfiguracion)
         {
             IDbConnection conexion = null;
@@ -263,6 +263,54 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 conexion.Dispose();
             }
         }
+
+        public ExcepcionPersonalizada ConsultarDescuentoConfiguracion(int idDescuento)
+        {
+            ListaConfiguracionDescuento = new List<ConfiguracionDescuento>();
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_DescuentosConfiguracionPorIdDescuento", conexion);
+
+                IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", idDescuento, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdDescuento);
+
+                IDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    ConfiguracionDescuento descuento = new ConfiguracionDescuento();
+
+                    descuento.IdDescuentoConfiguracion = (int)lector["IdDescuentoConfiguracion"];
+                    descuento.IdDescuento = (int)lector["IdDescuento"];
+                    descuento.DiaAplica = (int)lector["DiaAplica"];
+                    descuento.HoraInicio = (DateTime)lector["HoraInicio"];
+                    descuento.HoraFin = (DateTime)lector["HoraFin"];
+                    descuento.EsActivo = (bool)lector["EsActivo"];
+
+                    ListaConfiguracionDescuento.Add(descuento);
+                }
+
+                lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener la lista de las configuraciones de descuentos.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+
+                conexion.Dispose();
+            }
+        }
+
 
 
     }

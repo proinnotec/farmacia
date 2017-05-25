@@ -11,10 +11,10 @@ namespace SistemaFarmacia.Vistas.Catalogos
 {
     public partial class frmConfiguraDescuentos : frmBase
     {
-        CatDescuentos _descuento;
-        List<DiasSemana> _listaDiasSemana;
-        ContextoAplicacion _contexto;
-        ConfiguraDescuentoController _controlador;
+        private CatDescuentos _descuento;
+        private List<DiasSemana> _listaDiasSemana;
+        private ContextoAplicacion _contexto;
+        private ConfiguraDescuentoController _configuraDescuentoController;
 
         public frmConfiguraDescuentos(ContextoAplicacion contextoAplicacion, frmCatDescuentos vistaLlamada, CatDescuentos descuento)
         {
@@ -22,7 +22,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             _descuento = descuento;
             _contexto = contextoAplicacion;
             _listaDiasSemana = new List<DiasSemana>();
-            _controlador = new ConfiguraDescuentoController(this);
+            _configuraDescuentoController = new ConfiguraDescuentoController(this);
         }
 
         private void frmConfiguraDescuentos_Load(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             ToolTip ToolTipQuitar = new ToolTip();
             ToolTipQuitar.SetToolTip(btnQuitar, "Quitar");
-
+            
             LlenarDatosComboDias();
             AsignarDatos();
         }
@@ -41,6 +41,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
         {
             lblDescripcion.Text = _descuento.Descripcion;
             lblPorcentaje.Text = _descuento.Porcentaje.ToString() + "%";
+
+            _configuraDescuentoController.ConsultarDescuentoConfiguracion(_descuento.IdDescuento);
+        }
+
+        public void AsignarListaDescuentos(List<ConfiguracionDescuento> lista)
+        {
+            gridConfiguracionDescuentos.AutoGenerateColumns = false;
+            gridConfiguracionDescuentos.DataSource = null;
+            gridConfiguracionDescuentos.DataSource = lista;
         }
 
         private void LlenarDatosComboDias()
@@ -113,7 +122,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             configuracionDescuento.HoraFin = fin;
             configuracionDescuento.IdUsuario = _contexto.Usuario.IdUsuario;
 
-            //configuracionDescuento = dia;
+            _configuraDescuentoController.GuardarDescuentoConfiguracion(configuracionDescuento);
         }
     }
 }

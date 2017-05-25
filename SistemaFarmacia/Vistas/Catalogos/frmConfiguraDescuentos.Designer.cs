@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gpbDatos = new System.Windows.Forms.GroupBox();
             this.lblPorcentaje = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -44,6 +44,9 @@
             this.HoraFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.gpbOpciones = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblDia = new System.Windows.Forms.Label();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.cmbDia = new System.Windows.Forms.ComboBox();
@@ -116,20 +119,20 @@
             this.gridConfiguracionDescuentos.AllowUserToAddRows = false;
             this.gridConfiguracionDescuentos.AllowUserToDeleteRows = false;
             this.gridConfiguracionDescuentos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.gridConfiguracionDescuentos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.gridConfiguracionDescuentos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridConfiguracionDescuentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridConfiguracionDescuentos.BackgroundColor = System.Drawing.Color.White;
             this.gridConfiguracionDescuentos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridConfiguracionDescuentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridConfiguracionDescuentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridConfiguracionDescuentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridConfiguracionDescuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridConfiguracionDescuentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdDescuentoConfiguracion,
@@ -139,15 +142,15 @@
             this.HoraFinal,
             this.EsActivo});
             this.gridConfiguracionDescuentos.EnableHeadersVisualStyles = false;
-            this.gridConfiguracionDescuentos.Location = new System.Drawing.Point(9, 115);
+            this.gridConfiguracionDescuentos.Location = new System.Drawing.Point(9, 167);
             this.gridConfiguracionDescuentos.MultiSelect = false;
             this.gridConfiguracionDescuentos.Name = "gridConfiguracionDescuentos";
             this.gridConfiguracionDescuentos.ReadOnly = true;
             this.gridConfiguracionDescuentos.RowHeadersVisible = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridConfiguracionDescuentos.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridConfiguracionDescuentos.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.gridConfiguracionDescuentos.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridConfiguracionDescuentos.RowTemplate.Height = 20;
             this.gridConfiguracionDescuentos.RowTemplate.ReadOnly = true;
@@ -195,48 +198,82 @@
             // 
             // gpbOpciones
             // 
+            this.gpbOpciones.Controls.Add(this.label2);
+            this.gpbOpciones.Controls.Add(this.label1);
+            this.gpbOpciones.Controls.Add(this.lblDia);
             this.gpbOpciones.Controls.Add(this.dtpFin);
             this.gpbOpciones.Controls.Add(this.dtpInicio);
             this.gpbOpciones.Controls.Add(this.cmbDia);
             this.gpbOpciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbOpciones.Location = new System.Drawing.Point(9, 58);
             this.gpbOpciones.Name = "gpbOpciones";
-            this.gpbOpciones.Size = new System.Drawing.Size(598, 51);
+            this.gpbOpciones.Size = new System.Drawing.Size(598, 88);
             this.gpbOpciones.TabIndex = 2;
             this.gpbOpciones.TabStop = false;
             this.gpbOpciones.Text = "Configure el descuento";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(406, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 16);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Hora de Fin";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(204, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 16);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Hora de Inicio";
+            // 
+            // lblDia
+            // 
+            this.lblDia.AutoSize = true;
+            this.lblDia.Location = new System.Drawing.Point(6, 34);
+            this.lblDia.Name = "lblDia";
+            this.lblDia.Size = new System.Drawing.Size(32, 16);
+            this.lblDia.TabIndex = 15;
+            this.lblDia.Text = "Día";
+            // 
             // dtpFin
             // 
             this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpFin.Location = new System.Drawing.Point(442, 19);
+            this.dtpFin.Location = new System.Drawing.Point(406, 55);
             this.dtpFin.Name = "dtpFin";
-            this.dtpFin.Size = new System.Drawing.Size(121, 22);
+            this.dtpFin.ShowUpDown = true;
+            this.dtpFin.Size = new System.Drawing.Size(164, 22);
             this.dtpFin.TabIndex = 14;
+            this.dtpFin.Value = new System.DateTime(2017, 5, 25, 23, 59, 59, 0);
             // 
             // dtpInicio
             // 
             this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpInicio.Location = new System.Drawing.Point(224, 19);
+            this.dtpInicio.Location = new System.Drawing.Point(204, 55);
             this.dtpInicio.Name = "dtpInicio";
-            this.dtpInicio.Size = new System.Drawing.Size(121, 22);
+            this.dtpInicio.ShowUpDown = true;
+            this.dtpInicio.Size = new System.Drawing.Size(164, 22);
             this.dtpInicio.TabIndex = 13;
+            this.dtpInicio.Value = new System.DateTime(2017, 5, 25, 0, 0, 0, 0);
             // 
             // cmbDia
             // 
             this.cmbDia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDia.FormattingEnabled = true;
-            this.cmbDia.Location = new System.Drawing.Point(6, 21);
+            this.cmbDia.Location = new System.Drawing.Point(6, 53);
             this.cmbDia.Name = "cmbDia";
-            this.cmbDia.Size = new System.Drawing.Size(121, 24);
+            this.cmbDia.Size = new System.Drawing.Size(164, 24);
             this.cmbDia.TabIndex = 12;
             // 
             // frmConfiguraDescuentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 338);
+            this.ClientSize = new System.Drawing.Size(667, 392);
             this.Controls.Add(this.gpbOpciones);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.btnAgregar);
@@ -249,6 +286,7 @@
             this.gpbDatos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridConfiguracionDescuentos)).EndInit();
             this.gpbOpciones.ResumeLayout(false);
+            this.gpbOpciones.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -271,5 +309,8 @@
         private System.Windows.Forms.DateTimePicker dtpInicio;
         private System.Windows.Forms.ComboBox cmbDia;
         private System.Windows.Forms.DateTimePicker dtpFin;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDia;
     }
 }
