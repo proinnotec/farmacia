@@ -208,5 +208,62 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 conexion.Dispose();
             }
         }
+
+
+        public ExcepcionPersonalizada GuardarConfiguracion(ConfiguracionDescuento descuentoConfiguracion)
+        {
+            IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_DescuentosConfiguracion", conexion);
+                comando.Transaction = transaccion;
+
+                IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", descuentoConfiguracion.IdDescuento, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdDescuento);
+
+                IDataParameter parametroDiaAplica = _baseDatos.CrearParametro("@DiaAplica", descuentoConfiguracion.DiaAplica, ParameterDirection.Input);
+                comando.Parameters.Add(parametroDiaAplica);
+
+                IDataParameter parametroHoraInicio = _baseDatos.CrearParametro("@HoraInicio", descuentoConfiguracion.HoraInicio, ParameterDirection.Input);
+                comando.Parameters.Add(parametroHoraInicio);
+
+                IDataParameter parametroHoraFin = _baseDatos.CrearParametro("@HoraFin", descuentoConfiguracion.HoraFin, ParameterDirection.Input);
+                comando.Parameters.Add(parametroHoraFin);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", descuentoConfiguracion.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                    throw new Exception("No se afectaron filas (spI_DescuentosConfiguracion).");
+
+                transaccion.Commit();
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar la configuracion del descuento.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                conexion.Dispose();
+            }
+        }
+
+
     }
 }

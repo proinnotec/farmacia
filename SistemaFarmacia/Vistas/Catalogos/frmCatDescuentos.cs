@@ -39,6 +39,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
             ToolTip ToolTipRecargar = new ToolTip();
             ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
 
+            ToolTip ToolTipConfiguraciones = new ToolTip();
+            ToolTipConfiguraciones.SetToolTip(btnConfiguraciones, "Configurar descuento");
+
             ToolTip ToolTipSalir = new ToolTip();
             ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
 
@@ -161,6 +164,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             else
                 return false;
+        }
+
+        private void btnConfiguraciones_Click(object sender, EventArgs e)
+        {
+            frmConfiguraDescuentos vistaConfiguracion = new frmConfiguraDescuentos(_contextoAplicacion, this, _descuentoLocal);
+            vistaConfiguracion.ShowDialog();
         }
     }
 }

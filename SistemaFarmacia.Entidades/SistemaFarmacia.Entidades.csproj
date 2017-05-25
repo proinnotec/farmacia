@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Contextos\ContextoAplicacion.cs" />
     <Compile Include="Enumerados\EnumeradoAccion.cs" />
+    <Compile Include="Enumerados\EnumeradoDiasSemana.cs" />
     <Compile Include="Negocio\Almacen\Ajustes\AjustesProductos.cs" />
     <Compile Include="Negocio\Almacen\Ajustes\AjustesProductosDetalles.cs" />
     <Compile Include="Negocio\Catalogos\CatDescuentos.cs" />
@@ -50,7 +52,9 @@
     <Compile Include="Negocio\Catalogos\CatSucursal.cs" />
     <Compile Include="Negocio\Catalogos\CatTipoAjustes.cs" />
     <Compile Include="Negocio\Catalogos\CodigoBarraProducto.cs" />
+    <Compile Include="Negocio\Catalogos\ConfiguracionDescuento.cs" />
     <Compile Include="Negocio\ClaseBase.cs" />
+    <Compile Include="Negocio\DiasSemana.cs" />
     <Compile Include="Negocio\ElementoMenu.cs" />
     <Compile Include="Negocio\Perfiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

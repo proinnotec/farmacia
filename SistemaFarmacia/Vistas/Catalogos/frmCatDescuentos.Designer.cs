@@ -40,6 +40,7 @@
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnConfiguraciones = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridDescuentos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             this.btnRecargar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRecargar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRecargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecargar.Location = new System.Drawing.Point(656, 130);
+            this.btnRecargar.Location = new System.Drawing.Point(656, 126);
             this.btnRecargar.Name = "btnRecargar";
             this.btnRecargar.Size = new System.Drawing.Size(50, 50);
             this.btnRecargar.TabIndex = 15;
@@ -78,7 +79,7 @@
             this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnActDes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActDes.Location = new System.Drawing.Point(656, 71);
+            this.btnActDes.Location = new System.Drawing.Point(656, 69);
             this.btnActDes.Name = "btnActDes";
             this.btnActDes.Size = new System.Drawing.Size(50, 50);
             this.btnActDes.TabIndex = 13;
@@ -92,7 +93,7 @@
             this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(656, 202);
+            this.btnCancelar.Location = new System.Drawing.Point(656, 311);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(50, 50);
             this.btnCancelar.TabIndex = 12;
@@ -138,7 +139,7 @@
             this.gridDescuentos.RowTemplate.Height = 20;
             this.gridDescuentos.RowTemplate.ReadOnly = true;
             this.gridDescuentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridDescuentos.Size = new System.Drawing.Size(638, 240);
+            this.gridDescuentos.Size = new System.Drawing.Size(638, 349);
             this.gridDescuentos.TabIndex = 6;
             this.gridDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDescuentos_CellClick);
             this.gridDescuentos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDescuentos_CellDoubleClick);
@@ -179,11 +180,26 @@
             this.EsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.EsActivo.TrueValue = "1";
             // 
+            // btnConfiguraciones
+            // 
+            this.btnConfiguraciones.BackColor = System.Drawing.Color.LightGray;
+            this.btnConfiguraciones.BackgroundImage = global::SistemaFarmacia.Resource.settings;
+            this.btnConfiguraciones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfiguraciones.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfiguraciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguraciones.Location = new System.Drawing.Point(656, 183);
+            this.btnConfiguraciones.Name = "btnConfiguraciones";
+            this.btnConfiguraciones.Size = new System.Drawing.Size(50, 50);
+            this.btnConfiguraciones.TabIndex = 16;
+            this.btnConfiguraciones.UseVisualStyleBackColor = false;
+            this.btnConfiguraciones.Click += new System.EventHandler(this.btnConfiguraciones_Click);
+            // 
             // frmCatDescuentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 260);
+            this.ClientSize = new System.Drawing.Size(711, 373);
+            this.Controls.Add(this.btnConfiguraciones);
             this.Controls.Add(this.btnRecargar);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnActDes);
@@ -208,5 +224,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Porcentaje;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
+        private ControlesPersonalizados.BotonPersonalizado btnConfiguraciones;
     }
 }
