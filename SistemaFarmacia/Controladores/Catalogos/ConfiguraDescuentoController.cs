@@ -54,7 +54,7 @@ namespace SistemaFarmacia.Controladores.Catalogos
             mensaje = "Se ha guardado correctamente la información del descuento.";
             _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
 
-            //_vista.Cerrar();
+            ConsultarDescuentoConfiguracion(configuracion.IdDescuento);
         }
     }
 }

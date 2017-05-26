@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gpbDatos = new System.Windows.Forms.GroupBox();
             this.lblPorcentaje = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -39,7 +41,8 @@
             this.gridConfiguracionDescuentos = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.IdDescuentoConfiguracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdDescuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiaAplica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdDia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoraFinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -50,6 +53,7 @@
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.cmbDia = new System.Windows.Forms.ComboBox();
+            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gpbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridConfiguracionDescuentos)).BeginInit();
             this.gpbOpciones.SuspendLayout();
@@ -119,25 +123,26 @@
             this.gridConfiguracionDescuentos.AllowUserToAddRows = false;
             this.gridConfiguracionDescuentos.AllowUserToDeleteRows = false;
             this.gridConfiguracionDescuentos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.gridConfiguracionDescuentos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridConfiguracionDescuentos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridConfiguracionDescuentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridConfiguracionDescuentos.BackgroundColor = System.Drawing.Color.White;
             this.gridConfiguracionDescuentos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridConfiguracionDescuentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridConfiguracionDescuentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridConfiguracionDescuentos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridConfiguracionDescuentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridConfiguracionDescuentos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdDescuentoConfiguracion,
             this.IdDescuento,
-            this.DiaAplica,
+            this.IdDia,
+            this.Dia,
             this.HoraInicio,
             this.HoraFinal,
             this.EsActivo});
@@ -147,10 +152,10 @@
             this.gridConfiguracionDescuentos.Name = "gridConfiguracionDescuentos";
             this.gridConfiguracionDescuentos.ReadOnly = true;
             this.gridConfiguracionDescuentos.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridConfiguracionDescuentos.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridConfiguracionDescuentos.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gridConfiguracionDescuentos.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridConfiguracionDescuentos.RowTemplate.Height = 20;
             this.gridConfiguracionDescuentos.RowTemplate.ReadOnly = true;
@@ -160,38 +165,58 @@
             // 
             // IdDescuentoConfiguracion
             // 
-            this.IdDescuentoConfiguracion.HeaderText = "IdDescuentoCOnfiguracion";
+            this.IdDescuentoConfiguracion.DataPropertyName = "IdDescuentoConfiguracion";
+            this.IdDescuentoConfiguracion.HeaderText = "IdDescuentoConfiguracion";
             this.IdDescuentoConfiguracion.Name = "IdDescuentoConfiguracion";
             this.IdDescuentoConfiguracion.ReadOnly = true;
             this.IdDescuentoConfiguracion.Visible = false;
             // 
             // IdDescuento
             // 
+            this.IdDescuento.DataPropertyName = "IdDescuento";
             this.IdDescuento.HeaderText = "IdDescuento";
             this.IdDescuento.Name = "IdDescuento";
             this.IdDescuento.ReadOnly = true;
             this.IdDescuento.Visible = false;
             // 
-            // DiaAplica
+            // IdDia
             // 
-            this.DiaAplica.HeaderText = "Día que Aplica";
-            this.DiaAplica.Name = "DiaAplica";
-            this.DiaAplica.ReadOnly = true;
+            this.IdDia.DataPropertyName = "IdDia";
+            this.IdDia.HeaderText = "IdDia";
+            this.IdDia.Name = "IdDia";
+            this.IdDia.ReadOnly = true;
+            this.IdDia.Visible = false;
+            // 
+            // Dia
+            // 
+            this.Dia.DataPropertyName = "Dia";
+            this.Dia.HeaderText = "Dia";
+            this.Dia.Name = "Dia";
+            this.Dia.ReadOnly = true;
             // 
             // HoraInicio
             // 
+            this.HoraInicio.DataPropertyName = "HoraInicio";
+            dataGridViewCellStyle3.Format = "T";
+            dataGridViewCellStyle3.NullValue = null;
+            this.HoraInicio.DefaultCellStyle = dataGridViewCellStyle3;
             this.HoraInicio.HeaderText = "Hora de Inicio";
             this.HoraInicio.Name = "HoraInicio";
             this.HoraInicio.ReadOnly = true;
             // 
             // HoraFinal
             // 
+            this.HoraFinal.DataPropertyName = "HoraFin";
+            dataGridViewCellStyle4.Format = "T";
+            dataGridViewCellStyle4.NullValue = null;
+            this.HoraFinal.DefaultCellStyle = dataGridViewCellStyle4;
             this.HoraFinal.HeaderText = "Hora Final";
             this.HoraFinal.Name = "HoraFinal";
             this.HoraFinal.ReadOnly = true;
             // 
             // EsActivo
             // 
+            this.EsActivo.DataPropertyName = "EsActivo";
             this.EsActivo.HeaderText = "Activo";
             this.EsActivo.Name = "EsActivo";
             this.EsActivo.ReadOnly = true;
@@ -269,11 +294,26 @@
             this.cmbDia.Size = new System.Drawing.Size(164, 24);
             this.cmbDia.TabIndex = 12;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
+            this.btnCancelar.BackgroundImage = global::SistemaFarmacia.Resource.exit;
+            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.Location = new System.Drawing.Point(613, 330);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(50, 50);
+            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // frmConfiguraDescuentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 392);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gpbOpciones);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.btnAgregar);
@@ -297,12 +337,6 @@
         private System.Windows.Forms.Label lblPorcentaje;
         private System.Windows.Forms.Label lblDescripcion;
         private ControlesPersonalizados.GridPersonalizado gridConfiguracionDescuentos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdDescuentoConfiguracion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdDescuento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DiaAplica;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoraFinal;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
         private ControlesPersonalizados.BotonPersonalizado btnAgregar;
         private ControlesPersonalizados.BotonPersonalizado btnQuitar;
         private System.Windows.Forms.GroupBox gpbOpciones;
@@ -312,5 +346,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDescuentoConfiguracion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Dia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoraInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoraFinal;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
+        private ControlesPersonalizados.BotonPersonalizado btnCancelar;
     }
 }

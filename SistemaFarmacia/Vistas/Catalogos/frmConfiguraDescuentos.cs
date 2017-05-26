@@ -117,12 +117,18 @@ namespace SistemaFarmacia.Vistas.Catalogos
             ConfiguracionDescuento configuracionDescuento = new ConfiguracionDescuento();
 
             configuracionDescuento.IdDescuento = _descuento.IdDescuento;
-            configuracionDescuento.DiaAplica = dia;
+            configuracionDescuento.IdDia = dia;
             configuracionDescuento.HoraInicio = inicio;
             configuracionDescuento.HoraFin = fin;
             configuracionDescuento.IdUsuario = _contexto.Usuario.IdUsuario;
 
             _configuraDescuentoController.GuardarDescuentoConfiguracion(configuracionDescuento);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
         }
     }
 }

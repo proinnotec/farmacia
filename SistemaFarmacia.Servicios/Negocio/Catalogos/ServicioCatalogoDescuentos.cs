@@ -226,7 +226,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", descuentoConfiguracion.IdDescuento, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdDescuento);
 
-                IDataParameter parametroDiaAplica = _baseDatos.CrearParametro("@DiaAplica", descuentoConfiguracion.DiaAplica, ParameterDirection.Input);
+                IDataParameter parametroDiaAplica = _baseDatos.CrearParametro("@DiaAplica", descuentoConfiguracion.IdDia, ParameterDirection.Input);
                 comando.Parameters.Add(parametroDiaAplica);
 
                 IDataParameter parametroHoraInicio = _baseDatos.CrearParametro("@HoraInicio", descuentoConfiguracion.HoraInicio, ParameterDirection.Input);
@@ -272,7 +272,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
-                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_DescuentosConfiguracionPorIdDescuento", conexion);
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_DescuentosConfiguracion", conexion);
 
                 IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", idDescuento, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdDescuento);
@@ -282,10 +282,11 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 while (lector.Read())
                 {
                     ConfiguracionDescuento descuento = new ConfiguracionDescuento();
-
+                    
                     descuento.IdDescuentoConfiguracion = (int)lector["IdDescuentoConfiguracion"];
                     descuento.IdDescuento = (int)lector["IdDescuento"];
-                    descuento.DiaAplica = (int)lector["DiaAplica"];
+                    descuento.IdDia = (int)lector["IdDia"];
+                    descuento.Dia = lector["Dia"].ToString();
                     descuento.HoraInicio = (DateTime)lector["HoraInicio"];
                     descuento.HoraFin = (DateTime)lector["HoraFin"];
                     descuento.EsActivo = (bool)lector["EsActivo"];

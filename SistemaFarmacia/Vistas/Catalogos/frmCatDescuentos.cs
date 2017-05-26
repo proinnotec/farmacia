@@ -5,12 +5,6 @@ using SistemaFarmacia.Entidades.Negocio.Catalogos;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Catalogos
@@ -135,22 +129,28 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void btnActDes_Click(object sender, EventArgs e)
         {
             string accion;
+            bool esActivo;
 
             if (_descuentoLocal.EsActivo)
             {
                 accion = "dar de baja";
-                _descuentoLocal.EsActivo = false;
+                esActivo = false;
             }
             else
             {
                 accion = "reactivar";
-                _descuentoLocal.EsActivo = true;
+                esActivo = true;
             }
 
             bool respuesta = ConfirmarActivacionDesactivacion(accion);
 
             if (respuesta)
+            {
+                _descuentoLocal.EsActivo = esActivo;
                 _catDescuentosController.ActivarDesactivarDescuento(_descuentoLocal);
+            }
+               
+                
         }
 
         bool ConfirmarActivacionDesactivacion(string accion)
@@ -168,6 +168,13 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void btnConfiguraciones_Click(object sender, EventArgs e)
         {
+            if (!_descuentoLocal.EsActivo)
+            {
+                string mensaje = string.Format("{0} {1} {2}", "No se pueden realizar configuraciones al registro", _descuentoLocal.Descripcion, "porque está dado de baja. Si quiere hacer cambios tendrá que reactivar el registro, favor de verificar");
+                MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+                return;
+            }
+
             frmConfiguraDescuentos vistaConfiguracion = new frmConfiguraDescuentos(_contextoAplicacion, this, _descuentoLocal);
             vistaConfiguracion.ShowDialog();
         }

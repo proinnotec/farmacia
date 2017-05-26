@@ -112,24 +112,28 @@ namespace SistemaFarmacia.Vistas.Administracion
         private void btnActDes_Click(object sender, EventArgs e)
         {
             string accion;
+             bool esActivo;
 
             if (_usuarioLocal.EsActivo)
             {
                 _enumeradoAccion = EnumeradoAccion.Baja;
                 accion = "dar de baja";
-                _usuarioLocal.EsActivo = false;
+                esActivo = false;
             }
             else
             {
                 accion = "reactivar";
                 _enumeradoAccion = EnumeradoAccion.Reactivacion;
-                _usuarioLocal.EsActivo = true;
+                esActivo = true;
             }
             
             bool respuesta = ConfirmarActivacionDesactivacion(accion);
 
             if (respuesta)
+            {
+                _usuarioLocal.EsActivo = esActivo;
                 _catUsuariosController.ActivarDesactivarUsuario(_usuarioLocal);
+            }                
 
         }
 
