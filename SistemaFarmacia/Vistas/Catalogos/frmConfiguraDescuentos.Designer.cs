@@ -36,7 +36,6 @@
             this.gpbDatos = new System.Windows.Forms.GroupBox();
             this.lblPorcentaje = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.btnQuitar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnAgregar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gridConfiguracionDescuentos = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.IdDescuentoConfiguracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +53,7 @@
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.cmbDia = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gpbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridConfiguracionDescuentos)).BeginInit();
             this.gpbOpciones.SuspendLayout();
@@ -66,7 +66,7 @@
             this.gpbDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbDatos.Location = new System.Drawing.Point(9, 0);
             this.gpbDatos.Name = "gpbDatos";
-            this.gpbDatos.Size = new System.Drawing.Size(598, 51);
+            this.gpbDatos.Size = new System.Drawing.Size(598, 52);
             this.gpbDatos.TabIndex = 0;
             this.gpbDatos.TabStop = false;
             this.gpbDatos.Text = "Datos del descuento";
@@ -89,20 +89,6 @@
             this.lblDescripcion.TabIndex = 0;
             this.lblDescripcion.Text = "descripción";
             // 
-            // btnQuitar
-            // 
-            this.btnQuitar.BackColor = System.Drawing.Color.LightGray;
-            this.btnQuitar.BackgroundImage = global::SistemaFarmacia.Resource.menos;
-            this.btnQuitar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnQuitar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQuitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQuitar.Location = new System.Drawing.Point(613, 167);
-            this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(50, 50);
-            this.btnQuitar.TabIndex = 10;
-            this.btnQuitar.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnQuitar.UseVisualStyleBackColor = false;
-            // 
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.LightGray;
@@ -110,7 +96,7 @@
             this.btnAgregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(613, 52);
+            this.btnAgregar.Location = new System.Drawing.Point(613, 66);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(50, 50);
             this.btnAgregar.TabIndex = 9;
@@ -162,6 +148,7 @@
             this.gridConfiguracionDescuentos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridConfiguracionDescuentos.Size = new System.Drawing.Size(598, 214);
             this.gridConfiguracionDescuentos.TabIndex = 7;
+            this.gridConfiguracionDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridConfiguracionDescuentos_CellClick);
             // 
             // IdDescuentoConfiguracion
             // 
@@ -308,14 +295,28 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnActDes
+            // 
+            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
+            this.btnActDes.BackgroundImage = global::SistemaFarmacia.Resource.bloquear;
+            this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnActDes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActDes.Location = new System.Drawing.Point(613, 167);
+            this.btnActDes.Name = "btnActDes";
+            this.btnActDes.Size = new System.Drawing.Size(50, 50);
+            this.btnActDes.TabIndex = 14;
+            this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
+            // 
             // frmConfiguraDescuentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 392);
+            this.Controls.Add(this.btnActDes);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gpbOpciones);
-            this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.gridConfiguracionDescuentos);
             this.Controls.Add(this.gpbDatos);
@@ -338,7 +339,6 @@
         private System.Windows.Forms.Label lblDescripcion;
         private ControlesPersonalizados.GridPersonalizado gridConfiguracionDescuentos;
         private ControlesPersonalizados.BotonPersonalizado btnAgregar;
-        private ControlesPersonalizados.BotonPersonalizado btnQuitar;
         private System.Windows.Forms.GroupBox gpbOpciones;
         private System.Windows.Forms.DateTimePicker dtpInicio;
         private System.Windows.Forms.ComboBox cmbDia;
@@ -354,5 +354,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HoraFinal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
+        private ControlesPersonalizados.BotonPersonalizado btnActDes;
     }
 }

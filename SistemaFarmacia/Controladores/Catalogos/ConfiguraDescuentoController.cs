@@ -35,6 +35,7 @@ namespace SistemaFarmacia.Controladores.Catalogos
             List<ConfiguracionDescuento> lista = _servicioCatalogoDescuentos.ListaConfiguracionDescuento;
 
             _vista.AsignarListaDescuentos(lista);
+            _vista.ReestablecerDatos();
         }
 
         public void GuardarDescuentoConfiguracion(ConfiguracionDescuento configuracion)
@@ -43,6 +44,26 @@ namespace SistemaFarmacia.Controladores.Catalogos
 
             ExcepcionPersonalizada resultado = null;
             resultado = _servicioCatalogoDescuentos.GuardarConfiguracion(configuracion);
+
+            if (resultado != null)
+            {
+                mensaje = "Hubo un error al intentar guardar la configuración del descuento.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
+            }
+
+            mensaje = "Se ha guardado correctamente la información del descuento.";
+            _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
+
+            ConsultarDescuentoConfiguracion(configuracion.IdDescuento);
+        }
+
+        public void ActivarDesactivarDescuentoConfiguracion(ConfiguracionDescuento configuracion)
+        {
+            string mensaje = string.Empty;
+
+            ExcepcionPersonalizada resultado = null;
+            resultado = _servicioCatalogoDescuentos.ActivarDesactivarDescuentoConfiguracion(configuracion);
 
             if (resultado != null)
             {

@@ -148,9 +148,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             {
                 _descuentoLocal.EsActivo = esActivo;
                 _catDescuentosController.ActivarDesactivarDescuento(_descuentoLocal);
-            }
-               
-                
+            }   
         }
 
         bool ConfirmarActivacionDesactivacion(string accion)

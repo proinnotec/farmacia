@@ -311,7 +311,54 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 conexion.Dispose();
             }
         }
+        
+        public ExcepcionPersonalizada ActivarDesactivarDescuentoConfiguracion(ConfiguracionDescuento descuento)
+        {
+            IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_DescuentosConfiguracionActivarDesactivar", conexion);
+                comando.Transaction = transaccion;
+
+                IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuentoConfiguracion", descuento.IdDescuentoConfiguracion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdDescuento);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", descuento.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                IDataParameter parametroEsActivo = _baseDatos.CrearParametro("@EsActivo", descuento.EsActivo, ParameterDirection.Input);
+                comando.Parameters.Add(parametroEsActivo);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                    throw new Exception("No se afectaron filas (spU_DescuentosConfiguracionActivarDesactivar).");
+
+                transaccion.Commit();
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del descuento.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                conexion.Dispose();
+            }
+        }
 
 
     }
