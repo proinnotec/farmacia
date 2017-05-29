@@ -54,7 +54,9 @@
     <Compile Include="Controladores\Administracion\CatUsuariosController.cs" />
     <Compile Include="Controladores\BaseController.cs" />
     <Compile Include="Controladores\Catalogos\AgregaEditaDescuentosController.cs" />
+    <Compile Include="Controladores\Catalogos\AgregaEditaImpuestosController.cs" />
     <Compile Include="Controladores\Catalogos\CatDescuentosController.cs" />
+    <Compile Include="Controladores\Catalogos\CatImpuestosController.cs" />
     <Compile Include="Controladores\Catalogos\ConfiguraDescuentoController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatFamiliasController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatProductoController.cs" />
@@ -94,6 +96,12 @@
     <Compile Include="Vistas\Catalogos\frmAgregaEditaDescuentos.Designer.cs">
       <DependentUpon>frmAgregaEditaDescuentos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Catalogos\frmAgregaEditaImpuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmAgregaEditaImpuestos.Designer.cs">
+      <DependentUpon>frmAgregaEditaImpuestos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Catalogos\frmCatDescuentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +113,12 @@
     </Compile>
     <Compile Include="Vistas\Catalogos\frmCatFamilias.Designer.cs">
       <DependentUpon>frmCatFamilias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatImpuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatImpuestos.Designer.cs">
+      <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Catalogos\frmCatProducto.cs">
       <SubType>Form</SubType>
@@ -185,11 +199,17 @@
     <EmbeddedResource Include="Vistas\Catalogos\frmAgregaEditaDescuentos.resx">
       <DependentUpon>frmAgregaEditaDescuentos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmAgregaEditaImpuestos.resx">
+      <DependentUpon>frmAgregaEditaImpuestos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmCatDescuentos.resx">
       <DependentUpon>frmCatDescuentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmCatFamilias.resx">
       <DependentUpon>frmCatFamilias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmCatImpuestos.resx">
+      <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmCatProducto.resx">
       <DependentUpon>frmCatProducto.cs</DependentUpon>
@@ -228,7 +248,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SistemaFarmacia.Entidades\SistemaFarmacia.Entidades.csproj">
       <Project>{6055c91f-db13-4c8e-96a1-b79a950bea61}</Project>
