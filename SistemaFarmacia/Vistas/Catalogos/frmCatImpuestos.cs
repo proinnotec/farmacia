@@ -143,6 +143,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
         {
 
         }
+
+        private void gridImpuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CargarDatosDeGridAObjeto();
+        }
         private void gridImpuestos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (!_impuestoLocal.EsActivo)
@@ -156,11 +161,6 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             frmAgregaEditaImpuestos vistaEdicion = new frmAgregaEditaImpuestos(_contextoAplicacion, enumeradoAccion, this, _impuestoLocal);
             vistaEdicion.ShowDialog();
-        }
-
-        private void gridImpuestos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            CargarDatosDeGridAObjeto();
         }
     }
 }

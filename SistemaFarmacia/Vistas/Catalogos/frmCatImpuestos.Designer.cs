@@ -32,14 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridImpuestos = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
-            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.IdImpuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridImpuestos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +84,39 @@
             this.gridImpuestos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridImpuestos.Size = new System.Drawing.Size(475, 295);
             this.gridImpuestos.TabIndex = 21;
+            this.gridImpuestos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridImpuestos_CellClick);
             this.gridImpuestos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridImpuestos_CellContentClick);
+            this.gridImpuestos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridImpuestos_CellDoubleClick);
+            // 
+            // IdImpuesto
+            // 
+            this.IdImpuesto.DataPropertyName = "IdImpuesto";
+            this.IdImpuesto.HeaderText = "IdImpuesto";
+            this.IdImpuesto.Name = "IdImpuesto";
+            this.IdImpuesto.ReadOnly = true;
+            this.IdImpuesto.Visible = false;
+            // 
+            // Porcentaje
+            // 
+            this.Porcentaje.DataPropertyName = "Porcentaje";
+            this.Porcentaje.HeaderText = "Porcentaje";
+            this.Porcentaje.Name = "Porcentaje";
+            this.Porcentaje.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // EsActivo
+            // 
+            this.EsActivo.DataPropertyName = "EsActivo";
+            this.EsActivo.HeaderText = "Activo";
+            this.EsActivo.Name = "EsActivo";
+            this.EsActivo.ReadOnly = true;
+            this.EsActivo.TrueValue = "1";
             // 
             // btnRecargar
             // 
@@ -141,36 +173,6 @@
             this.btnCancelar.TabIndex = 16;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // IdImpuesto
-            // 
-            this.IdImpuesto.DataPropertyName = "IdImpuesto";
-            this.IdImpuesto.HeaderText = "IdImpuesto";
-            this.IdImpuesto.Name = "IdImpuesto";
-            this.IdImpuesto.ReadOnly = true;
-            this.IdImpuesto.Visible = false;
-            // 
-            // Porcentaje
-            // 
-            this.Porcentaje.DataPropertyName = "Porcentaje";
-            this.Porcentaje.HeaderText = "Porcentaje";
-            this.Porcentaje.Name = "Porcentaje";
-            this.Porcentaje.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "Descripcion";
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // EsActivo
-            // 
-            this.EsActivo.DataPropertyName = "EsActivo";
-            this.EsActivo.HeaderText = "Activo";
-            this.EsActivo.Name = "EsActivo";
-            this.EsActivo.ReadOnly = true;
-            this.EsActivo.TrueValue = "1";
             // 
             // frmCatImpuestos
             // 
