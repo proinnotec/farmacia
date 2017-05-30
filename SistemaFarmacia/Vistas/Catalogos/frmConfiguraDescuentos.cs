@@ -54,7 +54,8 @@ namespace SistemaFarmacia.Vistas.Catalogos
             gridConfiguracionDescuentos.DataSource = null;
             gridConfiguracionDescuentos.DataSource = lista;
 
-            AsignarDatosDeGridAObjeto();
+            if (lista.Count > 0)
+                AsignarDatosDeGridAObjeto();
         }
 
         public void ReestablecerDatos()
@@ -137,6 +138,33 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 mensaje = "La hora de fin no puede ser menor a la hora de inicio.";
                 MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
                 return false;
+            }
+
+            foreach (DataGridViewRow fila in gridConfiguracionDescuentos.Rows)
+            {
+                int idDescuentoConfiguracion, dia;
+                DateTime horaInicio, horaFinal;
+                bool esActivo;
+                
+                idDescuentoConfiguracion = (int)fila.Cells["IdDescuentoConfiguracion"].Value;
+                dia = (int)fila.Cells["IdDia"].Value;
+                horaInicio = (DateTime)fila.Cells["HoraInicio"].Value;
+                horaFinal = (DateTime)fila.Cells["HoraFinal"].Value;
+                esActivo = (bool)fila.Cells["EsActivo"].Value;
+
+                if (_configuracionDescuento.IdDia == dia && esActivo)
+                {
+                    if( (_configuracionDescuento.HoraInicio.TimeOfDay >= horaInicio.TimeOfDay &&  _configuracionDescuento.HoraInicio.TimeOfDay <= horaFinal.TimeOfDay) ||
+                        (_configuracionDescuento.HoraFin.TimeOfDay <= horaFinal.TimeOfDay && _configuracionDescuento.HoraFin.TimeOfDay >= horaInicio.TimeOfDay))
+                        
+                    {
+                        mensaje = "Existe un registro que se traslapa con esta configuración que intenta agregar, favor de verificar.";
+                        MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+                        return false;
+                    }
+                }
+
+
             }
 
             return true;
