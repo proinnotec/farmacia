@@ -16,7 +16,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private ContextoAplicacion _contexto;
         private ConfiguraDescuentoController _configuraDescuentoController;
         private ConfiguracionDescuento _configuracionDescuento;
-        ConfiguracionDescuento _descuentoGrid;
+        private ConfiguracionDescuento _descuentoGrid;
         private ToolTip _toolTipActivaDesactiva;
 
         public frmConfiguraDescuentos(ContextoAplicacion contextoAplicacion, frmCatDescuentos vistaLlamada, CatDescuentos descuento)
@@ -140,32 +140,8 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return false;
             }
 
-            foreach (DataGridViewRow fila in gridConfiguracionDescuentos.Rows)
-            {
-                int idDescuentoConfiguracion, dia;
-                DateTime horaInicio, horaFinal;
-                bool esActivo;
-                
-                idDescuentoConfiguracion = (int)fila.Cells["IdDescuentoConfiguracion"].Value;
-                dia = (int)fila.Cells["IdDia"].Value;
-                horaInicio = (DateTime)fila.Cells["HoraInicio"].Value;
-                horaFinal = (DateTime)fila.Cells["HoraFinal"].Value;
-                esActivo = (bool)fila.Cells["EsActivo"].Value;
-
-                if (_configuracionDescuento.IdDia == dia && esActivo)
-                {
-                    if( (_configuracionDescuento.HoraInicio.TimeOfDay >= horaInicio.TimeOfDay &&  _configuracionDescuento.HoraInicio.TimeOfDay <= horaFinal.TimeOfDay) ||
-                        (_configuracionDescuento.HoraFin.TimeOfDay <= horaFinal.TimeOfDay && _configuracionDescuento.HoraFin.TimeOfDay >= horaInicio.TimeOfDay))
-                        
-                    {
-                        mensaje = "Existe un registro que se traslapa con esta configuración que intenta agregar, favor de verificar.";
-                        MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
-                        return false;
-                    }
-                }
-
-
-            }
+            if (!ValidaTraslapes(_configuracionDescuento))
+                return false;
 
             return true;
         }
@@ -262,6 +238,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
             {
                 accion = "reactivar";
                 esActivo = true;
+
+                if (!ValidaTraslapes(_descuentoGrid))
+                    return;
             }
 
             bool respuesta = ConfirmarActivacionDesactivacion(accion);
@@ -272,6 +251,42 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 _configuraDescuentoController.ActivarDesactivarDescuentoConfiguracion(_descuentoGrid);
             }
             
+        }
+
+        private bool ValidaTraslapes(ConfiguracionDescuento confDescuento)
+        {
+            string mensaje = string.Empty;
+
+            foreach (DataGridViewRow fila in gridConfiguracionDescuentos.Rows)
+            {
+                int idDescuentoConfiguracion, dia;
+                DateTime horaInicio, horaFinal;
+                bool esActivoGrid;
+
+                idDescuentoConfiguracion = (int)fila.Cells["IdDescuentoConfiguracion"].Value;
+                dia = (int)fila.Cells["IdDia"].Value;
+                horaInicio = (DateTime)fila.Cells["HoraInicio"].Value;
+                horaFinal = (DateTime)fila.Cells["HoraFinal"].Value;
+                esActivoGrid = (bool)fila.Cells["EsActivo"].Value;
+
+                if (idDescuentoConfiguracion != confDescuento.IdDescuentoConfiguracion)
+                {
+                    if (confDescuento.IdDia == dia && esActivoGrid)
+                    {
+                        if ((confDescuento.HoraInicio.TimeOfDay >= horaInicio.TimeOfDay && confDescuento.HoraInicio.TimeOfDay <= horaFinal.TimeOfDay) ||
+                            (confDescuento.HoraFin.TimeOfDay <= horaFinal.TimeOfDay && confDescuento.HoraFin.TimeOfDay >= horaInicio.TimeOfDay) ||
+                            (confDescuento.HoraInicio.TimeOfDay <= horaInicio.TimeOfDay && confDescuento.HoraFin.TimeOfDay >= horaFinal.TimeOfDay))
+                        {
+                            mensaje = "Existe un registro que se traslapa con esta configuración que intenta agregar, favor de verificar.";
+                            MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+                            return false;
+                        }
+                    }
+                }
+
+            }
+
+            return true;
         }
 
         bool ConfirmarActivacionDesactivacion(string accion)
