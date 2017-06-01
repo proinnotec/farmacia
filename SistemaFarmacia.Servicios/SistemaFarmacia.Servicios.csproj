@@ -52,6 +52,7 @@
     <Compile Include="FabricaBaseDatos\FabricaBaseDeDatos.cs" />
     <Compile Include="Negocio\Administracion\ServicioCatalogoPerfiles.cs" />
     <Compile Include="Negocio\Administracion\ServicioCatalogoUsuarios.cs" />
+    <Compile Include="Negocio\Almacen\ServicioEntradas.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoDescuentos.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoFamilias.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoImpuestos.cs" />
@@ -71,9 +72,7 @@
     <Content Include="Ensamblados\ProInnoTec.Core.Servicios.dll" />
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Negocio\Almacen\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
