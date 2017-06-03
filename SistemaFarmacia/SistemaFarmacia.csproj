@@ -177,6 +177,12 @@
     <Compile Include="Vistas\Procesos\frmAjustes.Designer.cs">
       <DependentUpon>frmAjustes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Procesos\frmEditaEntradas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Procesos\frmEditaEntradas.Designer.cs">
+      <DependentUpon>frmEditaEntradas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Procesos\frmEntradas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     <EmbeddedResource Include="Vistas\Procesos\frmAjustes.resx">
       <DependentUpon>frmAjustes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Procesos\frmEditaEntradas.resx">
+      <DependentUpon>frmEditaEntradas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Procesos\frmEntradas.resx">
       <DependentUpon>frmEntradas.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +291,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
+    <None Include="Resources\search2.jpg" />
+    <None Include="Resources\search.jpg" />
     <None Include="Resources\mas1.jpg" />
     <None Include="Resources\menos.jpg" />
     <None Include="Resources\mas.jpg" />

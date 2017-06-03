@@ -11,7 +11,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 {
     public partial class frmCatDescuentos : frmBase
     {
-        public ContextoAplicacion _contextoAplicacion { get; set; }
+        public ContextoAplicacion _contextoAplicacion;
         private ToolTip _toolTipActivaDesactiva;
         private CatDescuentosController _catDescuentosController;
         private CatDescuentos _descuentoLocal;

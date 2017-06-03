@@ -21,13 +21,28 @@ namespace SistemaFarmacia.Vistas.Procesos
             _contextoAplicacion = contextoAplicacion;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void frmEntradas_Load(object sender, EventArgs e)
         {
-            OpenFileDialog dialogoAbrir = new OpenFileDialog();
-            dialogoAbrir.Filter = "Archivos de Excel|*.xls;*.xlsx";
-            dialogoAbrir.Title = "Registros de Entradas";
+            ToolTip ToolTipNuevo = new ToolTip();
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
 
-            dialogoAbrir.ShowDialog();
+            ToolTip ToolTipRecargar = new ToolTip();
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+
+            ToolTip ToolTipSalir = new ToolTip();
+            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar");
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion);
+            vistaEditaEntradas.ShowDialog();
         }
     }
 }
