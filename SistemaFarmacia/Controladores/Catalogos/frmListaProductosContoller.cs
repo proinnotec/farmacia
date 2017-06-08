@@ -23,6 +23,20 @@ namespace SistemaFarmacia.Controladores.Catalogos
             _servicioCatalogoProductos = new ServicioCatalogoProductos(BaseDeDatosTienda);
         }
 
+        public void EditarEstadoProducto(CatProducto producto)
+        {
+            ExcepcionPersonalizada excepcionEditarEstadoProducto = _servicioCatalogoProductos.EditarEstadoProducto(producto);
+            if (excepcionEditarEstadoProducto == null)
+            {
+                string mensaje = producto.EsActivo == true ? "El producto se reactivó correctamente." : "El producto se dio de baja correctamente.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
+            }
+            else
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, excepcionEditarEstadoProducto.Message.ToString(), excepcionEditarEstadoProducto.InnerException.ToString(), false);
+            }
+        }
+
         public List<CatProducto> ListaProductos(int idFamiliaProducto)
         {
             ExcepcionPersonalizada excepcionConsultarProductos = _servicioCatalogoProductos.ConsultarProductos(idFamiliaProducto);

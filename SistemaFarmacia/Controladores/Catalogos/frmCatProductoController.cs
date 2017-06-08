@@ -14,21 +14,76 @@ namespace SistemaFarmacia.Controladores.Catalogos
     {
         private frmCatProducto _vista;
         ServicioCatalogoProductos _servicioCatalogoProductos;
+        ServicioCatalogoImpuestos _servicioCatalogoImpuestos;
 
         public frmCatProductoController(frmCatProducto vista)
         {
             _vista = vista;
             _servicioCatalogoProductos = new ServicioCatalogoProductos(BaseDeDatosTienda);
+            _servicioCatalogoImpuestos = new ServicioCatalogoImpuestos(BaseDeDatosTienda);
+        }
+
+        public List<CatImpuestos> ListaImpuestos()
+        {
+            ExcepcionPersonalizada excepcionConsultarImpuestos = _servicioCatalogoImpuestos.ConsultarImpuestos();
+            if (excepcionConsultarImpuestos == null)
+            {
+                return _servicioCatalogoImpuestos.ListaCatImpuestos;
+            }
+            else
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, excepcionConsultarImpuestos.Message.ToString(), excepcionConsultarImpuestos.InnerException.ToString(), false);
+                return new List<CatImpuestos>();
+            }
+
+        }
+
+        bool EsCodigoBarraValido(CatProducto producto, bool esAlta)
+        {
+            ExcepcionPersonalizada excepcionValidarCodigosBarra = _servicioCatalogoProductos.ValidarCodigosBarra(producto, esAlta);
+            if (excepcionValidarCodigosBarra == null)
+            {
+                if (_servicioCatalogoProductos.ListaProductos.Count > 0)
+                {
+                    _vista.MensajeCodigosBarraInvalidos(_servicioCatalogoProductos.ListaProductos);
+                    return false;
+                }
+            }
+            else
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, excepcionValidarCodigosBarra.Message.ToString(), excepcionValidarCodigosBarra.InnerException.ToString(), false);
+                return false;
+            }
+
+            return true;
+        }
+
+        public void EditarEstadoProducto(CatProducto producto)
+        {
+            ExcepcionPersonalizada excepcionEditarEstadoProducto = _servicioCatalogoProductos.EditarEstadoProducto(producto);
+            if (excepcionEditarEstadoProducto == null)
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, "El producto se dio de baja correctamente.", string.Empty, true);
+                _vista.Close();
+            }
+            else
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, excepcionEditarEstadoProducto.Message.ToString(), excepcionEditarEstadoProducto.InnerException.ToString(), false);
+            }
         }
 
         public void EditarProducto(CatProducto producto)
         {
+            if (!EsCodigoBarraValido(producto, false))
+            {
+                return;
+            }
+
             ExcepcionPersonalizada excepcionEditarProducto = _servicioCatalogoProductos.EditarProducto(producto);
             if (excepcionEditarProducto == null)
             {
-                string mensaje = "El producto se editó correctamente.";
-                _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
-                //_vista.LimpiarFormulario();
+                _vista.MostrarDialogoResultado(_vista.Text, "El producto se editó correctamente.", string.Empty, true);
+                _vista.Close();
             }
             else
             {
@@ -38,12 +93,16 @@ namespace SistemaFarmacia.Controladores.Catalogos
 
         public void GuardarProducto(CatProducto producto)
         {
+            if (!EsCodigoBarraValido(producto, true))
+            {
+                return;
+            }
+
             ExcepcionPersonalizada excepcionGuardarProducto = _servicioCatalogoProductos.GuardarProducto(producto);
             if (excepcionGuardarProducto == null)
             {
-                string mensaje = "El producto se guardó correctamente.";
-                _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
-                //_vista.LimpiarFormulario();
+                _vista.MostrarDialogoResultado(_vista.Text, "El producto se guardó correctamente.", string.Empty, true);
+                _vista.Close();
             }
             else
             {

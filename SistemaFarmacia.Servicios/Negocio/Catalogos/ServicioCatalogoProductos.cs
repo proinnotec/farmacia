@@ -16,11 +16,113 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
     {
         private IBaseDeDatos _baseDatos;
         public List<CatProducto> ListaProductos { get; private set; }
-        public List<CodigoBarraProducto> ListaCodigoBarra { get; private set; }
 
         public ServicioCatalogoProductos(IBaseDeDatos baseDatos)
         {
             _baseDatos = baseDatos;
+        }
+
+        public ExcepcionPersonalizada EditarEstadoProducto(CatProducto producto)
+        {
+            IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatProductosActivarDesactivar", conexion);
+                comando.Transaction = transaccion;
+
+                IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", producto.IdProducto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdProducto);
+
+                IDataParameter parametroEsActivo = _baseDatos.CrearParametro("@EsActivo", producto.EsActivo, ParameterDirection.Input);
+                comando.Parameters.Add(parametroEsActivo);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", producto.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                {
+                    throw new Exception("No se afectaron filas (spU_CatProductosActivarDesactivar).");
+                }
+
+                transaccion.Commit();
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible editar el estado del producto.", excepcionCapturada);
+
+                if (transaccion != null)
+                {
+                    transaccion.Rollback();
+                }
+
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                    conexion.Dispose();
+            }
+        }
+
+        public ExcepcionPersonalizada ValidarCodigosBarra(CatProducto producto, bool esAlta)
+        {
+            ListaProductos = new List<CatProducto>();
+            IDbConnection conexion = null;
+            Serializar serializar = new Serializar();
+
+            try
+            {
+                string codigosDeBarra = serializar.ClaseXmlString(producto.ListaCodigoBarra);
+
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_ValidaCodigoBarras", conexion);
+
+                IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", producto.IdProducto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdProducto);
+
+                IDataParameter parametroXmlCodigos = _baseDatos.CrearParametro("@XmlCodigos", codigosDeBarra, ParameterDirection.Input);
+                comando.Parameters.Add(parametroXmlCodigos);
+
+                IDataParameter parametroEsAlta = _baseDatos.CrearParametro("@EsAlta", esAlta, ParameterDirection.Input);
+                comando.Parameters.Add(parametroEsAlta);
+
+                IDataReader Lector = comando.ExecuteReader();
+
+                while (Lector.Read())
+                {
+                    CatProducto productoInvalido = new CatProducto();
+                    productoInvalido.ClaveProducto = (string)Lector["ClaveProducto"];
+                    productoInvalido.ListaCodigoBarra = new List<CodigoBarraProducto>();
+                    productoInvalido.ListaCodigoBarra.Add(new CodigoBarraProducto { CodigoBarras = Lector["CodigoBarras"].ToString() });
+                    ListaProductos.Add(productoInvalido);
+                }
+                
+                Lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible validar los códigos de barra.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                    conexion.Dispose();
+            }
         }
 
         public ExcepcionPersonalizada EditarProducto(CatProducto producto)
@@ -34,7 +136,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 conexion = _baseDatos.CrearConexionAbierta();
                 transaccion = conexion.BeginTransaction();
 
-                string codigosDeBarra = serializar.XmlSerialize(producto.ListaCodigoBarra);
+                string codigosDeBarra = serializar.ClaseXmlString(producto.ListaCodigoBarra);
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatProductos", conexion);
                 comando.Transaction = transaccion;
@@ -59,6 +161,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
 
                 IDataParameter parametroXmlCodigos = _baseDatos.CrearParametro("@XmlCodigos", codigosDeBarra, ParameterDirection.Input);
                 comando.Parameters.Add(parametroXmlCodigos);
+
+                IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", producto.IdProducto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdProducto);
+
+                if (producto.IdImpuesto > 0)
+                { 
+                    IDataParameter parametroIdImpuesto = _baseDatos.CrearParametro("@IdImpuesto", producto.IdImpuesto, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroIdImpuesto);
+                }
 
                 int filasAfectadas = comando.ExecuteNonQuery();
 
@@ -101,7 +212,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 conexion = _baseDatos.CrearConexionAbierta();
                 transaccion = conexion.BeginTransaction();
 
-                string codigosDeBarra = serializar.XmlSerialize(producto.ListaCodigoBarra);
+                string codigosDeBarra = serializar.ClaseXmlString(producto.ListaCodigoBarra);
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_CatProductos", conexion);
                 comando.Transaction = transaccion;
@@ -126,6 +237,12 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
 
                 IDataParameter parametroXmlCodigos = _baseDatos.CrearParametro("@XmlCodigos", codigosDeBarra, ParameterDirection.Input);
                 comando.Parameters.Add(parametroXmlCodigos);
+
+                if (producto.IdImpuesto > 0)
+                {
+                    IDataParameter parametroIdImpuesto = _baseDatos.CrearParametro("@IdImpuesto", producto.IdImpuesto, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroIdImpuesto);
+                }
 
                 int filasAfectadas = comando.ExecuteNonQuery();
 
@@ -161,7 +278,6 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         public ExcepcionPersonalizada ConsultarProductos(int idFamiliaProducto)
         {
             ListaProductos = new List<CatProducto>();
-            ListaCodigoBarra = new List<CodigoBarraProducto>();
             IDbConnection conexion = null;
 
             try
@@ -177,12 +293,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 while (Lector.Read())
                 {
                     CatProducto producto = new CatProducto();
-                    producto.ClaveProducto = (int)Lector["ClaveProducto"];
+                    producto.ClaveProducto = (string)Lector["ClaveProducto"];
                     producto.Descripcion = Lector["Descripcion"].ToString();
                     producto.Precio = (decimal)Lector["Precio"];
                     producto.AplicaDescuentoCatalogo = (bool)Lector["AplicaDescuentoCatalogo"];
                     producto.IdFamiliaProducto = (int)Lector["IdFamiliaProducto"];
+                    producto.IdProducto = (int)Lector["IdProducto"];
+                    producto.EsActivo = (bool)Lector["EsActivo"];
                     producto.ListaCodigoBarra = new List<CodigoBarraProducto>();
+                    producto.IdImpuesto = (Int16)Lector["IdImpuesto"];                                            
                     ListaProductos.Add(producto);
                 }
 
@@ -192,7 +311,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 {
                     CodigoBarraProducto codigoBarra = new CodigoBarraProducto();
                     codigoBarra.CodigoBarras = Lector["CodigoBarras"].ToString();
-                    CatProducto producto = ListaProductos.Find(e => e.ClaveProducto == (int)Lector["ClaveProducto"]);
+                    CatProducto producto = ListaProductos.Find(e => e.IdProducto == (int)Lector["IdProducto"]);
                     producto.ListaCodigoBarra.Add(codigoBarra);
                 }
 

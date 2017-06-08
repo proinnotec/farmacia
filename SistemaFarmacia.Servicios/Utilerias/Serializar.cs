@@ -11,7 +11,7 @@ namespace SistemaFarmacia.Servicios.Utilerias
 {
     public class Serializar
     {
-        public string XmlSerialize<T>(T entity) where T : class
+        public string ClaseXmlString<T>(T entity) where T : class
         {
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.OmitXmlDeclaration = true;

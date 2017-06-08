@@ -19,21 +19,40 @@ namespace SistemaFarmacia.Vistas.Catalogos
     {
         EnumeradoAccion _enumeradoAccion;
         private frmCatProductoController _frmCatProductoController;
-        int _idUsuario;             
+        int _idUsuario;
+        int _idProducto;
 
         public frmCatProducto(CatProducto Producto, List<CatFamilias> ListaFamilias)
         {
-            _enumeradoAccion = Producto.ClaveProducto == 0 ? EnumeradoAccion.Alta : EnumeradoAccion.Edicion;
+            _enumeradoAccion = Producto.IdProducto == 0 ? EnumeradoAccion.Alta : EnumeradoAccion.Edicion;
             InitializeComponent();
             Inicializa();
             _frmCatProductoController = new frmCatProductoController(this);
             AsigarListaFamilias(ListaFamilias);
             _idUsuario = Producto.IdUsuario;
+            _idProducto = Producto.IdProducto;
+            AsigarListaImpuestos(_frmCatProductoController.ListaImpuestos());
 
-            if (_enumeradoAccion != EnumeradoAccion.Alta)
+            if (_enumeradoAccion == EnumeradoAccion.Alta)
+            {
+                Random random = new Random();
+                int codigoDefault = random.Next(10000, 90000);
+                gridCodigoBarra.Rows.Add(codigoDefault.ToString());
+            }
+            else
             {
                 AsignarValores(Producto);
             }
+        }
+
+        private void AsigarListaImpuestos(List<CatImpuestos> listaImpuestos)
+        {
+            listaImpuestos.Add(new CatImpuestos { IdImpuesto = (Int16)0, Descripcion = "Sin Impuesto" });
+            cmbImpuesto.Items.Clear();
+            cmbImpuesto.DataSource = listaImpuestos;
+            cmbImpuesto.ValueMember = "IdImpuesto";
+            cmbImpuesto.DisplayMember = "Descripcion";
+            cmbImpuesto.SelectedValue = (Int16)0;
         }
 
         private void AsigarListaFamilias(List<CatFamilias> listaFamilias)
@@ -48,11 +67,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void AsignarValores(CatProducto producto)
         {
             txtDescripcion.Text = producto.Descripcion;
-            nudClaveProducto.Value = producto.ClaveProducto;
+            nudClaveProducto.Value = Convert.ToDecimal(producto.ClaveProducto);
             nudClaveProducto.Enabled = false;
             nudPrecio.Value = producto.Precio;
             chkAplicaDescuento.Checked = producto.AplicaDescuentoCatalogo;
             cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
+            cmbImpuesto.SelectedValue = (Int16)producto.IdImpuesto;
 
             foreach (CodigoBarraProducto codigoBarra in producto.ListaCodigoBarra)
             {
@@ -65,6 +85,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (cmbFamilias.SelectedIndex == -1)
             {
                 MostrarDialogoResultado(this.Text, "Seleccione la familia del producto.", string.Empty, false);
+                return false;
+            }
+
+            if (cmbImpuesto.SelectedIndex == -1)
+            {
+                MostrarDialogoResultado(this.Text, "Seleccione una ocpión de impuesto.", string.Empty, false);
                 return false;
             }
 
@@ -104,14 +130,26 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
             {
                 this.Text = "Editar producto";
-                btnEliminar.Visible = true;
                 nudClaveProducto.Enabled = false;
             }
         }
 
+        public void MensajeCodigosBarraInvalidos(List<CatProducto> listaCodigosInvalidos)
+        {
+            string mensaje = "Los siguientes códigos de barra ya existen:";
+
+            foreach (CatProducto productoInvalido in listaCodigosInvalidos)
+            {
+                mensaje = string.Format("{0}{1}Producto:{2} Código de barra:{3}", mensaje, Environment.NewLine, productoInvalido.ClaveProducto, productoInvalido.ListaCodigoBarra[0].CodigoBarras);
+            }
+
+            MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+
+        }
+
         bool ConfirmarBorrado()
         {
-            string mensaje = "¿Seguro que desea eliminar el producto?";
+            string mensaje = "¿Seguro que desea dar de baja el producto?";
 
             DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
 
@@ -137,13 +175,31 @@ namespace SistemaFarmacia.Vistas.Catalogos
             gridCodigoBarra.Rows.Clear();
         }
 
+        string ConcatenaCeros(string valor)
+        {
+            int cantidadCeros = 6 - valor.Length;
+            string ceros = new string('0', cantidadCeros);
+            string resultado = string.Format("{0}{1}", ceros, valor);
+            return resultado;
+        }
+
         public CatProducto ContextoProducto()
         {
             CatProducto producto = new CatProducto();
-            producto.ClaveProducto = (int)nudClaveProducto.Value;
+            producto.ClaveProducto = ConcatenaCeros(nudClaveProducto.Value.ToString().TrimStart().TrimEnd());
             producto.AplicaDescuentoCatalogo = chkAplicaDescuento.Checked;
             producto.Descripcion = txtDescripcion.Text;
-            producto.IdFamiliaProducto = (int)cmbFamilias.SelectedValue;
+
+            if (cmbFamilias.SelectedIndex > -1)
+            {
+                producto.IdFamiliaProducto = (int)cmbFamilias.SelectedValue;
+            }
+
+            if (cmbImpuesto.SelectedIndex > -1)
+            {
+                producto.IdImpuesto = (Int16)cmbImpuesto.SelectedValue;
+            }
+
             producto.Precio = nudPrecio.Value;
             producto.ListaCodigoBarra = new List<CodigoBarraProducto>();
 
@@ -152,7 +208,8 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 producto.ListaCodigoBarra.Add(new CodigoBarraProducto { CodigoBarras = fila.Cells["CodigoBarras"].Value.ToString() });
             }
 
-            producto.IdUsuario = _idUsuario; 
+            producto.IdUsuario = _idUsuario;
+            producto.IdProducto = _idProducto;
             return producto;
         }
 
@@ -190,6 +247,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return;
             }
 
+            if (txtCodigoBarra.Text.Length < 5)
+            {
+                MostrarDialogoResultado(this.Text, "Capture el código de barra al menos a 5 digítos.", string.Empty, false);
+                return;
+            }
+
             if (gridCodigoBarra.Rows.Count > 0)
             {                
                 int filas = gridCodigoBarra.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["CodigoBarras"].Value.ToString().Equals(txtCodigoBarra.Text.Trim())).Count();                
@@ -204,13 +267,6 @@ namespace SistemaFarmacia.Vistas.Catalogos
             gridCodigoBarra.Rows.Add(txtCodigoBarra.Text.Trim());
             txtCodigoBarra.Text = string.Empty;
             txtCodigoBarra.Focus();
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarFormulario();
-            this.Close();
-            this.Dispose();        
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -231,35 +287,16 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             if (_enumeradoAccion == EnumeradoAccion.Alta)
             {
-                _frmCatProductoController.GuardarProducto(producto);
-                this.Close();
+                _frmCatProductoController.GuardarProducto(producto);                
                 Cursor.Current = Cursors.Default;
             }
 
             if (_enumeradoAccion == EnumeradoAccion.Edicion)
             {
-                _frmCatProductoController.EditarProducto(producto);
-                this.Close();
+                _frmCatProductoController.EditarProducto(producto);                
                 Cursor.Current = Cursors.Default;
             }
-
             
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (!ConfirmarBorrado())
-            {
-                return;
-            }
-
-            Cursor.Current = Cursors.WaitCursor;
-
-            CatProducto producto = ContextoProducto();
-
-            //_frmCatFamiliasController.EliminarFamilia(familia);
-
-            Cursor.Current = Cursors.Default;
         }
 
         private void tbnQuitar_Click(object sender, EventArgs e)

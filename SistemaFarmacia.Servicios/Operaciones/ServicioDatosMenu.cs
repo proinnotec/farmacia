@@ -59,11 +59,16 @@ namespace SistemaFarmacia.Servicios.Operaciones
             }
             finally
             {
-                if (conexion != null && conexion.State != ConnectionState.Closed)
-                    conexion.Close();
-                    conexion.Dispose();
-            }
+                if (conexion != null)
+                {
+                    if (conexion.State != ConnectionState.Closed)
+                    {
+                        conexion.Close();
+                    }
 
+                    conexion.Dispose();
+                }                    
+            }
         }
     }
 }

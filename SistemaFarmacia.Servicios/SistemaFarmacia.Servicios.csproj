@@ -32,11 +32,11 @@
   <ItemGroup>
     <Reference Include="ProInnoTec.Core.Servicios, Version=15.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Ensamblados\ProInnoTec.Core.Servicios.dll</HintPath>
+      <HintPath>..\..\Visual Studio 2015\Projects\SistemaFarmacia\SistemaFarmacia.Servicios\Ensamblados\ProInnoTec.Core.Servicios.dll</HintPath>
     </Reference>
     <Reference Include="ProInnoTec.Entidades, Version=14.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Ensamblados\ProInnoTec.Entidades.dll</HintPath>
+      <HintPath>..\..\Visual Studio 2015\Projects\SistemaFarmacia\SistemaFarmacia.Servicios\Ensamblados\ProInnoTec.Entidades.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

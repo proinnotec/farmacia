@@ -24,9 +24,21 @@ namespace SistemaFarmacia.Vistas.Catalogos
         public frmListaProductos(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
-            _contextoAplicacion = contextoAplicacion;            
+            _contextoAplicacion = contextoAplicacion;
             _frmCatProductosContoller = new frmListaProductosContoller(this);
             AsigarListaFamilias(_frmCatProductosContoller.ListaFamilias());
+
+            ToolTip ToolTipNuevo = new ToolTip();
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+
+            ToolTip ToolTipRecargar = new ToolTip();
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+
+            ToolTip ToolTipSalir = new ToolTip();
+            ToolTipSalir.SetToolTip(btnSalir, "Cerrar el catálogo");
+
+            ToolTip ToolTipActDes = new ToolTip();
+            ToolTipActDes.SetToolTip(btnActDes, "Baja");        
         }
 
         private void AsigarListaProductos(List<CatProducto> listaProductos)
@@ -57,7 +69,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         {
             CatProducto producto = new CatProducto();
             producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
-            frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);           
+            frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);
             frmCatProducto.ShowDialog();
 
             if (frmCatProducto.nudClaveProducto.Value > 0)
@@ -65,6 +77,33 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 producto = frmCatProducto.ContextoProducto();
                 cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
                 AsigarListaProductos(_frmCatProductosContoller.ListaProductos(producto.IdFamiliaProducto));
+            }
+
+            Cursor.Current = Cursors.Default;
+        }
+
+        bool ConfirmarActivarReactivar(bool accion)
+        {
+            string mensaje = string.Empty;
+
+            if (accion)
+            {
+                mensaje = "¿Seguro que desea dar de baja el producto?";
+            }
+            else
+            {
+                mensaje = "¿Seguro que desea reactivar el producto?";
+            }           
+
+            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -76,17 +115,92 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             List<CatProducto> listaProductos = (List<CatProducto>)gridProductos.DataSource;
-            CatProducto producto = listaProductos.Find(elemento => elemento.ClaveProducto == (int) gridProductos.SelectedRows[0].Cells["ClaveProducto"].Value);
-            producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;            
+            CatProducto producto = listaProductos.Find(elemento => elemento.IdProducto == (int)gridProductos.SelectedRows[0].Cells["IdProducto"].Value);
+            producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
+
+            if (!producto.EsActivo)
+            {
+                MostrarDialogoResultado(this.Text, "Para editar el producto, es necesario reactivarlo.", string.Empty, false);
+                return;
+            }
 
             frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);
             frmCatProducto.ShowDialog();
 
             if (frmCatProducto.nudClaveProducto.Value > 0)
-            {                                
+            {
                 producto = frmCatProducto.ContextoProducto();
                 cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
                 AsigarListaProductos(_frmCatProductosContoller.ListaProductos(producto.IdFamiliaProducto));
+            }
+
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void btnRecargar_Click(object sender, EventArgs e)
+        {
+            if (cmbFamilias.SelectedValue is int)
+            {
+                AsigarListaProductos(_frmCatProductosContoller.ListaProductos((int)cmbFamilias.SelectedValue));
+            }
+        }
+
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            if (gridProductos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            List<CatProducto> listaProductos = (List<CatProducto>)gridProductos.DataSource;
+            CatProducto producto = listaProductos.Find(elemento => elemento.IdProducto == (int)gridProductos.SelectedRows[0].Cells["IdProducto"].Value);
+
+            if (ConfirmarActivarReactivar(producto.EsActivo))
+            {
+                producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
+                producto.EsActivo = !producto.EsActivo;
+                _frmCatProductosContoller.EditarEstadoProducto(producto);
+                gridProductos.Refresh();
+
+                if (producto.EsActivo)
+                {
+                    ToolTip ToolTipActDes = new ToolTip();
+                    ToolTipActDes.SetToolTip(btnActDes, "Baja");
+                    btnActDes.BackgroundImage = Resource.bloquear;
+                }
+                else
+                {
+                    ToolTip ToolTipActDes = new ToolTip();
+                    ToolTipActDes.SetToolTip(btnActDes, "Activar");
+                    btnActDes.BackgroundImage = Resource.activar;
+                }
+
+            }
+
+        }
+
+        private void gridProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            List<CatProducto> listaProductos = (List<CatProducto>)gridProductos.DataSource;
+            CatProducto producto = listaProductos.Find(elemento => elemento.IdProducto == (int)gridProductos.SelectedRows[0].Cells["IdProducto"].Value);
+
+            if (producto.EsActivo)
+            {
+                ToolTip ToolTipActDes = new ToolTip();
+                ToolTipActDes.SetToolTip(btnActDes, "Baja");
+                btnActDes.BackgroundImage = Resource.bloquear;
+            }
+            else
+            {
+                ToolTip ToolTipActDes = new ToolTip();
+                ToolTipActDes.SetToolTip(btnActDes, "Activar");
+                btnActDes.BackgroundImage = Resource.activar;
             }
         }
     }

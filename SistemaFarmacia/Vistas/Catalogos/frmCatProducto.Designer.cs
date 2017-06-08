@@ -31,12 +31,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnEliminar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.tbnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblCodigoBarra = new System.Windows.Forms.Label();
             this.txtCodigoBarra = new System.Windows.Forms.TextBox();
             this.gridCodigoBarra = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.CodigoBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,51 +47,29 @@
             this.lblFamilia = new System.Windows.Forms.Label();
             this.cmbFamilias = new SistemaFarmacia.ControlesPersonalizados.ComboPersonalizado();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.cmbImpuesto = new SistemaFarmacia.ControlesPersonalizados.ComboPersonalizado();
+            this.lblImpuesto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridCodigoBarra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClaveProducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.Color.LightGray;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(15, 473);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 17;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Visible = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(247, 473);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 16;
-            this.btnCancelar.Text = "Salir";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.LightGray;
+            this.btnGuardar.BackgroundImage = global::SistemaFarmacia.Resource.save;
+            this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(328, 473);
+            this.btnGuardar.Location = new System.Drawing.Point(409, 339);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(50, 50);
             this.btnGuardar.TabIndex = 15;
-            this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // tbnQuitar
             // 
-            this.tbnQuitar.Location = new System.Drawing.Point(413, 335);
+            this.tbnQuitar.Location = new System.Drawing.Point(409, 301);
             this.tbnQuitar.Name = "tbnQuitar";
             this.tbnQuitar.Size = new System.Drawing.Size(27, 23);
             this.tbnQuitar.TabIndex = 14;
@@ -103,7 +79,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(413, 306);
+            this.btnAgregar.Location = new System.Drawing.Point(409, 272);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(27, 23);
             this.btnAgregar.TabIndex = 13;
@@ -111,21 +87,21 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // label2
+            // lblCodigoBarra
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 254);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Código de Barra:";
+            this.lblCodigoBarra.AutoSize = true;
+            this.lblCodigoBarra.Location = new System.Drawing.Point(15, 220);
+            this.lblCodigoBarra.Name = "lblCodigoBarra";
+            this.lblCodigoBarra.Size = new System.Drawing.Size(86, 13);
+            this.lblCodigoBarra.TabIndex = 12;
+            this.lblCodigoBarra.Text = "Código de Barra:";
             // 
             // txtCodigoBarra
             // 
-            this.txtCodigoBarra.Location = new System.Drawing.Point(15, 270);
+            this.txtCodigoBarra.Location = new System.Drawing.Point(15, 236);
             this.txtCodigoBarra.MaxLength = 100;
             this.txtCodigoBarra.Name = "txtCodigoBarra";
-            this.txtCodigoBarra.Size = new System.Drawing.Size(387, 20);
+            this.txtCodigoBarra.Size = new System.Drawing.Size(388, 20);
             this.txtCodigoBarra.TabIndex = 11;
             // 
             // gridCodigoBarra
@@ -151,7 +127,7 @@
             this.gridCodigoBarra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodigoBarras});
             this.gridCodigoBarra.EnableHeadersVisualStyles = false;
-            this.gridCodigoBarra.Location = new System.Drawing.Point(16, 306);
+            this.gridCodigoBarra.Location = new System.Drawing.Point(16, 272);
             this.gridCodigoBarra.MultiSelect = false;
             this.gridCodigoBarra.Name = "gridCodigoBarra";
             this.gridCodigoBarra.ReadOnly = true;
@@ -164,7 +140,7 @@
             this.gridCodigoBarra.RowTemplate.Height = 20;
             this.gridCodigoBarra.RowTemplate.ReadOnly = true;
             this.gridCodigoBarra.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridCodigoBarra.Size = new System.Drawing.Size(387, 150);
+            this.gridCodigoBarra.Size = new System.Drawing.Size(387, 117);
             this.gridCodigoBarra.TabIndex = 10;
             // 
             // CodigoBarras
@@ -177,7 +153,7 @@
             // chkAplicaDescuento
             // 
             this.chkAplicaDescuento.AutoSize = true;
-            this.chkAplicaDescuento.Location = new System.Drawing.Point(16, 222);
+            this.chkAplicaDescuento.Location = new System.Drawing.Point(164, 184);
             this.chkAplicaDescuento.Name = "chkAplicaDescuento";
             this.chkAplicaDescuento.Size = new System.Drawing.Size(108, 17);
             this.chkAplicaDescuento.TabIndex = 9;
@@ -188,7 +164,7 @@
             // 
             this.nudClaveProducto.Location = new System.Drawing.Point(15, 75);
             this.nudClaveProducto.Maximum = new decimal(new int[] {
-            10000,
+            999999,
             0,
             0,
             0});
@@ -265,7 +241,7 @@
             this.cmbFamilias.FormattingEnabled = true;
             this.cmbFamilias.Location = new System.Drawing.Point(15, 25);
             this.cmbFamilias.Name = "cmbFamilias";
-            this.cmbFamilias.Size = new System.Drawing.Size(446, 21);
+            this.cmbFamilias.Size = new System.Drawing.Size(388, 21);
             this.cmbFamilias.TabIndex = 2;
             // 
             // txtDescripcion
@@ -273,20 +249,42 @@
             this.txtDescripcion.Location = new System.Drawing.Point(15, 131);
             this.txtDescripcion.MaxLength = 500;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(419, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(388, 20);
             this.txtDescripcion.TabIndex = 1;
+            // 
+            // cmbImpuesto
+            // 
+            this.cmbImpuesto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbImpuesto.BackColor = System.Drawing.Color.White;
+            this.cmbImpuesto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbImpuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbImpuesto.FormattingEnabled = true;
+            this.cmbImpuesto.Location = new System.Drawing.Point(164, 75);
+            this.cmbImpuesto.Name = "cmbImpuesto";
+            this.cmbImpuesto.Size = new System.Drawing.Size(239, 21);
+            this.cmbImpuesto.TabIndex = 16;
+            // 
+            // lblImpuesto
+            // 
+            this.lblImpuesto.AutoSize = true;
+            this.lblImpuesto.Location = new System.Drawing.Point(161, 59);
+            this.lblImpuesto.Name = "lblImpuesto";
+            this.lblImpuesto.Size = new System.Drawing.Size(47, 13);
+            this.lblImpuesto.TabIndex = 17;
+            this.lblImpuesto.Text = "Impesto:";
             // 
             // frmCatProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 508);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnCancelar);
+            this.ClientSize = new System.Drawing.Size(472, 401);
+            this.Controls.Add(this.lblImpuesto);
+            this.Controls.Add(this.cmbImpuesto);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.tbnQuitar);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblCodigoBarra);
             this.Controls.Add(this.txtCodigoBarra);
             this.Controls.Add(this.gridCodigoBarra);
             this.Controls.Add(this.chkAplicaDescuento);
@@ -317,14 +315,14 @@
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.CheckBox chkAplicaDescuento;
         private ControlesPersonalizados.GridPersonalizado gridCodigoBarra;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCodigoBarra;
         private System.Windows.Forms.TextBox txtCodigoBarra;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button tbnQuitar;
-        private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
-        private ControlesPersonalizados.BotonPersonalizado btnEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoBarras;
         public System.Windows.Forms.NumericUpDown nudClaveProducto;
+        private ControlesPersonalizados.ComboPersonalizado cmbImpuesto;
+        private System.Windows.Forms.Label lblImpuesto;
     }
 }
