@@ -8,6 +8,7 @@ namespace SistemaFarmacia.Entidades.Negocio.Almacen.Entradas
 {
     public class EntradaProductoListado: ClaseBase
     {
+        public int IdEntradaProductoDetalle { get; set; }
         public int IdEntradaProducto { get; set; }
         public int IdProveedor { get; set; }
         public string RazonSocial { get; set; }

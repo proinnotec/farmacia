@@ -1,5 +1,6 @@
 ﻿using SistemaFarmacia.Controladores.Procesos;
 using SistemaFarmacia.Entidades.Contextos;
+using SistemaFarmacia.Entidades.Enumerados;
 using SistemaFarmacia.Entidades.Negocio.Almacen.Entradas;
 using SistemaFarmacia.Vistas.Base;
 using System;
@@ -18,11 +19,13 @@ namespace SistemaFarmacia.Vistas.Procesos
     {
         public ContextoAplicacion _contextoAplicacion;
         private EntradasController _entradasController;
+        private EntradaProductoListado _entradaProductoListado;
         public frmEntradas(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
             _contextoAplicacion = contextoAplicacion;
             _entradasController = new EntradasController(this);
+            _entradaProductoListado = new EntradaProductoListado();
         }
 
         private void frmEntradas_Load(object sender, EventArgs e)
@@ -47,7 +50,9 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion);
+            EntradaProductoListado entradaProductoListado = new EntradaProductoListado();
+
+            frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion, EnumeradoAccion.Alta, this, entradaProductoListado);
             vistaEditaEntradas.ShowDialog();
         }
 
@@ -56,6 +61,30 @@ namespace SistemaFarmacia.Vistas.Procesos
             int anio;
             anio = (int)nudAnio.Value;
             _entradasController.ConsultaEntradasCabecera(anio);
+            RecuperarDatosDeGrid();
+        }
+
+        private bool VerificaExistenciaRegistros()
+        {
+            if (gridListadoEntradas.RowCount <= 0)
+            {
+                MostrarDialogoResultado(this.Text, "No hay registros para mostrar.", string.Empty, false);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void RecuperarDatosDeGrid()
+        {
+            if (!VerificaExistenciaRegistros())
+                return;
+
+            _entradaProductoListado.IdEntradaProductoDetalle = (int)gridListadoEntradas.SelectedRows[0].Cells["IdEntradaProductoDetalle"].Value;
+            _entradaProductoListado.IdEntradaProducto = (int)gridListadoEntradas.SelectedRows[0].Cells["IdEntradaProducto"].Value;
+            _entradaProductoListado.Fecha = (DateTime)gridListadoEntradas.SelectedRows[0].Cells["FechaAplica"].Value;
+            _entradaProductoListado.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
+            
         }
 
         public void AsignarListaEntradas(List<EntradaProductoListado> lista)
@@ -73,6 +102,28 @@ namespace SistemaFarmacia.Vistas.Procesos
         private void nudAnio_ValueChanged(object sender, EventArgs e)
         {
             CargarDatos();
+        }
+
+        private void gridListadoEntradas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RecuperarDatosDeGrid();
+        }
+
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            string mensaje = "¿Confirma que desea dar de baja el registro seleccionado?, Una vez eliminado, no se podrá reactivar";
+            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
+
+            if (respuesta != DialogResult.Yes)
+                return ;
+
+            _entradasController.BajaEntrada(_entradaProductoListado);
+        }
+
+        private void gridListadoEntradas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion, EnumeradoAccion.Edicion, this, _entradaProductoListado);
+            vistaEditaEntradas.ShowDialog();
         }
     }
 }

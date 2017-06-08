@@ -1,4 +1,6 @@
 ﻿using SistemaFarmacia.Entidades.Contextos;
+using SistemaFarmacia.Entidades.Enumerados;
+using SistemaFarmacia.Entidades.Negocio.Almacen.Entradas;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace SistemaFarmacia.Vistas.Procesos
     {
         public ContextoAplicacion _contextoAplicacion;
 
-        public frmEditaEntradas(ContextoAplicacion contextoAplicacion)
+        public frmEditaEntradas(ContextoAplicacion contextoAplicacion, EnumeradoAccion accion, frmEntradas vistaLlamada, EntradaProductoListado entradaProductoListado)
         {
             InitializeComponent();
             _contextoAplicacion = contextoAplicacion;

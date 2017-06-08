@@ -63,6 +63,9 @@ namespace SistemaFarmacia.Vistas.Administracion
 
        private void CargarDatosDeGridAObjeto()
         {
+            if (!VerificaExistenciaRegistros())
+                return;
+
             _usuarioLocal.IdUsuario = (int)gridUsuarios.SelectedRows[0].Cells["IdUsuario"].Value;
             _usuarioLocal.Nombre = gridUsuarios.SelectedRows[0].Cells["Nombre"].Value.ToString();
             _usuarioLocal.ApellidoPaterno = gridUsuarios.SelectedRows[0].Cells["ApellidoPaterno"].Value.ToString();
@@ -109,10 +112,24 @@ namespace SistemaFarmacia.Vistas.Administracion
             }
         }
 
+        private bool VerificaExistenciaRegistros()
+        {
+            if (gridUsuarios.RowCount <= 0)
+            {
+                MostrarDialogoResultado(this.Text, "No hay registros para mostrar.", string.Empty, false);
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnActDes_Click(object sender, EventArgs e)
         {
+            if (!VerificaExistenciaRegistros())
+                return;
+
             string accion;
-             bool esActivo;
+            bool esActivo;
 
             if (_usuarioLocal.EsActivo)
             {

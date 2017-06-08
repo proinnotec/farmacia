@@ -49,7 +49,7 @@ namespace SistemaFarmacia.Controladores.Catalogos
                 return;
             }
             
-            mensaje = "Se ha guardado correctamente la información del usuario.";
+            mensaje = "Se ha guardado correctamente la información del descuento.";
             _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
 
             ConsultarDescuentos();

@@ -195,7 +195,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             }
             catch (Exception excepcionCapturada)
             {
-                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del descuento.", excepcionCapturada);
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible realizar la operación del descuento.", excepcionCapturada);
 
                 if (transaccion != null)
                     transaccion.Rollback();
@@ -345,7 +345,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             }
             catch (Exception excepcionCapturada)
             {
-                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del descuento.", excepcionCapturada);
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible realizar la operación del descuento.", excepcionCapturada);
 
                 if (transaccion != null)
                     transaccion.Rollback();

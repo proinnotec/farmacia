@@ -65,6 +65,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void CargarDatosDeGridAObjeto()
         {
+            if (!VerificaExistenciaRegistros())
+                return;
+
             _descuentoLocal.IdDescuento = (int)gridDescuentos.SelectedRows[0].Cells["IdDescuento"].Value;
             _descuentoLocal.Porcentaje = (decimal)gridDescuentos.SelectedRows[0].Cells["Porcentaje"].Value;
             _descuentoLocal.Descripcion = gridDescuentos.SelectedRows[0].Cells["Descripcion"].Value.ToString();
@@ -126,8 +129,22 @@ namespace SistemaFarmacia.Vistas.Catalogos
             CargarDatosDeGridAObjeto();
         }
 
+        private bool VerificaExistenciaRegistros()
+        {
+            if (gridDescuentos.RowCount <= 0)
+            {
+                MostrarDialogoResultado(this.Text, "No hay registros para mostrar.", string.Empty, false);
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnActDes_Click(object sender, EventArgs e)
         {
+            if (!VerificaExistenciaRegistros())
+                return;
+
             string accion;
             bool esActivo;
 
@@ -166,6 +183,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void btnConfiguraciones_Click(object sender, EventArgs e)
         {
+            if (!VerificaExistenciaRegistros())
+                return;
+
             if (!_descuentoLocal.EsActivo)
             {
                 string mensaje = string.Format("{0} {1} {2}", "No se pueden realizar configuraciones al registro", _descuentoLocal.Descripcion, "porque está dado de baja. Si quiere hacer cambios tendrá que reactivar el registro, favor de verificar");

@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridListadoEntradas = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
+            this.IdEntradaProductoDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEntradaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +75,7 @@
             this.gridListadoEntradas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridListadoEntradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridListadoEntradas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdEntradaProductoDetalle,
             this.IdEntradaProducto,
             this.IdProducto,
             this.ClaveProducto,
@@ -99,6 +101,16 @@
             this.gridListadoEntradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridListadoEntradas.Size = new System.Drawing.Size(827, 412);
             this.gridListadoEntradas.TabIndex = 7;
+            this.gridListadoEntradas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoEntradas_CellClick);
+            this.gridListadoEntradas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoEntradas_CellDoubleClick);
+            // 
+            // IdEntradaProductoDetalle
+            // 
+            this.IdEntradaProductoDetalle.DataPropertyName = "IdEntradaProductoDetalle";
+            this.IdEntradaProductoDetalle.HeaderText = "IdEntradaProductoDetalle";
+            this.IdEntradaProductoDetalle.Name = "IdEntradaProductoDetalle";
+            this.IdEntradaProductoDetalle.ReadOnly = true;
+            this.IdEntradaProductoDetalle.Visible = false;
             // 
             // IdEntradaProducto
             // 
@@ -220,6 +232,7 @@
             this.btnActDes.Size = new System.Drawing.Size(50, 50);
             this.btnActDes.TabIndex = 17;
             this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
             // 
             // btnCancelar
             // 
@@ -299,6 +312,7 @@
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private System.Windows.Forms.NumericUpDown nudAnio;
         private System.Windows.Forms.Label lblAnio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEntradaProductoDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdEntradaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClaveProducto;
