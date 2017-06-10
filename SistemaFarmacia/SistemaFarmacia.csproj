@@ -66,6 +66,7 @@
     <Compile Include="Controladores\frmPrincipalController.cs" />
     <Compile Include="Controladores\Procesos\AjustesController.cs" />
     <Compile Include="Controladores\Procesos\EntradasController.cs" />
+    <Compile Include="Controladores\Procesos\EntradasEditaController.cs" />
     <Compile Include="ControlesPersonalizados\BotonPersonalizado.cs">
       <SubType>Component</SubType>
     </Compile>

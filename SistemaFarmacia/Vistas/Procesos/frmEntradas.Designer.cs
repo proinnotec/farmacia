@@ -46,7 +46,6 @@
             this.Proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.nudAnio = new System.Windows.Forms.NumericUpDown();
             this.lblAnio = new System.Windows.Forms.Label();
@@ -220,20 +219,6 @@
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // btnActDes
-            // 
-            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
-            this.btnActDes.BackgroundImage = global::SistemaFarmacia.Resource.bloquear;
-            this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnActDes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActDes.Location = new System.Drawing.Point(838, 102);
-            this.btnActDes.Name = "btnActDes";
-            this.btnActDes.Size = new System.Drawing.Size(50, 50);
-            this.btnActDes.TabIndex = 17;
-            this.btnActDes.UseVisualStyleBackColor = false;
-            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
-            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
@@ -291,7 +276,6 @@
             this.Controls.Add(this.nudAnio);
             this.Controls.Add(this.btnRecargar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.btnActDes);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gridListadoEntradas);
             this.Name = "frmEntradas";
@@ -308,7 +292,6 @@
         private ControlesPersonalizados.GridPersonalizado gridListadoEntradas;
         private ControlesPersonalizados.BotonPersonalizado btnRecargar;
         private ControlesPersonalizados.BotonPersonalizado btnNuevo;
-        private ControlesPersonalizados.BotonPersonalizado btnActDes;
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private System.Windows.Forms.NumericUpDown nudAnio;
         private System.Windows.Forms.Label lblAnio;

@@ -1,4 +1,5 @@
-﻿using SistemaFarmacia.Entidades.Contextos;
+﻿using SistemaFarmacia.Controladores.Procesos;
+using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Entidades.Enumerados;
 using SistemaFarmacia.Entidades.Negocio.Almacen.Entradas;
 using SistemaFarmacia.Vistas.Base;
@@ -17,12 +18,42 @@ namespace SistemaFarmacia.Vistas.Procesos
 {
     public partial class frmEditaEntradas : frmBase
     {
-        public ContextoAplicacion _contextoAplicacion;
+        private ContextoAplicacion _contextoAplicacion;
+        private EntradasEditaController _entradasEditaController;
+        private EntradaProductosDetalle _entradaProductoListado;
+        private EnumeradoAccion _accion;
 
-        public frmEditaEntradas(ContextoAplicacion contextoAplicacion, EnumeradoAccion accion, frmEntradas vistaLlamada, EntradaProductoListado entradaProductoListado)
+        public frmEditaEntradas(ContextoAplicacion contextoAplicacion, EnumeradoAccion accion, frmEntradas vistaLlamada, EntradaProductosDetalle entradaProductoListado)
         {
             InitializeComponent();
             _contextoAplicacion = contextoAplicacion;
+            _entradasEditaController = new EntradasEditaController(this);
+            _entradaProductoListado = entradaProductoListado;
+            _accion = accion;
+        }
+
+        private void frmEditaEntradas_Load(object sender, EventArgs e)
+        {
+            switch (_accion)
+            {
+                case EnumeradoAccion.Alta:
+                    lblEntradaNo.Text = string.Empty;
+                    lblNumProveedor.Text = string.Empty;
+                    lblRazonSocial.Text = string.Empty;
+
+                    break;
+
+                case EnumeradoAccion.Edicion:
+                    lblEntradaNo.Text = _entradaProductoListado.IdEntradaProducto.ToString();
+                    lblNumProveedor.Text = _entradaProductoListado.IdProveedor.ToString();
+                    lblRazonSocial.Text = _entradaProductoListado.RazonSocial;
+                    dtpFecha.Value = _entradaProductoListado.Fecha;
+
+                    _entradasEditaController.ConsultaEntradasDetalles(_entradaProductoListado.IdEntradaProducto);
+
+                    break;
+            }
+            
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -37,10 +68,17 @@ namespace SistemaFarmacia.Vistas.Procesos
                 hoja = dialogoAbrir.FileName;
                 lblArchivo.Text = hoja;
                 //hoja = txtHoja.Text; //la variable hoja tendra el valor del textbox donde colocamos el nombre de la hoja
-                LLenarGrid(hoja); //se manda a llamar al metodo
+               // LLenarGrid(hoja); //se manda a llamar al metodo
             }
         }
-        
+
+        public void AsignarListaDetalles(List<EntradaProductoDetalle> lista)
+        {
+            gridPartidas.AutoGenerateColumns = false;
+            gridPartidas.DataSource = null;
+            gridPartidas.DataSource = lista;
+        }
+
         private void LLenarGrid(string archivo)
         {
             //declaramos las variables
@@ -81,6 +119,12 @@ namespace SistemaFarmacia.Vistas.Procesos
                     
                 }
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.Dispose();
         }
     }
 }

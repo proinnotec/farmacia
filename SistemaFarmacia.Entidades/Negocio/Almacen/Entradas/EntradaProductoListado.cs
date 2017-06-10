@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaFarmacia.Entidades.Negocio.Almacen.Entradas
 {
-    public class EntradaProductoListado: ClaseBase
+    public class EntradaProductosDetalle: ClaseBase
     {
         public int IdEntradaProductoDetalle { get; set; }
         public int IdEntradaProducto { get; set; }

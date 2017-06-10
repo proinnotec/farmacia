@@ -19,13 +19,13 @@ namespace SistemaFarmacia.Vistas.Procesos
     {
         public ContextoAplicacion _contextoAplicacion;
         private EntradasController _entradasController;
-        private EntradaProductoListado _entradaProductoListado;
+        private EntradaProductosDetalle _entradaProductoListado;
         public frmEntradas(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
             _contextoAplicacion = contextoAplicacion;
             _entradasController = new EntradasController(this);
-            _entradaProductoListado = new EntradaProductoListado();
+            _entradaProductoListado = new EntradaProductosDetalle();
         }
 
         private void frmEntradas_Load(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            EntradaProductoListado entradaProductoListado = new EntradaProductoListado();
+            EntradaProductosDetalle entradaProductoListado = new EntradaProductosDetalle();
 
             frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion, EnumeradoAccion.Alta, this, entradaProductoListado);
             vistaEditaEntradas.ShowDialog();
@@ -83,11 +83,13 @@ namespace SistemaFarmacia.Vistas.Procesos
             _entradaProductoListado.IdEntradaProductoDetalle = (int)gridListadoEntradas.SelectedRows[0].Cells["IdEntradaProductoDetalle"].Value;
             _entradaProductoListado.IdEntradaProducto = (int)gridListadoEntradas.SelectedRows[0].Cells["IdEntradaProducto"].Value;
             _entradaProductoListado.Fecha = (DateTime)gridListadoEntradas.SelectedRows[0].Cells["FechaAplica"].Value;
+            _entradaProductoListado.IdProveedor = (int)gridListadoEntradas.SelectedRows[0].Cells["IdProveedor"].Value;
+            _entradaProductoListado.RazonSocial = gridListadoEntradas.SelectedRows[0].Cells["Proveedor"].Value.ToString();
             _entradaProductoListado.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
             
         }
 
-        public void AsignarListaEntradas(List<EntradaProductoListado> lista)
+        public void AsignarListaEntradas(List<EntradaProductosDetalle> lista)
         {
             gridListadoEntradas.AutoGenerateColumns = false;
             gridListadoEntradas.DataSource = null;
@@ -107,17 +109,6 @@ namespace SistemaFarmacia.Vistas.Procesos
         private void gridListadoEntradas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             RecuperarDatosDeGrid();
-        }
-
-        private void btnActDes_Click(object sender, EventArgs e)
-        {
-            string mensaje = "¿Confirma que desea dar de baja el registro seleccionado?, Una vez eliminado, no se podrá reactivar";
-            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
-
-            if (respuesta != DialogResult.Yes)
-                return ;
-
-            _entradasController.BajaEntrada(_entradaProductoListado);
         }
 
         private void gridListadoEntradas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
