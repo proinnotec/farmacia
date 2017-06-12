@@ -12,12 +12,12 @@ namespace SistemaFarmacia.Entidades.Negocio.Almacen.Entradas
         public int IdEntradaProducto { get; set; }
         public CatProveedor Proveedor { get; set; }
         public DateTime Fecha { get; set; }
-        public EntradaProductoDetalle EntradaDetalles { get; set; }
+        public List<EntradaProductoDetalle> EntradaDetalles { get; set; }
         
         public EntradaProducto()
         {
             Proveedor = new CatProveedor();
-            EntradaDetalles = new EntradaProductoDetalle();
+            EntradaDetalles = new List<EntradaProductoDetalle>();
         }
     }
 }

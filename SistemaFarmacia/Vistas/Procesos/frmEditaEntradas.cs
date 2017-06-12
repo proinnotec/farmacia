@@ -5,13 +5,8 @@ using SistemaFarmacia.Entidades.Negocio.Almacen.Entradas;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Procesos
@@ -20,15 +15,17 @@ namespace SistemaFarmacia.Vistas.Procesos
     {
         private ContextoAplicacion _contextoAplicacion;
         private EntradasEditaController _entradasEditaController;
-        private EntradaProductosDetalle _entradaProductoListado;
+        private EntradaProductoListado _entradaProductoListado;
+        private EntradaProducto _entradaProducto;
         private EnumeradoAccion _accion;
 
-        public frmEditaEntradas(ContextoAplicacion contextoAplicacion, EnumeradoAccion accion, frmEntradas vistaLlamada, EntradaProductosDetalle entradaProductoListado)
+        public frmEditaEntradas(ContextoAplicacion contextoAplicacion, EnumeradoAccion accion, frmEntradas vistaLlamada, EntradaProductoListado entradaProductoListado)
         {
             InitializeComponent();
             _contextoAplicacion = contextoAplicacion;
             _entradasEditaController = new EntradasEditaController(this);
             _entradaProductoListado = entradaProductoListado;
+            _entradaProducto = new EntradaProducto();
             _accion = accion;
         }
 
@@ -48,6 +45,8 @@ namespace SistemaFarmacia.Vistas.Procesos
                     lblNumProveedor.Text = _entradaProductoListado.IdProveedor.ToString();
                     lblRazonSocial.Text = _entradaProductoListado.RazonSocial;
                     dtpFecha.Value = _entradaProductoListado.Fecha;
+
+                    _entradaProducto.IdUsuario = _entradaProductoListado.IdUsuario;
 
                     _entradasEditaController.ConsultaEntradasDetalles(_entradaProductoListado.IdEntradaProducto);
 
@@ -125,6 +124,50 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             this.Close();
             this.Dispose();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+            //gridPartidas.CurrentRow.Cells["Cantidad"].Value = nudCantidad.Value;
+            gridPartidas.Rows.Insert(0, "1","2","3","4","5","6");
+
+
+        }
+
+        private void RecuperaDatosDeGrid()
+        {
+            if (!VerificaExistenciaRegistros())
+                return;
+
+            _entradaProducto.EntradaDetalles[1].IdEntradaProductoDetalle = (int)gridPartidas.SelectedRows[0].Cells["IdEntradaProductoDetalle"].Value;
+        }
+
+        private bool VerificaExistenciaRegistros()
+        {
+            if (gridPartidas.RowCount <= 0)
+            {
+                MostrarDialogoResultado(this.Text, "No hay registros para mostrar.", string.Empty, false);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            string mensaje = "¿Confirma que desea dar de baja el registro seleccionado?, Una vez eliminado, no se podrá reactivar";
+            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
+
+            if (respuesta != DialogResult.Yes)
+                return;
+
+            _entradasEditaController.BajaEntrada(_entradaProducto);
+        }
+
+        private void gridPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RecuperaDatosDeGrid();
         }
     }
 }

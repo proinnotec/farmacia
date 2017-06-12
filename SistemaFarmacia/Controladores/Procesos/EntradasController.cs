@@ -29,7 +29,7 @@ namespace SistemaFarmacia.Controladores.Procesos
                 return;
             }
 
-            List<EntradaProductosDetalle> ListaEntradas = _servicioEntradas.ListaEntradasProductos;
+            List<EntradaProductoListado> ListaEntradas = _servicioEntradas.ListaEntradasProductos;
             _vista.AsignarListaEntradas(ListaEntradas);
             
         }

@@ -13,7 +13,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
     public class ServicioEntradas
     {
         private IBaseDeDatos _baseDatos;
-        public List<EntradaProductosDetalle> ListaEntradasProductos { get; set; }
+        public List<EntradaProductoListado> ListaEntradasProductos { get; set; }
         public List<EntradaProductoDetalle> ListaEntradasDetalles { get; set; }
 
         public ServicioEntradas(IBaseDeDatos baseDatos)
@@ -23,7 +23,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
 
         public ExcepcionPersonalizada ConsultarEntradasCabecera(int anio)
         {
-            ListaEntradasProductos = new List<EntradaProductosDetalle>();
+            ListaEntradasProductos = new List<EntradaProductoListado>();
             IDbConnection conexion = null;
 
             try
@@ -38,7 +38,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
 
                 while (lector.Read())
                 {
-                    EntradaProductosDetalle entrada = new EntradaProductosDetalle();
+                    EntradaProductoListado entrada = new EntradaProductoListado();
                     entrada.IdEntradaProductoDetalle = (int)lector["IdEntradaProductoDetalle"];
                     entrada.IdEntradaProducto = (int)lector["IdEntradaProducto"];
                     entrada.IdProveedor = (int)lector["IdProveedor"];
@@ -122,7 +122,63 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                 }
             }
         }
-        
+
+        public ExcepcionPersonalizada AgregarDetallesEntrada(EntradaProducto entrada)
+        {
+            IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
+
+                
+                foreach (EntradaProductoDetalle detalles in entrada.EntradaDetalles)
+                {
+                    IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_RegistroEntradaBaja", conexion);
+                    comando.Transaction = transaccion;
+
+                    //IDataParameter parametroIdEntradaProductoDetalle = _baseDatos.CrearParametro("@IdEntradaProductoDetalle", entrada.IdEntradaProductoDetalle, ParameterDirection.Input);
+                    //omando.Parameters.Add(parametroIdEntradaProductoDetalle);
+
+                    IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", entrada.IdUsuario, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroIdUsuario);
+
+                    int filasAfectadas = comando.ExecuteNonQuery();
+
+                    if (filasAfectadas.Equals(0))
+                        throw new Exception("No se afectaron filas (spU_RegistroEntradaBaja).");
+
+                }
+
+
+
+                
+
+                transaccion.Commit();
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue  posible realizar la operación de la entrada.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
+                    conexion.Close();
+                    conexion.Dispose();
+                }
+            }
+        }
+
         public ExcepcionPersonalizada BajaEntrada(EntradaProducto entrada)
         {
             IDbConnection conexion = null;
@@ -133,19 +189,23 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                 conexion = _baseDatos.CrearConexionAbierta();
                 transaccion = conexion.BeginTransaction();
 
-                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_RegistroEntradaBaja", conexion);
-                comando.Transaction = transaccion;
+                foreach (EntradaProductoDetalle detalle in entrada.EntradaDetalles)
+                {
+                    IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_RegistroEntradaBaja", conexion);
+                    comando.Transaction = transaccion;
 
-                //IDataParameter parametroIdEntradaProductoDetalle = _baseDatos.CrearParametro("@IdEntradaProductoDetalle", entrada.IdEntradaProductoDetalle, ParameterDirection.Input);
-                //omando.Parameters.Add(parametroIdEntradaProductoDetalle);
+                    IDataParameter parametroIdEntradaProductoDetalle = _baseDatos.CrearParametro("@IdEntradaProductoDetalle", detalle.IdEntradaProductoDetalle, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroIdEntradaProductoDetalle);
 
-                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", entrada.IdUsuario, ParameterDirection.Input);
-                comando.Parameters.Add(parametroIdUsuario);
-                
-                int filasAfectadas = comando.ExecuteNonQuery();
+                    IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", entrada.IdUsuario, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroIdUsuario);
 
-                if (filasAfectadas.Equals(0))
-                    throw new Exception("No se afectaron filas (spU_RegistroEntradaBaja).");
+                    int filasAfectadas = comando.ExecuteNonQuery();
+
+                    if (filasAfectadas.Equals(0))
+                        throw new Exception("No se afectaron filas (spU_RegistroEntradaBaja).");
+
+                }
 
                 transaccion.Commit();
                 return null;

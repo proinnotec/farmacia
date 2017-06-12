@@ -5,12 +5,6 @@ using SistemaFarmacia.Entidades.Negocio.Almacen.Entradas;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Procesos
@@ -19,13 +13,13 @@ namespace SistemaFarmacia.Vistas.Procesos
     {
         public ContextoAplicacion _contextoAplicacion;
         private EntradasController _entradasController;
-        private EntradaProductosDetalle _entradaProductoListado;
+        private EntradaProductoListado _entradaProductoListado;
         public frmEntradas(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
             _contextoAplicacion = contextoAplicacion;
             _entradasController = new EntradasController(this);
-            _entradaProductoListado = new EntradaProductosDetalle();
+            _entradaProductoListado = new EntradaProductoListado();
         }
 
         private void frmEntradas_Load(object sender, EventArgs e)
@@ -50,7 +44,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            EntradaProductosDetalle entradaProductoListado = new EntradaProductosDetalle();
+            EntradaProductoListado entradaProductoListado = new EntradaProductoListado();
 
             frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion, EnumeradoAccion.Alta, this, entradaProductoListado);
             vistaEditaEntradas.ShowDialog();
@@ -89,7 +83,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             
         }
 
-        public void AsignarListaEntradas(List<EntradaProductosDetalle> lista)
+        public void AsignarListaEntradas(List<EntradaProductoListado> lista)
         {
             gridListadoEntradas.AutoGenerateColumns = false;
             gridListadoEntradas.DataSource = null;

@@ -112,6 +112,7 @@
             this.btnActDes.Size = new System.Drawing.Size(50, 50);
             this.btnActDes.TabIndex = 18;
             this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
             // 
             // groupBox2
             // 
@@ -211,6 +212,7 @@
             this.btnAgregar.TabIndex = 11;
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // groupBox1
             // 
@@ -326,6 +328,7 @@
             this.gridPartidas.Location = new System.Drawing.Point(12, 161);
             this.gridPartidas.MultiSelect = false;
             this.gridPartidas.Name = "gridPartidas";
+            this.gridPartidas.ReadOnly = true;
             this.gridPartidas.RowHeadersVisible = false;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -337,6 +340,7 @@
             this.gridPartidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridPartidas.Size = new System.Drawing.Size(829, 303);
             this.gridPartidas.TabIndex = 8;
+            this.gridPartidas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPartidas_CellClick);
             // 
             // IdEntradaProductoDetalle
             // 
@@ -369,6 +373,7 @@
             this.Cantidad.FillWeight = 103.1952F;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
             // 
             // ClaveProducto
             // 
@@ -392,6 +397,7 @@
             this.PrecioActual.DefaultCellStyle = dataGridViewCellStyle3;
             this.PrecioActual.HeaderText = "PrecioActual";
             this.PrecioActual.Name = "PrecioActual";
+            this.PrecioActual.ReadOnly = true;
             // 
             // Precio
             // 
@@ -401,6 +407,7 @@
             this.Precio.DefaultCellStyle = dataGridViewCellStyle4;
             this.Precio.HeaderText = "Precio Entrada";
             this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
             // 
             // btnBuscar
             // 
