@@ -34,7 +34,7 @@ namespace SistemaFarmacia.Controladores.Administracion
 
             List<Perfiles> listaPerfiles = _servicioCatalogoPerfiles.ListaPerfiles;
 
-            _vista.LlenarComboAjustes(listaPerfiles);
+            _vista.LlenarComboPerfiles(listaPerfiles);
 
         }
 

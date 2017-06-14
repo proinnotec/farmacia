@@ -331,5 +331,48 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     conexion.Dispose();
             }
         }
+
+
+        public ExcepcionPersonalizada ConsultarProductosActivos()
+        {
+            ListaProductos = new List<CatProducto>();
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_CatProductosDescripcion", conexion);
+
+                IDataReader Lector = comando.ExecuteReader();
+
+                while (Lector.Read())
+                {
+                    CatProducto producto = new CatProducto();
+                    producto.IdProducto = (int)Lector["IdProducto"];
+                    producto.Descripcion = Lector["Descripcion"].ToString();
+                    
+                    ListaProductos.Add(producto);
+                }
+
+                Lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener la lista de productos.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
+                    conexion.Close();
+                    conexion.Dispose();
+                }
+                    
+            }
+        }
+
     }
 }

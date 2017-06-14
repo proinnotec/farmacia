@@ -55,7 +55,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             GuardarUsuario();
         }
 
-        public void LlenarComboAjustes(List<Perfiles> lista)
+        public void LlenarComboPerfiles(List<Perfiles> lista)
         {
             cmbPerfiles.Items.Clear();
             cmbPerfiles.DataSource = lista;

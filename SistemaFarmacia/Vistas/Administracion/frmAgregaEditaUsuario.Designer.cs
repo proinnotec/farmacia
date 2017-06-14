@@ -202,7 +202,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGuardar);
             this.Name = "frmAgregaEditaUsuario";
-            this.Text = "Alta / Edición de Usuarios";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.frmAgregaEditaUsuario_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

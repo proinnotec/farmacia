@@ -2,6 +2,7 @@
 using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Entidades.Enumerados;
 using SistemaFarmacia.Entidades.Negocio.Almacen.Entradas;
+using SistemaFarmacia.Entidades.Negocio.Catalogos;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,8 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void frmEditaEntradas_Load(object sender, EventArgs e)
         {
+            _entradasEditaController.ConsultaProductosLista();
+
             switch (_accion)
             {
                 case EnumeradoAccion.Alta:
@@ -69,6 +72,16 @@ namespace SistemaFarmacia.Vistas.Procesos
                 //hoja = txtHoja.Text; //la variable hoja tendra el valor del textbox donde colocamos el nombre de la hoja
                // LLenarGrid(hoja); //se manda a llamar al metodo
             }
+        }
+
+        public void LlenarComboProductos(List<CatProducto> lista)
+        {
+            cmbProductos.Items.Clear();
+            cmbProductos.DataSource = lista;
+            cmbProductos.DisplayMember = "Descripcion";
+            cmbProductos.ValueMember = "IdProducto";
+            cmbProductos.SelectedValue = 0;
+
         }
 
         public void AsignarListaDetalles(List<EntradaProductoDetalle> lista)
@@ -128,11 +141,16 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
-            //gridPartidas.CurrentRow.Cells["Cantidad"].Value = nudCantidad.Value;
-            gridPartidas.Rows.Insert(0, "1","2","3","4","5","6");
-
-
+            int entradaId = _entradaProductoListado.IdEntradaProducto;
+            int productoId = (int)cmbProductos.SelectedValue;
+            decimal cantidad = nudCantidad.Value;
+            string claveProducto = string.Empty;
+            string descripcion = string.Empty;
+            decimal precioActual = 50;
+            decimal precio = nudPrecio.Value;
+            
+            gridPartidas.Rows.Insert(0, entradaId, productoId, cantidad, claveProducto, descripcion, precioActual, precio);
+            
         }
 
         private void RecuperaDatosDeGrid()
@@ -169,5 +187,6 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             RecuperaDatosDeGrid();
         }
+
     }
 }
