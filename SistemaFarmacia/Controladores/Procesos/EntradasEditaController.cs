@@ -13,6 +13,7 @@ namespace SistemaFarmacia.Controladores.Procesos
         private ServicioEntradas _servicioEntradas;
         private ServicioCatalogoProductos _servicioCatalogoProductos;
         private frmEditaEntradas _vista;
+        public List<CatProducto> ListaProductos { get; private set; }
 
         public EntradasEditaController(frmEditaEntradas vista)
         {
@@ -38,10 +39,10 @@ namespace SistemaFarmacia.Controladores.Procesos
 
         }
 
-        public void ConsultaProductosLista()
+        public void ConsultaProductosLista(int idProducto)
         {
             string mensaje = string.Empty;
-            ExcepcionPersonalizada resultado = _servicioCatalogoProductos.ConsultarProductosActivos();
+            ExcepcionPersonalizada resultado = _servicioCatalogoProductos.ConsultarProductosActivos(idProducto);
 
             if (resultado != null)
             {
@@ -50,8 +51,10 @@ namespace SistemaFarmacia.Controladores.Procesos
                 return;
             }
 
-            List<CatProducto> listaProductos = _servicioCatalogoProductos.ListaProductos;
-            _vista.LlenarComboProductos(listaProductos);
+            ListaProductos = _servicioCatalogoProductos.ListaProductos;
+
+            if(idProducto == 0)
+                _vista.LlenarComboProductos(ListaProductos);
         }
 
         public void BajaEntrada(EntradaProducto entrada)

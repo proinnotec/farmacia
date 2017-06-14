@@ -333,7 +333,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         }
 
 
-        public ExcepcionPersonalizada ConsultarProductosActivos()
+        public ExcepcionPersonalizada ConsultarProductosActivos(int idProducto)
         {
             ListaProductos = new List<CatProducto>();
             IDbConnection conexion = null;
@@ -343,13 +343,22 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 conexion = _baseDatos.CrearConexionAbierta();
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_CatProductosDescripcion", conexion);
 
+                if (idProducto > 0)
+                {
+                    IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", idProducto, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroIdProducto);
+
+                }
+
                 IDataReader Lector = comando.ExecuteReader();
 
                 while (Lector.Read())
                 {
                     CatProducto producto = new CatProducto();
                     producto.IdProducto = (int)Lector["IdProducto"];
+                    producto.ClaveProducto = Lector["ClaveProducto"].ToString();
                     producto.Descripcion = Lector["Descripcion"].ToString();
+                    producto.Precio = (decimal)Lector["Precio"];
                     
                     ListaProductos.Add(producto);
                 }

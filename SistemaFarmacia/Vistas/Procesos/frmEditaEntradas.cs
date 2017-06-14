@@ -32,7 +32,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void frmEditaEntradas_Load(object sender, EventArgs e)
         {
-            _entradasEditaController.ConsultaProductosLista();
+            _entradasEditaController.ConsultaProductosLista(0);
 
             switch (_accion)
             {
@@ -141,16 +141,32 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            int entradaId = _entradaProductoListado.IdEntradaProducto;
-            int productoId = (int)cmbProductos.SelectedValue;
-            decimal cantidad = nudCantidad.Value;
-            string claveProducto = string.Empty;
-            string descripcion = string.Empty;
-            decimal precioActual = 50;
+            int productoId = 0;
+
+            if (cmbProductos.SelectedValue != null)
+            {
+                productoId = (int)cmbProductos.SelectedValue;
+            }                
+                       
+            if (productoId <= 0)
+            {
+                string mensaje = string.Format("{0}", "Debe seleccionar un producto para ppoder continuar");
+                MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+
+                return;
+            }
+
+            _entradasEditaController.ConsultaProductosLista(productoId);
+
+            decimal cantidad = nudCantidad.Value;           
+            string claveProducto = _entradasEditaController.ListaProductos[0].ClaveProducto;
+            string descripcion = _entradasEditaController.ListaProductos[0].Descripcion;
+            decimal precioActual = _entradasEditaController.ListaProductos[0].Precio;
             decimal precio = nudPrecio.Value;
-            
-            gridPartidas.Rows.Insert(0, entradaId, productoId, cantidad, claveProducto, descripcion, precioActual, precio);
-            
+       
+            gridPartidas.Rows.Add(0, 0, productoId, cantidad, claveProducto, descripcion, precioActual, precio);
+            cmbProductos.SelectedValue = 0;
+
         }
 
         private void RecuperaDatosDeGrid()
@@ -158,7 +174,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             if (!VerificaExistenciaRegistros())
                 return;
 
-            _entradaProducto.EntradaDetalles[1].IdEntradaProductoDetalle = (int)gridPartidas.SelectedRows[0].Cells["IdEntradaProductoDetalle"].Value;
+           // _entradaProducto.EntradaDetalles[1].IdEntradaProductoDetalle = (int)gridPartidas.SelectedRows[0].Cells["IdEntradaProductoDetalle"].Value;
         }
 
         private bool VerificaExistenciaRegistros()
