@@ -47,14 +47,11 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.btnAgregar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblPrecio = new System.Windows.Forms.Label();
             this.lblProductos = new System.Windows.Forms.Label();
-            this.lblCantidad = new System.Windows.Forms.Label();
-            this.nudPrecio = new System.Windows.Forms.NumericUpDown();
             this.cmbProductos = new System.Windows.Forms.ComboBox();
-            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gridPartidas = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.IdEntradaProductoDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEntradaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,11 +60,9 @@
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.ActPrecioCatalogo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridPartidas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -216,12 +211,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblPrecio);
             this.groupBox1.Controls.Add(this.lblProductos);
-            this.groupBox1.Controls.Add(this.lblCantidad);
-            this.groupBox1.Controls.Add(this.nudPrecio);
             this.groupBox1.Controls.Add(this.cmbProductos);
-            this.groupBox1.Controls.Add(this.nudCantidad);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 90);
             this.groupBox1.Name = "groupBox1";
@@ -230,56 +221,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de productos";
             // 
-            // lblPrecio
-            // 
-            this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(703, 16);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(53, 16);
-            this.lblPrecio.TabIndex = 5;
-            this.lblPrecio.Text = "Precio";
-            // 
             // lblProductos
             // 
             this.lblProductos.AutoSize = true;
-            this.lblProductos.Location = new System.Drawing.Point(159, 16);
+            this.lblProductos.Location = new System.Drawing.Point(8, 17);
             this.lblProductos.Name = "lblProductos";
             this.lblProductos.Size = new System.Drawing.Size(78, 16);
             this.lblProductos.TabIndex = 4;
             this.lblProductos.Text = "Productos";
             // 
-            // lblCantidad
-            // 
-            this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(17, 16);
-            this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(70, 16);
-            this.lblCantidad.TabIndex = 3;
-            this.lblCantidad.Text = "Cantidad";
-            // 
-            // nudPrecio
-            // 
-            this.nudPrecio.DecimalPlaces = 2;
-            this.nudPrecio.Location = new System.Drawing.Point(703, 36);
-            this.nudPrecio.Name = "nudPrecio";
-            this.nudPrecio.Size = new System.Drawing.Size(120, 22);
-            this.nudPrecio.TabIndex = 2;
-            this.nudPrecio.ThousandsSeparator = true;
-            // 
             // cmbProductos
             // 
             this.cmbProductos.FormattingEnabled = true;
-            this.cmbProductos.Location = new System.Drawing.Point(159, 34);
+            this.cmbProductos.Location = new System.Drawing.Point(6, 34);
             this.cmbProductos.Name = "cmbProductos";
-            this.cmbProductos.Size = new System.Drawing.Size(528, 24);
+            this.cmbProductos.Size = new System.Drawing.Size(817, 24);
             this.cmbProductos.TabIndex = 1;
-            // 
-            // nudCantidad
-            // 
-            this.nudCantidad.Location = new System.Drawing.Point(17, 34);
-            this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(120, 22);
-            this.nudCantidad.TabIndex = 0;
             // 
             // btnGuardar
             // 
@@ -323,7 +280,8 @@
             this.ClaveProducto,
             this.Descripcion,
             this.PrecioActual,
-            this.Precio});
+            this.Precio,
+            this.ActPrecioCatalogo});
             this.gridPartidas.EnableHeadersVisualStyles = false;
             this.gridPartidas.Location = new System.Drawing.Point(12, 161);
             this.gridPartidas.MultiSelect = false;
@@ -341,6 +299,17 @@
             this.gridPartidas.Size = new System.Drawing.Size(829, 303);
             this.gridPartidas.TabIndex = 8;
             this.gridPartidas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPartidas_CellClick);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackgroundImage = global::SistemaFarmacia.Resource.search2;
+            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBuscar.Location = new System.Drawing.Point(847, 4);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(50, 50);
+            this.btnBuscar.TabIndex = 1;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // IdEntradaProductoDetalle
             // 
@@ -409,16 +378,11 @@
             this.Precio.Name = "Precio";
             this.Precio.ReadOnly = true;
             // 
-            // btnBuscar
+            // ActPrecioCatalogo
             // 
-            this.btnBuscar.BackgroundImage = global::SistemaFarmacia.Resource.search2;
-            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnBuscar.Location = new System.Drawing.Point(847, 4);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(50, 50);
-            this.btnBuscar.TabIndex = 1;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.ActPrecioCatalogo.HeaderText = "Actualizar Precio";
+            this.ActPrecioCatalogo.Name = "ActPrecioCatalogo";
+            this.ActPrecioCatalogo.ReadOnly = true;
             // 
             // frmEditaEntradas
             // 
@@ -441,8 +405,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridPartidas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -456,9 +418,7 @@
         private ControlesPersonalizados.GridPersonalizado gridPartidas;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NumericUpDown nudPrecio;
         private System.Windows.Forms.ComboBox cmbProductos;
-        private System.Windows.Forms.NumericUpDown nudCantidad;
         private ControlesPersonalizados.BotonPersonalizado btnAgregar;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DateTimePicker dtpFecha;
@@ -469,9 +429,7 @@
         private System.Windows.Forms.Label lblRazonSocial;
         private System.Windows.Forms.Label lblNumProveedor;
         private System.Windows.Forms.Label lblProveedorTexto;
-        private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Label lblProductos;
-        private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.Label label1;
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdEntradaProductoDetalle;
@@ -482,5 +440,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ActPrecioCatalogo;
     }
 }

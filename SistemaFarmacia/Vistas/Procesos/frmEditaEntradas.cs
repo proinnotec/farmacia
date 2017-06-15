@@ -150,31 +150,38 @@ namespace SistemaFarmacia.Vistas.Procesos
                        
             if (productoId <= 0)
             {
-                string mensaje = string.Format("{0}", "Debe seleccionar un producto para ppoder continuar");
+                string mensaje = string.Format("{0}", "Debe seleccionar un producto para poder continuar");
                 MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
 
                 return;
             }
 
             _entradasEditaController.ConsultaProductosLista(productoId);
-
-            decimal cantidad = nudCantidad.Value;           
+      
             string claveProducto = _entradasEditaController.ListaProductos[0].ClaveProducto;
             string descripcion = _entradasEditaController.ListaProductos[0].Descripcion;
             decimal precioActual = _entradasEditaController.ListaProductos[0].Precio;
-            decimal precio = nudPrecio.Value;
-       
-            gridPartidas.Rows.Add(0, 0, productoId, cantidad, claveProducto, descripcion, precioActual, precio);
+            
+            gridPartidas.Rows.Add(0, 0, productoId, 0, claveProducto, descripcion, precioActual, 0);
             cmbProductos.SelectedValue = 0;
-
+                        
         }
 
         private void RecuperaDatosDeGrid()
         {
+            if(gridPartidas.ReadOnly == true)
+                gridPartidas.ReadOnly = false;
+
             if (!VerificaExistenciaRegistros())
                 return;
+            
+            gridPartidas.SelectedRows[0].Cells["Precio"].ReadOnly = false;
+            gridPartidas.SelectedRows[0].Cells["Cantidad"].ReadOnly = false;
+            gridPartidas.SelectedRows[0].Cells["ActPrecioCatalogo"].ReadOnly = false;
+            gridPartidas.SelectedRows[0].Cells["ClaveProducto"].ReadOnly = true;
+            gridPartidas.SelectedRows[0].Cells["PrecioActual"].ReadOnly = true;
+            gridPartidas.SelectedRows[0].Cells["Descripcion"].ReadOnly = true;
 
-           // _entradaProducto.EntradaDetalles[1].IdEntradaProductoDetalle = (int)gridPartidas.SelectedRows[0].Cells["IdEntradaProductoDetalle"].Value;
         }
 
         private bool VerificaExistenciaRegistros()
