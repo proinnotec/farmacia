@@ -32,7 +32,22 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void frmEditaEntradas_Load(object sender, EventArgs e)
         {
-            _entradasEditaController.ConsultaProductosLista(0);
+            ToolTip toolTipNuevo = new ToolTip();
+            toolTipNuevo.SetToolTip(btnBuscar, "Buscar Archivo");
+
+            ToolTip toolTipRecargar = new ToolTip();
+            toolTipRecargar.SetToolTip(btnAgregar, "Agregar");
+
+            ToolTip toolTipGuardar = new ToolTip();
+            toolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+
+            ToolTip toolTipQuitar = new ToolTip();
+            toolTipQuitar.SetToolTip(btnActDes, "Quitar");
+
+            ToolTip toolTipSalir = new ToolTip();
+            toolTipSalir.SetToolTip(btnCancelar, "Cerrar");
+
+            dtpFecha.Enabled = false;
 
             switch (_accion)
             {
@@ -40,6 +55,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                     lblEntradaNo.Text = string.Empty;
                     lblNumProveedor.Text = string.Empty;
                     lblRazonSocial.Text = string.Empty;
+                    _entradasEditaController.ConsultaProductosLista(0);
 
                     break;
 
@@ -52,6 +68,13 @@ namespace SistemaFarmacia.Vistas.Procesos
                     _entradaProducto.IdUsuario = _entradaProductoListado.IdUsuario;
 
                     _entradasEditaController.ConsultaEntradasDetalles(_entradaProductoListado.IdEntradaProducto);
+
+                    btnActDes.Enabled = false;
+                    btnBuscar.Enabled = false;
+                    btnAgregar.Enabled = false;
+                    btnGuardar.Enabled = false;
+                    cmbProductos.Enabled = false;
+                    gridPartidas.Enabled = false;
 
                     break;
             }
@@ -197,13 +220,16 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnActDes_Click(object sender, EventArgs e)
         {
-            string mensaje = "¿Confirma que desea dar de baja el registro seleccionado?, Una vez eliminado, no se podrá reactivar";
+            if (!VerificaExistenciaRegistros())
+                return;
+
+            string mensaje = "¿Confirma que desea quitar el registro seleccionado?";
             DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
 
             if (respuesta != DialogResult.Yes)
                 return;
 
-            _entradasEditaController.BajaEntrada(_entradaProducto);
+            gridPartidas.Rows.Remove(gridPartidas.CurrentRow);
         }
 
         private void gridPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -211,5 +237,16 @@ namespace SistemaFarmacia.Vistas.Procesos
             RecuperaDatosDeGrid();
         }
 
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (!VerificaExistenciaRegistros())
+                return;
+
+            string mensaje = "¿Confirma que desea guardar la entrada?";
+            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
+
+            if (respuesta != DialogResult.Yes)
+                return;
+        }
     }
 }

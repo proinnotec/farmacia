@@ -56,21 +56,6 @@ namespace SistemaFarmacia.Controladores.Procesos
             if(idProducto == 0)
                 _vista.LlenarComboProductos(ListaProductos);
         }
-
-        public void BajaEntrada(EntradaProducto entrada)
-        {
-            string mensaje = string.Empty;
-            ExcepcionPersonalizada resultado = _servicioEntradas.BajaEntrada(entrada);
-
-            if (resultado != null)
-            {
-                mensaje = "Hubo un error al intentar dar de baja la entrada.";
-                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
-                return;
-            }
-
-            mensaje = "Se ha guardado correctamente la información de la entrada.";
-            _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
-        }
+        
     }
 }

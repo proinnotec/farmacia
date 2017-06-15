@@ -251,6 +251,7 @@
             this.btnGuardar.TabIndex = 9;
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // gridPartidas
             // 
@@ -380,7 +381,7 @@
             // 
             // ActPrecioCatalogo
             // 
-            this.ActPrecioCatalogo.HeaderText = "Actualizar Precio";
+            this.ActPrecioCatalogo.HeaderText = "Actualizar Precio Catalogo";
             this.ActPrecioCatalogo.Name = "ActPrecioCatalogo";
             this.ActPrecioCatalogo.ReadOnly = true;
             // 
