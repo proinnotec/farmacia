@@ -56,6 +56,26 @@ namespace SistemaFarmacia.Controladores.Procesos
             if(idProducto == 0)
                 _vista.LlenarComboProductos(ListaProductos);
         }
-        
+
+        public void GuardarDescuentoConfiguracion(EntradaProducto entrada)
+        {
+            string mensaje = string.Empty;
+
+            ExcepcionPersonalizada resultado = null;
+            resultado = _servicioEntradas.GuardarEntrada(entrada);
+
+            if (resultado != null)
+            {
+                mensaje = "Hubo un error al intentar guardar la entrada.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
+            }
+
+            mensaje = "Se ha guardado correctamente la información de la entrada.";
+            _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
+
+            _vista.Cerrar();
+        }
+
     }
 }

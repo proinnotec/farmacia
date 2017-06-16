@@ -121,6 +121,97 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                     conexion.Dispose();
                 }
             }
-        }         
+        }    
+        
+        public ExcepcionPersonalizada GuardarEntrada(EntradaProducto entrada)
+        {
+            IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_EntradasProductos", conexion);
+                comando.Transaction = transaccion;
+
+                IDataParameter parametroProveedor = _baseDatos.CrearParametro("@IdProveedor", entrada.Proveedor.IdProveedor, ParameterDirection.Input);
+                comando.Parameters.Add(parametroProveedor);
+
+                IDataParameter parametroSucursal = _baseDatos.CrearParametro("@IdSucursal", entrada.IdSucursal, ParameterDirection.Input);
+                comando.Parameters.Add(parametroSucursal);
+
+                IDataParameter parametroUsuario = _baseDatos.CrearParametro("@IdUsuario", entrada.Proveedor.IdProveedor, ParameterDirection.Input);
+                comando.Parameters.Add(parametroUsuario);
+
+                object resultado = comando.ExecuteScalar();
+
+                Int64 idTabla;
+
+                bool sePuedeConvertir = Int64.TryParse(resultado.ToString(), out idTabla);
+
+                if (!sePuedeConvertir)
+                {
+                    Exception excepcion = new Exception("No fue posible convertir el valor del id de la cabecera a entero.");
+
+                    throw excepcion;
+                }
+
+                else
+                {
+                    foreach(EntradaProductoDetalle detalle in entrada.EntradaDetalles)
+                    {
+                        IDbCommand comandoDetalles = _baseDatos.CrearComandoStoredProcedure("spI_EntradasProductoDetalles", conexion);
+                        comandoDetalles.Transaction = transaccion;
+
+                        IDataParameter parametroIdEntrada = _baseDatos.CrearParametro("@IdEntradaProducto", idTabla, ParameterDirection.Input);
+                        comandoDetalles.Parameters.Add(parametroIdEntrada);
+
+                        IDataParameter parametroCantidad = _baseDatos.CrearParametro("@Cantidad", detalle.Cantidad, ParameterDirection.Input);
+                        comandoDetalles.Parameters.Add(parametroCantidad);
+
+                        IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", detalle.IdProducto, ParameterDirection.Input);
+                        comandoDetalles.Parameters.Add(parametroIdProducto);
+
+                        IDataParameter parametroClave = _baseDatos.CrearParametro("@ClaveProducto", detalle.ClaveProducto, ParameterDirection.Input);
+                        comandoDetalles.Parameters.Add(parametroClave);
+
+                        IDataParameter parametroPrecio = _baseDatos.CrearParametro("@Precio", detalle.PrecioEntrada, ParameterDirection.Input);
+                        comandoDetalles.Parameters.Add(parametroPrecio);
+
+                        int filasAfectadas = comandoDetalles.ExecuteNonQuery();
+
+                        if (filasAfectadas.Equals(0))
+                            throw new Exception("No se afectaron filas (spI_EntradasProductoDetalles).");
+
+                    }
+                    
+                }
+
+                transaccion.Commit();
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar la entrada.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
+                return excepcion;
+
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
+                    conexion.Close();
+                    conexion.Dispose();
+                }
+
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace SistemaFarmacia.Entidades.Negocio.Almacen.Entradas
         public string ClaveProducto { get; set; }
         public decimal PrecioActual { get; set; }
         public decimal PrecioEntrada { get; set; }
+        public bool ActualizaPrecio { get; set; }
 
     }
 }

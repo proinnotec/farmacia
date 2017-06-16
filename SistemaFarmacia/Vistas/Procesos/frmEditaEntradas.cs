@@ -19,6 +19,7 @@ namespace SistemaFarmacia.Vistas.Procesos
         private EntradaProductoListado _entradaProductoListado;
         private EntradaProducto _entradaProducto;
         private EnumeradoAccion _accion;
+        private frmEntradas _vistaLlamada;
 
         public frmEditaEntradas(ContextoAplicacion contextoAplicacion, EnumeradoAccion accion, frmEntradas vistaLlamada, EntradaProductoListado entradaProductoListado)
         {
@@ -28,6 +29,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             _entradaProductoListado = entradaProductoListado;
             _entradaProducto = new EntradaProducto();
             _accion = accion;
+            _vistaLlamada = vistaLlamada;
         }
 
         private void frmEditaEntradas_Load(object sender, EventArgs e)
@@ -184,8 +186,11 @@ namespace SistemaFarmacia.Vistas.Procesos
             string claveProducto = _entradasEditaController.ListaProductos[0].ClaveProducto;
             string descripcion = _entradasEditaController.ListaProductos[0].Descripcion;
             decimal precioActual = _entradasEditaController.ListaProductos[0].Precio;
-            
-            gridPartidas.Rows.Add(0, 0, productoId, 0, claveProducto, descripcion, precioActual, 0);
+            decimal cantidad = 0;
+            decimal precio = 0;
+            bool actualizaPrecio = false;
+                        
+            gridPartidas.Rows.Add(0, 0, productoId, cantidad, claveProducto, descripcion, precioActual, precio, actualizaPrecio);
             cmbProductos.SelectedValue = 0;
                         
         }
@@ -211,7 +216,7 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             if (gridPartidas.RowCount <= 0)
             {
-                MostrarDialogoResultado(this.Text, "No hay registros para mostrar.", string.Empty, false);
+                MostrarDialogoResultado(this.Text, "No hay registros para continuar.", string.Empty, false);
                 return false;
             }
 
@@ -247,6 +252,39 @@ namespace SistemaFarmacia.Vistas.Procesos
 
             if (respuesta != DialogResult.Yes)
                 return;
+
+
+            EntradaProducto entrada = new EntradaProducto();
+
+            entrada.Proveedor.IdProveedor = 1;
+            entrada.IdSucursal = _contextoAplicacion.Usuario.IdSucursal;
+            entrada.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
+
+            foreach(DataGridViewRow fila in gridPartidas.Rows)
+            {
+                EntradaProductoDetalle detalle = new EntradaProductoDetalle();
+                detalle.IdProducto = (int)fila.Cells["IdProducto"].Value;
+                detalle.ClaveProducto = fila.Cells["ClaveProducto"].Value.ToString();
+                detalle.Cantidad = (decimal)fila.Cells["Cantidad"].Value;
+                detalle.PrecioActual = (decimal)fila.Cells["PrecioActual"].Value;
+                detalle.PrecioEntrada = (decimal)fila.Cells["Precio"].Value;
+                detalle.ActualizaPrecio = (bool)fila.Cells["ActPrecioCatalogo"].Value;
+
+                entrada.EntradaDetalles.Add(detalle);
+                
+            }
+
+            _entradasEditaController.GuardarDescuentoConfiguracion(entrada);
+
+        }
+
+        public void Cerrar()
+        {
+            _vistaLlamada.CargarDatos();
+
+            this.Close();
+            this.Dispose();
+
         }
     }
 }

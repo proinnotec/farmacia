@@ -50,7 +50,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             vistaEditaEntradas.ShowDialog();
         }
 
-        private void CargarDatos()
+        public void CargarDatos()
         {
             int anio;
             anio = (int)nudAnio.Value;
