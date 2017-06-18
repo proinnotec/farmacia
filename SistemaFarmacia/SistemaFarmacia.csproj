@@ -67,6 +67,7 @@
     <Compile Include="Controladores\Procesos\AjustesController.cs" />
     <Compile Include="Controladores\Procesos\EntradasController.cs" />
     <Compile Include="Controladores\Procesos\EntradasEditaController.cs" />
+    <Compile Include="Controladores\Procesos\ListadoAjustesController.cs" />
     <Compile Include="ControlesPersonalizados\BotonPersonalizado.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -191,6 +192,12 @@
     <Compile Include="Vistas\Procesos\frmEntradas.Designer.cs">
       <DependentUpon>frmEntradas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Procesos\frmListadoAjustes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Procesos\frmListadoAjustes.Designer.cs">
+      <DependentUpon>frmListadoAjustes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Ventas\frmVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Procesos\frmEntradas.resx">
       <DependentUpon>frmEntradas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Procesos\frmListadoAjustes.resx">
+      <DependentUpon>frmListadoAjustes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmVenta.resx">
       <DependentUpon>frmVenta.cs</DependentUpon>

@@ -14,7 +14,8 @@ namespace SistemaFarmacia.Entidades.Negocio.Almacen.Ajustes
         public CatTipoAjustes TipoAjuste { get; set; }
         public string Descripcion { get; set; }
         public Decimal Cantidad { get; set; }
-        public int ClaveProducto { get; set; } //Falta generar la entidad producto
+        public int IdProducto { get; set; }
+        public string ClaveProducto { get; set; } //Falta generar la entidad producto
         public Decimal Precio { get; set; }
         public Usuario Usuario { get; set; }
 

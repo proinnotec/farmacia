@@ -18,5 +18,10 @@ namespace SistemaFarmacia.Vistas.Ventas
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
