@@ -265,9 +265,9 @@ namespace SistemaFarmacia.Vistas.Procesos
                 EntradaProductoDetalle detalle = new EntradaProductoDetalle();
                 detalle.IdProducto = (int)fila.Cells["IdProducto"].Value;
                 detalle.ClaveProducto = fila.Cells["ClaveProducto"].Value.ToString();
-                detalle.Cantidad = (decimal)fila.Cells["Cantidad"].Value;
-                detalle.PrecioActual = (decimal)fila.Cells["PrecioActual"].Value;
-                detalle.PrecioEntrada = (decimal)fila.Cells["Precio"].Value;
+                detalle.Cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value);
+                detalle.PrecioActual = Convert.ToDecimal(fila.Cells["PrecioActual"].Value);
+                detalle.PrecioEntrada = Convert.ToDecimal(fila.Cells["Precio"].Value);
                 detalle.ActualizaPrecio = (bool)fila.Cells["ActPrecioCatalogo"].Value;
 
                 entrada.EntradaDetalles.Add(detalle);
