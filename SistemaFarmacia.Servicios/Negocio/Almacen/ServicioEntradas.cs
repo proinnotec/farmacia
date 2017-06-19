@@ -185,6 +185,23 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                         if (filasAfectadas.Equals(0))
                             throw new Exception("No se afectaron filas (spI_EntradasProductoDetalles).");
 
+                        if (detalle.ActualizaPrecio)
+                        {
+                            IDbCommand comandoPrecio = _baseDatos.CrearComandoStoredProcedure("spU_ActualizaPrecioCatalogoProductos", conexion);
+                            comandoPrecio.Transaction = transaccion;
+
+                            IDataParameter parametroIdProductoPrecio = _baseDatos.CrearParametro("@IdProducto", detalle.IdProducto, ParameterDirection.Input);
+                            comandoPrecio.Parameters.Add(parametroIdProductoPrecio);
+
+                            IDataParameter parametroPrecioCatalogo = _baseDatos.CrearParametro("@PrecioCatalogo", detalle.PrecioActual, ParameterDirection.Input);
+                            comandoPrecio.Parameters.Add(parametroPrecioCatalogo);
+
+                            int filasAfectadasPrecio = comandoPrecio.ExecuteNonQuery();
+
+                            if (filasAfectadasPrecio.Equals(0))
+                                throw new Exception("No se afectaron filas (spU_ActualizaPrecioCatalogoProductos).");
+                        }
+
                     }
                     
                 }

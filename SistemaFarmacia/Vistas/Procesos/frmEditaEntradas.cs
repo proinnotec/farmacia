@@ -204,10 +204,10 @@ namespace SistemaFarmacia.Vistas.Procesos
                 return;
             
             gridPartidas.SelectedRows[0].Cells["Precio"].ReadOnly = false;
+            gridPartidas.SelectedRows[0].Cells["PrecioActual"].ReadOnly = false;
             gridPartidas.SelectedRows[0].Cells["Cantidad"].ReadOnly = false;
             gridPartidas.SelectedRows[0].Cells["ActPrecioCatalogo"].ReadOnly = false;
             gridPartidas.SelectedRows[0].Cells["ClaveProducto"].ReadOnly = true;
-            gridPartidas.SelectedRows[0].Cells["PrecioActual"].ReadOnly = true;
             gridPartidas.SelectedRows[0].Cells["Descripcion"].ReadOnly = true;
 
         }
@@ -265,10 +265,34 @@ namespace SistemaFarmacia.Vistas.Procesos
                 EntradaProductoDetalle detalle = new EntradaProductoDetalle();
                 detalle.IdProducto = (int)fila.Cells["IdProducto"].Value;
                 detalle.ClaveProducto = fila.Cells["ClaveProducto"].Value.ToString();
+                detalle.Descripcion = fila.Cells["Descripcion"].Value.ToString();
                 detalle.Cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value);
                 detalle.PrecioActual = Convert.ToDecimal(fila.Cells["PrecioActual"].Value);
                 detalle.PrecioEntrada = Convert.ToDecimal(fila.Cells["Precio"].Value);
-                detalle.ActualizaPrecio = (bool)fila.Cells["ActPrecioCatalogo"].Value;
+                detalle.ActualizaPrecio = Convert.ToBoolean(fila.Cells["ActPrecioCatalogo"].Value);
+
+                string mensajeDetalles = string.Empty;
+
+                if (detalle.Cantidad <= 0)
+                {
+                    mensajeDetalles = string.Format("La cantidad del producto {0} - {1} debe ser mayor a cero", detalle.ClaveProducto, detalle.Descripcion);
+                    MostrarDialogoResultado(this.Text, mensajeDetalles, string.Empty, false);
+                    return;
+                }
+
+                if (detalle.ActualizaPrecio && detalle.PrecioActual <= 0)
+                {
+                    mensajeDetalles = string.Format("El precio actual del producto {0} - {1} debe ser mayor a cero", detalle.ClaveProducto, detalle.Descripcion);
+                    MostrarDialogoResultado(this.Text, mensajeDetalles, string.Empty, false);
+                    return;
+                }
+
+                if (detalle.PrecioEntrada <= 0)
+                {
+                    mensajeDetalles = string.Format("El precio de entrada del producto {0} - {1} debe ser mayor a cero", detalle.ClaveProducto, detalle.Descripcion);
+                    MostrarDialogoResultado(this.Text, mensajeDetalles, string.Empty, false);
+                    return;
+                }
 
                 entrada.EntradaDetalles.Add(detalle);
                 
