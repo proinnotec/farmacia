@@ -94,8 +94,8 @@ namespace SistemaFarmacia.Vistas.Procesos
                 string hoja = string.Empty;
                 hoja = dialogoAbrir.FileName;
                 lblArchivo.Text = hoja;
-                //hoja = txtHoja.Text; //la variable hoja tendra el valor del textbox donde colocamos el nombre de la hoja
-               // LLenarGrid(hoja); //se manda a llamar al metodo
+                //hoja = lblArchivo.Text; //la variable hoja tendra el valor de la etiqueta donde colocamos el nombre de la hoja
+                LLenarGrid(hoja); //se manda a llamar al metodo
             }
         }
 
@@ -120,12 +120,14 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             //declaramos las variables
             OleDbConnection conexion = null;
-            DataSet dataset = null;
-            OleDbDataAdapter dataAdapter = null;
-            string consultaHojaExcel = "Select * from [" + archivo + "$]";
+            //DataSet dataset = null;
+            //OleDbDataAdapter dataAdapter = null;
+            string consultaHojaExcel = "Select * from  [Hoja1$]";
 
             //esta cadena es para archivos excel 2007 y 2010
-            string cadenaConexionArchivoExcel = "provider=Microsoft.ACE.OLEDB.12.0;Data Source='" + archivo + "';Extended Properties=Excel 12.0;";
+            //string cadenaConexionArchivoExcel = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + archivo + "';Extended Properties='Excel 12.0;HDR=Yes;IMEX=1'";
+            string conexionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + archivo + "';Extended Properties='Excel 8.0;HDR=Yes;IMEX=1'";
+
 
             //para archivos de 97-2003 usar la siguiente cadena
             //string cadenaConexionArchivoExcel = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + archivo + "';Extended Properties=Excel 8.0;";
@@ -139,14 +141,36 @@ namespace SistemaFarmacia.Vistas.Procesos
                 try
                 {
                     //Si el usuario escribio el nombre de la hoja se procedera con la busqueda
-                    conexion = new OleDbConnection(cadenaConexionArchivoExcel);//creamos la conexion con la hoja de excel
+                    conexion = new OleDbConnection(conexionString);//creamos la conexion con la hoja de excel
                     conexion.Open(); //abrimos la conexion
-                    dataAdapter = new OleDbDataAdapter(consultaHojaExcel, conexion); //traemos los datos de la hoja y las guardamos en un dataSdapter
-                    dataset = new DataSet(); // creamos la instancia del objeto DataSet
+
+                    OleDbCommand comando = new OleDbCommand(consultaHojaExcel, conexion);
+                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(comando); //traemos los datos de la hoja y las guardamos en un dataSdapter
+
+                    /*DataTable tabla = new DataTable();
+
+                    tabla.Columns.Add("IdEntradaProductoDetalle");
+                    tabla.Columns.Add("IdEntradaProducto");
+                    tabla.Columns.Add("IdProducto");
+                    tabla.Columns.Add("Cantidad");
+                    tabla.Columns.Add("ClaveProducto");
+                    tabla.Columns.Add("Descripcion");
+                    tabla.Columns.Add("PrecioActual");
+                    tabla.Columns.Add("Precio");
+                    tabla.Columns.Add("ActPrecioCatalogo");
+
+                    tabla.Load(comando.ExecuteReader());
+
+                    gridPartidas.DataSource = tabla;*/
+
+
+
+
+                    DataSet dataset = new DataSet(); // creamos la instancia del objeto DataSet
                     dataAdapter.Fill(dataset, archivo);//llenamos el dataset
                     gridPartidas.DataSource = dataset.Tables[0]; //le asignamos al DataGridView el contenido del dataSet
                     conexion.Close();//cerramos la conexion
-                    gridPartidas.AllowUserToAddRows = false;       //eliminamos la ultima fila del datagridview que se autoagrega
+                    //gridPartidas.AllowUserToAddRows = false;       //eliminamos la ultima fila del datagridview que se autoagrega
                 }
                 catch (Exception ex)
                 {
