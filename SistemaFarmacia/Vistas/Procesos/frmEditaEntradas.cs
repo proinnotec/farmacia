@@ -57,7 +57,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                     lblEntradaNo.Text = string.Empty;
                     lblNumProveedor.Text = string.Empty;
                     lblRazonSocial.Text = string.Empty;
-                    _entradasEditaController.ConsultaProductosLista(0);
+                    _entradasEditaController.ConsultaProductosLista(0, string.Empty);
 
                     break;
 
@@ -85,20 +85,123 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialogoAbrir = new OpenFileDialog();
-            dialogoAbrir.Filter = "Archivos de Excel|*.xls;*.xlsx";
-            dialogoAbrir.Title = "Registros de Entradas";
+            importarExcel();
 
-            if (dialogoAbrir.ShowDialog() == DialogResult.OK)
+        }
+        public void importarExcel()
+        {
+            OleDbConnection conn;
+            OleDbDataAdapter MyDataAdapter;
+            DataTable dt;
+            
+            string ruta = "";
+            
+            try
             {
-                string hoja = string.Empty;
-                hoja = dialogoAbrir.FileName;
-                lblArchivo.Text = hoja;
-                //hoja = lblArchivo.Text; //la variable hoja tendra el valor de la etiqueta donde colocamos el nombre de la hoja
-                LLenarGrid(hoja); //se manda a llamar al metodo
+                OpenFileDialog dialogoAbrir = new OpenFileDialog();
+                dialogoAbrir.Filter = "Archivos de Excel|*.xls;*.xlsx";
+                dialogoAbrir.Title = "Registros de Entradas";
+
+                if (dialogoAbrir.ShowDialog() != DialogResult.OK)
+                    return;
+
+                gridPartidas.Rows.Clear();
+
+                btnActDes.Enabled = false;
+                btnAgregar.Enabled = false;
+                cmbProductos.Enabled = false;
+
+                ruta = dialogoAbrir.FileName;
+                lblArchivo.Text = ruta;
+                ruta = lblArchivo.Text;
+
+                int posicionInicial = ruta.LastIndexOf('.');
+                int posicionFinal = ruta.Length - posicionInicial;
+
+                string conexionString = string.Empty;
+                string tipoArchivo = string.Empty;
+
+                tipoArchivo = ruta.Substring(posicionInicial, posicionFinal);
+               
+                switch(tipoArchivo)
+                {
+                    case ".xls":
+                        conexionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + ruta + "';Extended Properties='Excel 8.0;HDR=Yes;IMEX=1'";
+                        break;
+
+                    case ".xlsx":
+                        conexionString = "Provider=Microsoft.ACE.OLEDB.12.0;data source=" + ruta + ";Extended Properties='Excel 12.0 Xml;HDR=Yes'";
+                        break;
+                }
+
+                conn = new OleDbConnection(conexionString);
+
+                MyDataAdapter = new OleDbDataAdapter("Select * from [Hoja1$]", conn);
+                dt = new DataTable();
+                MyDataAdapter.Fill(dt);
+
+                string clave;
+
+                if(dt.Rows.Count <= 0)
+                {
+                    string mensaje = string.Format("{0}", "El archivo no contiene datos, favor de verificar");
+                    MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+
+                    return;
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    clave = row["ClaveProducto"].ToString();
+
+                    _entradasEditaController.ConsultaProductosLista(0, clave);
+
+                    if(_entradasEditaController.ListaProductos.Count <= 0)
+                    {
+                        string mensaje = string.Format("{0} {1}", "No se puede continuar con la carga del archivo, porque no se encontraron datos con la clave del producto ", clave);
+                        MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+
+                        gridPartidas.Rows.Clear();
+
+                        return;
+                    }
+
+                    int productoId = _entradasEditaController.ListaProductos[0].IdProducto;
+                    string claveProducto = _entradasEditaController.ListaProductos[0].ClaveProducto;
+                    string descripcion = _entradasEditaController.ListaProductos[0].Descripcion;
+                    decimal precioActual = _entradasEditaController.ListaProductos[0].Precio;
+
+                    decimal cantidad;
+                    bool sePuedeConvertir = decimal.TryParse(row["Cantidad"].ToString(), out cantidad);
+
+                    if(!sePuedeConvertir)
+                    {
+                        string mensaje = string.Format("{0} {1} {2} {3}", "El valor de la cantidad no es numérico en el producto", clave, descripcion, "favor de verificar");
+                        MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+
+                        gridPartidas.Rows.Clear();
+
+                        return;
+                    }
+
+                    decimal precio = 0;
+                    bool actualizaPrecio = false;
+
+                    gridPartidas.Rows.Add(0, 0, productoId, cantidad, claveProducto, descripcion, precioActual, precio, actualizaPrecio);
+                    
+                }
+
+                cmbProductos.SelectedValue = 0;
+
+            }
+            catch (Exception ex)
+            {
+                string mensaje = string.Format("{0} {1}", "Error al intentar leer el archivo", ruta);
+                MostrarDialogoResultado(this.Text, mensaje, ex.Message, false);
             }
         }
-
+     
         public void LlenarComboProductos(List<CatProducto> lista)
         {
             cmbProductos.Items.Clear();
@@ -114,72 +217,6 @@ namespace SistemaFarmacia.Vistas.Procesos
             gridPartidas.AutoGenerateColumns = false;
             gridPartidas.DataSource = null;
             gridPartidas.DataSource = lista;
-        }
-
-        private void LLenarGrid(string archivo)
-        {
-            //declaramos las variables
-            OleDbConnection conexion = null;
-            //DataSet dataset = null;
-            //OleDbDataAdapter dataAdapter = null;
-            string consultaHojaExcel = "Select * from  [Hoja1$]";
-
-            //esta cadena es para archivos excel 2007 y 2010
-            //string cadenaConexionArchivoExcel = @"provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + archivo + "';Extended Properties='Excel 12.0;HDR=Yes;IMEX=1'";
-            string conexionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + archivo + "';Extended Properties='Excel 8.0;HDR=Yes;IMEX=1'";
-
-
-            //para archivos de 97-2003 usar la siguiente cadena
-            //string cadenaConexionArchivoExcel = "provider=Microsoft.Jet.OLEDB.4.0;Data Source='" + archivo + "';Extended Properties=Excel 8.0;";
-
-            //Validamos que el usuario ingrese el nombre de la hoja del archivo de excel a leer
-            if (string.IsNullOrEmpty(archivo))
-                MessageBox.Show("No hay una hoja para leer");
-
-            else
-            {
-                try
-                {
-                    //Si el usuario escribio el nombre de la hoja se procedera con la busqueda
-                    conexion = new OleDbConnection(conexionString);//creamos la conexion con la hoja de excel
-                    conexion.Open(); //abrimos la conexion
-
-                    OleDbCommand comando = new OleDbCommand(consultaHojaExcel, conexion);
-                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(comando); //traemos los datos de la hoja y las guardamos en un dataSdapter
-
-                    /*DataTable tabla = new DataTable();
-
-                    tabla.Columns.Add("IdEntradaProductoDetalle");
-                    tabla.Columns.Add("IdEntradaProducto");
-                    tabla.Columns.Add("IdProducto");
-                    tabla.Columns.Add("Cantidad");
-                    tabla.Columns.Add("ClaveProducto");
-                    tabla.Columns.Add("Descripcion");
-                    tabla.Columns.Add("PrecioActual");
-                    tabla.Columns.Add("Precio");
-                    tabla.Columns.Add("ActPrecioCatalogo");
-
-                    tabla.Load(comando.ExecuteReader());
-
-                    gridPartidas.DataSource = tabla;*/
-
-
-
-
-                    DataSet dataset = new DataSet(); // creamos la instancia del objeto DataSet
-                    dataAdapter.Fill(dataset, archivo);//llenamos el dataset
-                    gridPartidas.DataSource = dataset.Tables[0]; //le asignamos al DataGridView el contenido del dataSet
-                    conexion.Close();//cerramos la conexion
-                    //gridPartidas.AllowUserToAddRows = false;       //eliminamos la ultima fila del datagridview que se autoagrega
-                }
-                catch (Exception ex)
-                {
-                    //en caso de haber una excepcion que nos mande un mensaje de error
-                    string mensaje = string.Format("{0} {1}", "Error al intentar leer el archivo", archivo);
-                    MostrarDialogoResultado(this.Text, mensaje, ex.Message, false);
-                    
-                }
-            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -205,7 +242,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                 return;
             }
 
-            _entradasEditaController.ConsultaProductosLista(productoId);
+            _entradasEditaController.ConsultaProductosLista(productoId, string.Empty);
       
             string claveProducto = _entradasEditaController.ListaProductos[0].ClaveProducto;
             string descripcion = _entradasEditaController.ListaProductos[0].Descripcion;
@@ -277,7 +314,6 @@ namespace SistemaFarmacia.Vistas.Procesos
             if (respuesta != DialogResult.Yes)
                 return;
 
-
             EntradaProducto entrada = new EntradaProducto();
 
             entrada.Proveedor.IdProveedor = 1;
@@ -290,9 +326,46 @@ namespace SistemaFarmacia.Vistas.Procesos
                 detalle.IdProducto = (int)fila.Cells["IdProducto"].Value;
                 detalle.ClaveProducto = fila.Cells["ClaveProducto"].Value.ToString();
                 detalle.Descripcion = fila.Cells["Descripcion"].Value.ToString();
-                detalle.Cantidad = Convert.ToDecimal(fila.Cells["Cantidad"].Value);
-                detalle.PrecioActual = Convert.ToDecimal(fila.Cells["PrecioActual"].Value);
-                detalle.PrecioEntrada = Convert.ToDecimal(fila.Cells["Precio"].Value);
+
+                decimal cantidad;
+
+                bool sePuedeConvertirCantidad = decimal.TryParse(fila.Cells["Cantidad"].Value.ToString(), out cantidad);
+
+                if (!sePuedeConvertirCantidad)
+                {
+                    string mensajeConversion = string.Format("{0} {1} {2} {3}", "El valor de la cantidad no es numérico en el producto", detalle.ClaveProducto, detalle.Descripcion , "favor de verificar");
+                    MostrarDialogoResultado(this.Text, mensajeConversion, string.Empty, false);
+                    return;
+                }
+
+                detalle.Cantidad = cantidad;
+
+                decimal precioActual;
+
+                bool sePuedeConvertirPrecioActual = decimal.TryParse(fila.Cells["PrecioActual"].Value.ToString(), out precioActual);
+
+                if (!sePuedeConvertirPrecioActual)
+                {
+                    string mensajeConversion = string.Format("{0} {1} {2} {3}", "El valor del precio actual no es numérico en el producto", detalle.ClaveProducto, detalle.Descripcion, "favor de verificar");
+                    MostrarDialogoResultado(this.Text, mensajeConversion, string.Empty, false);
+                    return;
+                }
+
+                detalle.PrecioActual = precioActual;
+
+                decimal precioEntrada;
+
+                bool sePuedeConvertirPrecioEntrada = decimal.TryParse(fila.Cells["Precio"].Value.ToString(), out precioEntrada);
+
+                if (!sePuedeConvertirPrecioEntrada)
+                {
+                    string mensajeConversion = string.Format("{0} {1} {2} {3}", "El valor del precio de entrada no es numérico en el producto", detalle.ClaveProducto, detalle.Descripcion, "favor de verificar");
+                    MostrarDialogoResultado(this.Text, mensajeConversion, string.Empty, false);
+                    return;
+                }
+
+                detalle.PrecioEntrada = precioEntrada;
+
                 detalle.ActualizaPrecio = Convert.ToBoolean(fila.Cells["ActPrecioCatalogo"].Value);
 
                 string mensajeDetalles = string.Empty;

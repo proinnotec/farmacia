@@ -333,7 +333,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         }
 
 
-        public ExcepcionPersonalizada ConsultarProductosActivos(int idProducto)
+        public ExcepcionPersonalizada ConsultarProductosActivos(int idProducto, string claveProducto)
         {
             ListaProductos = new List<CatProducto>();
             IDbConnection conexion = null;
@@ -347,7 +347,14 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 {
                     IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", idProducto, ParameterDirection.Input);
                     comando.Parameters.Add(parametroIdProducto);
+                }
 
+                claveProducto = claveProducto.TrimEnd().TrimStart();
+
+                if (claveProducto.Length > 0)
+                {
+                    IDataParameter parametroClave = _baseDatos.CrearParametro("@ClaveProducto", claveProducto, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroClave);
                 }
 
                 IDataReader Lector = comando.ExecuteReader();

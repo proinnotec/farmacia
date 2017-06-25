@@ -39,22 +39,27 @@ namespace SistemaFarmacia.Controladores.Procesos
 
         }
 
-        public void ConsultaProductosLista(int idProducto)
+        public bool ConsultaProductosLista(int idProducto, string claveProducto)
         {
             string mensaje = string.Empty;
-            ExcepcionPersonalizada resultado = _servicioCatalogoProductos.ConsultarProductosActivos(idProducto);
+
+            claveProducto = claveProducto.TrimEnd().TrimStart();
+
+            ExcepcionPersonalizada resultado = _servicioCatalogoProductos.ConsultarProductosActivos(idProducto, claveProducto);
 
             if (resultado != null)
             {
                 mensaje = "Hubo un error al intentar consultar la información de los productos.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
-                return;
+                return false;
             }
 
             ListaProductos = _servicioCatalogoProductos.ListaProductos;
 
-            if(idProducto == 0)
+            if(idProducto == 0 && claveProducto.Length <= 0)
                 _vista.LlenarComboProductos(ListaProductos);
+
+            return true;
         }
 
         public void GuardarDescuentoConfiguracion(EntradaProducto entrada)
