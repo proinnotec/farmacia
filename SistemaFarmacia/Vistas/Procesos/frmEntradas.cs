@@ -27,6 +27,9 @@ namespace SistemaFarmacia.Vistas.Procesos
             ToolTip ToolTipNuevo = new ToolTip();
             ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
 
+            ToolTip toolTipImprimir = new ToolTip();
+            toolTipImprimir.SetToolTip(btnImprimir, "Imprimir");
+
             ToolTip ToolTipRecargar = new ToolTip();
             ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
 
@@ -109,6 +112,17 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion, EnumeradoAccion.Edicion, this, _entradaProductoListado);
             vistaEditaEntradas.ShowDialog();
+        }
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            _entradasController.ConsultaReporte(_entradaProductoListado.IdEntradaProducto);
+        }
+
+        public void LlenaInformacionReporte(List<EntradaProductoListado> lista)
+        {
+            frmReporteEntrada reporte = new frmReporteEntrada(lista);
+            reporte.Show();
+
         }
     }
 }

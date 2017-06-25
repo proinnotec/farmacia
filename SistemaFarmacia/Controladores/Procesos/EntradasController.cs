@@ -33,5 +33,22 @@ namespace SistemaFarmacia.Controladores.Procesos
             _vista.AsignarListaEntradas(ListaEntradas);
             
         }
+
+        public void ConsultaReporte(int idEntrada)
+        {
+            string mensaje = string.Empty;
+            ExcepcionPersonalizada resultado = _servicioEntradas.ConsultarEntradasReporte(idEntrada);
+
+            if (resultado != null)
+            {
+                mensaje = "Hubo un error al intentar consultar la información de las entradas.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
+            }
+
+            List<EntradaProductoListado> listaEntradas = _servicioEntradas.ListaEntradasProductos;
+
+            _vista.LlenaInformacionReporte(listaEntradas);
+        }
     }
 }

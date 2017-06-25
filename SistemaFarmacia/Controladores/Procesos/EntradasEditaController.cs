@@ -5,6 +5,7 @@ using SistemaFarmacia.Vistas.Procesos;
 using System.Collections.Generic;
 using SistemaFarmacia.Servicios.Negocio.Catalogos;
 using SistemaFarmacia.Entidades.Negocio.Catalogos;
+using System.Data;
 
 namespace SistemaFarmacia.Controladores.Procesos
 {
@@ -81,6 +82,5 @@ namespace SistemaFarmacia.Controladores.Procesos
 
             _vista.Cerrar();
         }
-
     }
 }

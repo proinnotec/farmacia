@@ -57,6 +57,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                     lblEntradaNo.Text = string.Empty;
                     lblNumProveedor.Text = string.Empty;
                     lblRazonSocial.Text = string.Empty;
+
                     _entradasEditaController.ConsultaProductosLista(0, string.Empty);
 
                     break;
@@ -402,10 +403,11 @@ namespace SistemaFarmacia.Vistas.Procesos
         public void Cerrar()
         {
             _vistaLlamada.CargarDatos();
-
+            
             this.Close();
             this.Dispose();
 
         }
+
     }
 }

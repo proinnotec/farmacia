@@ -32,6 +32,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ensamblados\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ensamblados\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ensamblados\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ensamblados\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Ensamblados\FlashControlV71.dll</HintPath>
+    </Reference>
     <Reference Include="ProInnoTec.Entidades, Version=14.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Visual Studio 2015\Projects\SistemaFarmacia\SistemaFarmacia\Ensamblados\ProInnoTec.Entidades.dll</HintPath>
@@ -40,6 +60,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +97,20 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ControlesPersonalizados\GridPersonalizado.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\EntradaProducto.cs">
+      <DependentUpon>EntradaProducto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\EntradaProducto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntradaProducto.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\rptEntradasProductos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEntradasProductos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Resource.Designer.cs">
@@ -198,6 +234,12 @@
     <Compile Include="Vistas\Procesos\frmListadoAjustes.Designer.cs">
       <DependentUpon>frmListadoAjustes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Procesos\frmReporteEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Procesos\frmReporteEntrada.Designer.cs">
+      <DependentUpon>frmReporteEntrada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Ventas\frmVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +256,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\rptEntradasProductos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEntradasProductos.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
@@ -272,6 +318,9 @@
     <EmbeddedResource Include="Vistas\Procesos\frmListadoAjustes.resx">
       <DependentUpon>frmListadoAjustes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Procesos\frmReporteEntrada.resx">
+      <DependentUpon>frmReporteEntrada.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmVenta.resx">
       <DependentUpon>frmVenta.cs</DependentUpon>
     </EmbeddedResource>
@@ -302,6 +351,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reportes\EntradaProducto.xsc">
+      <DependentUpon>EntradaProducto.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\EntradaProducto.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EntradaProducto.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\EntradaProducto.xss">
+      <DependentUpon>EntradaProducto.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Correcto.png" />
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +372,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
+    <None Include="Resources\print.png" />
     <None Include="Resources\search2.jpg" />
     <None Include="Resources\search.jpg" />
     <None Include="Resources\mas1.jpg" />
@@ -324,6 +385,9 @@
     <None Include="Resources\exit.jpg" />
     <None Include="Resources\bloquear.png" />
     <None Include="Resources\activar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
