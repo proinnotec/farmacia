@@ -120,7 +120,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         public void LlenaInformacionReporte(List<EntradaProductoListado> lista)
         {
-            frmReporteEntrada reporte = new frmReporteEntrada(lista);
+            frmReporteEntrada reporte = new frmReporteEntrada(lista, _contextoAplicacion);
             reporte.Show();
 
         }

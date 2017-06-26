@@ -23,6 +23,7 @@ namespace SistemaFarmacia.Vistas.Operaciones
             usuario.ApellidoPaterno = "Leyva";
             usuario.NombreUsuario = "LFOL";
             usuario.IdSucursal = 1;
+            usuario.Sucursarl = "Farmacia Heroes 2";
 
             InitializeComponent();
             _frmPrincipalController = new frmPrincipalController(this);

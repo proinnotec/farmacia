@@ -97,6 +97,8 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                     entrada.Cantidad = (decimal)lector["Cantidad"];
                     entrada.Precio = (decimal)lector["Precio"];
                     entrada.Fecha = (DateTime)lector["Fecha"];
+                    entrada.IdUsuario = (int)lector["Idusuario"];
+                    entrada.NombreUsuario = lector["NombreUsuario"].ToString();
 
                     ListaEntradasProductos.Add(entrada);
                 }

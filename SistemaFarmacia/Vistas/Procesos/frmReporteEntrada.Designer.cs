@@ -42,7 +42,7 @@
             this.rptEntradas.ShowCloseButton = false;
             this.rptEntradas.ShowGotoPageButton = false;
             this.rptEntradas.ShowGroupTreeButton = false;
-            this.rptEntradas.Size = new System.Drawing.Size(940, 577);
+            this.rptEntradas.Size = new System.Drawing.Size(964, 645);
             this.rptEntradas.TabIndex = 0;
             this.rptEntradas.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -50,7 +50,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 577);
+            this.ClientSize = new System.Drawing.Size(964, 645);
             this.Controls.Add(this.rptEntradas);
             this.Name = "frmReporteEntrada";
             this.Text = "Reporte Entradas";
