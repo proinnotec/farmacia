@@ -2,6 +2,7 @@
 using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Entidades.Enumerados;
 using SistemaFarmacia.Entidades.Negocio.Almacen.Entradas;
+using SistemaFarmacia.Entidades.Negocio.Busqueda;
 using SistemaFarmacia.Entidades.Negocio.Catalogos;
 using SistemaFarmacia.Vistas.Base;
 using System;
@@ -21,6 +22,8 @@ namespace SistemaFarmacia.Vistas.Procesos
         private EnumeradoAccion _accion;
         private frmEntradas _vistaLlamada;
 
+        AutoCompleteStringCollection ResultadosBusqueda;
+
         public frmEditaEntradas(ContextoAplicacion contextoAplicacion, EnumeradoAccion accion, frmEntradas vistaLlamada, EntradaProductoListado entradaProductoListado)
         {
             InitializeComponent();
@@ -30,16 +33,18 @@ namespace SistemaFarmacia.Vistas.Procesos
             _entradaProducto = new EntradaProducto();
             _accion = accion;
             _vistaLlamada = vistaLlamada;
+
+            ResultadosBusqueda = new AutoCompleteStringCollection();
+            txtBusqueda.AutoCompleteCustomSource = ResultadosBusqueda;
+            txtBusqueda.AutoCompleteMode = AutoCompleteMode.None;
+            txtBusqueda.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void frmEditaEntradas_Load(object sender, EventArgs e)
         {
             ToolTip toolTipNuevo = new ToolTip();
-            toolTipNuevo.SetToolTip(btnBuscar, "Buscar Archivo");
-
-            ToolTip toolTipRecargar = new ToolTip();
-            toolTipRecargar.SetToolTip(btnAgregar, "Agregar");
-
+            toolTipNuevo.SetToolTip(btnBuscar, "Buscar Archivo de Excel");
+                        
             ToolTip toolTipGuardar = new ToolTip();
             toolTipGuardar.SetToolTip(btnGuardar, "Guardar");
 
@@ -57,8 +62,10 @@ namespace SistemaFarmacia.Vistas.Procesos
                     lblEntradaNo.Text = string.Empty;
                     lblNumProveedor.Text = string.Empty;
                     lblRazonSocial.Text = string.Empty;
+                                        
+                    LlenarListaProductos();
 
-                    _entradasEditaController.ConsultaProductosLista(0, string.Empty);
+                    txtBusqueda.Focus();
 
                     break;
 
@@ -74,14 +81,24 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                     btnActDes.Enabled = false;
                     btnBuscar.Enabled = false;
-                    btnAgregar.Enabled = false;
                     btnGuardar.Enabled = false;
-                    cmbProductos.Enabled = false;
                     gridPartidas.Enabled = false;
+                    txtBusqueda.Enabled = false;
 
                     break;
             }
             
+        }
+
+        public void LlenarListaProductos()
+        {
+
+            List<ProductosListado> listaProductos = _entradasEditaController.LlenarListaProductos();
+
+            foreach (ProductosListado producto in listaProductos)
+            {
+                ResultadosBusqueda.Add(producto.DescripcionCompleta);
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -109,9 +126,8 @@ namespace SistemaFarmacia.Vistas.Procesos
                 gridPartidas.Rows.Clear();
 
                 btnActDes.Enabled = false;
-                btnAgregar.Enabled = false;
-                cmbProductos.Enabled = false;
-
+                txtBusqueda.Enabled = false;
+                
                 ruta = dialogoAbrir.FileName;
                 lblArchivo.Text = ruta;
                 ruta = lblArchivo.Text;
@@ -137,7 +153,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                 conn = new OleDbConnection(conexionString);
 
-                MyDataAdapter = new OleDbDataAdapter("Select * from [Hoja1$]", conn);
+                MyDataAdapter = new OleDbDataAdapter("Select Cantidad, ClaveProducto from [Hoja1$]", conn);
                 dt = new DataTable();
                 MyDataAdapter.Fill(dt);
 
@@ -193,8 +209,6 @@ namespace SistemaFarmacia.Vistas.Procesos
                     
                 }
 
-                cmbProductos.SelectedValue = 0;
-
             }
             catch (Exception ex)
             {
@@ -202,17 +216,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                 MostrarDialogoResultado(this.Text, mensaje, ex.Message, false);
             }
         }
-     
-        public void LlenarComboProductos(List<CatProducto> lista)
-        {
-            cmbProductos.Items.Clear();
-            cmbProductos.DataSource = lista;
-            cmbProductos.DisplayMember = "Descripcion";
-            cmbProductos.ValueMember = "IdProducto";
-            cmbProductos.SelectedValue = 0;
-
-        }
-
+    
         public void AsignarListaDetalles(List<EntradaProductoDetalle> lista)
         {
             gridPartidas.AutoGenerateColumns = false;
@@ -224,37 +228,6 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             this.Close();
             this.Dispose();
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            int productoId = 0;
-
-            if (cmbProductos.SelectedValue != null)
-            {
-                productoId = (int)cmbProductos.SelectedValue;
-            }                
-                       
-            if (productoId <= 0)
-            {
-                string mensaje = string.Format("{0}", "Debe seleccionar un producto para poder continuar");
-                MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
-
-                return;
-            }
-
-            _entradasEditaController.ConsultaProductosLista(productoId, string.Empty);
-      
-            string claveProducto = _entradasEditaController.ListaProductos[0].ClaveProducto;
-            string descripcion = _entradasEditaController.ListaProductos[0].Descripcion;
-            decimal precioActual = _entradasEditaController.ListaProductos[0].Precio;
-            decimal cantidad = 0;
-            decimal precio = 0;
-            bool actualizaPrecio = false;
-                        
-            gridPartidas.Rows.Add(0, 0, productoId, cantidad, claveProducto, descripcion, precioActual, precio, actualizaPrecio);
-            cmbProductos.SelectedValue = 0;
-                        
         }
 
         private void RecuperaDatosDeGrid()
@@ -409,5 +382,75 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         }
 
+        private void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            ltbResultados.BringToFront();
+            ltbResultados.Items.Clear();
+
+            if (txtBusqueda.Text.Length == 0)
+            {
+                EsconderResultados();
+                return;
+            }
+
+            foreach (String s in txtBusqueda.AutoCompleteCustomSource)
+            {
+                if (!s.Contains(txtBusqueda.Text.ToUpper())) continue;
+
+                ltbResultados.Items.Add(s);
+                ltbResultados.Visible = true;
+            }
+        }
+
+        private void EsconderResultados()
+        {
+            ltbResultados.Visible = false;
+        }
+
+        private void ltbResultados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int IdxClaveProducto = 0;
+            int IdxDescripcion = 0;
+            int IdxIdProducto = 0;
+
+            string Producto = ltbResultados.Items[ltbResultados.SelectedIndex].ToString();
+
+            IdxClaveProducto = Producto.IndexOf(" CV: ");
+            IdxDescripcion = Producto.IndexOf(" DSC: ");
+            IdxIdProducto = Producto.IndexOf(" ID: ");
+
+            if (ltbResultados.SelectedItem == null) return;
+            
+            int productoId = 0;
+            string idProducto = string.Empty;
+
+            idProducto = Producto.Substring(IdxIdProducto + 5, Producto.Length - (IdxIdProducto + 5));
+
+            productoId = Convert.ToInt32(idProducto);
+
+            if (productoId <= 0)
+            {
+                string mensaje = string.Format("{0}", "Debe seleccionar un producto para poder continuar");
+                MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
+
+                return;
+            }
+
+            _entradasEditaController.ConsultaProductosLista(productoId, string.Empty);
+
+            string claveProducto = _entradasEditaController.ListaProductos[0].ClaveProducto;
+            string descripcion = _entradasEditaController.ListaProductos[0].Descripcion;
+            decimal precioActual = _entradasEditaController.ListaProductos[0].Precio;
+            decimal cantidad = 0;
+            decimal precio = 0;
+            bool actualizaPrecio = false;
+
+            gridPartidas.Rows.Add(0, 0, productoId, cantidad, claveProducto, descripcion, precioActual, precio, actualizaPrecio);
+
+            txtBusqueda.Text = string.Empty;
+            EsconderResultados();
+            btnBuscar.Enabled = false;
+
+        }
     }
 }
