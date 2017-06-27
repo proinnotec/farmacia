@@ -52,8 +52,10 @@
     <Compile Include="FabricaBaseDatos\FabricaBaseDeDatos.cs" />
     <Compile Include="Negocio\Administracion\ServicioCatalogoPerfiles.cs" />
     <Compile Include="Negocio\Administracion\ServicioCatalogoUsuarios.cs" />
+    <Compile Include="Negocio\Ajustes\ServicioAjustes.cs" />
     <Compile Include="Negocio\Ajustes\ServicioListadoAjustes.cs" />
     <Compile Include="Negocio\Almacen\ServicioEntradas.cs" />
+    <Compile Include="Negocio\Busqueda\ServicioBusqueda.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoDescuentos.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoFamilias.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoImpuestos.cs" />

@@ -18,6 +18,6 @@ namespace SistemaFarmacia.Entidades.Negocio.Almacen.Ajustes
         public int IdProducto { get; set; }
         public string ClaveProducto { get; set; }
         public decimal Precio { get; set; }
-        public string descripcion_producto { get; set; }
+        public string DescripcionProducto { get; set; }
     }
 }

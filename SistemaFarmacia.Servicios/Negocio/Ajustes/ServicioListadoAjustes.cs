@@ -48,8 +48,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ajustes
                     ajuste.Cantidad = Convert.ToDecimal(lector["Cantidad"].ToString());
                     ajuste.IdProducto = (int)lector["IdProducto"];
                     ajuste.ClaveProducto = lector["ClaveProducto"].ToString();
-                    ajuste.Precio = Convert.ToDecimal(lector["Precio"].ToString());
-                    ajuste.descripcion_producto = lector["descripcion_producto"].ToString();
+                    ajuste.DescripcionProducto = lector["DescripcionProducto"].ToString();
 
                     ListaAjustesProductos.Add(ajuste);
                 }

@@ -70,8 +70,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             _ajustesProductoListado.Cantidad = Convert.ToDecimal(gridListadoAjustes.SelectedRows[0].Cells["Cantidad"].Value);
             _ajustesProductoListado.IdProducto = (int)gridListadoAjustes.SelectedRows[0].Cells["IdProducto"].Value;
             _ajustesProductoListado.ClaveProducto = gridListadoAjustes.SelectedRows[0].Cells["ClaveProducto"].Value.ToString();
-            _ajustesProductoListado.Precio = Convert.ToDecimal(gridListadoAjustes.SelectedRows[0].Cells["Precio"].Value);
-            _ajustesProductoListado.descripcion_producto = gridListadoAjustes.SelectedRows[0].Cells["descripcion_producto"].Value.ToString();
+            _ajustesProductoListado.DescripcionProducto = gridListadoAjustes.SelectedRows[0].Cells["DescripcionProducto"].Value.ToString();
             //_ajustesProductoListado.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
 
         }

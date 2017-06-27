@@ -31,24 +31,76 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.gridListadoAjustes = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.lblAnio = new System.Windows.Forms.Label();
             this.nudAnio = new System.Windows.Forms.NumericUpDown();
-            this.gridListadoAjustes = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.IdAjusteProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdAjusteDetalleProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdAjusteProductoDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTipoAjuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescripcionProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Motivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).BeginInit();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdSucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridListadoAjustes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).BeginInit();
             this.SuspendLayout();
+            // 
+            // gridListadoAjustes
+            // 
+            this.gridListadoAjustes.AllowUserToAddRows = false;
+            this.gridListadoAjustes.AllowUserToDeleteRows = false;
+            this.gridListadoAjustes.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridListadoAjustes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridListadoAjustes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridListadoAjustes.BackgroundColor = System.Drawing.Color.White;
+            this.gridListadoAjustes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.gridListadoAjustes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridListadoAjustes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridListadoAjustes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridListadoAjustes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdAjusteProducto,
+            this.IdAjusteProductoDetalle,
+            this.fecha,
+            this.IdTipoAjuste,
+            this.IdProducto,
+            this.ClaveProducto,
+            this.DescripcionProducto,
+            this.Cantidad,
+            this.Descripcion,
+            this.IdSucursal});
+            this.gridListadoAjustes.EnableHeadersVisualStyles = false;
+            this.gridListadoAjustes.Location = new System.Drawing.Point(9, 32);
+            this.gridListadoAjustes.MultiSelect = false;
+            this.gridListadoAjustes.Name = "gridListadoAjustes";
+            this.gridListadoAjustes.ReadOnly = true;
+            this.gridListadoAjustes.RowHeadersVisible = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridListadoAjustes.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.gridListadoAjustes.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridListadoAjustes.RowTemplate.Height = 20;
+            this.gridListadoAjustes.RowTemplate.ReadOnly = true;
+            this.gridListadoAjustes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridListadoAjustes.Size = new System.Drawing.Size(817, 411);
+            this.gridListadoAjustes.TabIndex = 27;
+            this.gridListadoAjustes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoAjustes_CellClick);
+            this.gridListadoAjustes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoAjustes_CellContentClick);
+            this.gridListadoAjustes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoAjustes_CellDoubleClick);
             // 
             // lblAnio
             // 
@@ -83,56 +135,6 @@
             0,
             0});
             this.nudAnio.ValueChanged += new System.EventHandler(this.nudAnio_ValueChanged);
-            // 
-            // gridListadoAjustes
-            // 
-            this.gridListadoAjustes.AllowUserToAddRows = false;
-            this.gridListadoAjustes.AllowUserToDeleteRows = false;
-            this.gridListadoAjustes.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.gridListadoAjustes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridListadoAjustes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridListadoAjustes.BackgroundColor = System.Drawing.Color.White;
-            this.gridListadoAjustes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.gridListadoAjustes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridListadoAjustes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gridListadoAjustes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridListadoAjustes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdAjusteProducto,
-            this.IdAjusteDetalleProducto,
-            this.IdTipoAjuste,
-            this.IdProducto,
-            this.ClaveProducto,
-            this.Producto,
-            this.Cantidad,
-            this.Motivo,
-            this.Precio});
-            this.gridListadoAjustes.EnableHeadersVisualStyles = false;
-            this.gridListadoAjustes.Location = new System.Drawing.Point(9, 32);
-            this.gridListadoAjustes.MultiSelect = false;
-            this.gridListadoAjustes.Name = "gridListadoAjustes";
-            this.gridListadoAjustes.ReadOnly = true;
-            this.gridListadoAjustes.RowHeadersVisible = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridListadoAjustes.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.gridListadoAjustes.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridListadoAjustes.RowTemplate.Height = 20;
-            this.gridListadoAjustes.RowTemplate.ReadOnly = true;
-            this.gridListadoAjustes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridListadoAjustes.Size = new System.Drawing.Size(817, 411);
-            this.gridListadoAjustes.TabIndex = 27;
-            this.gridListadoAjustes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoAjustes_CellClick);
-            this.gridListadoAjustes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoAjustes_CellContentClick);
-            this.gridListadoAjustes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridListadoAjustes_CellDoubleClick);
             // 
             // btnRecargar
             // 
@@ -183,12 +185,19 @@
             this.IdAjusteProducto.Name = "IdAjusteProducto";
             this.IdAjusteProducto.ReadOnly = true;
             // 
-            // IdAjusteDetalleProducto
+            // IdAjusteProductoDetalle
             // 
-            this.IdAjusteDetalleProducto.DataPropertyName = "IdAjusteDetalleProducto";
-            this.IdAjusteDetalleProducto.HeaderText = "Id Detalle";
-            this.IdAjusteDetalleProducto.Name = "IdAjusteDetalleProducto";
-            this.IdAjusteDetalleProducto.ReadOnly = true;
+            this.IdAjusteProductoDetalle.DataPropertyName = "IdAjusteProductoDetalle";
+            this.IdAjusteProductoDetalle.HeaderText = "Id Detalle";
+            this.IdAjusteProductoDetalle.Name = "IdAjusteProductoDetalle";
+            this.IdAjusteProductoDetalle.ReadOnly = true;
+            // 
+            // fecha
+            // 
+            this.fecha.DataPropertyName = "fecha";
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
             // 
             // IdTipoAjuste
             // 
@@ -212,12 +221,12 @@
             this.ClaveProducto.Name = "ClaveProducto";
             this.ClaveProducto.ReadOnly = true;
             // 
-            // Producto
+            // DescripcionProducto
             // 
-            this.Producto.DataPropertyName = "Producto";
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
+            this.DescripcionProducto.DataPropertyName = "DescripcionProducto";
+            this.DescripcionProducto.HeaderText = "Producto";
+            this.DescripcionProducto.Name = "DescripcionProducto";
+            this.DescripcionProducto.ReadOnly = true;
             // 
             // Cantidad
             // 
@@ -226,19 +235,20 @@
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
             // 
-            // Motivo
+            // Descripcion
             // 
-            this.Motivo.DataPropertyName = "Motivo";
-            this.Motivo.HeaderText = "Motivo";
-            this.Motivo.Name = "Motivo";
-            this.Motivo.ReadOnly = true;
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.HeaderText = "Motivo";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
             // 
-            // Precio
+            // IdSucursal
             // 
-            this.Precio.DataPropertyName = "Precio";
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
+            this.IdSucursal.DataPropertyName = "IdSucursal";
+            this.IdSucursal.HeaderText = "IdSucursal";
+            this.IdSucursal.Name = "IdSucursal";
+            this.IdSucursal.ReadOnly = true;
+            this.IdSucursal.Visible = false;
             // 
             // frmListadoAjustes
             // 
@@ -254,8 +264,8 @@
             this.Name = "frmListadoAjustes";
             this.Text = "Ajustes de Productos";
             this.Load += new System.EventHandler(this.frmListadoAjustes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridListadoAjustes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,13 +280,14 @@
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private ControlesPersonalizados.GridPersonalizado gridListadoAjustes;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdAjusteProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdAjusteDetalleProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdAjusteProductoDetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTipoAjuste;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClaveProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Motivo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdSucursal;
     }
 }

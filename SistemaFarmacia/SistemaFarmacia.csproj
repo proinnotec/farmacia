@@ -87,6 +87,7 @@
     <Compile Include="Controladores\Catalogos\TiposAjustesController.cs" />
     <Compile Include="Controladores\frmPrincipalController.cs" />
     <Compile Include="Controladores\Procesos\AjustesController.cs" />
+    <Compile Include="Controladores\Procesos\BusquedaController.cs" />
     <Compile Include="Controladores\Procesos\EntradasController.cs" />
     <Compile Include="Controladores\Procesos\EntradasEditaController.cs" />
     <Compile Include="Controladores\Procesos\ListadoAjustesController.cs" />
@@ -269,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Administracion\frmCatUsuarios.resx">
       <DependentUpon>frmCatUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Base\frmBase.resx">
+      <DependentUpon>frmBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmAgregaEditaDescuentos.resx">
       <DependentUpon>frmAgregaEditaDescuentos.cs</DependentUpon>
