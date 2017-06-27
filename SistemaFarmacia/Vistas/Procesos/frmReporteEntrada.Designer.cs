@@ -53,6 +53,7 @@
             this.ClientSize = new System.Drawing.Size(964, 645);
             this.Controls.Add(this.rptEntradas);
             this.Name = "frmReporteEntrada";
+            this.ShowIcon = false;
             this.Text = "Reporte Entradas";
             this.Load += new System.EventHandler(this.frmReporteEntrada_Load);
             this.ResumeLayout(false);

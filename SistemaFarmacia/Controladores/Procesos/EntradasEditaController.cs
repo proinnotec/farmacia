@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using SistemaFarmacia.Servicios.Negocio.Catalogos;
 using SistemaFarmacia.Entidades.Negocio.Catalogos;
 using System.Data;
+using SistemaFarmacia.Entidades.Negocio.Busqueda;
+using SistemaFarmacia.Servicios.Negocio.Busqueda;
 
 namespace SistemaFarmacia.Controladores.Procesos
 {
@@ -14,12 +16,15 @@ namespace SistemaFarmacia.Controladores.Procesos
         private ServicioEntradas _servicioEntradas;
         private ServicioCatalogoProductos _servicioCatalogoProductos;
         private frmEditaEntradas _vista;
+        private ServicioBusqueda _servicioBusqueda;
         public List<CatProducto> ListaProductos { get; private set; }
 
         public EntradasEditaController(frmEditaEntradas vista)
         {
             _servicioEntradas = new ServicioEntradas(BaseDeDatosTienda);
             _servicioCatalogoProductos = new ServicioCatalogoProductos(BaseDeDatosTienda);
+            _servicioBusqueda = new ServicioBusqueda(BaseDeDatosTienda);
+
             _vista = vista;
         }
 
@@ -56,10 +61,7 @@ namespace SistemaFarmacia.Controladores.Procesos
             }
 
             ListaProductos = _servicioCatalogoProductos.ListaProductos;
-
-            if(idProducto == 0 && claveProducto.Length <= 0)
-                _vista.LlenarComboProductos(ListaProductos);
-
+            
             return true;
         }
 
@@ -81,6 +83,13 @@ namespace SistemaFarmacia.Controladores.Procesos
             _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
 
             _vista.Cerrar();
+        }
+
+        public List<ProductosListado> LlenarListaProductos()
+        {
+            List<ProductosListado> listaProductos = _servicioBusqueda.ObtenerListadoProductos();
+
+            return listaProductos;
         }
     }
 }
