@@ -144,22 +144,22 @@
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // familiasDeProductosToolStripMenuItem
             // 
             this.familiasDeProductosToolStripMenuItem.Name = "familiasDeProductosToolStripMenuItem";
-            this.familiasDeProductosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.familiasDeProductosToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // proveedoresToolStripMenuItem
             // 
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // entradasToolStripMenuItem
             // 
@@ -176,27 +176,27 @@
             // almacénToolStripMenuItem
             // 
             this.almacénToolStripMenuItem.Name = "almacénToolStripMenuItem";
-            this.almacénToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.almacénToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // AjustesToolStripMenuItem1
             // 
             this.AjustesToolStripMenuItem1.Name = "AjustesToolStripMenuItem1";
-            this.AjustesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.AjustesToolStripMenuItem1.Size = new System.Drawing.Size(67, 22);
             // 
             // devolucionesToolStripMenuItem
             // 
             this.devolucionesToolStripMenuItem.Name = "devolucionesToolStripMenuItem";
-            this.devolucionesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.devolucionesToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // impresiónEtiquetasToolStripMenuItem
             // 
             this.impresiónEtiquetasToolStripMenuItem.Name = "impresiónEtiquetasToolStripMenuItem";
-            this.impresiónEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.impresiónEtiquetasToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // devolucionesClienteToolStripMenuItem
             // 
             this.devolucionesClienteToolStripMenuItem.Name = "devolucionesClienteToolStripMenuItem";
-            this.devolucionesClienteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.devolucionesClienteToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // ventasToolStripMenuItem
             // 
@@ -311,6 +311,7 @@
             this.Name = "frmPrincipal";
             this.Text = "Farmacia";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.Frm_Principal_Load);
             this.stsBarraPrincipal.ResumeLayout(false);
             this.stsBarraPrincipal.PerformLayout();

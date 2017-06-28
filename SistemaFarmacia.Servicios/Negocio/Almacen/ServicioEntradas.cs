@@ -194,7 +194,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                 IDataParameter parametroSucursal = _baseDatos.CrearParametro("@IdSucursal", entrada.IdSucursal, ParameterDirection.Input);
                 comando.Parameters.Add(parametroSucursal);
 
-                IDataParameter parametroUsuario = _baseDatos.CrearParametro("@IdUsuario", entrada.Proveedor.IdProveedor, ParameterDirection.Input);
+                IDataParameter parametroUsuario = _baseDatos.CrearParametro("@IdUsuario", entrada.IdUsuario, ParameterDirection.Input);
                 comando.Parameters.Add(parametroUsuario);
 
                 object resultado = comando.ExecuteScalar();

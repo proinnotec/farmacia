@@ -60,7 +60,9 @@
     <Compile Include="Negocio\Catalogos\ServicioCatalogoFamilias.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoImpuestos.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoProductos.cs" />
+    <Compile Include="Negocio\Catalogos\ServicioCatalogoSucursales.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoTiposAjustes.cs" />
+    <Compile Include="Operaciones\ServicioDatosAcceso.cs" />
     <Compile Include="Operaciones\ServicioDatosMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilerias\Serializar.cs" />

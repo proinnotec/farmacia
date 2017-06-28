@@ -8,8 +8,8 @@ namespace SistemaFarmacia.Entidades.Negocio.Catalogos
 {
     public class CatSucursal: ClaseBase
     {
-        public int IdSucursal { get; set; }
-        public string Sucursal { get; set; }
+        public int IdSucursalObjeto { get; set; }
+        public string SucursalObjeto { get; set; }
         public Usuario Usuario { get; set; }
 
         public CatSucursal()

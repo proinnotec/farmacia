@@ -13,10 +13,12 @@ namespace SistemaFarmacia.Vistas.Operaciones
     public partial class frmPrincipal : frmBase
     {
         public ContextoAplicacion _contextoAplicacion { get; set; }
-        private frmPrincipalController _frmPrincipalController { get; set; }   
+        private frmPrincipalController _frmPrincipalController { get; set; }
+        frmAcceso _vistaLogin; 
                         
-        public frmPrincipal(Usuario usuario)
+        public frmPrincipal(Usuario usuario, frmAcceso vistaLogin)
         {
+            /*
             usuario.IdUsuario = 1;
             usuario.Nombre = "Luis F.";
             usuario.ApellidoPaterno = "Osuna";
@@ -24,11 +26,16 @@ namespace SistemaFarmacia.Vistas.Operaciones
             usuario.NombreUsuario = "LFOL";
             usuario.IdSucursal = 1;
             usuario.Sucursarl = "Farmacia Heroes 2";
+            */
 
             InitializeComponent();
+
             _frmPrincipalController = new frmPrincipalController(this);
             _contextoAplicacion = new ContextoAplicacion();
-            _contextoAplicacion.Usuario = usuario;               
+            _contextoAplicacion.Usuario = usuario;
+
+            _vistaLogin = vistaLogin;
+                                               
         }                          
 
         private void CargarMenu()
@@ -166,7 +173,17 @@ namespace SistemaFarmacia.Vistas.Operaciones
             tsslServidor.Text = string.Format("Servidor: {0}", _frmPrincipalController.Servidor);
             tsslBaseDatos.Text = string.Format("Base datos: {0}", _frmPrincipalController.NombreBaseDatos);
             tsslUsuario.Text = string.Format("Usuario: {0}", _contextoAplicacion.Usuario.NombreUsuario);
+
+            _vistaLogin.Visible = false;
+
             CargarMenu();
+
+        }
+
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _vistaLogin.Close();
+            _vistaLogin.Dispose();
         }
     }
 }

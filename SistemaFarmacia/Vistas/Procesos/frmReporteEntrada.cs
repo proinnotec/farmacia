@@ -27,7 +27,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             rptEntradasProductos rptEntradaImpresion = new rptEntradasProductos();
 
             rptEntradaImpresion.SetDataSource(_lista);
-            rptEntradaImpresion.SetParameterValue("Empresa", _contexto.Usuario.Sucursarl);
+            rptEntradaImpresion.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
             rptEntradaImpresion.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
 
             rptEntradas.ReportSource = rptEntradaImpresion;
