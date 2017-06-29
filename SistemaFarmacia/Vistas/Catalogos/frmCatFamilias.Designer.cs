@@ -38,6 +38,7 @@
             this.gridFamilia = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.IdFamiliaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnEliminar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridFamilia)).BeginInit();
@@ -45,42 +46,46 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(27, 224);
+            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.Location = new System.Drawing.Point(5, 271);
             this.txtDescripcion.MaxLength = 80;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(499, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(470, 22);
             this.txtDescripcion.TabIndex = 0;
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(27, 208);
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(6, 242);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(124, 13);
+            this.lblDescripcion.Size = new System.Drawing.Size(184, 16);
             this.lblDescripcion.TabIndex = 1;
             this.lblDescripcion.Text = "Descripción de la familia:";
             // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.LightGray;
+            this.btnGuardar.BackgroundImage = global::SistemaFarmacia.Resource.save;
+            this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(451, 263);
+            this.btnGuardar.Location = new System.Drawing.Point(482, 176);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(50, 50);
             this.btnGuardar.TabIndex = 2;
-            this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
+            this.btnCancelar.BackgroundImage = global::SistemaFarmacia.Resource.exit;
+            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(370, 263);
+            this.btnCancelar.Location = new System.Drawing.Point(482, 243);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(50, 50);
             this.btnCancelar.TabIndex = 3;
-            this.btnCancelar.Text = "Salir";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -106,9 +111,10 @@
             this.gridFamilia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridFamilia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdFamiliaProducto,
-            this.Descripcion});
+            this.Descripcion,
+            this.EsActivo});
             this.gridFamilia.EnableHeadersVisualStyles = false;
-            this.gridFamilia.Location = new System.Drawing.Point(27, 43);
+            this.gridFamilia.Location = new System.Drawing.Point(5, 4);
             this.gridFamilia.MultiSelect = false;
             this.gridFamilia.Name = "gridFamilia";
             this.gridFamilia.ReadOnly = true;
@@ -121,9 +127,9 @@
             this.gridFamilia.RowTemplate.Height = 20;
             this.gridFamilia.RowTemplate.ReadOnly = true;
             this.gridFamilia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridFamilia.Size = new System.Drawing.Size(499, 150);
+            this.gridFamilia.Size = new System.Drawing.Size(471, 222);
             this.gridFamilia.TabIndex = 4;
-            this.gridFamilia.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridFamilia_CellContentDoubleClick);
+            this.gridFamilia.Click += new System.EventHandler(this.gridFamilia_Click);
             // 
             // IdFamiliaProducto
             // 
@@ -136,32 +142,44 @@
             // Descripcion
             // 
             this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.FillWeight = 152.2843F;
             this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
             // 
+            // EsActivo
+            // 
+            this.EsActivo.DataPropertyName = "EsActivo";
+            this.EsActivo.FillWeight = 47.71573F;
+            this.EsActivo.HeaderText = "Activo";
+            this.EsActivo.Name = "EsActivo";
+            this.EsActivo.ReadOnly = true;
+            this.EsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.LightGray;
+            this.btnEliminar.BackgroundImage = global::SistemaFarmacia.Resource.bloquear;
+            this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(27, 263);
+            this.btnEliminar.Location = new System.Drawing.Point(482, 60);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(50, 50);
             this.btnEliminar.TabIndex = 5;
-            this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnNuevo
             // 
             this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
+            this.btnNuevo.BackgroundImage = global::SistemaFarmacia.Resource._new;
+            this.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(27, 12);
+            this.btnNuevo.Location = new System.Drawing.Point(482, 4);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.Size = new System.Drawing.Size(50, 50);
             this.btnNuevo.TabIndex = 6;
-            this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
@@ -179,6 +197,7 @@
             this.Controls.Add(this.txtDescripcion);
             this.Name = "frmCatFamilias";
             this.Text = "Catálogo de familias";
+            this.Load += new System.EventHandler(this.frmCatFamilias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridFamilia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,8 +212,9 @@
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private ControlesPersonalizados.GridPersonalizado gridFamilia;
         private ControlesPersonalizados.BotonPersonalizado btnEliminar;
+        private ControlesPersonalizados.BotonPersonalizado btnNuevo;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdFamiliaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private ControlesPersonalizados.BotonPersonalizado btnNuevo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
     }
 }

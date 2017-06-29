@@ -301,7 +301,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     producto.IdProducto = (int)Lector["IdProducto"];
                     producto.EsActivo = (bool)Lector["EsActivo"];
                     producto.ListaCodigoBarra = new List<CodigoBarraProducto>();
-                    producto.IdImpuesto = (Int16)Lector["IdImpuesto"];                                            
+                    //producto.IdImpuesto = (Int16)Lector["IdImpuesto"];                                            
                     ListaProductos.Add(producto);
                 }
 

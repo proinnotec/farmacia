@@ -37,10 +37,10 @@ namespace SistemaFarmacia.Controladores.Catalogos
             ExcepcionPersonalizada excepcionEliminarFamilia = _servicioCatalogoFamilias.EliminarFamilia(familia);
             if (excepcionEliminarFamilia == null)
             {
-                string mensaje = "La familia de productos se eliminó correctamente.";
+                string mensaje = "El cambio se realizó correctamente.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
                 _vista.AsigarListaFamilias(this.ListaFamilias());
-                _vista.LimpiarFormulario();
+                _vista.LimpiarFormulario(true);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace SistemaFarmacia.Controladores.Catalogos
                 string mensaje = "La familia de productos se editó correctamente.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
                 _vista.AsigarListaFamilias(this.ListaFamilias());
-                _vista.LimpiarFormulario();
+                _vista.LimpiarFormulario(true);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace SistemaFarmacia.Controladores.Catalogos
                 string mensaje = "La familia de productos se guardó correctamente.";
                 _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
                 _vista.AsigarListaFamilias(this.ListaFamilias());
-                _vista.LimpiarFormulario();
+                _vista.LimpiarFormulario(true);
             }
             else
             {

@@ -36,6 +36,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
 
                     familia.IdFamiliaProducto = (int)Lector["IdFamiliaProducto"];
                     familia.Descripcion = Lector["Descripcion"].ToString();
+                    familia.EsActivo = (bool)Lector["EsActivo"];
 
                     ListaFamilias.Add(familia);
                 }
@@ -52,8 +53,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
                     conexion.Dispose();
+                }
             }
         }
 
@@ -65,7 +68,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             {
                 conexion = _baseDatos.CrearConexionAbierta();
 
-                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spD_CatFamiliasProductos", conexion);
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatFamiliasProductosActivaDesactiva", conexion);
 
                 IDataParameter parametroIdFamiliaProducto = _baseDatos.CrearParametro("@IdFamiliaProducto", familia.IdFamiliaProducto, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdFamiliaProducto);
@@ -73,12 +76,13 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", familia.IdUsuario, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdUsuario);
 
+                IDataParameter parametroActivo = _baseDatos.CrearParametro("@EsActivo", familia.EsActivo, ParameterDirection.Input);
+                comando.Parameters.Add(parametroActivo);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
-                {
-                    throw new Exception("No se afectaron filas (spD_CatFamiliasProductos).");
-                }
+                    throw new Exception("No se afectaron filas (spU_CatFamiliasProductosActivaDesactiva).");
 
                 return null;
 
@@ -91,8 +95,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
                     conexion.Dispose();
+                }                    
             }
         }
 
@@ -172,8 +178,11 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
                     conexion.Dispose();
+                }
+                    
             }
         }
     }
