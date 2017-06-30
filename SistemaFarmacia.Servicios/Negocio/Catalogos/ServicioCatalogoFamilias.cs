@@ -37,6 +37,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     familia.IdFamiliaProducto = (int)Lector["IdFamiliaProducto"];
                     familia.Descripcion = Lector["Descripcion"].ToString();
                     familia.EsActivo = (bool)Lector["EsActivo"];
+                    familia.Prioridad = (int)Lector["Prioridad"];
 
                     ListaFamilias.Add(familia);
                 }
@@ -121,6 +122,9 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", familia.IdUsuario, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdUsuario);
 
+                IDataParameter parametroPrioridad = _baseDatos.CrearParametro("@Prioridad", familia.Prioridad, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPrioridad);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
@@ -159,6 +163,9 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
 
                 IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", familia.IdUsuario, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdUsuario);
+
+                IDataParameter parametroPrioridad = _baseDatos.CrearParametro("@Prioridad", familia.Prioridad, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPrioridad);
 
                 int filasAfectadas = comando.ExecuteNonQuery();
 

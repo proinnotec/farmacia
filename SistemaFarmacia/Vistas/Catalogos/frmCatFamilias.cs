@@ -73,6 +73,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         public void LimpiarFormulario(bool esAsignarDatos)
         {
             txtDescripcion.Text = string.Empty;
+            nudPrioridad.Value = 0;
             _enumeradoAccion = EnumeradoAccion.Alta;
             _idFamilia = 0;
 
@@ -150,6 +151,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             CatFamilias familia = new CatFamilias();
             familia.Descripcion = txtDescripcion.Text;
             familia.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
+            familia.Prioridad = (int)nudPrioridad.Value;
             familia.IdFamiliaProducto = 0;
 
             if (_enumeradoAccion != EnumeradoAccion.Alta)
@@ -235,6 +237,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return;
 
             txtDescripcion.Text = gridFamilia.SelectedRows[0].Cells["Descripcion"].Value.ToString();
+            nudPrioridad.Value = (int)gridFamilia.SelectedRows[0].Cells["Prioridad"].Value;
             _idFamilia = (int)gridFamilia.SelectedRows[0].Cells["IdFamiliaProducto"].Value;
             _esActivo = (bool)gridFamilia.SelectedRows[0].Cells["EsActivo"].Value;
 
@@ -258,6 +261,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 _toolTipActivaDesactiva.SetToolTip(btnEliminar, mensajeToolTip);
 
             }
+        }
+
+        private void btnRecargar_Click(object sender, EventArgs e)
+        {
+            AsigarListaFamilias(_frmCatFamiliasController.ListaFamilias());
+
+            ActivarDesactivarControles(true);
+
+            LimpiarFormulario(false);
         }
     }
 }

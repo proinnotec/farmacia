@@ -10,5 +10,6 @@ namespace SistemaFarmacia.Entidades.Negocio.Catalogos
     {
         public int IdFamiliaProducto { get; set; }
         public string Descripcion { get; set; }
+        public int Prioridad { get; set; }
     }
 }

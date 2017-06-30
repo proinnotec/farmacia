@@ -38,26 +38,31 @@
             this.gridFamilia = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.IdFamiliaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prioridad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnEliminar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.lblPrioridad = new System.Windows.Forms.Label();
+            this.nudPrioridad = new System.Windows.Forms.NumericUpDown();
+            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridFamilia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrioridad)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(5, 271);
+            this.txtDescripcion.Location = new System.Drawing.Point(5, 301);
             this.txtDescripcion.MaxLength = 80;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(470, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(300, 22);
             this.txtDescripcion.TabIndex = 0;
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(6, 242);
+            this.lblDescripcion.Location = new System.Drawing.Point(6, 275);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(184, 16);
             this.lblDescripcion.TabIndex = 1;
@@ -69,7 +74,7 @@
             this.btnGuardar.BackgroundImage = global::SistemaFarmacia.Resource.save;
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(482, 176);
+            this.btnGuardar.Location = new System.Drawing.Point(482, 218);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(50, 50);
             this.btnGuardar.TabIndex = 2;
@@ -82,7 +87,7 @@
             this.btnCancelar.BackgroundImage = global::SistemaFarmacia.Resource.exit;
             this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(482, 243);
+            this.btnCancelar.Location = new System.Drawing.Point(482, 276);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(50, 50);
             this.btnCancelar.TabIndex = 3;
@@ -112,6 +117,7 @@
             this.gridFamilia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdFamiliaProducto,
             this.Descripcion,
+            this.Prioridad,
             this.EsActivo});
             this.gridFamilia.EnableHeadersVisualStyles = false;
             this.gridFamilia.Location = new System.Drawing.Point(5, 4);
@@ -127,7 +133,7 @@
             this.gridFamilia.RowTemplate.Height = 20;
             this.gridFamilia.RowTemplate.ReadOnly = true;
             this.gridFamilia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridFamilia.Size = new System.Drawing.Size(471, 222);
+            this.gridFamilia.Size = new System.Drawing.Size(471, 268);
             this.gridFamilia.TabIndex = 4;
             this.gridFamilia.Click += new System.EventHandler(this.gridFamilia_Click);
             // 
@@ -146,6 +152,13 @@
             this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
+            // 
+            // Prioridad
+            // 
+            this.Prioridad.DataPropertyName = "Prioridad";
+            this.Prioridad.HeaderText = "Prioridad";
+            this.Prioridad.Name = "Prioridad";
+            this.Prioridad.ReadOnly = true;
             // 
             // EsActivo
             // 
@@ -183,11 +196,46 @@
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
+            // lblPrioridad
+            // 
+            this.lblPrioridad.AutoSize = true;
+            this.lblPrioridad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrioridad.Location = new System.Drawing.Point(328, 275);
+            this.lblPrioridad.Name = "lblPrioridad";
+            this.lblPrioridad.Size = new System.Drawing.Size(72, 16);
+            this.lblPrioridad.TabIndex = 7;
+            this.lblPrioridad.Text = "Prioridad";
+            // 
+            // nudPrioridad
+            // 
+            this.nudPrioridad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPrioridad.Location = new System.Drawing.Point(331, 301);
+            this.nudPrioridad.Name = "nudPrioridad";
+            this.nudPrioridad.Size = new System.Drawing.Size(120, 22);
+            this.nudPrioridad.TabIndex = 8;
+            // 
+            // btnRecargar
+            // 
+            this.btnRecargar.BackColor = System.Drawing.Color.LightGray;
+            this.btnRecargar.BackgroundImage = global::SistemaFarmacia.Resource.reload;
+            this.btnRecargar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRecargar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRecargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecargar.Location = new System.Drawing.Point(482, 116);
+            this.btnRecargar.Name = "btnRecargar";
+            this.btnRecargar.Size = new System.Drawing.Size(50, 50);
+            this.btnRecargar.TabIndex = 12;
+            this.btnRecargar.UseVisualStyleBackColor = false;
+            this.btnRecargar.Click += new System.EventHandler(this.btnRecargar_Click);
+            // 
             // frmCatFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 299);
+            this.ClientSize = new System.Drawing.Size(538, 334);
+            this.Controls.Add(this.btnRecargar);
+            this.Controls.Add(this.nudPrioridad);
+            this.Controls.Add(this.lblPrioridad);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.gridFamilia);
@@ -199,6 +247,7 @@
             this.Text = "Catálogo de familias";
             this.Load += new System.EventHandler(this.frmCatFamilias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridFamilia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPrioridad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,8 +262,12 @@
         private ControlesPersonalizados.GridPersonalizado gridFamilia;
         private ControlesPersonalizados.BotonPersonalizado btnEliminar;
         private ControlesPersonalizados.BotonPersonalizado btnNuevo;
+        private System.Windows.Forms.Label lblPrioridad;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdFamiliaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Prioridad;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
+        private System.Windows.Forms.NumericUpDown nudPrioridad;
+        private ControlesPersonalizados.BotonPersonalizado btnRecargar;
     }
 }
