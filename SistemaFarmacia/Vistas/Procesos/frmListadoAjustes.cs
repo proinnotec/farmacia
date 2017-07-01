@@ -110,8 +110,8 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void gridListadoAjustes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            frmAjustes vistaEditaAjustes = new frmAjustes(_contextoAplicacion, EnumeradoAccion.Edicion, this, _ajustesProductoListado);
-            vistaEditaAjustes.ShowDialog();
+            //frmAjustes vistaEditaAjustes = new frmAjustes(_contextoAplicacion, EnumeradoAccion.Edicion, this, _ajustesProductoListado);
+            //vistaEditaAjustes.ShowDialog();
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)

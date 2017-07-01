@@ -41,6 +41,7 @@
             this.IdAjusteProductoDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdTipoAjuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ajuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripcionProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +77,7 @@
             this.IdAjusteProductoDetalle,
             this.fecha,
             this.IdTipoAjuste,
+            this.Ajuste,
             this.IdProducto,
             this.ClaveProducto,
             this.DescripcionProducto,
@@ -205,6 +207,14 @@
             this.IdTipoAjuste.HeaderText = "Tipo Ajuste";
             this.IdTipoAjuste.Name = "IdTipoAjuste";
             this.IdTipoAjuste.ReadOnly = true;
+            this.IdTipoAjuste.Visible = false;
+            // 
+            // Ajuste
+            // 
+            this.Ajuste.DataPropertyName = "Ajuste";
+            this.Ajuste.HeaderText = "Ajuste";
+            this.Ajuste.Name = "Ajuste";
+            this.Ajuste.ReadOnly = true;
             // 
             // IdProducto
             // 
@@ -283,6 +293,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdAjusteProductoDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTipoAjuste;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ajuste;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClaveProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionProducto;

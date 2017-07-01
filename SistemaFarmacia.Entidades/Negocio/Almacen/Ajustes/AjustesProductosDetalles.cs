@@ -13,7 +13,7 @@ namespace SistemaFarmacia.Entidades.Negocio.Almacen.Ajustes
         public AjustesProductos AjusteProducto { get; set; }
         public int TipoAjuste { get; set; }
         public string Descripcion { get; set; }
-        public int Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
         public int IdProducto { get; set; }
         public Usuario Usuario { get; set; }
 

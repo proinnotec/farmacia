@@ -77,22 +77,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
+            
         }
 
 
@@ -156,7 +141,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            int cantidad = int.Parse(txtCantidad.Text);
+            decimal cantidad = nudCantidad.Value;
             int idproducto = int.Parse(txtIdProducto.Text);
             string motivo = richMotivo.Text;
             string mensaje = string.Empty;
@@ -189,7 +174,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             AjustesProductosDetalles detalle = new AjustesProductosDetalles();
             detalle.TipoAjuste = (int)cmbTiposAjustes.SelectedValue;
             detalle.Descripcion = richMotivo.Text;
-            detalle.Cantidad = int.Parse(txtCantidad.Text);
+            detalle.Cantidad = nudCantidad.Value;
             detalle.IdProducto = idproducto;
             detalle.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
 
@@ -204,6 +189,11 @@ namespace SistemaFarmacia.Vistas.Procesos
 
             this.Close();
             this.Dispose();
+
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

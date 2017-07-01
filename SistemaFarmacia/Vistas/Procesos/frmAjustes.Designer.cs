@@ -31,7 +31,6 @@
             this.gpoBoxGenerales = new System.Windows.Forms.GroupBox();
             this.txtIdProducto = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.richMotivo = new System.Windows.Forms.RichTextBox();
@@ -47,14 +46,16 @@
             this.ltbResultados = new System.Windows.Forms.ListBox();
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.gpoBoxGenerales.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // gpoBoxGenerales
             // 
+            this.gpoBoxGenerales.Controls.Add(this.nudCantidad);
             this.gpoBoxGenerales.Controls.Add(this.txtIdProducto);
             this.gpoBoxGenerales.Controls.Add(this.txtDescripcion);
-            this.gpoBoxGenerales.Controls.Add(this.txtCantidad);
             this.gpoBoxGenerales.Controls.Add(this.txtCodigo);
             this.gpoBoxGenerales.Controls.Add(this.label7);
             this.gpoBoxGenerales.Controls.Add(this.richMotivo);
@@ -92,15 +93,6 @@
             this.txtDescripcion.ReadOnly = true;
             this.txtDescripcion.Size = new System.Drawing.Size(459, 20);
             this.txtDescripcion.TabIndex = 3;
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Location = new System.Drawing.Point(524, 117);
-            this.txtCantidad.MaxLength = 4;
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(63, 20);
-            this.txtCantidad.TabIndex = 14;
-            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // txtCodigo
             // 
@@ -262,6 +254,13 @@
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // nudCantidad
+            // 
+            this.nudCantidad.Location = new System.Drawing.Point(524, 117);
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(62, 20);
+            this.nudCantidad.TabIndex = 16;
+            // 
             // frmAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,6 +274,7 @@
             this.Load += new System.EventHandler(this.frmAjustes_Load);
             this.gpoBoxGenerales.ResumeLayout(false);
             this.gpoBoxGenerales.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -295,10 +295,10 @@
         private System.Windows.Forms.RichTextBox richMotivo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox ltbResultados;
-        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtIdProducto;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
+        private System.Windows.Forms.NumericUpDown nudCantidad;
     }
 }

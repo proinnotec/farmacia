@@ -44,7 +44,8 @@ namespace SistemaFarmacia.Servicios.Negocio.Ajustes
                     ajuste.Fecha = (DateTime)lector["Fecha"];
                     ajuste.IdAjusteProductoDetalle = (int)lector["IdAjusteProductoDetalle"];
                     ajuste.IdTipoAjuste = (int)lector["IdTipoAjuste"];
-                    ajuste.Descripcion = lector["IdProducto"].ToString();
+                    ajuste.Ajuste = lector["Ajuste"].ToString();
+                    ajuste.Descripcion = lector["Descripcion"].ToString();
                     ajuste.Cantidad = Convert.ToDecimal(lector["Cantidad"].ToString());
                     ajuste.IdProducto = (int)lector["IdProducto"];
                     ajuste.ClaveProducto = lector["ClaveProducto"].ToString();
