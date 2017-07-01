@@ -73,6 +73,7 @@
             this.btnGuardar.BackColor = System.Drawing.Color.LightGray;
             this.btnGuardar.BackgroundImage = global::SistemaFarmacia.Resource.save;
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.Location = new System.Drawing.Point(482, 218);
             this.btnGuardar.Name = "btnGuardar";
@@ -86,6 +87,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.LightGray;
             this.btnCancelar.BackgroundImage = global::SistemaFarmacia.Resource.exit;
             this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(482, 276);
             this.btnCancelar.Name = "btnCancelar";
@@ -175,6 +177,7 @@
             this.btnEliminar.BackColor = System.Drawing.Color.LightGray;
             this.btnEliminar.BackgroundImage = global::SistemaFarmacia.Resource.bloquear;
             this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Location = new System.Drawing.Point(482, 60);
             this.btnEliminar.Name = "btnEliminar";
@@ -188,6 +191,7 @@
             this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
             this.btnNuevo.BackgroundImage = global::SistemaFarmacia.Resource._new;
             this.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNuevo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.Location = new System.Drawing.Point(482, 4);
             this.btnNuevo.Name = "btnNuevo";

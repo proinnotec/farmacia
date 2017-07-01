@@ -135,7 +135,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             txtDescripcion.Text = Producto.Substring(IdxDescripcion + 6, IdxIdProducto - (IdxDescripcion + 6));
             txtIdProducto.Text = Producto.Substring(IdxIdProducto + 5, Producto.Length - (IdxIdProducto + 5));
 
-            txtBusqueda.Text = Producto.Substring(0, IdxIdProducto); ;
+            txtBusqueda.Text = Producto.Substring(0, IdxIdProducto); 
             EsconderResultados();
         }
 

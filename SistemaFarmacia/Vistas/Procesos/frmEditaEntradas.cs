@@ -92,7 +92,6 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         public void LlenarListaProductos()
         {
-
             List<ProductosListado> listaProductos = _entradasEditaController.LlenarListaProductos();
 
             foreach (ProductosListado producto in listaProductos)

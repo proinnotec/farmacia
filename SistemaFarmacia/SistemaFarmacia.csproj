@@ -106,6 +106,7 @@
     <Compile Include="Controladores\Procesos\BusquedaController.cs" />
     <Compile Include="Controladores\Procesos\EntradasController.cs" />
     <Compile Include="Controladores\Procesos\EntradasEditaController.cs" />
+    <Compile Include="Controladores\Procesos\KardexController.cs" />
     <Compile Include="Controladores\Procesos\ListadoAjustesController.cs" />
     <Compile Include="ControlesPersonalizados\BotonPersonalizado.cs">
       <SubType>Component</SubType>
@@ -124,10 +125,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntradaProducto.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Kardex.cs">
+      <DependentUpon>Kardex.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Kardex.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Kardex.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\rptEntradasProductos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptEntradasProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\rptKardex.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKardex.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Resource.Designer.cs">
@@ -257,6 +272,12 @@
     <Compile Include="Vistas\Procesos\frmReporteEntrada.Designer.cs">
       <DependentUpon>frmReporteEntrada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Procesos\frmReporteKardex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Procesos\frmReporteKardex.Designer.cs">
+      <DependentUpon>frmReporteKardex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Ventas\frmVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +297,10 @@
     <EmbeddedResource Include="Reportes\rptEntradasProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEntradasProductos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptKardex.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKardex.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -341,6 +366,9 @@
     <EmbeddedResource Include="Vistas\Procesos\frmReporteEntrada.resx">
       <DependentUpon>frmReporteEntrada.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Procesos\frmReporteKardex.resx">
+      <DependentUpon>frmReporteKardex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmVenta.resx">
       <DependentUpon>frmVenta.cs</DependentUpon>
     </EmbeddedResource>
@@ -381,6 +409,17 @@
     </None>
     <None Include="Reportes\EntradaProducto.xss">
       <DependentUpon>EntradaProducto.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Kardex.xsc">
+      <DependentUpon>Kardex.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Kardex.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Kardex.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Kardex.xss">
+      <DependentUpon>Kardex.xsd</DependentUpon>
     </None>
     <None Include="Resources\Correcto.png" />
   </ItemGroup>

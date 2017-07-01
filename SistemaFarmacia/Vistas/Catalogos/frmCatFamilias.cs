@@ -37,6 +37,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
             ToolTip ToolTipGuardar = new ToolTip();
             ToolTipGuardar.SetToolTip(btnGuardar, "Guardar");
 
+            ToolTip ToolTipRecargar = new ToolTip();
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+
             ToolTip ToolTipSalir = new ToolTip();
             ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
 
