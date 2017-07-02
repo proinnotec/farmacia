@@ -51,6 +51,7 @@
     <Compile Include="Negocio\Almacen\Entradas\EntradaProducto.cs" />
     <Compile Include="Negocio\Almacen\Entradas\EntradaProductoDetalle.cs" />
     <Compile Include="Negocio\Almacen\Entradas\EntradaProductoListado.cs" />
+    <Compile Include="Negocio\Almacen\Reportes\Inventario.cs" />
     <Compile Include="Negocio\Almacen\Reportes\Kardex.cs" />
     <Compile Include="Negocio\Busqueda\ProductosListado.cs" />
     <Compile Include="Negocio\Catalogos\CatAjustes.cs" />

@@ -16,22 +16,20 @@ using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Procesos
 {
-    public partial class frmReporteKardex : frmBase
+    public partial class frmReporteInventario : frmBase
     {
         private ContextoAplicacion _contexto;
-        private KardexController _kardexController;
+        private InventariosController _inventariosController;
         private AutoCompleteStringCollection _resultadosBusqueda;
 
         private int _idProducto;
-        DateTime _fechaInicio;
-        DateTime _fechaFin;
 
-        public frmReporteKardex(ContextoAplicacion contexto)
+        public frmReporteInventario(ContextoAplicacion contexto)
         {
             InitializeComponent();
 
             _contexto = contexto;
-            _kardexController = new KardexController(this);
+            _inventariosController = new InventariosController(this);
             _resultadosBusqueda = new AutoCompleteStringCollection();
 
             txtBusqueda.AutoCompleteCustomSource = _resultadosBusqueda;
@@ -39,19 +37,42 @@ namespace SistemaFarmacia.Vistas.Procesos
             txtBusqueda.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
-        private void frmReporteKardex_Load(object sender, EventArgs e)
+        private void frmReporteInventario_Load(object sender, EventArgs e)
         {
             ToolTip toolTipImprimir = new ToolTip();
             toolTipImprimir.SetToolTip(btnImprimir, "Imprimir");
 
             LlenarListaProductos();
-            
+
             HabilitarDesabilitarProductos(chbTodos.Checked);
+        }
+
+        public void LlenaInformacionReporte(List<Inventario> lista)
+        {
+            if (lista.Count <= 0)
+            {
+                MostrarDialogoResultado(this.Text, "No se encontró información con los parámetros especificados, favor de verificar", string.Empty, false);
+                return;
+            }
+
+            rptInventario rptInventario = new rptInventario();
+
+            rptInventario.SetDataSource(lista);
+            rptInventario.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
+            rptInventario.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
+
+            string detalle = string.Empty;
+
+            rptInventario.SetParameterValue("DetalleReporte", detalle);
+
+            crvInventario.ReportSource = rptInventario;
+            crvInventario.Refresh();
+
         }
 
         public void LlenarListaProductos()
         {
-            List<ProductosListado> listaProductos = _kardexController.LlenarListaProductos();
+            List<ProductosListado> listaProductos = _inventariosController.LlenarListaProductos();
 
             foreach (ProductosListado producto in listaProductos)
             {
@@ -59,48 +80,14 @@ namespace SistemaFarmacia.Vistas.Procesos
             }
         }
 
-        public void LlenaInformacionReporte(List<KardexEntidad> lista)
+        private void HabilitarDesabilitarProductos(bool habilita)
         {
-            if(lista.Count <= 0)
-            {
-                MostrarDialogoResultado(this.Text, "No se encontró información con los parámetros especificados, favor de verificar", string.Empty, false);
-                return;
-            }
+            ltbResultados.Enabled = !habilita;
+            txtBusqueda.Enabled = !habilita;
+            _idProducto = 0;
+            txtBusqueda.Text = string.Empty;
 
-            rptKardex rptKardex = new rptKardex();
-
-            rptKardex.SetDataSource(lista);
-            rptKardex.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
-            rptKardex.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
-
-            string complementoDetalle = string.Empty;
-
-            if (chbTodos.Checked)
-                complementoDetalle = "de todos los productos";
-
-            string detalle = string.Format("Del {0} al {1} {2}", _fechaInicio.ToShortDateString(), _fechaFin.ToShortDateString(), complementoDetalle);
-
-            rptKardex.SetParameterValue("DetalleReporte", detalle);
-
-            crvKardex.ReportSource = rptKardex;
-            crvKardex.Refresh();
-        }
-
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            _fechaInicio = dtpDel.Value;
-            _fechaFin = dtpAl.Value;
-
-            _fechaInicio = new DateTime(_fechaInicio.Year, _fechaInicio.Month, _fechaInicio.Day, 00, 00, 00);
-            _fechaFin = new DateTime(_fechaFin.Year, _fechaFin.Month, _fechaFin.Day, 23, 59, 59);
-
-            if(!chbTodos.Checked && _idProducto == 0)
-            {
-                MostrarDialogoResultado(this.Text, "Debe seleccionar un producto para consultar el reporte", string.Empty, false);
-                return;
-            }
-
-            _kardexController.ConsultaKardex(_fechaInicio, _fechaFin, _idProducto);
+            txtBusqueda.Select();
         }
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
@@ -122,6 +109,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                 ltbResultados.Visible = true;
             }
         }
+
         private void EsconderResultados()
         {
             ltbResultados.Visible = false;
@@ -159,19 +147,20 @@ namespace SistemaFarmacia.Vistas.Procesos
             }
         }
 
-        private void HabilitarDesabilitarProductos(bool habilita)
-        {
-            ltbResultados.Enabled = !habilita;
-            txtBusqueda.Enabled = !habilita;
-            _idProducto = 0;
-            txtBusqueda.Text = string.Empty;
-
-            txtBusqueda.Select();
-        }
-
         private void chbTodos_CheckedChanged(object sender, EventArgs e)
         {
             HabilitarDesabilitarProductos(chbTodos.Checked);
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            if (!chbTodos.Checked && _idProducto == 0)
+            {
+                MostrarDialogoResultado(this.Text, "Debe seleccionar un producto para consultar el reporte", string.Empty, false);
+                return;
+            }
+
+            _inventariosController.ConsultaInventario(_idProducto);
         }
     }
 }

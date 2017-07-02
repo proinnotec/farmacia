@@ -107,6 +107,7 @@
     <Compile Include="Controladores\Procesos\BusquedaController.cs" />
     <Compile Include="Controladores\Procesos\EntradasController.cs" />
     <Compile Include="Controladores\Procesos\EntradasEditaController.cs" />
+    <Compile Include="Controladores\Procesos\InventariosController.cs" />
     <Compile Include="Controladores\Procesos\KardexController.cs" />
     <Compile Include="Controladores\Procesos\ListadoAjustesController.cs" />
     <Compile Include="Controladores\Ventas\frmVentaController.cs" />
@@ -127,6 +128,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntradaProducto.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\InventarioTabla.cs">
+      <DependentUpon>InventarioTabla.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\InventarioTabla.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventarioTabla.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Kardex.cs">
       <DependentUpon>Kardex.xsd</DependentUpon>
     </Compile>
@@ -139,6 +148,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptEntradasProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\rptInventario.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptInventario.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\rptKardex.cs">
@@ -280,6 +295,12 @@
     <Compile Include="Vistas\Procesos\frmReporteEntrada.Designer.cs">
       <DependentUpon>frmReporteEntrada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Procesos\frmReporteInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Procesos\frmReporteInventario.Designer.cs">
+      <DependentUpon>frmReporteInventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Procesos\frmReporteKardex.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,6 +332,10 @@
     <EmbeddedResource Include="Reportes\rptEntradasProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEntradasProductos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptInventario.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptInventario.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptKardex.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -383,6 +408,9 @@
     <EmbeddedResource Include="Vistas\Procesos\frmReporteEntrada.resx">
       <DependentUpon>frmReporteEntrada.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Procesos\frmReporteInventario.resx">
+      <DependentUpon>frmReporteInventario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Procesos\frmReporteKardex.resx">
       <DependentUpon>frmReporteKardex.cs</DependentUpon>
     </EmbeddedResource>
@@ -429,6 +457,17 @@
     </None>
     <None Include="Reportes\EntradaProducto.xss">
       <DependentUpon>EntradaProducto.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\InventarioTabla.xsc">
+      <DependentUpon>InventarioTabla.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\InventarioTabla.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventarioTabla.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\InventarioTabla.xss">
+      <DependentUpon>InventarioTabla.xsd</DependentUpon>
     </None>
     <None Include="Reportes\Kardex.xsc">
       <DependentUpon>Kardex.xsd</DependentUpon>

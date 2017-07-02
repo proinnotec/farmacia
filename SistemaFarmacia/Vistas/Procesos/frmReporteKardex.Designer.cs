@@ -136,9 +136,9 @@
             this.lblFecha.AutoSize = true;
             this.lblFecha.Location = new System.Drawing.Point(106, 23);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(173, 16);
+            this.lblFecha.Size = new System.Drawing.Size(207, 16);
             this.lblFecha.TabIndex = 2;
-            this.lblFecha.Text = "¿Seleccionar Producto?";
+            this.lblFecha.Text = "Seleccionar rango de fechas";
             // 
             // dtpAl
             // 
