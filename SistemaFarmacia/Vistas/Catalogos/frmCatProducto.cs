@@ -47,7 +47,6 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void AsigarListaImpuestos(List<CatImpuestos> listaImpuestos)
         {
-            listaImpuestos.Add(new CatImpuestos { IdImpuesto = (Int16)0, Descripcion = "Sin Impuesto" });
             cmbImpuesto.Items.Clear();
             cmbImpuesto.DataSource = listaImpuestos;
             cmbImpuesto.ValueMember = "IdImpuesto";
@@ -67,16 +66,20 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void AsignarValores(CatProducto producto)
         {
             txtDescripcion.Text = producto.Descripcion;
-            nudClaveProducto.Value = Convert.ToDecimal(producto.ClaveProducto);
-            nudClaveProducto.Enabled = false;
+            txtClaveProducto.Text = producto.ClaveProducto;
             nudPrecio.Value = producto.Precio;
             chkAplicaDescuento.Checked = producto.AplicaDescuentoCatalogo;
             cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
-            cmbImpuesto.SelectedValue = (Int16)producto.IdImpuesto;
 
             foreach (CodigoBarraProducto codigoBarra in producto.ListaCodigoBarra)
             {
                 gridCodigoBarra.Rows.Add(codigoBarra.CodigoBarras);
+            }
+
+            foreach (CatImpuestos impuesto in producto.ListaImpuestos)
+            {
+                object[] fila = new object[] { impuesto.IdImpuesto, impuesto.Descripcion };
+                gridImpuestos.Rows.Add(fila);
             }
         }
 
@@ -88,19 +91,13 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return false;
             }
 
-            if (cmbImpuesto.SelectedIndex == -1)
-            {
-                MostrarDialogoResultado(this.Text, "Seleccione una ocpión de impuesto.", string.Empty, false);
-                return false;
-            }
-
             if (string.IsNullOrEmpty(txtDescripcion.Text))
             {
                 MostrarDialogoResultado(this.Text, "Capture la descripción del producto.", string.Empty, false);
                 return false;
             }
 
-            if (nudClaveProducto.Value == 0)
+            if (string.IsNullOrEmpty(txtClaveProducto.Text))
             {
                 MostrarDialogoResultado(this.Text, "Capture la clave del producto.", string.Empty, false);
                 return false;
@@ -129,8 +126,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
             else
             {
-                this.Text = "Editar producto";
-                nudClaveProducto.Enabled = false;
+                this.Text = "Editar producto";                
             }
         }
 
@@ -167,8 +163,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         public void LimpiarFormulario()
         {
             txtDescripcion.Text = string.Empty;
-            nudClaveProducto.Value = 0;
-            nudClaveProducto.Enabled = true;
+            txtClaveProducto.Text = string.Empty;
             nudPrecio.Value = 0;
             chkAplicaDescuento.Checked = false;
             cmbFamilias.SelectedIndex = -1;
@@ -186,7 +181,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         public CatProducto ContextoProducto()
         {
             CatProducto producto = new CatProducto();
-            producto.ClaveProducto = ConcatenaCeros(nudClaveProducto.Value.ToString().TrimStart().TrimEnd());
+            producto.ClaveProducto = ConcatenaCeros(txtClaveProducto.Text.TrimStart().TrimEnd());
             producto.AplicaDescuentoCatalogo = chkAplicaDescuento.Checked;
             producto.Descripcion = txtDescripcion.Text;
 
@@ -195,17 +190,18 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 producto.IdFamiliaProducto = (int)cmbFamilias.SelectedValue;
             }
 
-            if (cmbImpuesto.SelectedIndex > -1)
-            {
-                producto.IdImpuesto = (Int16)cmbImpuesto.SelectedValue;
-            }
-
             producto.Precio = nudPrecio.Value;
             producto.ListaCodigoBarra = new List<CodigoBarraProducto>();
 
             foreach (DataGridViewRow fila in gridCodigoBarra.Rows)
             {
                 producto.ListaCodigoBarra.Add(new CodigoBarraProducto { CodigoBarras = fila.Cells["CodigoBarras"].Value.ToString() });
+            }
+
+            producto.ListaImpuestos = new List<CatImpuestos>();
+            foreach (DataGridViewRow fila in gridImpuestos.Rows)
+            {
+                producto.ListaImpuestos.Add(new CatImpuestos { IdImpuesto = (Int16)fila.Cells["IdImpuesto"].Value });
             }
 
             producto.IdUsuario = _idUsuario;
@@ -287,13 +283,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             if (_enumeradoAccion == EnumeradoAccion.Alta)
             {
-                _frmCatProductoController.GuardarProducto(producto);                
+                _frmCatProductoController.GuardarProducto(producto);
+                this.DialogResult = DialogResult.Yes;               
                 Cursor.Current = Cursors.Default;
             }
 
             if (_enumeradoAccion == EnumeradoAccion.Edicion)
             {
-                _frmCatProductoController.EditarProducto(producto);                
+                _frmCatProductoController.EditarProducto(producto);
+                this.DialogResult = DialogResult.Yes;
                 Cursor.Current = Cursors.Default;
             }
             
@@ -310,6 +308,49 @@ namespace SistemaFarmacia.Vistas.Catalogos
             string codigoBarra = gridCodigoBarra.SelectedRows[0].Cells["CodigoBarras"].Value.ToString();
             DataGridViewRow row = gridCodigoBarra.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["CodigoBarras"].Value.ToString().Equals(codigoBarra)).First();
             gridCodigoBarra.Rows.Remove(row);
+        }
+
+        private void btnAgregarImpuesto_Click(object sender, EventArgs e)
+        {
+            if (cmbImpuesto.SelectedIndex == -1)
+            {
+                MostrarDialogoResultado(this.Text, "Seleccione el impuesto.", string.Empty, false);
+                return;
+            }
+
+            Int16 idImpuesto = (Int16)cmbImpuesto.SelectedValue;
+
+            if (gridImpuestos.Rows.Count > 0)
+            {
+                int filas = gridImpuestos.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["IdImpuesto"].Value.ToString().Equals(idImpuesto.ToString())).Count();
+                if (filas > 0)
+                {
+                    MostrarDialogoResultado(this.Text, "El impuesto seleccionado ya existe, no se agregó.", string.Empty, false);
+                    return;
+                }
+            }
+
+            object[] fila = new object[] { idImpuesto, cmbImpuesto.Text };
+            gridImpuestos.Rows.Add(fila);
+            cmbImpuesto.SelectedIndex = -1;
+        }
+
+        private void btnQuitarImpuesto_Click(object sender, EventArgs e)
+        {
+            if (gridImpuestos.SelectedRows.Count == 0)
+            {
+                MostrarDialogoResultado(this.Text, "Seleccione un impuesto.", string.Empty, false);
+                return;
+            }
+
+            string idImpuesto = gridImpuestos.SelectedRows[0].Cells["IdImpuesto"].Value.ToString();
+            DataGridViewRow row = gridImpuestos.Rows.Cast<DataGridViewRow>().Where(r => r.Cells["IdImpuesto"].Value.ToString().Equals(idImpuesto)).First();
+            gridImpuestos.Rows.Remove(row);
+        }
+
+        private void txtClaveProducto_Leave(object sender, EventArgs e)
+        {
+            txtClaveProducto.Text = ConcatenaCeros(txtClaveProducto.Text.TrimStart().TrimEnd());
         }
     }
 }

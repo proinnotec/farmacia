@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contextos\ContextoAplicacion.cs" />
+    <Compile Include="Contextos\ContextoVenta.cs" />
     <Compile Include="Enumerados\EnumeradoAccion.cs" />
     <Compile Include="Enumerados\EnumeradoDiasSemana.cs" />
     <Compile Include="Negocio\Almacen\Ajustes\AjustesProductos.cs" />
@@ -63,9 +64,14 @@
     <Compile Include="Negocio\Catalogos\CodigoBarraProducto.cs" />
     <Compile Include="Negocio\Catalogos\ConfiguracionDescuento.cs" />
     <Compile Include="Negocio\ClaseBase.cs" />
+    <Compile Include="Negocio\ComplementoVenta.cs" />
     <Compile Include="Negocio\DiasSemana.cs" />
     <Compile Include="Negocio\ElementoMenu.cs" />
     <Compile Include="Negocio\Perfiles.cs" />
+    <Compile Include="Negocio\ProductoVentaImpuesto.cs" />
+    <Compile Include="Negocio\ProductoVentaProducto.cs" />
+    <Compile Include="Negocio\Venta.cs" />
+    <Compile Include="Negocio\VentaDetalle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Negocio\Usuario.cs" />
   </ItemGroup>

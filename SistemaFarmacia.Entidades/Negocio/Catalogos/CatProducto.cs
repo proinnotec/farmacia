@@ -15,6 +15,6 @@ namespace SistemaFarmacia.Entidades.Negocio.Catalogos
         public int IdFamiliaProducto { get; set; }
         public List<CodigoBarraProducto> ListaCodigoBarra { get; set; }
         public int IdProducto { get; set; }
-        public Int16 IdImpuesto { get; set; }
+        public List<CatImpuestos> ListaImpuestos { get; set; }
     }
 }

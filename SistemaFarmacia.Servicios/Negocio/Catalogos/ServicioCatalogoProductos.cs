@@ -8,7 +8,8 @@ using ProInnotec.Core.Entidades.ManejoExcepciones;
 using System.Data;
 using SistemaFarmacia.Entidades.Negocio.Catalogos;
 using SistemaFarmacia.Servicios.Utilerias;
-
+using SistemaFarmacia.Entidades.Negocio;
+using SistemaFarmacia.Entidades;
 
 namespace SistemaFarmacia.Servicios.Negocio.Catalogos
 {
@@ -16,6 +17,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
     {
         private IBaseDeDatos _baseDatos;
         public List<CatProducto> ListaProductos { get; private set; }
+        public ComplementoVenta ComplementoVenta { get; private set; }
 
         public ServicioCatalogoProductos(IBaseDeDatos baseDatos)
         {
@@ -137,6 +139,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 transaccion = conexion.BeginTransaction();
 
                 string codigosDeBarra = serializar.ClaseXmlString(producto.ListaCodigoBarra);
+                string impuestoProducto = serializar.ClaseXmlString(producto.ListaImpuestos);
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatProductos", conexion);
                 comando.Transaction = transaccion;
@@ -165,11 +168,8 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", producto.IdProducto, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdProducto);
 
-                if (producto.IdImpuesto > 0)
-                { 
-                    IDataParameter parametroIdImpuesto = _baseDatos.CrearParametro("@IdImpuesto", producto.IdImpuesto, ParameterDirection.Input);
-                    comando.Parameters.Add(parametroIdImpuesto);
-                }
+                IDataParameter parametroXmlImpuestos = _baseDatos.CrearParametro("@XmlImpuestos", impuestoProducto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroXmlImpuestos);
 
                 int filasAfectadas = comando.ExecuteNonQuery();
 
@@ -213,6 +213,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 transaccion = conexion.BeginTransaction();
 
                 string codigosDeBarra = serializar.ClaseXmlString(producto.ListaCodigoBarra);
+                string impuestosProducto = serializar.ClaseXmlString(producto.ListaImpuestos);
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_CatProductos", conexion);
                 comando.Transaction = transaccion;
@@ -238,11 +239,8 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 IDataParameter parametroXmlCodigos = _baseDatos.CrearParametro("@XmlCodigos", codigosDeBarra, ParameterDirection.Input);
                 comando.Parameters.Add(parametroXmlCodigos);
 
-                if (producto.IdImpuesto > 0)
-                {
-                    IDataParameter parametroIdImpuesto = _baseDatos.CrearParametro("@IdImpuesto", producto.IdImpuesto, ParameterDirection.Input);
-                    comando.Parameters.Add(parametroIdImpuesto);
-                }
+                IDataParameter parametroXmlImpuestos = _baseDatos.CrearParametro("@XmlImpuestos", impuestosProducto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroXmlImpuestos);
 
                 int filasAfectadas = comando.ExecuteNonQuery();
 
@@ -301,7 +299,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     producto.IdProducto = (int)Lector["IdProducto"];
                     producto.EsActivo = (bool)Lector["EsActivo"];
                     producto.ListaCodigoBarra = new List<CodigoBarraProducto>();
-                    //producto.IdImpuesto = (Int16)Lector["IdImpuesto"];                                            
+                    producto.ListaImpuestos = new List<CatImpuestos>();
                     ListaProductos.Add(producto);
                 }
 
@@ -315,6 +313,17 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     producto.ListaCodigoBarra.Add(codigoBarra);
                 }
 
+                Lector.NextResult();
+
+                while (Lector.Read())
+                {
+                    CatImpuestos impuesto = new CatImpuestos();
+                    impuesto.IdImpuesto = (Int16)Lector["IdImpuesto"];
+                    impuesto.Descripcion = Lector["Descripcion"].ToString();
+                    CatProducto producto = ListaProductos.Find(e => e.IdProducto == (int)Lector["IdProducto"]);
+                    producto.ListaImpuestos.Add(impuesto);
+                }
+
                 Lector.Close();
 
                 return null;
@@ -322,6 +331,58 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener la lista de productos.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+                    conexion.Dispose();
+            }
+        }
+
+        public ExcepcionPersonalizada ConsultarComplementoVenta()
+        {
+            ComplementoVenta = new ComplementoVenta();
+            ComplementoVenta.ListaProductoVentaImpuesto = new List<ProductoVentaImpuesto>();
+            ComplementoVenta.ListaProductoVentaProducto = new List<ProductoVentaProducto>();
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_ComplementoVenta", conexion);
+
+                IDataReader Lector = comando.ExecuteReader();
+
+                while (Lector.Read())
+                {
+                    ProductoVentaProducto producto = new ProductoVentaProducto();
+                    producto.IdProducto = (int)Lector["IdProducto"];
+                    producto.Precio = (decimal)Lector["Precio"];
+                    producto.AplicaDescuentoCatalogo = (bool)Lector["AplicaDescuentoCatalogo"];
+                    ComplementoVenta.ListaProductoVentaProducto.Add(producto);
+                }
+
+                Lector.NextResult();
+
+                while (Lector.Read())
+                {
+                    ProductoVentaImpuesto impuesto = new ProductoVentaImpuesto();
+                    impuesto.IdProducto = (int)Lector["IdProducto"];
+                    impuesto.IdImpuesto = (Int16)Lector["IdImpuesto"];
+                    impuesto.Descripcion = Lector["Descripcion"].ToString();
+                    impuesto.Porcentaje = (decimal)Lector["Porcentaje"];
+                    ComplementoVenta.ListaProductoVentaImpuesto.Add(impuesto);
+                }
+
+                Lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener las listas de complementos de venta.", excepcionCapturada);
                 return excepcion;
             }
             finally

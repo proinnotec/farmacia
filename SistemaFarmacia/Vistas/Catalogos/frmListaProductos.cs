@@ -70,9 +70,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
             CatProducto producto = new CatProducto();
             producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
             frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);
-            frmCatProducto.ShowDialog();
+            DialogResult resultado = frmCatProducto.ShowDialog();
 
-            if (frmCatProducto.nudClaveProducto.Value > 0)
+            if (resultado == DialogResult.Yes)
             {
                 producto = frmCatProducto.ContextoProducto();
                 cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
@@ -125,9 +125,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             frmCatProducto frmCatProducto = new frmCatProducto(producto, (List<CatFamilias>)cmbFamilias.DataSource);
-            frmCatProducto.ShowDialog();
+            DialogResult resultado = frmCatProducto.ShowDialog();
 
-            if (frmCatProducto.nudClaveProducto.Value > 0)
+            if (resultado == DialogResult.Yes)
             {
                 producto = frmCatProducto.ContextoProducto();
                 cmbFamilias.SelectedValue = producto.IdFamiliaProducto;
