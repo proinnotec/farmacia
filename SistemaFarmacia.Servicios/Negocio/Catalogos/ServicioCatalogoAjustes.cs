@@ -37,6 +37,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     ajuste.IdTipoAjuste = (int)Lector["IdTipoAjuste"];
                     ajuste.Descripcion = Lector["Descripcion"].ToString();
                     ajuste.TipoAjuste = (bool)Lector["TipoAjuste"];
+                    ajuste.TextoTipoAjuste = Lector["TextoTipoAjuste"].ToString();
                     ajuste.EsActivo = (bool)Lector["EsActivo"];
 
                     ListaAjustes.Add(ajuste);
@@ -61,15 +62,18 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             }
         }
 
-        public ExcepcionPersonalizada EliminarAjuste(CatAjustes ajuste)
+        public ExcepcionPersonalizada ActivarDesactivarImpuesto(CatAjustes ajuste)
         {
             IDbConnection conexion = null;
+            IDbTransaction transaccion = null;
 
             try
             {
                 conexion = _baseDatos.CrearConexionAbierta();
+                transaccion = conexion.BeginTransaction();
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatAjustesActivarDesactivar", conexion);
+                comando.Transaction = transaccion;
 
                 IDataParameter parametroIdTipoAjuste = _baseDatos.CrearParametro("@IdTipoAjuste", ajuste.IdTipoAjuste, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdTipoAjuste);
@@ -85,24 +89,27 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 if (filasAfectadas.Equals(0))
                     throw new Exception("No se afectaron filas (spU_CatAjustesActivarDesactivar).");
 
+                transaccion.Commit();
                 return null;
 
             }
             catch (Exception excepcionCapturada)
             {
-                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible eliminar el tipo de ajuste.", excepcionCapturada);
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue realizar la operación del tipo de ajuste.", excepcionCapturada);
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
                 return excepcion;
             }
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
-                {
                     conexion.Close();
-                    conexion.Dispose();
-                }
+                conexion.Dispose();
             }
         }
-
+        
         public ExcepcionPersonalizada EditarAjuste(CatAjustes ajuste)
         {
             IDbConnection conexion = null;

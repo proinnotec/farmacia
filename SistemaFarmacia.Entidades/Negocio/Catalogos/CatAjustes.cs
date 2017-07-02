@@ -11,6 +11,7 @@ namespace SistemaFarmacia.Entidades.Negocio.Catalogos
         public int IdTipoAjuste { get; set; }
         public string Descripcion { get; set; }
         public bool TipoAjuste { get; set; }
+        public string TextoTipoAjuste { get; set; }
         public Usuario Usuario { get; set; }
 
         public CatAjustes()

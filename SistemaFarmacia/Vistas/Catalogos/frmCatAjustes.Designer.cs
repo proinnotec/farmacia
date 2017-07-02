@@ -32,19 +32,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnEliminar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gridTiposAjustes = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
+            this.IdTipoAjuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoAjuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TextoTipoAjuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblTipoAjuste = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.cmbTipoAjuste = new System.Windows.Forms.ComboBox();
             this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.IdTipoAjuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoAjuste = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridTiposAjustes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,18 +63,18 @@
             this.btnRecargar.UseVisualStyleBackColor = false;
             this.btnRecargar.Click += new System.EventHandler(this.btnRecargar_Click);
             // 
-            // btnEliminar
+            // btnActDes
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.LightGray;
-            this.btnEliminar.BackgroundImage = global::SistemaFarmacia.Resource.bloquear;
-            this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(521, 63);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(50, 50);
-            this.btnEliminar.TabIndex = 15;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
+            this.btnActDes.BackgroundImage = global::SistemaFarmacia.Resource.bloquear;
+            this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActDes.Location = new System.Drawing.Point(521, 63);
+            this.btnActDes.Name = "btnActDes";
+            this.btnActDes.Size = new System.Drawing.Size(50, 50);
+            this.btnActDes.TabIndex = 15;
+            this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
             // 
             // btnCancelar
             // 
@@ -125,6 +126,7 @@
             this.IdTipoAjuste,
             this.Descripcion,
             this.TipoAjuste,
+            this.TextoTipoAjuste,
             this.EsActivo});
             this.gridTiposAjustes.EnableHeadersVisualStyles = false;
             this.gridTiposAjustes.Location = new System.Drawing.Point(5, 7);
@@ -139,9 +141,55 @@
             this.gridTiposAjustes.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridTiposAjustes.RowTemplate.Height = 20;
             this.gridTiposAjustes.RowTemplate.ReadOnly = true;
+            this.gridTiposAjustes.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.gridTiposAjustes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridTiposAjustes.Size = new System.Drawing.Size(510, 162);
             this.gridTiposAjustes.TabIndex = 18;
+            this.gridTiposAjustes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTiposAjustes_CellClick);
+            this.gridTiposAjustes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTiposAjustes_CellContentClick);
+            // 
+            // IdTipoAjuste
+            // 
+            this.IdTipoAjuste.DataPropertyName = "IdTipoAjuste";
+            this.IdTipoAjuste.FillWeight = 64.2978F;
+            this.IdTipoAjuste.HeaderText = "IdTipoAjuste";
+            this.IdTipoAjuste.Name = "IdTipoAjuste";
+            this.IdTipoAjuste.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.FillWeight = 207.1066F;
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // TipoAjuste
+            // 
+            this.TipoAjuste.DataPropertyName = "TipoAjuste";
+            this.TipoAjuste.HeaderText = "Tipo de Ajuste";
+            this.TipoAjuste.Name = "TipoAjuste";
+            this.TipoAjuste.ReadOnly = true;
+            this.TipoAjuste.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TipoAjuste.Visible = false;
+            // 
+            // TextoTipoAjuste
+            // 
+            this.TextoTipoAjuste.DataPropertyName = "TextoTipoAjuste";
+            this.TextoTipoAjuste.FillWeight = 64.2978F;
+            this.TextoTipoAjuste.HeaderText = "Ajuste";
+            this.TextoTipoAjuste.Name = "TextoTipoAjuste";
+            this.TextoTipoAjuste.ReadOnly = true;
+            // 
+            // EsActivo
+            // 
+            this.EsActivo.DataPropertyName = "EsActivo";
+            this.EsActivo.FillWeight = 64.2978F;
+            this.EsActivo.HeaderText = "Activo";
+            this.EsActivo.Name = "EsActivo";
+            this.EsActivo.ReadOnly = true;
+            this.EsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // lblDescripcion
             // 
@@ -195,36 +243,6 @@
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // IdTipoAjuste
-            // 
-            this.IdTipoAjuste.DataPropertyName = "IdTipoAjuste";
-            this.IdTipoAjuste.HeaderText = "IdTipoAjuste";
-            this.IdTipoAjuste.Name = "IdTipoAjuste";
-            this.IdTipoAjuste.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "Descripcion";
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // TipoAjuste
-            // 
-            this.TipoAjuste.DataPropertyName = "TipoAjuste";
-            this.TipoAjuste.HeaderText = "Tipo de Ajuste";
-            this.TipoAjuste.Name = "TipoAjuste";
-            this.TipoAjuste.ReadOnly = true;
-            // 
-            // EsActivo
-            // 
-            this.EsActivo.DataPropertyName = "EsActivo";
-            this.EsActivo.HeaderText = "Activo";
-            this.EsActivo.Name = "EsActivo";
-            this.EsActivo.ReadOnly = true;
-            this.EsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.EsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // frmCatAjustes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,7 +255,7 @@
             this.Controls.Add(this.gridTiposAjustes);
             this.Controls.Add(this.btnRecargar);
             this.Controls.Add(this.btnNuevo);
-            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnActDes);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Name = "frmCatAjustes";
@@ -252,7 +270,7 @@
         #endregion
 
         private ControlesPersonalizados.BotonPersonalizado btnRecargar;
-        private ControlesPersonalizados.BotonPersonalizado btnEliminar;
+        private ControlesPersonalizados.BotonPersonalizado btnActDes;
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
         private ControlesPersonalizados.GridPersonalizado gridTiposAjustes;
@@ -264,6 +282,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTipoAjuste;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoAjuste;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TextoTipoAjuste;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
     }
 }

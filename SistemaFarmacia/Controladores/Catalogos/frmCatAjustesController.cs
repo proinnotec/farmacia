@@ -32,20 +32,22 @@ namespace SistemaFarmacia.Controladores.Catalogos
             return new List<CatAjustes>();
         }
 
-        public void EliminarTipoAjuste(CatAjustes ajuste)
+        public void ActivarDesactivarTipoAjuste(CatAjustes ajuste)
         {
-            ExcepcionPersonalizada excepcionEliminarTipoAjuste = _servicioCatalogoAjustes.EliminarAjuste(ajuste);
-            if (excepcionEliminarTipoAjuste == null)
+            string mensaje = string.Empty;
+            ExcepcionPersonalizada resultado = _servicioCatalogoAjustes.ActivarDesactivarImpuesto(ajuste);
+
+            if (resultado != null)
             {
-                string mensaje = "El cambio se realizó correctamente.";
-                _vista.MostrarDialogoResultado(_vista.Text, mensaje, string.Empty, true);
-                _vista.AsigarListaTiposAjustes(this.ListaAjustes());
-                _vista.LimpiarFormulario();
+                mensaje = "Hubo un error al intentar actualizar la información de los impuestos.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
             }
-            else
-            {
-                _vista.MostrarDialogoResultado(_vista.Text, excepcionEliminarTipoAjuste.Message.ToString(), excepcionEliminarTipoAjuste.InnerException.ToString(), false);
-            }
+
+            mensaje = "Se ha guardado correctamente la información del usuario.";
+            _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
+
+            ConsultarTipoAjuste();
         }
 
         public void GuardarTipoAjuste(CatAjustes ajuste)
@@ -64,5 +66,20 @@ namespace SistemaFarmacia.Controladores.Catalogos
             }
         }
 
+        public void ConsultarTipoAjuste()
+        {
+            ExcepcionPersonalizada resultado = _servicioCatalogoAjustes.ConsultarAjustes();
+
+            if (resultado != null)
+            {
+                string mensaje = "Hubo un error al intentar obtener la información del tipo de ajuste, no se pueden cargar los datos.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return;
+            }
+
+            List<CatAjustes> lista = _servicioCatalogoAjustes.ListaAjustes;
+
+            _vista.AsigarListaTiposAjustes(lista);
+        }
     }
 }

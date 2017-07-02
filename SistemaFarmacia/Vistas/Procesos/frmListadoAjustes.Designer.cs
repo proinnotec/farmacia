@@ -183,6 +183,7 @@
             // IdAjusteProducto
             // 
             this.IdAjusteProducto.DataPropertyName = "IdAjusteProducto";
+            this.IdAjusteProducto.FillWeight = 12.70824F;
             this.IdAjusteProducto.HeaderText = "Id Ajuste";
             this.IdAjusteProducto.Name = "IdAjusteProducto";
             this.IdAjusteProducto.ReadOnly = true;
@@ -193,10 +194,12 @@
             this.IdAjusteProductoDetalle.HeaderText = "Id Detalle";
             this.IdAjusteProductoDetalle.Name = "IdAjusteProductoDetalle";
             this.IdAjusteProductoDetalle.ReadOnly = true;
+            this.IdAjusteProductoDetalle.Visible = false;
             // 
             // fecha
             // 
             this.fecha.DataPropertyName = "fecha";
+            this.fecha.FillWeight = 34.94395F;
             this.fecha.HeaderText = "Fecha";
             this.fecha.Name = "fecha";
             this.fecha.ReadOnly = true;
@@ -212,6 +215,7 @@
             // Ajuste
             // 
             this.Ajuste.DataPropertyName = "Ajuste";
+            this.Ajuste.FillWeight = 66.00714F;
             this.Ajuste.HeaderText = "Ajuste";
             this.Ajuste.Name = "Ajuste";
             this.Ajuste.ReadOnly = true;
@@ -227,6 +231,7 @@
             // ClaveProducto
             // 
             this.ClaveProducto.DataPropertyName = "ClaveProducto";
+            this.ClaveProducto.FillWeight = 19.97182F;
             this.ClaveProducto.HeaderText = "Clave Producto";
             this.ClaveProducto.Name = "ClaveProducto";
             this.ClaveProducto.ReadOnly = true;
@@ -234,6 +239,7 @@
             // DescripcionProducto
             // 
             this.DescripcionProducto.DataPropertyName = "DescripcionProducto";
+            this.DescripcionProducto.FillWeight = 19.97182F;
             this.DescripcionProducto.HeaderText = "Producto";
             this.DescripcionProducto.Name = "DescripcionProducto";
             this.DescripcionProducto.ReadOnly = true;
@@ -241,6 +247,7 @@
             // Cantidad
             // 
             this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.FillWeight = 19.97182F;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
@@ -248,6 +255,7 @@
             // Descripcion
             // 
             this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.FillWeight = 151.5104F;
             this.Descripcion.HeaderText = "Motivo";
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;

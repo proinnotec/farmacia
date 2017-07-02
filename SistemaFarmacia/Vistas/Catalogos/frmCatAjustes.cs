@@ -17,6 +17,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private ToolTip _toolTipActivaDesactiva;
         private int _idTipoAjuste;
         private bool _esActivo;
+        private CatAjustes _ajuste;
 
         public frmCatAjustes(ContextoAplicacion contextoAplicacion)
         {
@@ -26,6 +27,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             _enumeradoAccion = EnumeradoAccion.Alta;
             _toolTipActivaDesactiva = new ToolTip();
             _idTipoAjuste = 0;
+            _ajuste = new CatAjustes();
 
             AsigarListaTiposAjustes(_frmCatAjustesController.ListaAjustes());
         }
@@ -66,44 +68,38 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (gridTiposAjustes.SelectedRows.Count == 0)
                 return;
 
-            txtDescripcion.Text = gridTiposAjustes.SelectedRows[0].Cells["Descripcion"].Value.ToString();
             _idTipoAjuste = (int)gridTiposAjustes.SelectedRows[0].Cells["IdTipoAjuste"].Value;
-            cmbTipoAjuste.SelectedIndex = _idTipoAjuste;
             _esActivo = (bool)gridTiposAjustes.SelectedRows[0].Cells["EsActivo"].Value;
-
-            _enumeradoAccion = EnumeradoAccion.Edicion;
 
             string mensajeToolTip = string.Empty;
 
             if (_esActivo)
             {
-                btnEliminar.BackgroundImage = Resource.bloquear;
+                btnActDes.BackgroundImage = Resource.bloquear;
                 mensajeToolTip = "Dar de baja el registro";
 
-                _toolTipActivaDesactiva.SetToolTip(btnEliminar, mensajeToolTip);
+                _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
             }
             else
             {
-                btnEliminar.BackgroundImage = Resource.activar;
+                btnActDes.BackgroundImage = Resource.activar;
                 mensajeToolTip = "Reactivar el registro";
 
-                _toolTipActivaDesactiva.SetToolTip(btnEliminar, mensajeToolTip);
+                _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
             }
         }
-
-
-
+        
         private void ActivarDesactivarControles(bool seActiva)
         {
             if (seActiva)
             {
                 gridTiposAjustes.Enabled = true;
-                btnEliminar.Enabled = true;
+                btnActDes.Enabled = true;
             }
             else
             {
                 gridTiposAjustes.Enabled = false;
-                btnEliminar.Enabled = false;
+                btnActDes.Enabled = false;
             }
         }
 
@@ -119,6 +115,37 @@ namespace SistemaFarmacia.Vistas.Catalogos
             gridTiposAjustes.AutoGenerateColumns = false;
             gridTiposAjustes.DataSource = null;
             gridTiposAjustes.DataSource = listaTiposAjustes;
+
+            CargarDatosDeGridAObjeto();
+        }
+
+        private void CargarDatosDeGridAObjeto()
+        {
+            _ajuste.IdTipoAjuste = (int)gridTiposAjustes.SelectedRows[0].Cells["IdTipoAjuste"].Value;
+            _ajuste.TipoAjuste = (bool)gridTiposAjustes.SelectedRows[0].Cells["TipoAjuste"].Value;
+            _ajuste.Descripcion = gridTiposAjustes.SelectedRows[0].Cells["Descripcion"].Value.ToString();
+            _ajuste.TextoTipoAjuste = gridTiposAjustes.SelectedRows[0].Cells["TextoTipoAjuste"].Value.ToString();
+            _ajuste.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
+            _ajuste.EsActivo = (bool)gridTiposAjustes.SelectedRows[0].Cells["EsActivo"].Value;
+
+            string mensajeToolTip = string.Empty;
+
+            if (_ajuste.EsActivo)
+            {
+                btnActDes.BackgroundImage = Resource.bloquear;
+                mensajeToolTip = "Dar de baja el registro";
+
+                _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
+
+            }
+            else
+            {
+                btnActDes.BackgroundImage = Resource.activar;
+                mensajeToolTip = "Reactivar el registro";
+
+                _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
+
+            }
         }
 
         bool ValidarFormulario()
@@ -130,29 +157,6 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             return true;
-        }
-
-        bool ConfirmarBorrado()
-        {
-            string mensaje = string.Empty;
-
-            if (_esActivo)
-                mensaje = "¿Seguro que desea dar de baja el tipo de ajuste?";
-
-            else
-                mensaje = "¿Seguro que desea reactivar el tipo de ajuste?";
-
-            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
-
-            if (respuesta == DialogResult.Yes)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
         }
 
         bool ConfirmarGuardado()
@@ -202,7 +206,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            txtDescripcion.Select();
 
+            ActivarDesactivarControles(false);
+
+            LimpiarFormulario();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -230,27 +238,53 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             ActivarDesactivarControles(true);
         }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
+        
+        private void btnActDes_Click(object sender, EventArgs e)
         {
-            if (!ConfirmarBorrado())
+            string accion;
+            bool esActivo;
+
+            if (_ajuste.EsActivo)
             {
-                return;
+                accion = "dar de baja";
+                esActivo = false;
+            }
+            else
+            {
+                accion = "reactivar";
+                esActivo = true;
             }
 
-            Cursor.Current = Cursors.WaitCursor;
+            bool respuesta = ConfirmarActivacionDesactivacion(accion);
 
-            CatAjustes ajuste = ContextoAjustes();
+            if (respuesta)
+            {
+                _ajuste.EsActivo = esActivo;
+                _frmCatAjustesController.ActivarDesactivarTipoAjuste(_ajuste);
+            }
+        }
 
-            if (_esActivo)
-                ajuste.EsActivo = false;
+        bool ConfirmarActivacionDesactivacion(string accion)
+        {
+            string mensaje = string.Format("{0} {1} {2} {3}{4}", "¿Seguro que desea", accion, "el tipo de ajuste de", _ajuste.Descripcion, "?");
+
+            DialogResult respuesta = MostrarDialogoConfirmacion(this.Text, mensaje);
+
+            if (respuesta == DialogResult.Yes)
+                return true;
 
             else
-                ajuste.EsActivo = true;
+                return false;
+        }
 
-            _frmCatAjustesController.EliminarTipoAjuste(ajuste);
+        private void gridTiposAjustes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-            Cursor.Current = Cursors.Default;
+        }
+
+        private void gridTiposAjustes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CargarDatosDeGridAObjeto();
         }
     }
 }
