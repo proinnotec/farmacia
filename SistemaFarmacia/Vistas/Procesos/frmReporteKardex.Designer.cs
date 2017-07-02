@@ -52,6 +52,10 @@
             this.crvKardex.Cursor = System.Windows.Forms.Cursors.Default;
             this.crvKardex.Location = new System.Drawing.Point(0, 84);
             this.crvKardex.Name = "crvKardex";
+            this.crvKardex.ShowCloseButton = false;
+            this.crvKardex.ShowCopyButton = false;
+            this.crvKardex.ShowParameterPanelButton = false;
+            this.crvKardex.ShowRefreshButton = false;
             this.crvKardex.Size = new System.Drawing.Size(1084, 511);
             this.crvKardex.TabIndex = 0;
             // 
