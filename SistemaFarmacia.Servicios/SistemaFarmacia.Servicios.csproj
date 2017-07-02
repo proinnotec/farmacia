@@ -57,6 +57,7 @@
     <Compile Include="Negocio\Almacen\ServicioEntradas.cs" />
     <Compile Include="Negocio\Almacen\ServicioKardex.cs" />
     <Compile Include="Negocio\Busqueda\ServicioBusqueda.cs" />
+    <Compile Include="Negocio\Catalogos\ServicioCatalogoAjustes.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoDescuentos.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoFamilias.cs" />
     <Compile Include="Negocio\Catalogos\ServicioCatalogoImpuestos.cs" />
