@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lblArchivo = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -47,6 +47,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.gridPartidas = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
+            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblInstrucciones = new System.Windows.Forms.Label();
+            this.ltbResultados = new System.Windows.Forms.ListBox();
             this.IdEntradaProductoDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdEntradaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,12 +62,6 @@
             this.PrecioActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActPrecioCatalogo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.lblInstrucciones = new System.Windows.Forms.Label();
-            this.ltbResultados = new System.Windows.Forms.ListBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPartidas)).BeginInit();
@@ -192,20 +192,20 @@
             this.gridPartidas.AllowUserToAddRows = false;
             this.gridPartidas.AllowUserToDeleteRows = false;
             this.gridPartidas.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.gridPartidas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridPartidas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridPartidas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridPartidas.BackgroundColor = System.Drawing.Color.White;
             this.gridPartidas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridPartidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridPartidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridPartidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPartidas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdEntradaProductoDetalle,
@@ -223,10 +223,10 @@
             this.gridPartidas.Name = "gridPartidas";
             this.gridPartidas.ReadOnly = true;
             this.gridPartidas.RowHeadersVisible = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridPartidas.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridPartidas.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.gridPartidas.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridPartidas.RowTemplate.Height = 20;
             this.gridPartidas.RowTemplate.ReadOnly = true;
@@ -234,82 +234,6 @@
             this.gridPartidas.Size = new System.Drawing.Size(829, 320);
             this.gridPartidas.TabIndex = 8;
             this.gridPartidas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPartidas_CellClick);
-            // 
-            // IdEntradaProductoDetalle
-            // 
-            this.IdEntradaProductoDetalle.DataPropertyName = "IdEntradaProductoDetalle";
-            this.IdEntradaProductoDetalle.FillWeight = 137.2427F;
-            this.IdEntradaProductoDetalle.HeaderText = "IdEntradaProductoDetalle";
-            this.IdEntradaProductoDetalle.Name = "IdEntradaProductoDetalle";
-            this.IdEntradaProductoDetalle.ReadOnly = true;
-            this.IdEntradaProductoDetalle.Visible = false;
-            // 
-            // IdEntradaProducto
-            // 
-            this.IdEntradaProducto.DataPropertyName = "IdEntradaProducto";
-            this.IdEntradaProducto.HeaderText = "Entrada";
-            this.IdEntradaProducto.Name = "IdEntradaProducto";
-            this.IdEntradaProducto.ReadOnly = true;
-            this.IdEntradaProducto.Visible = false;
-            // 
-            // IdProducto
-            // 
-            this.IdProducto.DataPropertyName = "IdProducto";
-            this.IdProducto.HeaderText = "IdProducto";
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.ReadOnly = true;
-            this.IdProducto.Visible = false;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "Cantidad";
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Cantidad.FillWeight = 103.1952F;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // ClaveProducto
-            // 
-            this.ClaveProducto.DataPropertyName = "ClaveProducto";
-            this.ClaveProducto.HeaderText = "ClaveProducto";
-            this.ClaveProducto.Name = "ClaveProducto";
-            this.ClaveProducto.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "Descripcion";
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // PrecioActual
-            // 
-            this.PrecioActual.DataPropertyName = "PrecioActual";
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.PrecioActual.DefaultCellStyle = dataGridViewCellStyle10;
-            this.PrecioActual.HeaderText = "PrecioActual";
-            this.PrecioActual.Name = "PrecioActual";
-            this.PrecioActual.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            this.Precio.DataPropertyName = "PrecioEntrada";
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Precio.HeaderText = "Precio Entrada";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
-            // ActPrecioCatalogo
-            // 
-            this.ActPrecioCatalogo.HeaderText = "Actualizar Precio Catalogo";
-            this.ActPrecioCatalogo.Name = "ActPrecioCatalogo";
-            this.ActPrecioCatalogo.ReadOnly = true;
             // 
             // btnCancelar
             // 
@@ -374,8 +298,9 @@
             this.lblInstrucciones.Name = "lblInstrucciones";
             this.lblInstrucciones.Size = new System.Drawing.Size(767, 44);
             this.lblInstrucciones.TabIndex = 20;
-            this.lblInstrucciones.Text = "Importante:  Para que el archivo de Excel se lea correctamente, en las Celdas A1 " +
-    "y B1 deben estar las cabeceras \"Cantidad\" y \"ClaveProducto\" respectivamente.";
+            this.lblInstrucciones.Text = "Importante:  Para que el archivo de Excel se lea correctamente, en las Celdas A1," +
+    " B1 y C1 deben estar las cabeceras \"Cantidad\", \"ClaveProducto\" y \"PrecioEntrada\"" +
+    " respectivamente.";
             // 
             // ltbResultados
             // 
@@ -388,6 +313,84 @@
             this.ltbResultados.TabIndex = 21;
             this.ltbResultados.Visible = false;
             this.ltbResultados.SelectedIndexChanged += new System.EventHandler(this.ltbResultados_SelectedIndexChanged);
+            // 
+            // IdEntradaProductoDetalle
+            // 
+            this.IdEntradaProductoDetalle.DataPropertyName = "IdEntradaProductoDetalle";
+            this.IdEntradaProductoDetalle.FillWeight = 137.2427F;
+            this.IdEntradaProductoDetalle.HeaderText = "IdEntradaProductoDetalle";
+            this.IdEntradaProductoDetalle.Name = "IdEntradaProductoDetalle";
+            this.IdEntradaProductoDetalle.ReadOnly = true;
+            this.IdEntradaProductoDetalle.Visible = false;
+            // 
+            // IdEntradaProducto
+            // 
+            this.IdEntradaProducto.DataPropertyName = "IdEntradaProducto";
+            this.IdEntradaProducto.HeaderText = "Entrada";
+            this.IdEntradaProducto.Name = "IdEntradaProducto";
+            this.IdEntradaProducto.ReadOnly = true;
+            this.IdEntradaProducto.Visible = false;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.DataPropertyName = "IdProducto";
+            this.IdProducto.HeaderText = "IdProducto";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
+            this.IdProducto.Visible = false;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cantidad.FillWeight = 103.1952F;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // ClaveProducto
+            // 
+            this.ClaveProducto.DataPropertyName = "ClaveProducto";
+            this.ClaveProducto.HeaderText = "ClaveProducto";
+            this.ClaveProducto.Name = "ClaveProducto";
+            this.ClaveProducto.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 5;
+            // 
+            // PrecioActual
+            // 
+            this.PrecioActual.DataPropertyName = "PrecioActual";
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.PrecioActual.DefaultCellStyle = dataGridViewCellStyle4;
+            this.PrecioActual.HeaderText = "PrecioActual";
+            this.PrecioActual.Name = "PrecioActual";
+            this.PrecioActual.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.DataPropertyName = "PrecioEntrada";
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Precio.HeaderText = "Precio Entrada";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // ActPrecioCatalogo
+            // 
+            this.ActPrecioCatalogo.HeaderText = "Actualizar Precio Catalogo";
+            this.ActPrecioCatalogo.Name = "ActPrecioCatalogo";
+            this.ActPrecioCatalogo.ReadOnly = true;
             // 
             // frmEditaEntradas
             // 
@@ -435,6 +438,9 @@
         private System.Windows.Forms.Label lblProveedorTexto;
         private System.Windows.Forms.Label label1;
         private ControlesPersonalizados.BotonPersonalizado btnCancelar;
+        private System.Windows.Forms.Label lblInstrucciones;
+        private System.Windows.Forms.ListBox ltbResultados;
+        private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdEntradaProductoDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdEntradaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
@@ -444,8 +450,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ActPrecioCatalogo;
-        private System.Windows.Forms.Label lblInstrucciones;
-        private System.Windows.Forms.ListBox ltbResultados;
-        private System.Windows.Forms.TextBox txtBusqueda;
     }
 }

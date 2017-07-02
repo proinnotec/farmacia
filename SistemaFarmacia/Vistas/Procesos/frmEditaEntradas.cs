@@ -152,7 +152,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                 conn = new OleDbConnection(conexionString);
 
-                MyDataAdapter = new OleDbDataAdapter("Select Cantidad, ClaveProducto from [Hoja1$]", conn);
+                MyDataAdapter = new OleDbDataAdapter("Select Cantidad, ClaveProducto, PrecioEntrada from [Hoja1$]", conn);
                 dt = new DataTable();
                 MyDataAdapter.Fill(dt);
 
@@ -201,7 +201,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                         return;
                     }
 
-                    decimal precio = 0;
+                    decimal precio = Convert.ToDecimal(row["PrecioEntrada"]);
                     bool actualizaPrecio = false;
 
                     gridPartidas.Rows.Add(0, 0, productoId, cantidad, claveProducto, descripcion, precioActual, precio, actualizaPrecio);
