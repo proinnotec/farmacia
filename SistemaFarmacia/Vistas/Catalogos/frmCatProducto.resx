@@ -354,6 +354,11 @@
         SUVORK5CYII=
 </value>
   </data>
+  <data name="lblNotaPromocion.Text" xml:space="preserve">
+    <value>Nota: Al aplicar la opción de promoción al producto al realizar la venta se tomará como base el precio especial cuando cumpla con la cantidad establecida.
+
+Ejemplo: Por cada 4 productos su precio especial será de $50.</value>
+  </data>
   <metadata name="IdImpuesto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

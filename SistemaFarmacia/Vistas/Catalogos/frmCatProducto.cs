@@ -38,6 +38,8 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 Random random = new Random();
                 int codigoDefault = random.Next(10000, 90000);
                 gridCodigoBarra.Rows.Add(codigoDefault.ToString());
+                nupPrecioPromocion.Enabled = false;
+                nupCantidadPromocion.Enabled = false;
             }
             else
             {
@@ -81,6 +83,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 object[] fila = new object[] { impuesto.IdImpuesto, impuesto.Descripcion };
                 gridImpuestos.Rows.Add(fila);
             }
+
+            chkPromocion.Checked = producto.AplicaPromocion;
+            nupCantidadPromocion.Value = producto.CantidadPromocion;
+            nupPrecioPromocion.Value = producto.PrecioPromocion;
+            nupCantidadPromocion.Enabled = producto.AplicaPromocion;
+            nupPrecioPromocion.Enabled = producto.AplicaPromocion;
         }
 
         bool ValidarFormulario()
@@ -113,6 +121,21 @@ namespace SistemaFarmacia.Vistas.Catalogos
             {
                 MostrarDialogoResultado(this.Text, "Capture al menos un código de barra.", string.Empty, false);
                 return false;
+            }
+
+            if (chkPromocion.Checked)
+            {
+                if (nupCantidadPromocion.Value == 0)
+                {
+                    MostrarDialogoResultado(this.Text, "Capture la cantidad de productos que aplicará la promoción.", string.Empty, false);
+                    return false;
+                }
+
+                if (nupPrecioPromocion.Value == 0)
+                {
+                    MostrarDialogoResultado(this.Text, "Capture el precio especial que aplicará la promoción.", string.Empty, false);
+                    return false;
+                }
             }
 
             return true;
@@ -203,6 +226,10 @@ namespace SistemaFarmacia.Vistas.Catalogos
             {
                 producto.ListaImpuestos.Add(new CatImpuestos { IdImpuesto = (Int16)fila.Cells["IdImpuesto"].Value });
             }
+
+            producto.AplicaPromocion = chkPromocion.Checked;
+            producto.CantidadPromocion = (Int16) nupCantidadPromocion.Value;
+            producto.PrecioPromocion = nupPrecioPromocion.Value;
 
             producto.IdUsuario = _idUsuario;
             producto.IdProducto = _idProducto;
@@ -351,6 +378,14 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void txtClaveProducto_Leave(object sender, EventArgs e)
         {
             txtClaveProducto.Text = ConcatenaCeros(txtClaveProducto.Text.TrimStart().TrimEnd());
+        }
+
+        private void chkPromocion_CheckedChanged(object sender, EventArgs e)
+        {
+            nupCantidadPromocion.Enabled = chkPromocion.Checked;
+            nupPrecioPromocion.Enabled = chkPromocion.Checked;
+            nupCantidadPromocion.Value = 0;
+            nupPrecioPromocion.Value = 0;
         }
     }
 }

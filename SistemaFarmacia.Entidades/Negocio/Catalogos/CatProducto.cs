@@ -16,5 +16,8 @@ namespace SistemaFarmacia.Entidades.Negocio.Catalogos
         public List<CodigoBarraProducto> ListaCodigoBarra { get; set; }
         public int IdProducto { get; set; }
         public List<CatImpuestos> ListaImpuestos { get; set; }
+        public bool AplicaPromocion { get; set; }
+        public Int16 CantidadPromocion { get; set; }
+        public decimal PrecioPromocion { get; set; }
     }
 }

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatProducto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.chkAplicaDescuento = new System.Windows.Forms.CheckBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabProducto = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.txtClaveProducto = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -63,13 +63,23 @@
             this.CodigoBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCodigoBarra = new System.Windows.Forms.Label();
             this.txtCodigoBarra = new System.Windows.Forms.TextBox();
-            this.tabControl1.SuspendLayout();
+            this.tabPromocion = new System.Windows.Forms.TabPage();
+            this.chkPromocion = new System.Windows.Forms.CheckBox();
+            this.lblNotaPromocion = new System.Windows.Forms.Label();
+            this.lblPrecioEspecial = new System.Windows.Forms.Label();
+            this.nupPrecioPromocion = new System.Windows.Forms.NumericUpDown();
+            this.lblCantidadProducto = new System.Windows.Forms.Label();
+            this.nupCantidadPromocion = new System.Windows.Forms.NumericUpDown();
+            this.tabProducto.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
             this.tabImpuestos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridImpuestos)).BeginInit();
             this.tabCodigos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCodigoBarra)).BeginInit();
+            this.tabPromocion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupPrecioPromocion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCantidadPromocion)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -95,16 +105,17 @@
             this.chkAplicaDescuento.Text = "Aplica descuento";
             this.chkAplicaDescuento.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // tabProducto
             // 
-            this.tabControl1.Controls.Add(this.tabGeneral);
-            this.tabControl1.Controls.Add(this.tabImpuestos);
-            this.tabControl1.Controls.Add(this.tabCodigos);
-            this.tabControl1.Location = new System.Drawing.Point(3, 2);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(453, 248);
-            this.tabControl1.TabIndex = 18;
+            this.tabProducto.Controls.Add(this.tabGeneral);
+            this.tabProducto.Controls.Add(this.tabImpuestos);
+            this.tabProducto.Controls.Add(this.tabCodigos);
+            this.tabProducto.Controls.Add(this.tabPromocion);
+            this.tabProducto.Location = new System.Drawing.Point(4, 4);
+            this.tabProducto.Name = "tabProducto";
+            this.tabProducto.SelectedIndex = 0;
+            this.tabProducto.Size = new System.Drawing.Size(453, 248);
+            this.tabProducto.TabIndex = 18;
             // 
             // tabGeneral
             // 
@@ -249,20 +260,20 @@
             this.gridImpuestos.AllowUserToAddRows = false;
             this.gridImpuestos.AllowUserToDeleteRows = false;
             this.gridImpuestos.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.gridImpuestos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            this.gridImpuestos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.gridImpuestos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridImpuestos.BackgroundColor = System.Drawing.Color.White;
             this.gridImpuestos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridImpuestos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridImpuestos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridImpuestos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.gridImpuestos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridImpuestos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdImpuesto,
@@ -273,10 +284,10 @@
             this.gridImpuestos.Name = "gridImpuestos";
             this.gridImpuestos.ReadOnly = true;
             this.gridImpuestos.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridImpuestos.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridImpuestos.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.gridImpuestos.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridImpuestos.RowTemplate.Height = 20;
             this.gridImpuestos.RowTemplate.ReadOnly = true;
@@ -287,8 +298,8 @@
             // IdImpuesto
             // 
             this.IdImpuesto.DataPropertyName = "IdImpuesto";
-            dataGridViewCellStyle3.NullValue = null;
-            this.IdImpuesto.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.NullValue = null;
+            this.IdImpuesto.DefaultCellStyle = dataGridViewCellStyle10;
             this.IdImpuesto.HeaderText = "IdImpuesto";
             this.IdImpuesto.Name = "IdImpuesto";
             this.IdImpuesto.ReadOnly = true;
@@ -363,20 +374,20 @@
             this.gridCodigoBarra.AllowUserToAddRows = false;
             this.gridCodigoBarra.AllowUserToDeleteRows = false;
             this.gridCodigoBarra.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.gridCodigoBarra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            this.gridCodigoBarra.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
             this.gridCodigoBarra.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridCodigoBarra.BackgroundColor = System.Drawing.Color.White;
             this.gridCodigoBarra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridCodigoBarra.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridCodigoBarra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridCodigoBarra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.gridCodigoBarra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCodigoBarra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodigoBarras});
@@ -386,10 +397,10 @@
             this.gridCodigoBarra.Name = "gridCodigoBarra";
             this.gridCodigoBarra.ReadOnly = true;
             this.gridCodigoBarra.RowHeadersVisible = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridCodigoBarra.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridCodigoBarra.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.gridCodigoBarra.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridCodigoBarra.RowTemplate.Height = 20;
             this.gridCodigoBarra.RowTemplate.ReadOnly = true;
@@ -421,15 +432,94 @@
             this.txtCodigoBarra.Size = new System.Drawing.Size(388, 20);
             this.txtCodigoBarra.TabIndex = 13;
             // 
+            // tabPromocion
+            // 
+            this.tabPromocion.Controls.Add(this.chkPromocion);
+            this.tabPromocion.Controls.Add(this.lblNotaPromocion);
+            this.tabPromocion.Controls.Add(this.lblPrecioEspecial);
+            this.tabPromocion.Controls.Add(this.nupPrecioPromocion);
+            this.tabPromocion.Controls.Add(this.lblCantidadProducto);
+            this.tabPromocion.Controls.Add(this.nupCantidadPromocion);
+            this.tabPromocion.Location = new System.Drawing.Point(4, 22);
+            this.tabPromocion.Name = "tabPromocion";
+            this.tabPromocion.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPromocion.Size = new System.Drawing.Size(445, 222);
+            this.tabPromocion.TabIndex = 3;
+            this.tabPromocion.Text = "Promoción";
+            this.tabPromocion.UseVisualStyleBackColor = true;
+            // 
+            // chkPromocion
+            // 
+            this.chkPromocion.AutoSize = true;
+            this.chkPromocion.Location = new System.Drawing.Point(9, 122);
+            this.chkPromocion.Name = "chkPromocion";
+            this.chkPromocion.Size = new System.Drawing.Size(107, 17);
+            this.chkPromocion.TabIndex = 24;
+            this.chkPromocion.Text = "Aplica promoción";
+            this.chkPromocion.UseVisualStyleBackColor = true;
+            this.chkPromocion.CheckedChanged += new System.EventHandler(this.chkPromocion_CheckedChanged);
+            // 
+            // lblNotaPromocion
+            // 
+            this.lblNotaPromocion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNotaPromocion.Location = new System.Drawing.Point(161, 29);
+            this.lblNotaPromocion.Name = "lblNotaPromocion";
+            this.lblNotaPromocion.Size = new System.Drawing.Size(264, 110);
+            this.lblNotaPromocion.TabIndex = 23;
+            this.lblNotaPromocion.Text = resources.GetString("lblNotaPromocion.Text");
+            // 
+            // lblPrecioEspecial
+            // 
+            this.lblPrecioEspecial.AutoSize = true;
+            this.lblPrecioEspecial.Location = new System.Drawing.Point(6, 65);
+            this.lblPrecioEspecial.Name = "lblPrecioEspecial";
+            this.lblPrecioEspecial.Size = new System.Drawing.Size(82, 13);
+            this.lblPrecioEspecial.TabIndex = 22;
+            this.lblPrecioEspecial.Text = "Precio especial:";
+            // 
+            // nupPrecioPromocion
+            // 
+            this.nupPrecioPromocion.DecimalPlaces = 2;
+            this.nupPrecioPromocion.Location = new System.Drawing.Point(9, 81);
+            this.nupPrecioPromocion.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nupPrecioPromocion.Name = "nupPrecioPromocion";
+            this.nupPrecioPromocion.Size = new System.Drawing.Size(120, 20);
+            this.nupPrecioPromocion.TabIndex = 21;
+            // 
+            // lblCantidadProducto
+            // 
+            this.lblCantidadProducto.AutoSize = true;
+            this.lblCantidadProducto.Location = new System.Drawing.Point(6, 13);
+            this.lblCantidadProducto.Name = "lblCantidadProducto";
+            this.lblCantidadProducto.Size = new System.Drawing.Size(52, 13);
+            this.lblCantidadProducto.TabIndex = 20;
+            this.lblCantidadProducto.Text = "Cantidad:";
+            // 
+            // nupCantidadPromocion
+            // 
+            this.nupCantidadPromocion.Location = new System.Drawing.Point(9, 29);
+            this.nupCantidadPromocion.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nupCantidadPromocion.Name = "nupCantidadPromocion";
+            this.nupCantidadPromocion.Size = new System.Drawing.Size(120, 20);
+            this.nupCantidadPromocion.TabIndex = 12;
+            // 
             // frmCatProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 320);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabProducto);
             this.Controls.Add(this.btnGuardar);
             this.Name = "frmCatProducto";
-            this.tabControl1.ResumeLayout(false);
+            this.tabProducto.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).EndInit();
@@ -439,6 +529,10 @@
             this.tabCodigos.ResumeLayout(false);
             this.tabCodigos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCodigoBarra)).EndInit();
+            this.tabPromocion.ResumeLayout(false);
+            this.tabPromocion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupPrecioPromocion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCantidadPromocion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,7 +540,7 @@
         #endregion
         private System.Windows.Forms.CheckBox chkAplicaDescuento;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabProducto;
         private System.Windows.Forms.TabPage tabGeneral;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.TextBox txtDescripcion;
@@ -471,5 +565,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdImpuesto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.TextBox txtClaveProducto;
+        private System.Windows.Forms.TabPage tabPromocion;
+        private System.Windows.Forms.CheckBox chkPromocion;
+        private System.Windows.Forms.Label lblNotaPromocion;
+        private System.Windows.Forms.Label lblPrecioEspecial;
+        private System.Windows.Forms.NumericUpDown nupPrecioPromocion;
+        private System.Windows.Forms.Label lblCantidadProducto;
+        private System.Windows.Forms.NumericUpDown nupCantidadPromocion;
     }
 }

@@ -171,6 +171,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 IDataParameter parametroXmlImpuestos = _baseDatos.CrearParametro("@XmlImpuestos", impuestoProducto, ParameterDirection.Input);
                 comando.Parameters.Add(parametroXmlImpuestos);
 
+                IDataParameter parametroAplicaPromocion = _baseDatos.CrearParametro("@AplicaPromocion", producto.AplicaPromocion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroAplicaPromocion);
+
+                IDataParameter parametroCantidadPromocion = _baseDatos.CrearParametro("@CantidadPromocion", producto.CantidadPromocion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroCantidadPromocion);
+
+                IDataParameter parametroPrecioPromocion = _baseDatos.CrearParametro("@PrecioPromocion", producto.PrecioPromocion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPrecioPromocion);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
@@ -242,6 +251,15 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 IDataParameter parametroXmlImpuestos = _baseDatos.CrearParametro("@XmlImpuestos", impuestosProducto, ParameterDirection.Input);
                 comando.Parameters.Add(parametroXmlImpuestos);
 
+                IDataParameter parametroAplicaPromocion = _baseDatos.CrearParametro("@AplicaPromocion", producto.AplicaPromocion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroAplicaPromocion);
+
+                IDataParameter parametroCantidadPromocion = _baseDatos.CrearParametro("@CantidadPromocion", producto.CantidadPromocion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroCantidadPromocion);
+
+                IDataParameter parametroPrecioPromocion = _baseDatos.CrearParametro("@PrecioPromocion", producto.PrecioPromocion, ParameterDirection.Input);
+                comando.Parameters.Add(parametroPrecioPromocion);
+
                 int filasAfectadas = comando.ExecuteNonQuery();
 
                 if (filasAfectadas.Equals(0))
@@ -300,6 +318,9 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     producto.EsActivo = (bool)Lector["EsActivo"];
                     producto.ListaCodigoBarra = new List<CodigoBarraProducto>();
                     producto.ListaImpuestos = new List<CatImpuestos>();
+                    producto.AplicaPromocion = (bool)Lector["AplicaPromocion"];
+                    producto.CantidadPromocion = (Int16)Lector["CantidadPromocion"];
+                    producto.PrecioPromocion = (decimal)Lector["PrecioPromocion"];
                     ListaProductos.Add(producto);
                 }
 
