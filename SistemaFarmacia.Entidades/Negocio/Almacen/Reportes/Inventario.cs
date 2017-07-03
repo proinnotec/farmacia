@@ -15,5 +15,6 @@ namespace SistemaFarmacia.Entidades.Negocio.Almacen.Reportes
         public string ClaveProducto { get; set; }
         public string Producto { get; set; }
         public decimal Existencia { get; set; }
+        public decimal PrecioVenta { get; set; }
     }
 }

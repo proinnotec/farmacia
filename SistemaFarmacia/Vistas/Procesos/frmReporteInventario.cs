@@ -6,12 +6,6 @@ using SistemaFarmacia.Reportes;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Procesos
@@ -60,6 +54,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             rptInventario.SetDataSource(lista);
             rptInventario.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
             rptInventario.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
+            rptInventario.SetParameterValue("VerPrecio", chbValuado.Checked);
 
             string detalle = string.Empty;
 

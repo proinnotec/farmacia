@@ -34,6 +34,7 @@
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.btnImprimir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.ltbResultados = new System.Windows.Forms.ListBox();
+            this.chbValuado = new System.Windows.Forms.CheckBox();
             this.gpbParametros.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +57,7 @@
             // 
             // gpbParametros
             // 
+            this.gpbParametros.Controls.Add(this.chbValuado);
             this.gpbParametros.Controls.Add(this.chbTodos);
             this.gpbParametros.Controls.Add(this.txtBusqueda);
             this.gpbParametros.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -115,6 +117,16 @@
             this.ltbResultados.Visible = false;
             this.ltbResultados.SelectedIndexChanged += new System.EventHandler(this.ltbResultados_SelectedIndexChanged);
             // 
+            // chbValuado
+            // 
+            this.chbValuado.AutoSize = true;
+            this.chbValuado.Location = new System.Drawing.Point(733, 20);
+            this.chbValuado.Name = "chbValuado";
+            this.chbValuado.Size = new System.Drawing.Size(165, 20);
+            this.chbValuado.TabIndex = 30;
+            this.chbValuado.Text = "Ver reporte valuado";
+            this.chbValuado.UseVisualStyleBackColor = true;
+            // 
             // frmReporteInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,5 +153,6 @@
         private System.Windows.Forms.ListBox ltbResultados;
         private System.Windows.Forms.CheckBox chbTodos;
         private System.Windows.Forms.TextBox txtBusqueda;
+        private System.Windows.Forms.CheckBox chbValuado;
     }
 }

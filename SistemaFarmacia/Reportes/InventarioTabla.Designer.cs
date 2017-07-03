@@ -293,6 +293,8 @@ namespace SistemaFarmacia.Reportes {
             
             private global::System.Data.DataColumn columnExistencia;
             
+            private global::System.Data.DataColumn columnPrecioVenta;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public InventarioDataTable() {
@@ -384,6 +386,14 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PrecioVentaColumn {
+                get {
+                    return this.columnPrecioVenta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +429,7 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InventarioRow AddInventarioRow(int IdFamiliaProducto, string Familia, short Prioridad, long IdProducto, string ClaveProducto, string Producto, decimal Existencia) {
+            public InventarioRow AddInventarioRow(int IdFamiliaProducto, string Familia, short Prioridad, long IdProducto, string ClaveProducto, string Producto, decimal Existencia, decimal PrecioVenta) {
                 InventarioRow rowInventarioRow = ((InventarioRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         IdFamiliaProducto,
@@ -428,7 +438,8 @@ namespace SistemaFarmacia.Reportes {
                         IdProducto,
                         ClaveProducto,
                         Producto,
-                        Existencia};
+                        Existencia,
+                        PrecioVenta};
                 rowInventarioRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowInventarioRow);
                 return rowInventarioRow;
@@ -458,6 +469,7 @@ namespace SistemaFarmacia.Reportes {
                 this.columnClaveProducto = base.Columns["ClaveProducto"];
                 this.columnProducto = base.Columns["Producto"];
                 this.columnExistencia = base.Columns["Existencia"];
+                this.columnPrecioVenta = base.Columns["PrecioVenta"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -477,6 +489,8 @@ namespace SistemaFarmacia.Reportes {
                 base.Columns.Add(this.columnProducto);
                 this.columnExistencia = new global::System.Data.DataColumn("Existencia", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExistencia);
+                this.columnPrecioVenta = new global::System.Data.DataColumn("PrecioVenta", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrecioVenta);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -731,6 +745,22 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal PrecioVenta {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableInventario.PrecioVentaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PrecioVenta\' de la tabla \'Inventario\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInventario.PrecioVentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdFamiliaProductoNull() {
                 return this.IsNull(this.tableInventario.IdFamiliaProductoColumn);
             }
@@ -811,6 +841,18 @@ namespace SistemaFarmacia.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetExistenciaNull() {
                 this[this.tableInventario.ExistenciaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPrecioVentaNull() {
+                return this.IsNull(this.tableInventario.PrecioVentaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPrecioVentaNull() {
+                this[this.tableInventario.PrecioVentaColumn] = global::System.Convert.DBNull;
             }
         }
         
