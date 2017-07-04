@@ -66,24 +66,49 @@ namespace SistemaFarmacia.Vistas.Procesos
                 MostrarDialogoResultado(this.Text, "No se encontró información con los parámetros especificados, favor de verificar", string.Empty, false);
                 return;
             }
+                        
+            if (chbTipoMov.Checked)
+            {
+                rptKardexTipoMovimiento rptKardex = new rptKardexTipoMovimiento();
 
-            rptKardex rptKardex = new rptKardex();
+                rptKardex.SetDataSource(lista);
+                rptKardex.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
+                rptKardex.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
 
-            rptKardex.SetDataSource(lista);
-            rptKardex.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
-            rptKardex.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
+                string complementoDetalle = string.Empty;
 
-            string complementoDetalle = string.Empty;
+                if (chbTodos.Checked)
+                    complementoDetalle = "de todos los productos";
 
-            if (chbTodos.Checked)
-                complementoDetalle = "de todos los productos";
+                string detalle = string.Format("Del {0} al {1} agrupado por movimiento  {2}", _fechaInicio.ToShortDateString(), _fechaFin.ToShortDateString(), complementoDetalle);
 
-            string detalle = string.Format("Del {0} al {1} {2}", _fechaInicio.ToShortDateString(), _fechaFin.ToShortDateString(), complementoDetalle);
+                rptKardex.SetParameterValue("DetalleReporte", detalle);
 
-            rptKardex.SetParameterValue("DetalleReporte", detalle);
+                crvKardex.ReportSource = rptKardex;
+                crvKardex.Refresh();
+            }                
 
-            crvKardex.ReportSource = rptKardex;
-            crvKardex.Refresh();
+            else
+            {
+                rptKardex rptKardex = new rptKardex();
+
+                rptKardex.SetDataSource(lista);
+                rptKardex.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
+                rptKardex.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
+
+                string complementoDetalle = string.Empty;
+
+                if (chbTodos.Checked)
+                    complementoDetalle = "de todos los productos";
+
+                string detalle = string.Format("Del {0} al {1} {2}", _fechaInicio.ToShortDateString(), _fechaFin.ToShortDateString(), complementoDetalle);
+
+                rptKardex.SetParameterValue("DetalleReporte", detalle);
+
+                crvKardex.ReportSource = rptKardex;
+                crvKardex.Refresh();
+
+            }
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)

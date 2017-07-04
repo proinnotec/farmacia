@@ -31,6 +31,7 @@
             this.crvKardex = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.btnImprimir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gpbConsulta = new System.Windows.Forms.GroupBox();
+            this.chbTipoMov = new System.Windows.Forms.CheckBox();
             this.chbTodos = new System.Windows.Forms.CheckBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.lblAl = new System.Windows.Forms.Label();
@@ -76,6 +77,7 @@
             // 
             // gpbConsulta
             // 
+            this.gpbConsulta.Controls.Add(this.chbTipoMov);
             this.gpbConsulta.Controls.Add(this.chbTodos);
             this.gpbConsulta.Controls.Add(this.txtBusqueda);
             this.gpbConsulta.Controls.Add(this.lblAl);
@@ -91,12 +93,22 @@
             this.gpbConsulta.TabStop = false;
             this.gpbConsulta.Text = "Parámetros de consulta";
             // 
+            // chbTipoMov
+            // 
+            this.chbTipoMov.AutoSize = true;
+            this.chbTipoMov.Location = new System.Drawing.Point(771, 24);
+            this.chbTipoMov.Name = "chbTipoMov";
+            this.chbTipoMov.Size = new System.Drawing.Size(244, 20);
+            this.chbTipoMov.TabIndex = 28;
+            this.chbTipoMov.Text = "Agrupar por tipo de movimiento";
+            this.chbTipoMov.UseVisualStyleBackColor = true;
+            // 
             // chbTodos
             // 
             this.chbTodos.AutoSize = true;
             this.chbTodos.Checked = true;
             this.chbTodos.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbTodos.Location = new System.Drawing.Point(586, 23);
+            this.chbTodos.Location = new System.Drawing.Point(348, 24);
             this.chbTodos.Name = "chbTodos";
             this.chbTodos.Size = new System.Drawing.Size(192, 20);
             this.chbTodos.TabIndex = 27;
@@ -201,5 +213,6 @@
         private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.ListBox ltbResultados;
         private System.Windows.Forms.CheckBox chbTodos;
+        private System.Windows.Forms.CheckBox chbTipoMov;
     }
 }
