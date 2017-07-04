@@ -4,5 +4,8 @@
 
     public partial class InventarioTabla
     {
+        partial class InventarioDataTable
+        {
+        }
     }
 }

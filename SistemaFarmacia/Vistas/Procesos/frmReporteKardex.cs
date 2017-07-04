@@ -80,7 +80,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                 if (chbTodos.Checked)
                     complementoDetalle = "de todos los productos";
 
-                string detalle = string.Format("Del {0} al {1} agrupado por movimiento  {2}", _fechaInicio.ToShortDateString(), _fechaFin.ToShortDateString(), complementoDetalle);
+                string detalle = string.Format("Del {0} al {1} agrupado por movimiento {2}", _fechaInicio.ToShortDateString(), _fechaFin.ToShortDateString(), complementoDetalle);
 
                 rptKardex.SetParameterValue("DetalleReporte", detalle);
 

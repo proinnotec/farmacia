@@ -50,6 +50,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                     inventario.ClaveProducto = lector["ClaveProducto"].ToString();
                     inventario.Existencia = (decimal)lector["Existencia"];
                     inventario.PrecioVenta = (decimal)lector["PrecioVenta"];
+                    inventario.UPrecioEntrada = (decimal)lector["UPrecioEntrada"];
 
                     ListaInventario.Add(inventario);
                 }

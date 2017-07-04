@@ -58,6 +58,11 @@ namespace SistemaFarmacia.Vistas.Procesos
 
             string detalle = string.Empty;
 
+            if (chbValuado.Checked)
+                detalle = "Inventario Valuado";
+            else
+                detalle = "Inventario No valuado";
+
             rptInventario.SetParameterValue("DetalleReporte", detalle);
 
             crvInventario.ReportSource = rptInventario;
