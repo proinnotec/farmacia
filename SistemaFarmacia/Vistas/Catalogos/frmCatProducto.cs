@@ -310,15 +310,21 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             if (_enumeradoAccion == EnumeradoAccion.Alta)
             {
-                _frmCatProductoController.GuardarProducto(producto);
-                this.DialogResult = DialogResult.Yes;               
+                if (_frmCatProductoController.GuardarProducto(producto))
+                {
+                    this.DialogResult = DialogResult.Yes;
+                }    
+                            
                 Cursor.Current = Cursors.Default;
             }
 
             if (_enumeradoAccion == EnumeradoAccion.Edicion)
             {
-                _frmCatProductoController.EditarProducto(producto);
-                this.DialogResult = DialogResult.Yes;
+                if (_frmCatProductoController.EditarProducto(producto))
+                {
+                    this.DialogResult = DialogResult.Yes;
+                }
+                
                 Cursor.Current = Cursors.Default;
             }
             

@@ -72,11 +72,11 @@ namespace SistemaFarmacia.Controladores.Catalogos
             }
         }
 
-        public void EditarProducto(CatProducto producto)
+        public bool EditarProducto(CatProducto producto)
         {
             if (!EsCodigoBarraValido(producto, false))
             {
-                return;
+                return false;
             }
 
             ExcepcionPersonalizada excepcionEditarProducto = _servicioCatalogoProductos.EditarProducto(producto);
@@ -84,18 +84,20 @@ namespace SistemaFarmacia.Controladores.Catalogos
             {
                 _vista.MostrarDialogoResultado(_vista.Text, "El producto se editó correctamente.", string.Empty, true);
                 _vista.Close();
+                return true;
             }
             else
             {
                 _vista.MostrarDialogoResultado(_vista.Text, excepcionEditarProducto.Message.ToString(), excepcionEditarProducto.InnerException.ToString(), false);
+                return false;
             }
         }
 
-        public void GuardarProducto(CatProducto producto)
+        public bool GuardarProducto(CatProducto producto)
         {
             if (!EsCodigoBarraValido(producto, true))
             {
-                return;
+                return false;
             }
 
             ExcepcionPersonalizada excepcionGuardarProducto = _servicioCatalogoProductos.GuardarProducto(producto);
@@ -103,10 +105,12 @@ namespace SistemaFarmacia.Controladores.Catalogos
             {
                 _vista.MostrarDialogoResultado(_vista.Text, "El producto se guardó correctamente.", string.Empty, true);
                 _vista.Close();
+                return true;
             }
             else
             {
                 _vista.MostrarDialogoResultado(_vista.Text, excepcionGuardarProducto.Message.ToString(), excepcionGuardarProducto.InnerException.ToString(), false);
+                return false;
             }
         }
     }
