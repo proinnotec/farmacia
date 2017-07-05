@@ -57,9 +57,11 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
-
-                conexion.Dispose();
+                    conexion.Dispose();
+                }
+                    
             }
         }
 
@@ -106,8 +108,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
-                conexion.Dispose();
+                    conexion.Dispose();
+                }
             }
         }
 
@@ -157,8 +161,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
-                conexion.Dispose();
+                    conexion.Dispose();
+                }
             }
         }
 
@@ -205,8 +211,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
-                conexion.Dispose();
+                    conexion.Dispose();
+                }
             }
         }
 
@@ -259,8 +267,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
-                conexion.Dispose();
+                    conexion.Dispose();
+                }
             }
         }
 
@@ -306,9 +316,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
-
-                conexion.Dispose();
+                    conexion.Dispose();
+                }
             }
         }
         
@@ -355,8 +366,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
             finally
             {
                 if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
                     conexion.Close();
-                conexion.Dispose();
+                    conexion.Dispose();
+                }
             }
         }
 

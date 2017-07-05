@@ -1,5 +1,7 @@
 ﻿using ProInnotec.Core.Entidades.ManejoExcepciones;
+using SistemaFarmacia.Entidades.Negocio;
 using SistemaFarmacia.Entidades.Negocio.Catalogos;
+using SistemaFarmacia.Servicios.Negocio;
 using SistemaFarmacia.Servicios.Negocio.Catalogos;
 using SistemaFarmacia.Vistas.Catalogos;
 using System;
@@ -12,12 +14,16 @@ namespace SistemaFarmacia.Controladores.Catalogos
 {
     public class ConfiguraDescuentoController: BaseController
     {
-        ServicioCatalogoDescuentos _servicioCatalogoDescuentos;
+        private ServicioCatalogoDescuentos _servicioCatalogoDescuentos;
+        private ServicioFuncionesGenerales _servicioFuncionesGenerales;
+
         frmConfiguraDescuentos _vista;
 
         public ConfiguraDescuentoController(frmConfiguraDescuentos vista)
         {
             _servicioCatalogoDescuentos = new ServicioCatalogoDescuentos(BaseDeDatosTienda);
+            _servicioFuncionesGenerales = new ServicioFuncionesGenerales(BaseDeDatosTienda);
+
             _vista = vista;
         }
 
@@ -36,6 +42,24 @@ namespace SistemaFarmacia.Controladores.Catalogos
 
             _vista.AsignarListaDescuentos(lista);
             _vista.ReestablecerDatos();
+        }
+
+        public void ConsultarDiasSemana()
+        {
+            ExcepcionPersonalizada resultado = _servicioFuncionesGenerales.ObtenerDiasSemana();
+
+            if (resultado != null)
+            {
+                string mensaje = "Hubo un error al intentar obtener la lista de los días de la semana.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+
+                return;
+            }
+
+            List<DiasSemana> lista = _servicioFuncionesGenerales.ListaDiasSemana;
+
+            _vista.LlenarDatosComboDias(lista);
+
         }
 
         public void GuardarDescuentoConfiguracion(ConfiguracionDescuento configuracion)
