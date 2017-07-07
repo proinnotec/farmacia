@@ -110,6 +110,7 @@
     <Compile Include="Controladores\Procesos\InventariosController.cs" />
     <Compile Include="Controladores\Procesos\KardexController.cs" />
     <Compile Include="Controladores\Procesos\ListadoAjustesController.cs" />
+    <Compile Include="Controladores\Ventas\CortesCajaController.cs" />
     <Compile Include="Controladores\Ventas\frmVentaController.cs" />
     <Compile Include="ControlesPersonalizados\BotonPersonalizado.cs">
       <SubType>Component</SubType>
@@ -313,6 +314,12 @@
     <Compile Include="Vistas\Procesos\frmReporteKardex.Designer.cs">
       <DependentUpon>frmReporteKardex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Ventas\frmCortesCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Ventas\frmCortesCaja.Designer.cs">
+      <DependentUpon>frmCortesCaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Ventas\frmDialogoProductoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Procesos\frmReporteKardex.resx">
       <DependentUpon>frmReporteKardex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Ventas\frmCortesCaja.resx">
+      <DependentUpon>frmCortesCaja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmDialogoProductoVenta.resx">
       <DependentUpon>frmDialogoProductoVenta.cs</DependentUpon>
