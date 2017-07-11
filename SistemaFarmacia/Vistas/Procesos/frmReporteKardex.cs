@@ -86,6 +86,8 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                 crvKardex.ReportSource = rptKardex;
                 crvKardex.Refresh();
+
+                Cursor.Current = Cursors.Default;
             }                
 
             else
@@ -125,6 +127,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                 return;
             }
 
+            Cursor.Current = Cursors.WaitCursor;
             _kardexController.ConsultaKardex(_fechaInicio, _fechaFin, _idProducto);
         }
 

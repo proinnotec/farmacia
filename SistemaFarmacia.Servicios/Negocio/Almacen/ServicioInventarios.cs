@@ -20,7 +20,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
             _baseDatos = baseDatos;
         }
 
-        public ExcepcionPersonalizada ConsultaInventario(int idProducto)
+        public ExcepcionPersonalizada ConsultaInventario(int idProducto, bool esValuado)
         {
             IDbConnection conexion = null;
             ListaInventario = new List<Inventario>();
@@ -35,6 +35,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                     IDataParameter parametroIdProducto = _baseDatos.CrearParametro("@IdProducto", idProducto, ParameterDirection.Input);
                     comando.Parameters.Add(parametroIdProducto);
                 }
+
+                IDataParameter parametroEsvaluado = _baseDatos.CrearParametro("@EsValuado", esValuado, ParameterDirection.Input);
+                comando.Parameters.Add(parametroEsvaluado);
+
 
                 IDataReader lector = comando.ExecuteReader();
 

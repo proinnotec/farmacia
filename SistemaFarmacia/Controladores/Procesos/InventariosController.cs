@@ -25,10 +25,10 @@ namespace SistemaFarmacia.Controladores.Procesos
             _servicioInventarios = new ServicioInventarios(BaseDeDatosTienda);
         }
 
-        public void ConsultaInventario(int idProducto)
+        public void ConsultaInventario(int idProducto, bool esValuado)
         {
             string mensaje = string.Empty;
-            ExcepcionPersonalizada resultado = _servicioInventarios.ConsultaInventario(idProducto);
+            ExcepcionPersonalizada resultado = _servicioInventarios.ConsultaInventario(idProducto, esValuado);
 
             if (resultado != null)
             {

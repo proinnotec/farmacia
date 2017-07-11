@@ -50,11 +50,11 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                     KardexEntidad kardex = new KardexEntidad();
 
                     kardex.TipoMovimiento = lector["TipoMovimiento"].ToString();
-                    kardex.IdEntradaProducto = (int)lector["IdEntradaProducto"];
+                    kardex.IdRegistro = (Int64)lector["IdRegistro"];
                     kardex.Fecha = (DateTime)lector["Fecha"];
                     kardex.IdUsuarioKardex = (int)lector["IdUsuario"];
                     kardex.UsuarioKardex = lector["Usuario"].ToString();
-                    kardex.IdEntradaProductoDetalle = (int)lector["IdEntradaProductoDetalle"];
+                    kardex.IdRegistroDetalle = (Int64)lector["IdRegistroDetalle"];
                     kardex.DescripcionRegistro = lector["DescripcionRegistro"].ToString();
                     kardex.Cantidad = (decimal)lector["Cantidad"];
                     kardex.IdProducto = (int)lector["IdProducto"];
@@ -63,7 +63,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Almacen
                     kardex.IdFamiliaProducto = (int)lector["IdFamiliaProducto"];
                     kardex.Familia = lector["Familia"].ToString();
                     kardex.Prioridad = (int)lector["Prioridad"];
-                    kardex.PrecioEntrada = (decimal)lector["PrecioEntrada"];
+                    kardex.PrecioRegistro = (decimal)lector["PrecioRegistro"];
                     kardex.PrecioVenta = (decimal)lector["PrecioVenta"];
                     kardex.IdTipoAjuste = (int)lector["IdTipoAjuste"];
                     kardex.TipoAjuste = lector["TipoAjuste"].ToString();

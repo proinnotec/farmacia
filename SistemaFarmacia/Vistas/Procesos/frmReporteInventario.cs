@@ -68,6 +68,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             crvInventario.ReportSource = rptInventario;
             crvInventario.Refresh();
 
+            Cursor.Current = Cursors.Default;
         }
 
         public void LlenarListaProductos()
@@ -153,14 +154,16 @@ namespace SistemaFarmacia.Vistas.Procesos
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
-        {
+        {           
             if (!chbTodos.Checked && _idProducto == 0)
             {
                 MostrarDialogoResultado(this.Text, "Debe seleccionar un producto para consultar el reporte", string.Empty, false);
                 return;
             }
 
-            _inventariosController.ConsultaInventario(_idProducto);
+            Cursor.Current = Cursors.WaitCursor;
+            _inventariosController.ConsultaInventario(_idProducto, chbValuado.Checked);
+
         }
     }
 }

@@ -281,7 +281,7 @@ namespace SistemaFarmacia.Reportes {
             
             private global::System.Data.DataColumn columnTipoMovimiento;
             
-            private global::System.Data.DataColumn columnIdEntradaProducto;
+            private global::System.Data.DataColumn columnIdRegistro;
             
             private global::System.Data.DataColumn columnFecha;
             
@@ -289,7 +289,7 @@ namespace SistemaFarmacia.Reportes {
             
             private global::System.Data.DataColumn columnUsuarioKardex;
             
-            private global::System.Data.DataColumn columnIdEntradaProductoDetalle;
+            private global::System.Data.DataColumn columnIdRegistroDetalle;
             
             private global::System.Data.DataColumn columnDescripcionRegistro;
             
@@ -307,7 +307,7 @@ namespace SistemaFarmacia.Reportes {
             
             private global::System.Data.DataColumn columnPrioridad;
             
-            private global::System.Data.DataColumn columnPrecioEntrada;
+            private global::System.Data.DataColumn columnPrecioRegistro;
             
             private global::System.Data.DataColumn columnPrecioVenta;
             
@@ -358,9 +358,9 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdEntradaProductoColumn {
+            public global::System.Data.DataColumn IdRegistroColumn {
                 get {
-                    return this.columnIdEntradaProducto;
+                    return this.columnIdRegistro;
                 }
             }
             
@@ -390,9 +390,9 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdEntradaProductoDetalleColumn {
+            public global::System.Data.DataColumn IdRegistroDetalleColumn {
                 get {
-                    return this.columnIdEntradaProductoDetalle;
+                    return this.columnIdRegistroDetalle;
                 }
             }
             
@@ -462,9 +462,9 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PrecioEntradaColumn {
+            public global::System.Data.DataColumn PrecioRegistroColumn {
                 get {
-                    return this.columnPrecioEntrada;
+                    return this.columnPrecioRegistro;
                 }
             }
             
@@ -531,11 +531,11 @@ namespace SistemaFarmacia.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public KardexRow AddKardexRow(
                         string TipoMovimiento, 
-                        long IdEntradaProducto, 
+                        long IdRegistro, 
                         System.DateTime Fecha, 
                         int IdUsuarioKardex, 
                         string UsuarioKardex, 
-                        long IdEntradaProductoDetalle, 
+                        long IdRegistroDetalle, 
                         string DescripcionRegistro, 
                         decimal Cantidad, 
                         int IdProducto, 
@@ -544,18 +544,18 @@ namespace SistemaFarmacia.Reportes {
                         int IdFamiliaProducto, 
                         string Familia, 
                         short Prioridad, 
-                        decimal PrecioEntrada, 
+                        decimal PrecioRegistro, 
                         decimal PrecioVenta, 
                         int IdTipoAjuste, 
                         string TipoAjuste) {
                 KardexRow rowKardexRow = ((KardexRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TipoMovimiento,
-                        IdEntradaProducto,
+                        IdRegistro,
                         Fecha,
                         IdUsuarioKardex,
                         UsuarioKardex,
-                        IdEntradaProductoDetalle,
+                        IdRegistroDetalle,
                         DescripcionRegistro,
                         Cantidad,
                         IdProducto,
@@ -564,7 +564,7 @@ namespace SistemaFarmacia.Reportes {
                         IdFamiliaProducto,
                         Familia,
                         Prioridad,
-                        PrecioEntrada,
+                        PrecioRegistro,
                         PrecioVenta,
                         IdTipoAjuste,
                         TipoAjuste};
@@ -591,11 +591,11 @@ namespace SistemaFarmacia.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnTipoMovimiento = base.Columns["TipoMovimiento"];
-                this.columnIdEntradaProducto = base.Columns["IdEntradaProducto"];
+                this.columnIdRegistro = base.Columns["IdRegistro"];
                 this.columnFecha = base.Columns["Fecha"];
                 this.columnIdUsuarioKardex = base.Columns["IdUsuarioKardex"];
                 this.columnUsuarioKardex = base.Columns["UsuarioKardex"];
-                this.columnIdEntradaProductoDetalle = base.Columns["IdEntradaProductoDetalle"];
+                this.columnIdRegistroDetalle = base.Columns["IdRegistroDetalle"];
                 this.columnDescripcionRegistro = base.Columns["DescripcionRegistro"];
                 this.columnCantidad = base.Columns["Cantidad"];
                 this.columnIdProducto = base.Columns["IdProducto"];
@@ -604,7 +604,7 @@ namespace SistemaFarmacia.Reportes {
                 this.columnIdFamiliaProducto = base.Columns["IdFamiliaProducto"];
                 this.columnFamilia = base.Columns["Familia"];
                 this.columnPrioridad = base.Columns["Prioridad"];
-                this.columnPrecioEntrada = base.Columns["PrecioEntrada"];
+                this.columnPrecioRegistro = base.Columns["PrecioRegistro"];
                 this.columnPrecioVenta = base.Columns["PrecioVenta"];
                 this.columnIdTipoAjuste = base.Columns["IdTipoAjuste"];
                 this.columnTipoAjuste = base.Columns["TipoAjuste"];
@@ -615,16 +615,16 @@ namespace SistemaFarmacia.Reportes {
             private void InitClass() {
                 this.columnTipoMovimiento = new global::System.Data.DataColumn("TipoMovimiento", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipoMovimiento);
-                this.columnIdEntradaProducto = new global::System.Data.DataColumn("IdEntradaProducto", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdEntradaProducto);
+                this.columnIdRegistro = new global::System.Data.DataColumn("IdRegistro", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdRegistro);
                 this.columnFecha = new global::System.Data.DataColumn("Fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFecha);
                 this.columnIdUsuarioKardex = new global::System.Data.DataColumn("IdUsuarioKardex", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdUsuarioKardex);
                 this.columnUsuarioKardex = new global::System.Data.DataColumn("UsuarioKardex", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUsuarioKardex);
-                this.columnIdEntradaProductoDetalle = new global::System.Data.DataColumn("IdEntradaProductoDetalle", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdEntradaProductoDetalle);
+                this.columnIdRegistroDetalle = new global::System.Data.DataColumn("IdRegistroDetalle", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdRegistroDetalle);
                 this.columnDescripcionRegistro = new global::System.Data.DataColumn("DescripcionRegistro", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcionRegistro);
                 this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -641,8 +641,8 @@ namespace SistemaFarmacia.Reportes {
                 base.Columns.Add(this.columnFamilia);
                 this.columnPrioridad = new global::System.Data.DataColumn("Prioridad", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrioridad);
-                this.columnPrecioEntrada = new global::System.Data.DataColumn("PrecioEntrada", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPrecioEntrada);
+                this.columnPrecioRegistro = new global::System.Data.DataColumn("PrecioRegistro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrecioRegistro);
                 this.columnPrecioVenta = new global::System.Data.DataColumn("PrecioVenta", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrecioVenta);
                 this.columnIdTipoAjuste = new global::System.Data.DataColumn("IdTipoAjuste", typeof(int), null, global::System.Data.MappingType.Element);
@@ -809,17 +809,17 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long IdEntradaProducto {
+            public long IdRegistro {
                 get {
                     try {
-                        return ((long)(this[this.tableKardex.IdEntradaProductoColumn]));
+                        return ((long)(this[this.tableKardex.IdRegistroColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdEntradaProducto\' de la tabla \'Kardex\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdRegistro\' de la tabla \'Kardex\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKardex.IdEntradaProductoColumn] = value;
+                    this[this.tableKardex.IdRegistroColumn] = value;
                 }
             }
             
@@ -873,18 +873,17 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long IdEntradaProductoDetalle {
+            public long IdRegistroDetalle {
                 get {
                     try {
-                        return ((long)(this[this.tableKardex.IdEntradaProductoDetalleColumn]));
+                        return ((long)(this[this.tableKardex.IdRegistroDetalleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdEntradaProductoDetalle\' de la tabla \'Kardex\' es DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdRegistroDetalle\' de la tabla \'Kardex\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKardex.IdEntradaProductoDetalleColumn] = value;
+                    this[this.tableKardex.IdRegistroDetalleColumn] = value;
                 }
             }
             
@@ -1018,17 +1017,17 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal PrecioEntrada {
+            public decimal PrecioRegistro {
                 get {
                     try {
-                        return ((decimal)(this[this.tableKardex.PrecioEntradaColumn]));
+                        return ((decimal)(this[this.tableKardex.PrecioRegistroColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PrecioEntrada\' de la tabla \'Kardex\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PrecioRegistro\' de la tabla \'Kardex\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKardex.PrecioEntradaColumn] = value;
+                    this[this.tableKardex.PrecioRegistroColumn] = value;
                 }
             }
             
@@ -1094,14 +1093,14 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIdEntradaProductoNull() {
-                return this.IsNull(this.tableKardex.IdEntradaProductoColumn);
+            public bool IsIdRegistroNull() {
+                return this.IsNull(this.tableKardex.IdRegistroColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIdEntradaProductoNull() {
-                this[this.tableKardex.IdEntradaProductoColumn] = global::System.Convert.DBNull;
+            public void SetIdRegistroNull() {
+                this[this.tableKardex.IdRegistroColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1142,14 +1141,14 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIdEntradaProductoDetalleNull() {
-                return this.IsNull(this.tableKardex.IdEntradaProductoDetalleColumn);
+            public bool IsIdRegistroDetalleNull() {
+                return this.IsNull(this.tableKardex.IdRegistroDetalleColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIdEntradaProductoDetalleNull() {
-                this[this.tableKardex.IdEntradaProductoDetalleColumn] = global::System.Convert.DBNull;
+            public void SetIdRegistroDetalleNull() {
+                this[this.tableKardex.IdRegistroDetalleColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1250,14 +1249,14 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPrecioEntradaNull() {
-                return this.IsNull(this.tableKardex.PrecioEntradaColumn);
+            public bool IsPrecioRegistroNull() {
+                return this.IsNull(this.tableKardex.PrecioRegistroColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPrecioEntradaNull() {
-                this[this.tableKardex.PrecioEntradaColumn] = global::System.Convert.DBNull;
+            public void SetPrecioRegistroNull() {
+                this[this.tableKardex.PrecioRegistroColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

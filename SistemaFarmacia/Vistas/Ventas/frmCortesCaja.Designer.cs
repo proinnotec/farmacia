@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridCortes = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
-            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.lblAnio = new System.Windows.Forms.Label();
-            this.nudAnio = new System.Windows.Forms.NumericUpDown();
             this.IdCorteCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorteAbierto = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.lblAnio = new System.Windows.Forms.Label();
+            this.nudAnio = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.gridCortes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).BeginInit();
             this.SuspendLayout();
@@ -51,20 +51,20 @@
             this.gridCortes.AllowUserToAddRows = false;
             this.gridCortes.AllowUserToDeleteRows = false;
             this.gridCortes.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.gridCortes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridCortes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridCortes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridCortes.BackgroundColor = System.Drawing.Color.White;
             this.gridCortes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridCortes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridCortes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridCortes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridCortes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCortes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdCorteCaja,
@@ -78,16 +78,61 @@
             this.gridCortes.Name = "gridCortes";
             this.gridCortes.ReadOnly = true;
             this.gridCortes.RowHeadersVisible = false;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridCortes.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridCortes.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridCortes.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridCortes.RowTemplate.Height = 20;
             this.gridCortes.RowTemplate.ReadOnly = true;
             this.gridCortes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridCortes.Size = new System.Drawing.Size(621, 319);
             this.gridCortes.TabIndex = 7;
+            // 
+            // IdCorteCaja
+            // 
+            this.IdCorteCaja.DataPropertyName = "IdCorteCaja";
+            this.IdCorteCaja.FillWeight = 58.31391F;
+            this.IdCorteCaja.HeaderText = "Corte";
+            this.IdCorteCaja.Name = "IdCorteCaja";
+            this.IdCorteCaja.ReadOnly = true;
+            // 
+            // Fecha
+            // 
+            this.Fecha.DataPropertyName = "Fecha";
+            this.Fecha.FillWeight = 157.4638F;
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            // 
+            // IdUsuario
+            // 
+            this.IdUsuario.DataPropertyName = "IdUsuario";
+            this.IdUsuario.FillWeight = 103.1952F;
+            this.IdUsuario.HeaderText = "IdUsuario";
+            this.IdUsuario.Name = "IdUsuario";
+            this.IdUsuario.ReadOnly = true;
+            this.IdUsuario.Visible = false;
+            // 
+            // NombreUsuario
+            // 
+            this.NombreUsuario.DataPropertyName = "NombreUsuario";
+            this.NombreUsuario.FillWeight = 114.7338F;
+            this.NombreUsuario.HeaderText = "Usuario";
+            this.NombreUsuario.Name = "NombreUsuario";
+            this.NombreUsuario.ReadOnly = true;
+            // 
+            // CorteAbierto
+            // 
+            this.CorteAbierto.DataPropertyName = "CorteAbierto";
+            this.CorteAbierto.FalseValue = "0";
+            this.CorteAbierto.FillWeight = 52.41645F;
+            this.CorteAbierto.HeaderText = "Abierto";
+            this.CorteAbierto.Name = "CorteAbierto";
+            this.CorteAbierto.ReadOnly = true;
+            this.CorteAbierto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CorteAbierto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.CorteAbierto.TrueValue = "1";
             // 
             // btnRecargar
             // 
@@ -165,51 +210,6 @@
             0});
             this.nudAnio.ValueChanged += new System.EventHandler(this.nudAnio_ValueChanged);
             // 
-            // IdCorteCaja
-            // 
-            this.IdCorteCaja.DataPropertyName = "IdCorteCaja";
-            this.IdCorteCaja.FillWeight = 58.31391F;
-            this.IdCorteCaja.HeaderText = "Corte";
-            this.IdCorteCaja.Name = "IdCorteCaja";
-            this.IdCorteCaja.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.DataPropertyName = "Fecha";
-            this.Fecha.FillWeight = 157.4638F;
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            // 
-            // IdUsuario
-            // 
-            this.IdUsuario.DataPropertyName = "IdUsuario";
-            this.IdUsuario.FillWeight = 103.1952F;
-            this.IdUsuario.HeaderText = "IdUsuario";
-            this.IdUsuario.Name = "IdUsuario";
-            this.IdUsuario.ReadOnly = true;
-            this.IdUsuario.Visible = false;
-            // 
-            // NombreUsuario
-            // 
-            this.NombreUsuario.DataPropertyName = "NombreUsuario";
-            this.NombreUsuario.FillWeight = 114.7338F;
-            this.NombreUsuario.HeaderText = "Usuario";
-            this.NombreUsuario.Name = "NombreUsuario";
-            this.NombreUsuario.ReadOnly = true;
-            // 
-            // CorteAbierto
-            // 
-            this.CorteAbierto.DataPropertyName = "CorteAbierto";
-            this.CorteAbierto.FalseValue = "0";
-            this.CorteAbierto.FillWeight = 52.41645F;
-            this.CorteAbierto.HeaderText = "Abierto";
-            this.CorteAbierto.Name = "CorteAbierto";
-            this.CorteAbierto.ReadOnly = true;
-            this.CorteAbierto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CorteAbierto.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.CorteAbierto.TrueValue = "1";
-            // 
             // frmCortesCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,7 +222,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gridCortes);
             this.Name = "frmCortesCaja";
-            this.Text = "frmCortesCaja";
+            this.Text = "Cortes de Caja";
             this.Load += new System.EventHandler(this.frmCortesCaja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridCortes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).EndInit();
