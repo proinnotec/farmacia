@@ -73,6 +73,7 @@
     <Compile Include="Negocio\Venta.cs" />
     <Compile Include="Negocio\VentaDetalle.cs" />
     <Compile Include="Negocio\Ventas\CorteCaja.cs" />
+    <Compile Include="Negocio\Ventas\CorteCajaReporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Negocio\Usuario.cs" />
   </ItemGroup>

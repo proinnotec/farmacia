@@ -122,6 +122,11 @@
     <Compile Include="ControlesPersonalizados\GridPersonalizado.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\CorteCajaTabla.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CorteCajaTabla.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\EntradaProducto.cs">
       <DependentUpon>EntradaProducto.xsd</DependentUpon>
     </Compile>
@@ -145,6 +150,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Kardex.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\rptCortesCaja.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCortesCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\rptEntradasProductos.cs">
       <AutoGen>True</AutoGen>
@@ -349,6 +360,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\rptCortesCaja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCortesCaja.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptEntradasProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEntradasProductos.cs</LastGenOutput>
@@ -477,6 +492,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reportes\CorteCajaTabla.xsc">
+      <DependentUpon>CorteCajaTabla.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\CorteCajaTabla.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CorteCajaTabla.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\CorteCajaTabla.xss">
+      <DependentUpon>CorteCajaTabla.xsd</DependentUpon>
+    </None>
     <None Include="Reportes\EntradaProducto.xsc">
       <DependentUpon>EntradaProducto.xsd</DependentUpon>
     </None>

@@ -52,7 +52,7 @@
             this.crvReporte.ShowCopyButton = false;
             this.crvReporte.ShowParameterPanelButton = false;
             this.crvReporte.ShowRefreshButton = false;
-            this.crvReporte.Size = new System.Drawing.Size(999, 508);
+            this.crvReporte.Size = new System.Drawing.Size(1082, 511);
             this.crvReporte.TabIndex = 1;
             // 
             // gpbConsulta
@@ -67,7 +67,7 @@
             this.gpbConsulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbConsulta.Location = new System.Drawing.Point(0, 0);
             this.gpbConsulta.Name = "gpbConsulta";
-            this.gpbConsulta.Size = new System.Drawing.Size(999, 82);
+            this.gpbConsulta.Size = new System.Drawing.Size(1082, 82);
             this.gpbConsulta.TabIndex = 0;
             this.gpbConsulta.TabStop = false;
             this.gpbConsulta.Text = "Parámetros de Consulta";
@@ -80,11 +80,12 @@
             this.btnImprimir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(943, 12);
+            this.btnImprimir.Location = new System.Drawing.Point(1026, 12);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(50, 50);
             this.btnImprimir.TabIndex = 24;
             this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // cmbVendedores
             // 
@@ -131,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 593);
+            this.ClientSize = new System.Drawing.Size(1084, 596);
             this.Controls.Add(this.crvReporte);
             this.Controls.Add(this.gpbConsulta);
             this.Name = "frmRepCortesCaja";

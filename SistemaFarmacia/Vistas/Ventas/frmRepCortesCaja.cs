@@ -1,6 +1,8 @@
 ﻿using SistemaFarmacia.Controladores.Ventas;
 using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Entidades.Negocio;
+using SistemaFarmacia.Entidades.Negocio.Ventas;
+using SistemaFarmacia.Reportes;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
@@ -16,13 +18,13 @@ namespace SistemaFarmacia.Vistas.Ventas
 {
     public partial class frmRepCortesCaja : frmBase
     {
-        private ContextoAplicacion _contextoAplicacion;
+        private ContextoAplicacion _contexto;
         private CortesCajaRepController _cortesCajaRepController;
 
         public frmRepCortesCaja(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
-            _contextoAplicacion = contextoAplicacion;
+            _contexto = contextoAplicacion;
             _cortesCajaRepController = new CortesCajaRepController(this);
         }
 
@@ -47,7 +49,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             cmbVendedores.DataSource = lista;
             cmbVendedores.DisplayMember = "NombreUsuario";
             cmbVendedores.ValueMember = "IdUsuario";
-            cmbVendedores.SelectedValue = -1;
+            cmbVendedores.SelectedValue = -1; 
         }
 
         private void chbTodos_CheckedChanged(object sender, EventArgs e)
@@ -58,6 +60,62 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void dtpFecha_ValueChanged(object sender, EventArgs e)
         {
             _cortesCajaRepController.ObtenerListaVendedores(dtpFecha.Value);
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            DateTime fecha;
+            int idVendedor = 0;
+
+            fecha = dtpFecha.Value;
+
+            if (!chbTodos.Checked)
+            {
+                if(cmbVendedores.SelectedValue == null )
+                {
+                    MostrarDialogoResultado(this.Text, "Si la casilla de ver todos los vendedores no está activa, debe seleccionar un vendedor, favor de verificar.", string.Empty, false);
+                    return;
+                }
+
+                idVendedor = (int)cmbVendedores.SelectedValue;
+            }                
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            _cortesCajaRepController.GenerarCortesCajaReporte(fecha, idVendedor);
+        }
+
+        public void LlenarDatosReporte(List<CorteCajaReporte> lista)
+        {
+            if(lista.Count <= 0)
+            {
+                MostrarDialogoResultado(this.Text, "No se encontró información con estos parámetros de búsqueda, favor de verificar.", string.Empty, false);
+                return;
+            }
+
+            rptCortesCaja reporte = new rptCortesCaja();
+
+            reporte.SetDataSource(lista);
+            reporte.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
+            reporte.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
+
+            string complementoDetalle = string.Empty;
+
+            if (chbTodos.Checked)
+                complementoDetalle = "de todos los vendedores";
+
+            else
+                complementoDetalle = "de un solo vendedor";
+
+            string detalle = string.Format("De la fecha {0} {1}", dtpFecha.Value.ToShortDateString(), complementoDetalle);
+
+            reporte.SetParameterValue("DetalleReporte", detalle);
+
+
+            crvReporte.ReportSource = reporte;
+            crvReporte.Refresh();
+
+            Cursor.Current = Cursors.Default;
         }
     }
 }

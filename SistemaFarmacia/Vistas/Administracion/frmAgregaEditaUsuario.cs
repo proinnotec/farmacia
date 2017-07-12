@@ -32,6 +32,8 @@ namespace SistemaFarmacia.Vistas.Administracion
             _usuarioGuardar = usuario;
             _accion = accion;
 
+            txtNombre.Select();
+
             this.Text = "Alta de Usuario";
 
             if (_accion == EnumeradoAccion.Edicion)
@@ -81,6 +83,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             txtUsuario.Text = _usuarioGuardar.NombreUsuario;
             txtPass.Text = _usuarioGuardar.UserPassword;
 
+            txtUsuario.Enabled = false;
         }
 
         private void GuardarUsuario()
