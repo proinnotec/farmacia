@@ -16,6 +16,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
         private IBaseDeDatos _baseDatos;
         public List<CorteCaja> ListaCortesCaja { get; set; }
         public List<Usuario> ListaVendedores { get; set; }
+        public List<CorteCajaReporte> ListaCorteCajaReporte { get; set; }
 
         public ServicioCortesCaja(IBaseDeDatos baseDatos)
         {
@@ -148,6 +149,65 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener el listado de vendedores.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
+                    conexion.Close();
+                    conexion.Dispose();
+                }
+            }
+        }
+
+        public ExcepcionPersonalizada GenerarCortesCajaReporte(DateTime fecha, int idVendedor)
+        {
+            ListaCorteCajaReporte = new List<CorteCajaReporte>();
+
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_CorteCajaReporte", conexion);
+
+                IDataParameter parametroFechaInicio = _baseDatos.CrearParametro("@Fecha", fecha, ParameterDirection.Input);
+                comando.Parameters.Add(parametroFechaInicio);
+
+                if( idVendedor > 0 )
+                {
+                    IDataParameter parametroVendedor = _baseDatos.CrearParametro("@IdVendedor", idVendedor, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroVendedor);
+                }
+
+                IDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    CorteCajaReporte corteCajaReporte = new CorteCajaReporte();
+
+                    corteCajaReporte.IdVenta = (Int64)lector["IdVenta"];
+                    corteCajaReporte.FechaVenta = (DateTime)lector["FechaVenta"];
+                    corteCajaReporte.Total = (decimal)lector["Total"];
+                    corteCajaReporte.IdVendedor = (int)lector["IdVendedor"];
+                    corteCajaReporte.Vendedor = lector["Vendedor"].ToString();
+                    corteCajaReporte.IdCorteCaja = (int)lector["IdCorteCaja"];
+                    corteCajaReporte.FechaCorte = (DateTime)lector["FechaCorte"];
+                    corteCajaReporte.IdVendedorCorte =(int)lector["IdVendedorCorte"];
+                    corteCajaReporte.VendedorCorte = lector["VendedorCorte"].ToString();
+                    corteCajaReporte.Ticket = (Int64)lector["Ticket"];
+
+                    ListaCorteCajaReporte.Add(corteCajaReporte);
+                }
+
+                lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener la información para generar el reporte.", excepcionCapturada);
                 return excepcion;
             }
             finally
