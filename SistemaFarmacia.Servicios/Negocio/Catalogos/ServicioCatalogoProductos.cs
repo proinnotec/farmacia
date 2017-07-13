@@ -366,7 +366,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         {
             ComplementoVenta = new ComplementoVenta();
             ComplementoVenta.ListaProductoVentaImpuesto = new List<ProductoVentaImpuesto>();
-            ComplementoVenta.ListaProductoVentaProducto = new List<ProductoVentaProducto>();
+            ComplementoVenta.ListaProductos = new List<CatProducto>();
             IDbConnection conexion = null;
 
             try
@@ -378,11 +378,14 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
 
                 while (Lector.Read())
                 {
-                    ProductoVentaProducto producto = new ProductoVentaProducto();
+                    CatProducto producto = new CatProducto();
                     producto.IdProducto = (int)Lector["IdProducto"];
                     producto.Precio = (decimal)Lector["Precio"];
                     producto.AplicaDescuentoCatalogo = (bool)Lector["AplicaDescuentoCatalogo"];
-                    ComplementoVenta.ListaProductoVentaProducto.Add(producto);
+                    producto.AplicaPromocion = (bool)Lector["AplicaPromocion"];
+                    producto.CantidadPromocion = (Int16)Lector["CantidadPromocion"];
+                    producto.PrecioPromocion = (decimal)Lector["PrecioPromocion"];
+                    ComplementoVenta.ListaProductos.Add(producto);
                 }
 
                 Lector.NextResult();

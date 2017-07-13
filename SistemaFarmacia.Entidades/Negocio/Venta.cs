@@ -13,5 +13,6 @@ namespace SistemaFarmacia.Entidades.Negocio
         public decimal Total { get; set; }
         public Int64 Consecutivo { get; set; } 
         public List<VentaDetalle> DetalleVenta { get; set; }
+        public List<VentaDetalleImpuesto> DetalleVentaImpuesto { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using SistemaFarmacia.Servicios.Negocio.Catalogos;
 using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Servicios.Negocio.Busqueda;
 using SistemaFarmacia.Entidades.Negocio.Busqueda;
+using SistemaFarmacia.Servicios.Negocio.Administracion;
 
 namespace SistemaFarmacia.Controladores.Ventas
 {
@@ -21,6 +22,9 @@ namespace SistemaFarmacia.Controladores.Ventas
         ServicioVentas _servicioVentas;
         ServicioCatalogoProductos _servicioCatalogoProductos;
         ServicioBusqueda _servicioBusqueda;
+        ServicioCatalogoDescuentos _servicioCatalogoDescuentos;
+        ServicioCatalogoUsuarios _servicioCatalogoUsuarios;
+        ServicioCatalogoImpuestos _servicioCatalogoImpuestos;
 
         public frmVentaController (frmVenta vista)
         {
@@ -28,6 +32,51 @@ namespace SistemaFarmacia.Controladores.Ventas
             _servicioVentas = new ServicioVentas(BaseDeDatosTienda);
             _servicioCatalogoProductos = new ServicioCatalogoProductos(BaseDeDatosTienda);
             _servicioBusqueda = new ServicioBusqueda(BaseDeDatosTienda);
+            _servicioCatalogoDescuentos = new ServicioCatalogoDescuentos(BaseDeDatosTienda);
+            _servicioCatalogoUsuarios = new ServicioCatalogoUsuarios(BaseDeDatosTienda);
+            _servicioCatalogoImpuestos = new ServicioCatalogoImpuestos(BaseDeDatosTienda);
+        }
+
+        public List<CatImpuestos> ObtenerListaImpuestos()
+        {
+            ExcepcionPersonalizada resultado = _servicioCatalogoImpuestos.ConsultarImpuestos();
+
+            if (resultado != null)
+            {
+                string mensaje = "No fue posible obtener los impuestos disponibles.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return new List<CatImpuestos>();
+            }
+
+            return _servicioCatalogoImpuestos.ListaCatImpuestos.FindAll(e => e.EsActivo == true);
+        }
+
+        public List<Usuario> ObtenerListaUsuarios()
+        {
+            ExcepcionPersonalizada resultado = _servicioCatalogoUsuarios.ObtenerUsuarios();
+
+            if (resultado != null)
+            {
+                string mensaje = "No fue posible obtener los usuarios vendedores.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return new List<Usuario>();
+            }
+
+            return _servicioCatalogoUsuarios.ListaUsuarios.FindAll(e => e.EsActivo == true);
+        }
+
+        public List<DescuentoVenta> ObtenerListaDescuentoVenta()
+        {
+            ExcepcionPersonalizada resultado = _servicioCatalogoDescuentos.ConsultarDescuentosAplicables();
+
+            if (resultado != null)
+            {
+                string mensaje = "No fue posible obtener los descuentos aplicables a la venta.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return new List<DescuentoVenta>();
+            }
+
+            return _servicioCatalogoDescuentos.ListaDescuentoVenta;
         }
 
         public ComplementoVenta ObtenerComplementoVenta()

@@ -65,6 +65,7 @@
     <Compile Include="Negocio\Catalogos\ConfiguracionDescuento.cs" />
     <Compile Include="Negocio\ClaseBase.cs" />
     <Compile Include="Negocio\ComplementoVenta.cs" />
+    <Compile Include="Negocio\DescuentoVenta.cs" />
     <Compile Include="Negocio\DiasSemana.cs" />
     <Compile Include="Negocio\ElementoMenu.cs" />
     <Compile Include="Negocio\Perfiles.cs" />
@@ -72,6 +73,8 @@
     <Compile Include="Negocio\ProductoVentaProducto.cs" />
     <Compile Include="Negocio\Venta.cs" />
     <Compile Include="Negocio\VentaDetalle.cs" />
+    <Compile Include="Negocio\VentaDetalleImpuesto.cs" />
+    <Compile Include="Negocio\VentaImportes.cs" />
     <Compile Include="Negocio\Ventas\CorteCaja.cs" />
     <Compile Include="Negocio\Ventas\CorteCajaReporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -49,6 +49,7 @@
             this.IdImpuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Porcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblPromocion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridImpuestos)).BeginInit();
@@ -260,11 +261,23 @@
             this.Porcentaje.Name = "Porcentaje";
             this.Porcentaje.ReadOnly = true;
             // 
+            // lblPromocion
+            // 
+            this.lblPromocion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblPromocion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPromocion.Location = new System.Drawing.Point(374, 120);
+            this.lblPromocion.Name = "lblPromocion";
+            this.lblPromocion.Size = new System.Drawing.Size(373, 66);
+            this.lblPromocion.TabIndex = 38;
+            this.lblPromocion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPromocion.Visible = false;
+            // 
             // frmDialogoProductoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 320);
+            this.Controls.Add(this.lblPromocion);
             this.Controls.Add(this.gridImpuestos);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.lblDescripcion);
@@ -307,5 +320,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdImpuesto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Porcentaje;
+        private System.Windows.Forms.Label lblPromocion;
     }
 }

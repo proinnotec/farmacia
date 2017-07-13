@@ -17,7 +17,7 @@ namespace SistemaFarmacia.Vistas.Ventas
 {
     public partial class frmDialogoProductoVenta : frmBase
     {
-        ComplementoVenta _complementoVenta;
+        private ComplementoVenta _complementoVenta;
         public int IdProducto { get; private set; }
 
         public frmDialogoProductoVenta(AutoCompleteStringCollection resultadosBusqueda, ComplementoVenta complementoVenta)
@@ -40,10 +40,17 @@ namespace SistemaFarmacia.Vistas.Ventas
             txtClaveProducto.Text = elementosProducto[1];
             txtDescripcion.Text = elementosProducto[2];
             IdProducto = Convert.ToInt16(elementosProducto[3]);
-            ProductoVentaProducto productoVentaProducto = _complementoVenta.ListaProductoVentaProducto.Find(e => e.IdProducto == IdProducto);
+            CatProducto producto = _complementoVenta.ListaProductos.Find(e => e.IdProducto == IdProducto);
             List<ProductoVentaImpuesto> listaProductoVentaImpuesto = _complementoVenta.ListaProductoVentaImpuesto.FindAll(e => e.IdProducto == IdProducto);
-            nudPrecio.Value = productoVentaProducto.Precio;
-            chkAplicaDescuento.Checked = productoVentaProducto.AplicaDescuentoCatalogo;
+            nudPrecio.Value = producto.Precio;
+            chkAplicaDescuento.Checked = producto.AplicaDescuentoCatalogo;
+
+            if (producto.AplicaPromocion)
+            {
+                string mensaje = string.Format("{0}Por cada {1} productos el precio especial es de: ${2}{3}{4}No aplica con otros descuentos{5}",System.Environment.NewLine, producto.CantidadPromocion, producto.PrecioPromocion.ToString(".00"), System.Environment.NewLine, System.Environment.NewLine, System.Environment.NewLine);
+                lblPromocion.Text = mensaje;
+                lblPromocion.Visible = true;
+            }
 
             foreach (ProductoVentaImpuesto impuesto in listaProductoVentaImpuesto)
             {
@@ -63,6 +70,7 @@ namespace SistemaFarmacia.Vistas.Ventas
         {
             ltbResultados.BringToFront();
             ltbResultados.Items.Clear();
+            gridImpuestos.Rows.Clear();
 
             if (txtBusqueda.Text.Length == 0)
             {
@@ -82,6 +90,9 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void ltbResultados_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ltbResultados.SelectedItem == null) return;
+
+            lblPromocion.Text = string.Empty;
+            lblPromocion.Visible = false;
 
             String productoSeleccionado = ltbResultados.Items[ltbResultados.SelectedIndex].ToString();
             string productoVenta = productoSeleccionado;

@@ -1,5 +1,6 @@
 ﻿using ProInnotec.Core.Entidades.Datos;
 using ProInnotec.Core.Entidades.ManejoExcepciones;
+using SistemaFarmacia.Entidades.Negocio;
 using SistemaFarmacia.Entidades.Negocio.Catalogos;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,53 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
         private IBaseDeDatos _baseDatos;
         public List<CatDescuentos> ListaCatDescuentos { get; private set; }
         public List<ConfiguracionDescuento> ListaConfiguracionDescuento { get; set; }
+        public List<DescuentoVenta> ListaDescuentoVenta { get; set; }
 
         public ServicioCatalogoDescuentos(IBaseDeDatos baseDatos)
         {
             _baseDatos = baseDatos;
+        }
+
+        public ExcepcionPersonalizada ConsultarDescuentosAplicables()
+        {
+            ListaDescuentoVenta = new List<DescuentoVenta>();
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_DescuentosAplicables", conexion);
+
+                IDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    DescuentoVenta descuento = new DescuentoVenta();
+                    descuento.ConfiguracionDescuento = new ConfiguracionDescuento();
+                    descuento.Descuento = new CatDescuentos();
+                    descuento.Descuento.Porcentaje = (decimal)lector["Porcentaje"];
+                    descuento.Descuento.Descripcion = lector["Descripcion"].ToString();
+                    descuento.ConfiguracionDescuento.HoraInicio = (DateTime)lector["HoraInicio"];
+                    descuento.ConfiguracionDescuento.HoraFin = (DateTime)lector["HoraFin"];
+                    ListaDescuentoVenta.Add(descuento);
+                }
+
+                lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener los descuentos aplicables a la venta.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                    conexion.Close();
+
+                conexion.Dispose();
+            }
         }
 
         public ExcepcionPersonalizada ConsultarDescuentos()

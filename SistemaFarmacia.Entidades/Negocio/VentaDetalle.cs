@@ -11,8 +11,10 @@ namespace SistemaFarmacia.Entidades.Negocio
     {
         public Int64 IdVentaDetalle { get; set; }
         public int IdProducto { get; set; }
-        public decimal Cantidad { get; set; }
+        public string ClaveProducto { get; set; }
+        public Int16 Cantidad { get; set; }
         public decimal Precio { get; set; }
-        public List<CatImpuestos> ListaImpuesto { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Total { get; set; }
     }
 }
