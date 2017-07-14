@@ -73,7 +73,8 @@ namespace SistemaFarmacia.Controladores.Procesos
             mensaje = "Se ha guardado correctamente la información del ajuste.";
             _vista.MostrarDialogoResultado(_vista.Text, mensaje, "", true);
 
-            _vista.Cerrar();
+            _vista.CargarDatos();
+            _vista.LimpiarCampos();
         }
 
 

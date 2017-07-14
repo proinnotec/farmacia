@@ -183,13 +183,26 @@ namespace SistemaFarmacia.Vistas.Procesos
             _ajustesController.GuardarAjuste(ajuste);
         }
 
-        public void Cerrar()
+        public void CargarDatos()
         {
             _vistaLlamada.CargarDatos();
-
+        }
+        public void Cerrar()
+        {
+            CargarDatos();
             this.Close();
             this.Dispose();
+        }
 
+        public void LimpiarCampos()
+        {
+            txtBusqueda.Text = "";
+            txtClaveProducto.Text = "";
+            txtIdProducto.Text = "";
+            txtCodigo.Text = "";
+            txtDescripcion.Text = "";
+            nudCantidad.Value = 0;
+            richMotivo.Text = "";
         }
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
