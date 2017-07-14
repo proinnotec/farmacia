@@ -39,6 +39,9 @@ namespace SistemaFarmacia.Vistas.Procesos
             LlenarListaProductos();
 
             HabilitarDesabilitarProductos(chbTodos.Checked);
+
+            if (_contexto.Usuario.IdPerfil != 1)
+                chbValuado.Visible = false;
         }
 
         public void LlenaInformacionReporte(List<Inventario> lista)
