@@ -75,6 +75,7 @@
     <Compile Include="Negocio\VentaDetalle.cs" />
     <Compile Include="Negocio\VentaDetalleImpuesto.cs" />
     <Compile Include="Negocio\VentaImportes.cs" />
+    <Compile Include="Negocio\VentaImpuestos.cs" />
     <Compile Include="Negocio\Ventas\CorteCaja.cs" />
     <Compile Include="Negocio\Ventas\CorteCajaReporte.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

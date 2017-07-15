@@ -24,12 +24,33 @@ namespace SistemaFarmacia.Vistas.Ventas
         List<Usuario> _listaUsuarios;
         List<VentaDetalle> _listaVentaDetalle;
         List<VentaDetalleImpuesto> _listaVentaDetalleImpuesto;
-        List<CatImpuestos> _listaImpuestos;
-        VentaDetalle _ventaDetalle;
+        VentaDetalle _ventaDetalle;        
+        DescuentoVenta _descuentoVenta;
+        VentaImportes _ventaImporte;
 
-        public frmVenta(ContextoAplicacion contextoAplicacion)
+        public frmVenta(ContextoAplicacion contexto)
         {
             InitializeComponent();
+            InicializaRecursos();
+            InicializaGridImportes();
+            MensajeDescuentosAplicables();
+            ToolTips();
+        }
+
+        private void ToolTips()
+        {
+            ToolTip toolBtnAplicarDescuento = new ToolTip();
+            toolBtnAplicarDescuento.SetToolTip(btnAplicarDescuento, "Agregar descuento");
+
+            ToolTip toolbtnGuardar = new ToolTip();
+            toolbtnGuardar.SetToolTip(btnGuardar, "Guardar venta");
+
+            ToolTip toolbtnRemover = new ToolTip();
+            toolbtnRemover.SetToolTip(btnRemover, "Quitar producto");
+        }
+
+        private void InicializaRecursos()
+        {
             _frmVentaController = new frmVentaController(this);
             txtBusqueda.AutoCompleteCustomSource = new AutoCompleteStringCollection();
             LlenarListaProductos();
@@ -38,10 +59,30 @@ namespace SistemaFarmacia.Vistas.Ventas
             _complementoVenta = _frmVentaController.ObtenerComplementoVenta();
             _listaDescuentoVenta = _frmVentaController.ObtenerListaDescuentoVenta();
             _listaUsuarios = _frmVentaController.ObtenerListaUsuarios();
-            _listaImpuestos = _frmVentaController.ObtenerListaImpuestos();
             _listaVentaDetalle = new List<VentaDetalle>();
             _listaVentaDetalleImpuesto = new List<VentaDetalleImpuesto>();
             _ventaDetalle = new VentaDetalle();
+            _descuentoVenta = new DescuentoVenta();
+            _descuentoVenta.Descuento = new CatDescuentos();
+            _ventaImporte = new VentaImportes();
+        }
+
+        private void MensajeDescuentosAplicables()
+        {
+            if (_listaDescuentoVenta.Count > 0)
+            {
+                MostrarDialogoResultado(this.Text, string.Format("Existen {0} descuento(s) aplicables para hoy.", _listaDescuentoVenta.Count), string.Empty, true);
+            }
+        }
+
+        private void InicializaGridImportes()
+        {
+            object[] fila;
+            gridImportes.Rows.Clear();
+            fila = new object[] { "SubTotal:", 0.ToString("0.0000") };
+            gridImportes.Rows.Add(fila);
+            fila = new object[] { "Total:", 0.ToString("0.0000") };
+            gridImportes.Rows.Add(fila);
         }
 
         private void EsconderResultados()
@@ -59,40 +100,11 @@ namespace SistemaFarmacia.Vistas.Ventas
             }
         }
 
-        private void AgregarProducto()
-        {
-            //VentaDetalle ventaDetalle = new VentaDetalle();
-            //ventaDetalle.IdProducto = dialogoVenta.IdProducto;
-            //ventaDetalle.Cantidad = (Int16)dialogoVenta.nupCantidad.Value;
-
-            //if (_listaDescuentoVenta.Count.Equals(0))
-            //{
-            //    CatProducto producto = _complementoVenta.ListaProductos.Find(elemento => elemento.IdProducto == dialogoVenta.IdProducto);
-
-            //    if (producto.AplicaPromocion)
-            //    {
-            //        Int16 sobrante = Convert.ToInt16(ventaDetalle.Cantidad % producto.CantidadPromocion);
-            //        Int16 cantidadProductosPrecioEspecial = Convert.ToInt16(ventaDetalle.Cantidad - sobrante);
-
-            //        if (sobrante > 0)
-            //        {
-
-            //        }
-
-            //        if (cantidadProductosPrecioEspecial > 0)
-            //        {
-
-            //        }
-            //    }
-            //}
-        }
-
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
             ltbResultados.BringToFront();
             ltbResultados.Items.Clear();
-            _ventaDetalle = new VentaDetalle();
-            btnAgregar.Enabled = false;
+            _ventaDetalle = new VentaDetalle();            
 
             if (txtBusqueda.Text.Length == 0)
             {
@@ -145,9 +157,31 @@ namespace SistemaFarmacia.Vistas.Ventas
             _ventaDetalle.Descripcion = elementosProducto[2];
             _ventaDetalle.ClaveProducto = elementosProducto[1];
 
-            nupCantidad.Focus();
-            btnAgregar.Enabled = true;
-        }
+            frmCantidadVenta frmCantidadVenta = new frmCantidadVenta();
+            DialogResult resultado = frmCantidadVenta.ShowDialog();
+
+            if (resultado == DialogResult.Yes)
+            {
+                if (_listaVentaDetalle.Exists(e => e.IdProducto == _ventaDetalle.IdProducto))
+                {
+                    MostrarDialogoResultado(this.Text, "El producto ya existe, este no se agregó.", string.Empty, false);
+                    _ventaDetalle = new VentaDetalle();
+                    txtBusqueda.Text = string.Empty;
+                    return;
+                }
+
+                _ventaDetalle.Cantidad = (Int16) frmCantidadVenta.nupCantidad.Value;
+                _ventaDetalle.Total = (_ventaDetalle.Precio * _ventaDetalle.Cantidad);
+
+                ActualizaGrid();
+                ActualizaImportes();
+                _ventaDetalle = new VentaDetalle();
+            }
+
+            _ventaDetalle = new VentaDetalle();
+            txtBusqueda.Text = string.Empty;
+
+      }
 
         private void ActualizaGrid()
         {
@@ -159,118 +193,192 @@ namespace SistemaFarmacia.Vistas.Ventas
 
         private void ActualizaImportes()
         {
-            gridImportes.Rows.Clear();
-            object[] fila;
-            List<VentaImportes> listaImpuestos = new List<VentaImportes>();
-            decimal ahorroTotal = 0;
+            List<VentaImpuestos> listaImpuestos = new List<VentaImpuestos>();
+            _ventaImporte = new VentaImportes();
 
-            foreach (VentaDetalle venta in _listaVentaDetalle)
+            foreach (VentaDetalle ventaDetalle in _listaVentaDetalle)
             {
-                if (_listaDescuentoVenta.Count.Equals(0))
+                decimal nuevoTotal = 0;
+
+                if (_descuentoVenta.Descuento.Porcentaje > 0)
                 {
-                    CatProducto productoDescuento = _complementoVenta.ListaProductos.Find(e => e.IdProducto == venta.IdProducto);
+                    nuevoTotal = (ventaDetalle.Total - (_descuentoVenta.Descuento.Porcentaje / 100) * (ventaDetalle.Total));
+                    _ventaImporte.Ahorro = _ventaImporte.Ahorro + (ventaDetalle.Total - nuevoTotal);
+                }
+                else
+                {
+                    CatProducto productoDescuento = _complementoVenta.ListaProductos.Find(e => e.IdProducto == ventaDetalle.IdProducto);
 
                     if (productoDescuento.AplicaPromocion)
                     {
-                        Int16 sobrante = Convert.ToInt16(venta.Cantidad % productoDescuento.CantidadPromocion);
-                        Int16 cantidadProductosPrecioEspecial = Convert.ToInt16(venta.Cantidad - sobrante);
+                        Int16 sobrante = Convert.ToInt16(ventaDetalle.Cantidad % productoDescuento.CantidadPromocion);
+                        Int16 cantidadProductosPrecioEspecial = Convert.ToInt16(ventaDetalle.Cantidad - sobrante);
                         decimal totalSobrante = 0;
                         decimal totalPrecioEspecial = 0;
 
                         if (sobrante > 0)
                         {
-                            totalSobrante = (sobrante * venta.Precio);
+                            totalSobrante = (sobrante * ventaDetalle.Precio);
                         }
 
                         if (cantidadProductosPrecioEspecial > 0)
                         {
                             totalPrecioEspecial = (cantidadProductosPrecioEspecial * productoDescuento.PrecioPromocion);
-                            ahorroTotal = ahorroTotal + (venta.Total - totalPrecioEspecial);
+                            _ventaImporte.Ahorro = _ventaImporte.Ahorro + (ventaDetalle.Total - totalPrecioEspecial);
                         }
 
-                        venta.Total = totalSobrante + totalPrecioEspecial;
+                        nuevoTotal = totalSobrante + totalPrecioEspecial;
                     }
                 }
-                else
+
+                decimal totalProducto = (nuevoTotal > 0 ? nuevoTotal : ventaDetalle.Total);
+
+                _ventaImporte.SubTotal = _ventaImporte.SubTotal + totalProducto;
+
+                List<ProductoVentaImpuesto> listaProductoVentaImpuesto = _complementoVenta.ListaProductoVentaImpuesto.FindAll(e => e.IdProducto == ventaDetalle.IdProducto);
+
+                foreach (ProductoVentaImpuesto productoVentaImpuesto in listaProductoVentaImpuesto)
                 {
-                    decimal porcentajeTotal = _listaDescuentoVenta.Sum(e => e.Descuento.Porcentaje);
-                    decimal nuevoTotal = (venta.Total - (porcentajeTotal / 100) * (venta.Total));
-                    ahorroTotal = ahorroTotal + (venta.Total - nuevoTotal);
-                    venta.Total = nuevoTotal;
+                    VentaImpuestos ventaImpuestoNuevo = new VentaImpuestos();
+                    ventaImpuestoNuevo.Impuesto = string.Format("{0}  {1} %:", productoVentaImpuesto.Descripcion.TrimEnd().TrimStart(), productoVentaImpuesto.Porcentaje.ToString("0.00"));
+                    ventaImpuestoNuevo.IdImpuesto = productoVentaImpuesto.IdImpuesto;
+                    ventaImpuestoNuevo.Total = ((productoVentaImpuesto.Porcentaje / 100) * (totalProducto));
 
-                    //foreach (DescuentoVenta descuentoVenta in _listaDescuentoVenta)
-                    //{
-                    //    decimal nuevoTotal = (venta.Total - (descuentoVenta.Descuento.Porcentaje / 100) * (venta.Total));
-                    //    ahorroTotal = ahorroTotal + (venta.Total - nuevoTotal);
-                    //    venta.Total = nuevoTotal;                        
-                    //}
-                }
-
-                List<ProductoVentaImpuesto> listaImpuesto = _complementoVenta.ListaProductoVentaImpuesto.FindAll(e => e.IdProducto == venta.IdProducto);
-
-                foreach (ProductoVentaImpuesto productoVentaImpuesto in listaImpuesto)
-                {
-                    VentaImportes ventaImporteNuevo = new VentaImportes();
-                    ventaImporteNuevo.Impuesto = productoVentaImpuesto.Descripcion.TrimEnd().TrimStart();
-                    ventaImporteNuevo.IdImpuesto = productoVentaImpuesto.IdImpuesto;
-                    ventaImporteNuevo.Total = ((productoVentaImpuesto.Porcentaje / 100) * (venta.Total));
-
-                    if (listaImpuestos.Exists(e => e.IdImpuesto == ventaImporteNuevo.IdImpuesto))
+                    if (listaImpuestos.Exists(e => e.IdImpuesto == ventaImpuestoNuevo.IdImpuesto))
                     {
-                        VentaImportes ventaImporteExistente = listaImpuestos.Find(e => e.IdImpuesto == ventaImporteNuevo.IdImpuesto);
-                        ventaImporteExistente.Total = ventaImporteExistente.Total + ventaImporteNuevo.Total;
+                        VentaImpuestos ventaImporteExistente = listaImpuestos.Find(e => e.IdImpuesto == ventaImpuestoNuevo.IdImpuesto);
+                        ventaImporteExistente.Total = ventaImporteExistente.Total + ventaImpuestoNuevo.Total;
                     }
                     else
                     {
-                        listaImpuestos.Add(ventaImporteNuevo);
+                        listaImpuestos.Add(ventaImpuestoNuevo);
                     }
+                }
+            }           
+
+            gridImportes.Rows.Clear();
+            object[] fila;
+
+            if (_ventaImporte.Ahorro > 0)
+            {
+                fila = new object[] { "Ahorro:", (_ventaImporte.Ahorro).ToString("0.0000") };
+                gridImportes.Rows.Add(fila);
+            }
+
+            fila = new object[] { "SubTotal:", (_ventaImporte.SubTotal).ToString("0.0000") };
+            gridImportes.Rows.Add(fila);
+
+            foreach (VentaImpuestos ventaImportes in listaImpuestos)
+            {
+                fila = new object[] { ventaImportes.Impuesto, (ventaImportes.Total).ToString("0.0000") };
+                gridImportes.Rows.Add(fila);
+            }
+
+            _ventaImporte.Total = _ventaImporte.SubTotal + listaImpuestos.Sum(e => e.Total);
+            fila = new object[] { "Total:", (_ventaImporte.Total).ToString("0.0000") };
+            gridImportes.Rows.Add(fila);
+
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            if (_listaVentaDetalle.Count.Equals(0)) { return; }
+            if (gridVenta.SelectedRows.Count.Equals(0)) { return; }
+
+            int idProducto = (int) gridVenta.SelectedRows[0].Cells["IdProducto"].Value;
+            VentaDetalle ventaRemover = _listaVentaDetalle.Find(elemento => elemento.IdProducto == idProducto);
+            _listaVentaDetalle.Remove(ventaRemover);
+            gridVenta.AutoGenerateColumns = false;
+            gridVenta.DataSource = null;
+            gridVenta.DataSource = _listaVentaDetalle;
+            ActualizaImportes();
+        }
+
+        private void btnAplicarDescuento_Click(object sender, EventArgs e)
+        {
+            if (_listaDescuentoVenta.Count.Equals(0))
+            {
+                MostrarDialogoResultado(this.Text, "No existen descuentos aplicables.", string.Empty, false);
+                return;
+            }
+
+            frmAplicarDescuento frmAplicarDescuento = new frmAplicarDescuento(_listaDescuentoVenta, _descuentoVenta.Descuento);
+            DialogResult resultado = frmAplicarDescuento.ShowDialog();
+
+            if (resultado == DialogResult.Yes)
+            {
+                int idDescuento = (int) frmAplicarDescuento.cmbDescuentos.SelectedValue;
+
+                if (idDescuento.Equals(0))
+                {
+                    _descuentoVenta = new DescuentoVenta();
+                    _descuentoVenta.Descuento = new CatDescuentos();
+                }
+                else
+                {
+                    _descuentoVenta = _listaDescuentoVenta.Find(elemento => elemento.Descuento.IdDescuento == idDescuento);                    
+                }
+
+                ActualizaImportes();
+            }
+
+        }
+
+        public void LimpiarFormulario()
+        {            
+            InicializaGridImportes();
+            InicializaRecursos();
+            gridVenta.DataSource = null;
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (_listaVentaDetalle.Count.Equals(0))
+            {
+                MostrarDialogoResultado(this.Text, "Seleccione al menos un producto.", string.Empty, false);
+                return;
+            }
+
+            if (MostrarDialogoConfirmacion(this.Text, "¿Están completos los datos de la venta?") == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            frmVendedores frmVendedores = new frmVendedores(_listaUsuarios);
+            DialogResult resultado = frmVendedores.ShowDialog();
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            this.Cursor = Cursors.WaitCursor;
+
+            Venta venta = new Venta();
+            venta.IdUsuario = (int) frmVendedores.cmbVendedores.SelectedValue;
+            venta.DetalleVenta = _listaVentaDetalle;
+            venta.Descuento = _ventaImporte.Ahorro;
+            venta.IdDescuento = _descuentoVenta.Descuento.IdDescuento;
+            venta.Porcentaje = _descuentoVenta.Descuento.Porcentaje;
+            venta.SubTotal = _ventaImporte.SubTotal;
+            venta.Total = _ventaImporte.Total;
+
+            venta.DetalleVentaImpuesto = new List<VentaDetalleImpuesto>();
+
+            foreach (VentaDetalle ventaDetalle in _listaVentaDetalle)
+            {
+                List<ProductoVentaImpuesto> listaProductoVentaImpuesto = _complementoVenta.ListaProductoVentaImpuesto.FindAll(elemento => elemento.IdProducto == ventaDetalle.IdProducto);
+
+                foreach (ProductoVentaImpuesto productoVentaImpuesto in listaProductoVentaImpuesto)
+                {
+                    venta.DetalleVentaImpuesto.Add(new VentaDetalleImpuesto { IdImpuesto = productoVentaImpuesto.IdImpuesto, IdProducto = ventaDetalle.IdProducto, Porcentaje = productoVentaImpuesto.Porcentaje });
                 }
             }
 
-            if (ahorroTotal > 0)
-            {
-                fila = new object[] { "Ahorro:", ahorroTotal };
-                gridImportes.Rows.Add(fila);
-            }
+            _frmVentaController.GuardarVenta(venta);
 
-            decimal subtotal = _listaVentaDetalle.Sum(e => e.Total);
-            fila = new object[] { "SubTotal:", subtotal };
-            gridImportes.Rows.Add(fila);
+            this.Cursor = Cursors.Default;
 
-            foreach (VentaImportes ventaImportes in listaImpuestos)
-            {
-                fila = new object[] { ventaImportes.Impuesto, ventaImportes.Total };
-                gridImportes.Rows.Add(fila);
-            }
-
-            fila = new object[] { "Total:", subtotal + listaImpuestos.Sum(e => e.Total) };
-            gridImportes.Rows.Add(fila);
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            if (_ventaDetalle.IdProducto.Equals(0))
-            {
-                MostrarDialogoResultado(this.Text, "Seleccione un producto.", string.Empty, false);
-                return;
-            }
-
-            if (nupCantidad.Value.Equals(0))
-            {
-                MostrarDialogoResultado(this.Text, "Capture la cantidad del producto.", string.Empty, false);
-                return;
-            }
-
-            _ventaDetalle.Cantidad = (Int16) nupCantidad.Value;
-            _ventaDetalle.Total = (_ventaDetalle.Precio * _ventaDetalle.Cantidad);
-
-            ActualizaGrid();
-            ActualizaImportes();
-
-            nupCantidad.Value = 0;
-            txtBusqueda.Text = string.Empty;
-            btnAgregar.Enabled = false;
-            _ventaDetalle = new VentaDetalle();
         }
     }
 }

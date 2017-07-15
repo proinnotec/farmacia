@@ -41,7 +41,8 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     descuento.ConfiguracionDescuento = new ConfiguracionDescuento();
                     descuento.Descuento = new CatDescuentos();
                     descuento.Descuento.Porcentaje = (decimal)lector["Porcentaje"];
-                    descuento.Descuento.Descripcion = lector["Descripcion"].ToString();
+                    descuento.Descuento.IdDescuento = (int)lector["IdDescuento"];
+                    descuento.Descuento.Descripcion = string.Format("{0} {1} %", lector["Descripcion"].ToString(), lector["Porcentaje"]);
                     descuento.ConfiguracionDescuento.HoraInicio = (DateTime)lector["HoraInicio"];
                     descuento.ConfiguracionDescuento.HoraFin = (DateTime)lector["HoraFin"];
                     ListaDescuentoVenta.Add(descuento);

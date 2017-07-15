@@ -92,6 +92,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                 transaccion = conexion.BeginTransaction();
 
                 string xmlVentaDetalle = serializar.ClaseXmlString(venta.DetalleVenta);
+                string xmlVentaDetalleImpuesto = serializar.ClaseXmlString(venta.DetalleVentaImpuesto);
 
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spI_Venta", conexion);
                 comando.Transaction = transaccion;
@@ -105,8 +106,26 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                 IDataParameter parametroSubTotal = _baseDatos.CrearParametro("@SubTotal", venta.SubTotal, ParameterDirection.Input);
                 comando.Parameters.Add(parametroSubTotal);
 
+                if (venta.IdDescuento > 0)
+                {
+                    IDataParameter parametroIdDescuento = _baseDatos.CrearParametro("@IdDescuento", venta.IdDescuento, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroIdDescuento);
+                }
+
+                if (venta.Porcentaje > 0)
+                {
+                    IDataParameter parametroPorcentaje = _baseDatos.CrearParametro("@Porcentaje", venta.Porcentaje, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroPorcentaje);
+                }
+
+                IDataParameter parametroDescuento = _baseDatos.CrearParametro("@Descuento", venta.Descuento, ParameterDirection.Input);
+                comando.Parameters.Add(parametroDescuento);
+
                 IDataParameter parametroXmlVentaDetalle = _baseDatos.CrearParametro("@XmlVentaDetalle", xmlVentaDetalle, ParameterDirection.Input);
                 comando.Parameters.Add(parametroXmlVentaDetalle);
+
+                IDataParameter parametroXmlVentaDetalleImpuesto = _baseDatos.CrearParametro("@XmlVentaDetalleImpuesto", xmlVentaDetalleImpuesto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroXmlVentaDetalleImpuesto);
 
                 int filasAfectadas = comando.ExecuteNonQuery();
 

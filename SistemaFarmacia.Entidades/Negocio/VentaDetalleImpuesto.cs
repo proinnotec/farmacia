@@ -8,7 +8,7 @@ namespace SistemaFarmacia.Entidades.Negocio
 {
     public class VentaDetalleImpuesto
     {
-        public Int64 Consecutivo { get; set; }
+        public Int64 IdVenta { get; set; }
         public int IdProducto { get; set; }
         public Int16 IdImpuesto { get; set; }
         public decimal Porcentaje { get; set; }

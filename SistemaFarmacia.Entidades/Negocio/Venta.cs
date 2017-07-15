@@ -11,6 +11,9 @@ namespace SistemaFarmacia.Entidades.Negocio
         public Int64 IdVenta { get; set; }
         public decimal SubTotal { get; set; }
         public decimal Total { get; set; }
+        public decimal Descuento { get; set; }
+        public int IdDescuento { get; set; }
+        public decimal Porcentaje { get; set; }
         public Int64 Consecutivo { get; set; } 
         public List<VentaDetalle> DetalleVenta { get; set; }
         public List<VentaDetalleImpuesto> DetalleVentaImpuesto { get; set; }

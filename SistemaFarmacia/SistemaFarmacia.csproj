@@ -332,6 +332,18 @@
     <Compile Include="Vistas\Procesos\frmReporteKardex.Designer.cs">
       <DependentUpon>frmReporteKardex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Ventas\frmAplicarDescuento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Ventas\frmAplicarDescuento.Designer.cs">
+      <DependentUpon>frmAplicarDescuento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Ventas\frmCantidadVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Ventas\frmCantidadVenta.Designer.cs">
+      <DependentUpon>frmCantidadVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Ventas\frmCortesCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +367,12 @@
     </Compile>
     <Compile Include="Vistas\Ventas\frmRepTicketReImp.Designer.cs">
       <DependentUpon>frmRepTicketReImp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Ventas\frmVendedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Ventas\frmVendedores.Designer.cs">
+      <DependentUpon>frmVendedores.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Ventas\frmVenta.cs">
       <SubType>Form</SubType>
@@ -469,6 +487,12 @@
     <EmbeddedResource Include="Vistas\Procesos\frmReporteKardex.resx">
       <DependentUpon>frmReporteKardex.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Ventas\frmAplicarDescuento.resx">
+      <DependentUpon>frmAplicarDescuento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Ventas\frmCantidadVenta.resx">
+      <DependentUpon>frmCantidadVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmCortesCaja.resx">
       <DependentUpon>frmCortesCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -480,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmRepTicketReImp.resx">
       <DependentUpon>frmRepTicketReImp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Ventas\frmVendedores.resx">
+      <DependentUpon>frmVendedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmVenta.resx">
       <DependentUpon>frmVenta.cs</DependentUpon>

@@ -119,7 +119,7 @@ namespace SistemaFarmacia.Controladores.Ventas
             if (excepcionGuardarVenta == null)
             {
                 _vista.MostrarDialogoResultado(_vista.Text, "La venta se guardó correctamente.", string.Empty, true);
-               
+                _vista.LimpiarFormulario();
             }
             else
             {

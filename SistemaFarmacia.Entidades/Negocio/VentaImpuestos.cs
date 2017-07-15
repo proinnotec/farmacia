@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SistemaFarmacia.Entidades.Negocio
 {
-    public class VentaImportes
+    public class VentaImpuestos
     {
-        public decimal Ahorro { get; set;  }
-        public decimal SubTotal { get; set; }
+        public string Impuesto { get; set; }
+        public Int16 IdImpuesto { get; set; }
         public decimal Total { get; set; }
     }
 }
