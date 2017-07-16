@@ -54,6 +54,9 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void CargarDatosDeGridAObjeto()
         {
+            if (gridImpuestos.SelectedRows.Count == 0)
+                return;
+
             _impuestoLocal.IdImpuesto = (Int16)gridImpuestos.SelectedRows[0].Cells["IdImpuesto"].Value;
             _impuestoLocal.Porcentaje = (decimal)gridImpuestos.SelectedRows[0].Cells["Porcentaje"].Value;
             _impuestoLocal.Descripcion = gridImpuestos.SelectedRows[0].Cells["Descripcion"].Value.ToString();
