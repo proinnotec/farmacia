@@ -121,9 +121,6 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void CargarDatosDeGridAObjeto()
         {
-            if (gridTiposAjustes.SelectedRows.Count == 0)
-                return;
-
             _ajuste.IdTipoAjuste = (int)gridTiposAjustes.SelectedRows[0].Cells["IdTipoAjuste"].Value;
             _ajuste.TipoAjuste = (bool)gridTiposAjustes.SelectedRows[0].Cells["TipoAjuste"].Value;
             _ajuste.Descripcion = gridTiposAjustes.SelectedRows[0].Cells["Descripcion"].Value.ToString();
