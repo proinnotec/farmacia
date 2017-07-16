@@ -38,6 +38,8 @@ namespace SistemaFarmacia.Vistas.Dialogos
             lblMensaje.Text = _mensaje;
 
             picImagen.Image = SistemaFarmacia.Resource.Interrogativo;
+
+            btnCancelar.Select();
         }
     }
 }

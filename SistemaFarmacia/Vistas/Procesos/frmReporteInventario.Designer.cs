@@ -30,11 +30,11 @@
         {
             this.crvInventario = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.gpbParametros = new System.Windows.Forms.GroupBox();
+            this.chbValuado = new System.Windows.Forms.CheckBox();
             this.chbTodos = new System.Windows.Forms.CheckBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.btnImprimir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.ltbResultados = new System.Windows.Forms.ListBox();
-            this.chbValuado = new System.Windows.Forms.CheckBox();
             this.gpbParametros.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +68,16 @@
             this.gpbParametros.TabStop = false;
             this.gpbParametros.Text = "Parámetros de Consulta";
             // 
+            // chbValuado
+            // 
+            this.chbValuado.AutoSize = true;
+            this.chbValuado.Location = new System.Drawing.Point(733, 20);
+            this.chbValuado.Name = "chbValuado";
+            this.chbValuado.Size = new System.Drawing.Size(165, 20);
+            this.chbValuado.TabIndex = 30;
+            this.chbValuado.Text = "Ver reporte valuado";
+            this.chbValuado.UseVisualStyleBackColor = true;
+            // 
             // chbTodos
             // 
             this.chbTodos.AutoSize = true;
@@ -89,6 +99,7 @@
             this.txtBusqueda.Size = new System.Drawing.Size(682, 22);
             this.txtBusqueda.TabIndex = 28;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
+            this.txtBusqueda.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBusqueda_PreviewKeyDown);
             // 
             // btnImprimir
             // 
@@ -115,17 +126,8 @@
             this.ltbResultados.Size = new System.Drawing.Size(682, 100);
             this.ltbResultados.TabIndex = 29;
             this.ltbResultados.Visible = false;
-            this.ltbResultados.SelectedIndexChanged += new System.EventHandler(this.ltbResultados_SelectedIndexChanged);
-            // 
-            // chbValuado
-            // 
-            this.chbValuado.AutoSize = true;
-            this.chbValuado.Location = new System.Drawing.Point(733, 20);
-            this.chbValuado.Name = "chbValuado";
-            this.chbValuado.Size = new System.Drawing.Size(165, 20);
-            this.chbValuado.TabIndex = 30;
-            this.chbValuado.Text = "Ver reporte valuado";
-            this.chbValuado.UseVisualStyleBackColor = true;
+            this.ltbResultados.Click += new System.EventHandler(this.ltbResultados_Click);
+            this.ltbResultados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ltbResultados_KeyPress);
             // 
             // frmReporteInventario
             // 

@@ -57,6 +57,7 @@
             // 
             // nupCantidad
             // 
+            this.nupCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nupCantidad.Location = new System.Drawing.Point(15, 33);
             this.nupCantidad.Maximum = new decimal(new int[] {
             5000,
@@ -64,13 +65,14 @@
             0,
             0});
             this.nupCantidad.Name = "nupCantidad";
-            this.nupCantidad.Size = new System.Drawing.Size(161, 20);
+            this.nupCantidad.Size = new System.Drawing.Size(161, 22);
             this.nupCantidad.TabIndex = 40;
             this.nupCantidad.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.nupCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nupCantidad_KeyPress);
             // 
             // frmCantidadVenta
             // 

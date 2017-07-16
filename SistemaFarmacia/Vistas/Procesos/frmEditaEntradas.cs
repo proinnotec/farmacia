@@ -65,7 +65,7 @@ namespace SistemaFarmacia.Vistas.Procesos
                                         
                     LlenarListaProductos();
 
-                    txtBusqueda.Focus();
+                    txtBusqueda.Select();
 
                     break;
 
@@ -405,8 +405,41 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             ltbResultados.Visible = false;
         }
+        
+        private void txtBusqueda_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    if (ltbResultados.Items.Count > 0)
+                    {
+                        ltbResultados.Select();
+                        ltbResultados.SetSelected(0, true);
+                    }
 
-        private void ltbResultados_SelectedIndexChanged(object sender, EventArgs e)
+                    break;
+            }
+        }
+
+        private void ltbResultados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                SeleccionarItemLista();
+            }
+
+            if ((int)e.KeyChar == (int)Keys.Back)
+            {
+                txtBusqueda.Select();
+            }
+        }
+
+        private void ltbResultados_Click(object sender, EventArgs e)
+        {
+            SeleccionarItemLista();
+        }
+
+        private void SeleccionarItemLista()
         {
             int IdxClaveProducto = 0;
             int IdxDescripcion = 0;
@@ -419,7 +452,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             IdxIdProducto = Producto.IndexOf(" ID: ");
 
             if (ltbResultados.SelectedItem == null) return;
-            
+
             int productoId = 0;
             string idProducto = string.Empty;
 
@@ -449,7 +482,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             txtBusqueda.Text = string.Empty;
             EsconderResultados();
             btnBuscar.Enabled = false;
-
+            txtBusqueda.Select();
         }
     }
 }

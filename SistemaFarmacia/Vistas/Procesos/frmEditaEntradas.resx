@@ -147,4 +147,7 @@
   <metadata name="ActPrecioCatalogo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="lblInstrucciones.Text" xml:space="preserve">
+    <value>Importante:  Para que el archivo de Excel se lea correctamente, en las Celdas A1, B1 y C1 deben estar las cabeceras "Cantidad", "ClaveProducto" y "PrecioEntrada" respectivamente y el nombre de la hoja debe ser Hoja1.</value>
+  </data>
 </root>

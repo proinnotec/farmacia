@@ -35,6 +35,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             InicializaGridImportes();
             MensajeDescuentosAplicables();
             ToolTips();
+            txtBusqueda.Select();
         }
 
         private void ToolTips()
@@ -121,21 +122,6 @@ namespace SistemaFarmacia.Vistas.Ventas
             }
         }
 
-        private void ltbResultados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ltbResultados.SelectedItem == null) return;
-
-            String productoSeleccionado = ltbResultados.Items[ltbResultados.SelectedIndex].ToString();
-            string productoVenta = productoSeleccionado;
-            productoVenta = productoVenta.Replace("CB: ", "");
-            productoVenta = productoVenta.Replace(" CV: ", "|");
-            productoVenta = productoVenta.Replace(" DSC: ", "|");
-            productoVenta = productoVenta.Replace(" ID: ", "|");
-            string[] elementosProducto = productoVenta.Split('|');
-            txtBusqueda.Text = string.Empty;
-            CargaValores(elementosProducto);
-        }
-
         private void CargaValores(string[] elementosProducto)
         {
             txtBusqueda.Text = elementosProducto[2];
@@ -180,8 +166,9 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             _ventaDetalle = new VentaDetalle();
             txtBusqueda.Text = string.Empty;
+            txtBusqueda.Select();
 
-      }
+        }
 
         private void ActualizaGrid()
         {
@@ -379,6 +366,54 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             this.Cursor = Cursors.Default;
 
+        }
+
+        private void SeleccionarItemLista()
+        {
+            if (ltbResultados.SelectedItem == null) return;
+
+            String productoSeleccionado = ltbResultados.Items[ltbResultados.SelectedIndex].ToString();
+            string productoVenta = productoSeleccionado;
+            productoVenta = productoVenta.Replace("CB: ", "");
+            productoVenta = productoVenta.Replace(" CV: ", "|");
+            productoVenta = productoVenta.Replace(" DSC: ", "|");
+            productoVenta = productoVenta.Replace(" ID: ", "|");
+            string[] elementosProducto = productoVenta.Split('|');
+            txtBusqueda.Text = string.Empty;
+            CargaValores(elementosProducto);
+        }
+
+        private void txtBusqueda_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    if (ltbResultados.Items.Count > 0)
+                    {
+                        ltbResultados.Select();
+                        ltbResultados.SetSelected(0, true);
+                    }
+
+                    break;
+            }
+        }
+
+        private void ltbResultados_Click(object sender, EventArgs e)
+        {
+            SeleccionarItemLista();
+        }
+
+        private void ltbResultados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                SeleccionarItemLista();
+            }
+
+            if ((int)e.KeyChar == (int)Keys.Back)
+            {
+                txtBusqueda.Select();
+            }
         }
     }
 }

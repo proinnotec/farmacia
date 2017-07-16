@@ -47,6 +47,8 @@ namespace SistemaFarmacia.Vistas.Procesos
             LlenarListaProductos();
             
             HabilitarDesabilitarProductos(chbTodos.Checked);
+
+            btnImprimir.Select();
         }
 
         public void LlenarListaProductos()
@@ -154,8 +156,23 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             ltbResultados.Visible = false;
         }
+        
+        private void HabilitarDesabilitarProductos(bool habilita)
+        {
+            ltbResultados.Enabled = !habilita;
+            txtBusqueda.Enabled = !habilita;
+            _idProducto = 0;
+            txtBusqueda.Text = string.Empty;
 
-        private void ltbResultados_SelectedIndexChanged(object sender, EventArgs e)
+            txtBusqueda.Select();
+        }
+
+        private void chbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            HabilitarDesabilitarProductos(chbTodos.Checked);
+        }
+
+        private void SeleccionarItemLista()
         {
             int IdxClaveProducto = 0;
             int IdxDescripcion = 0;
@@ -185,21 +202,41 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                 return;
             }
+
+            btnImprimir.Select();
         }
 
-        private void HabilitarDesabilitarProductos(bool habilita)
+        private void ltbResultados_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ltbResultados.Enabled = !habilita;
-            txtBusqueda.Enabled = !habilita;
-            _idProducto = 0;
-            txtBusqueda.Text = string.Empty;
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                SeleccionarItemLista();
+            }
 
-            txtBusqueda.Select();
+            if ((int)e.KeyChar == (int)Keys.Back)
+            {
+                txtBusqueda.Select();
+            }
         }
 
-        private void chbTodos_CheckedChanged(object sender, EventArgs e)
+        private void ltbResultados_Click(object sender, EventArgs e)
         {
-            HabilitarDesabilitarProductos(chbTodos.Checked);
+            SeleccionarItemLista();
+        }
+
+        private void txtBusqueda_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:                    
+                    if (ltbResultados.Items.Count > 0)
+                    {
+                        ltbResultados.Select();
+                        ltbResultados.SetSelected(0, true);
+                    }
+
+                    break;
+            }
         }
     }
 }

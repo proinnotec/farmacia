@@ -46,6 +46,8 @@ namespace SistemaFarmacia.Vistas.Dialogos
                 }
                 
             }
+
+            btnAceptar.Select();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)

@@ -116,29 +116,6 @@ namespace SistemaFarmacia.Vistas.Procesos
             ltbResultados.Visible = false;
         }
 
-        private void ltbResultados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int IdxClaveProducto = 0;
-            int IdxDescripcion = 0;
-            int IdxIdProducto = 0;
-
-            String Producto = ltbResultados.Items[ltbResultados.SelectedIndex].ToString();
-
-            IdxClaveProducto = Producto.IndexOf(" CV: ");
-            IdxDescripcion = Producto.IndexOf(" DSC: ");
-            IdxIdProducto = Producto.IndexOf(" ID: ");
-
-            if (ltbResultados.SelectedItem == null) return;
-
-            txtCodigo.Text = Producto.Substring(4, IdxClaveProducto - 4);
-            txtClaveProducto.Text = Producto.Substring(IdxClaveProducto + 5, IdxDescripcion - (IdxClaveProducto+5));
-            txtDescripcion.Text = Producto.Substring(IdxDescripcion + 6, IdxIdProducto - (IdxDescripcion + 6));
-            txtIdProducto.Text = Producto.Substring(IdxIdProducto + 5, Producto.Length - (IdxIdProducto + 5));
-
-            txtBusqueda.Text = Producto.Substring(0, IdxIdProducto); 
-            EsconderResultados();
-        }
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             decimal cantidad = nudCantidad.Value;
@@ -205,9 +182,61 @@ namespace SistemaFarmacia.Vistas.Procesos
             richMotivo.Text = "";
         }
 
-        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        private void SeleccionarItemLista()
         {
+            int IdxClaveProducto = 0;
+            int IdxDescripcion = 0;
+            int IdxIdProducto = 0;
 
+            String Producto = ltbResultados.Items[ltbResultados.SelectedIndex].ToString();
+
+            IdxClaveProducto = Producto.IndexOf(" CV: ");
+            IdxDescripcion = Producto.IndexOf(" DSC: ");
+            IdxIdProducto = Producto.IndexOf(" ID: ");
+
+            if (ltbResultados.SelectedItem == null) return;
+
+            txtCodigo.Text = Producto.Substring(4, IdxClaveProducto - 4);
+            txtClaveProducto.Text = Producto.Substring(IdxClaveProducto + 5, IdxDescripcion - (IdxClaveProducto + 5));
+            txtDescripcion.Text = Producto.Substring(IdxDescripcion + 6, IdxIdProducto - (IdxDescripcion + 6));
+            txtIdProducto.Text = Producto.Substring(IdxIdProducto + 5, Producto.Length - (IdxIdProducto + 5));
+
+            txtBusqueda.Text = Producto.Substring(0, IdxIdProducto);
+            EsconderResultados();
+        }
+
+
+        private void txtBusqueda_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    if (ltbResultados.Items.Count > 0)
+                    {
+                        ltbResultados.Select();
+                        ltbResultados.SetSelected(0, true);
+                    }
+
+                    break;
+            }
+        }
+
+        private void ltbResultados_Click(object sender, EventArgs e)
+        {
+            SeleccionarItemLista();
+        }
+
+        private void ltbResultados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                SeleccionarItemLista();
+            }
+
+            if ((int)e.KeyChar == (int)Keys.Back)
+            {
+                txtBusqueda.Select();
+            }
         }
     }
 }

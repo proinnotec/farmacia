@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gpoBoxGenerales = new System.Windows.Forms.GroupBox();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.txtIdProducto = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@
             this.ltbResultados = new System.Windows.Forms.ListBox();
             this.btnCancelar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.gpoBoxGenerales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +76,13 @@
             this.gpoBoxGenerales.TabStop = false;
             this.gpoBoxGenerales.Text = "Datos Generales";
             this.gpoBoxGenerales.Enter += new System.EventHandler(this.gpoBoxGenerales_Enter);
+            // 
+            // nudCantidad
+            // 
+            this.nudCantidad.Location = new System.Drawing.Point(524, 117);
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(62, 20);
+            this.nudCantidad.TabIndex = 16;
             // 
             // txtIdProducto
             // 
@@ -177,11 +184,13 @@
             // 
             // txtBusqueda
             // 
+            this.txtBusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBusqueda.Location = new System.Drawing.Point(128, 18);
             this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(459, 20);
+            this.txtBusqueda.Size = new System.Drawing.Size(459, 22);
             this.txtBusqueda.TabIndex = 1;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
+            this.txtBusqueda.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBusqueda_PreviewKeyDown);
             // 
             // label2
             // 
@@ -217,13 +226,16 @@
             // 
             // ltbResultados
             // 
+            this.ltbResultados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltbResultados.FormattingEnabled = true;
+            this.ltbResultados.ItemHeight = 16;
             this.ltbResultados.Location = new System.Drawing.Point(128, 38);
             this.ltbResultados.Name = "ltbResultados";
-            this.ltbResultados.Size = new System.Drawing.Size(459, 108);
+            this.ltbResultados.Size = new System.Drawing.Size(459, 100);
             this.ltbResultados.TabIndex = 11;
             this.ltbResultados.Visible = false;
-            this.ltbResultados.SelectedIndexChanged += new System.EventHandler(this.ltbResultados_SelectedIndexChanged);
+            this.ltbResultados.Click += new System.EventHandler(this.ltbResultados_Click);
+            this.ltbResultados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ltbResultados_KeyPress);
             // 
             // btnCancelar
             // 
@@ -253,13 +265,6 @@
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // nudCantidad
-            // 
-            this.nudCantidad.Location = new System.Drawing.Point(524, 117);
-            this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(62, 20);
-            this.nudCantidad.TabIndex = 16;
             // 
             // frmAjustes
             // 

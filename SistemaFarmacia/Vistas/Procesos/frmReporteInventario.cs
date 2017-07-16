@@ -40,6 +40,8 @@ namespace SistemaFarmacia.Vistas.Procesos
 
             HabilitarDesabilitarProductos(chbTodos.Checked);
 
+            btnImprimir.Select();
+
             if (_contexto.Usuario.IdPerfil != 1)
                 chbValuado.Visible = false;
         }
@@ -119,7 +121,25 @@ namespace SistemaFarmacia.Vistas.Procesos
             ltbResultados.Visible = false;
         }
 
-        private void ltbResultados_SelectedIndexChanged(object sender, EventArgs e)
+        private void chbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            HabilitarDesabilitarProductos(chbTodos.Checked);
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {           
+            if (!chbTodos.Checked && _idProducto == 0)
+            {
+                MostrarDialogoResultado(this.Text, "Debe seleccionar un producto para consultar el reporte", string.Empty, false);
+                return;
+            }
+
+            Cursor.Current = Cursors.WaitCursor;
+            _inventariosController.ConsultaInventario(_idProducto, chbValuado.Checked);
+
+        }
+
+        private void SeleccionarItemLista()
         {
             int IdxClaveProducto = 0;
             int IdxDescripcion = 0;
@@ -149,24 +169,41 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                 return;
             }
+
+            btnImprimir.Select();
         }
 
-        private void chbTodos_CheckedChanged(object sender, EventArgs e)
+        private void txtBusqueda_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            HabilitarDesabilitarProductos(chbTodos.Checked);
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    if (ltbResultados.Items.Count > 0)
+                    {
+                        ltbResultados.Select();
+                        ltbResultados.SetSelected(0, true);
+                    }
+
+                    break;
+            }
         }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {           
-            if (!chbTodos.Checked && _idProducto == 0)
+        private void ltbResultados_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
             {
-                MostrarDialogoResultado(this.Text, "Debe seleccionar un producto para consultar el reporte", string.Empty, false);
-                return;
+                SeleccionarItemLista();
             }
 
-            Cursor.Current = Cursors.WaitCursor;
-            _inventariosController.ConsultaInventario(_idProducto, chbValuado.Checked);
+            if ((int)e.KeyChar == (int)Keys.Back)
+            {
+                txtBusqueda.Select();
+            }
+        }
 
+        private void ltbResultados_Click(object sender, EventArgs e)
+        {
+            SeleccionarItemLista();
         }
     }
 }

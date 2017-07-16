@@ -124,6 +124,7 @@
             this.txtBusqueda.Size = new System.Drawing.Size(682, 22);
             this.txtBusqueda.TabIndex = 25;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
+            this.txtBusqueda.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBusqueda_PreviewKeyDown);
             // 
             // lblAl
             // 
@@ -180,7 +181,8 @@
             this.ltbResultados.Size = new System.Drawing.Size(682, 100);
             this.ltbResultados.TabIndex = 26;
             this.ltbResultados.Visible = false;
-            this.ltbResultados.SelectedIndexChanged += new System.EventHandler(this.ltbResultados_SelectedIndexChanged);
+            this.ltbResultados.Click += new System.EventHandler(this.ltbResultados_Click);
+            this.ltbResultados.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ltbResultados_KeyPress);
             // 
             // frmReporteKardex
             // 

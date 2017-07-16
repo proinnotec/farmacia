@@ -20,6 +20,19 @@ namespace SistemaFarmacia.Vistas.Ventas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            ValidarDatos();
+        }
+
+        private void nupCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                ValidarDatos();
+            }
+        }
+
+        private void ValidarDatos()
+        {
             if (nupCantidad.Value.Equals(0))
             {
                 MostrarDialogoResultado(this.Text, "Capture la cantidad del producto.", string.Empty, false);
