@@ -61,5 +61,50 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                     
             }
         }
+
+        public ExcepcionPersonalizada ActualizarSucursal(CatSucursal sucursal)
+        {
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spU_CatSucursal", conexion);
+
+                IDataParameter parametroIdSucursal = _baseDatos.CrearParametro("@IdSucursal", sucursal.IdSucursal, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdSucursal);
+                
+                IDataParameter parametroSucursal = _baseDatos.CrearParametro("@Sucursal", sucursal.Sucursal, ParameterDirection.Input);
+                comando.Parameters.Add(parametroSucursal);
+
+                IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", sucursal.IdUsuario, ParameterDirection.Input);
+                comando.Parameters.Add(parametroIdUsuario);
+
+                int filasAfectadas = comando.ExecuteNonQuery();
+
+                if (filasAfectadas.Equals(0))
+                {
+                    throw new Exception("No se afectaron filas (spU_CatSucursal).");
+                }
+
+                return null;
+
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible registrar el cambio en el catálogo de sucursales.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
+                    conexion.Close();
+                    conexion.Dispose();
+                }
+
+            }
+        }
     }
 }

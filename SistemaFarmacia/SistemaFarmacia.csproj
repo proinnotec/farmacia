@@ -96,6 +96,7 @@
     <Compile Include="Controladores\Catalogos\AgregaEditaImpuestosController.cs" />
     <Compile Include="Controladores\Catalogos\CatDescuentosController.cs" />
     <Compile Include="Controladores\Catalogos\CatImpuestosController.cs" />
+    <Compile Include="Controladores\Catalogos\CatSucursalesController.cs" />
     <Compile Include="Controladores\Catalogos\ConfiguraDescuentoController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatAjustesController.cs" />
     <Compile Include="Controladores\Catalogos\frmCatFamiliasController.cs" />
@@ -251,6 +252,12 @@
     </Compile>
     <Compile Include="Vistas\Catalogos\frmCatProducto.Designer.cs">
       <DependentUpon>frmCatProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatSucursales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\frmCatSucursales.Designer.cs">
+      <DependentUpon>frmCatSucursales.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Catalogos\frmConfiguraDescuentos.cs">
       <SubType>Form</SubType>
@@ -463,6 +470,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmCatProducto.resx">
       <DependentUpon>frmCatProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\frmCatSucursales.resx">
+      <DependentUpon>frmCatSucursales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Catalogos\frmConfiguraDescuentos.resx">
       <DependentUpon>frmConfiguraDescuentos.cs</DependentUpon>
