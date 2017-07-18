@@ -53,12 +53,15 @@ namespace SistemaFarmacia.Vistas.Procesos
             vistaEditaEntradas.ShowDialog();
         }
 
-        public void CargarDatos()
+        public void CargarDatos(bool realizarImpresion = false)
         {
             int anio;
             anio = (int)nudAnio.Value;
             _entradasController.ConsultaEntradasCabecera(anio);
             RecuperarDatosDeGrid();
+
+            if (realizarImpresion)
+                ImprimirEntrada();
         }
 
         private bool VerificaExistenciaRegistros()
@@ -114,6 +117,11 @@ namespace SistemaFarmacia.Vistas.Procesos
             vistaEditaEntradas.ShowDialog();
         }
         private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            ImprimirEntrada();
+        }
+
+        private void ImprimirEntrada()
         {
             _entradasController.ConsultaReporte(_entradaProductoListado.IdEntradaProducto);
         }

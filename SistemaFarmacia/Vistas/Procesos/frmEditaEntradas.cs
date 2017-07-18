@@ -374,7 +374,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         public void Cerrar()
         {
-            _vistaLlamada.CargarDatos();
+            _vistaLlamada.CargarDatos(true);
             
             this.Close();
             this.Dispose();

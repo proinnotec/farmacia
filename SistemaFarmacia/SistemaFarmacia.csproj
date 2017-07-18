@@ -157,6 +157,12 @@
       <DependentUpon>rptCortesCaja.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\rptEntradaProductoBasica.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEntradaProductoBasica.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\rptEntradasProductos.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -332,6 +338,12 @@
     <Compile Include="Vistas\Procesos\frmReporteKardex.Designer.cs">
       <DependentUpon>frmReporteKardex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Procesos\frmTipoRepEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Procesos\frmTipoRepEntrada.Designer.cs">
+      <DependentUpon>frmTipoRepEntrada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\Ventas\frmAplicarDescuento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,6 +405,10 @@
     <EmbeddedResource Include="Reportes\rptCortesCaja.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptCortesCaja.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptEntradaProductoBasica.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEntradaProductoBasica.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptEntradasProductos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -486,6 +502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Procesos\frmReporteKardex.resx">
       <DependentUpon>frmReporteKardex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Procesos\frmTipoRepEntrada.resx">
+      <DependentUpon>frmTipoRepEntrada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\Ventas\frmAplicarDescuento.resx">
       <DependentUpon>frmAplicarDescuento.cs</DependentUpon>

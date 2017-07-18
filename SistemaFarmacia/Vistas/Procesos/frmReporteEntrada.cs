@@ -5,7 +5,7 @@ using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
 using System.Data;
-
+using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Procesos
 {
@@ -20,17 +20,45 @@ namespace SistemaFarmacia.Vistas.Procesos
 
             _lista = lista;
             _contexto = contexto;
+            TopMost = true;
         }
 
         private void frmReporteEntrada_Load(object sender, EventArgs e)
         {
-            rptEntradasProductos rptEntradaImpresion = new rptEntradasProductos();
+            frmTipoRepEntrada tipoReporte = new frmTipoRepEntrada(_contexto);
 
-            rptEntradaImpresion.SetDataSource(_lista);
-            rptEntradaImpresion.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
-            rptEntradaImpresion.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
+            DialogResult respuesta = tipoReporte.ShowDialog();
 
-            rptEntradas.ReportSource = rptEntradaImpresion;
+            if (respuesta != DialogResult.Yes)
+                Close();
+
+            TipoReporteEntrada tipoReporteEnum = tipoReporte.TipoReporte;
+
+            switch(tipoReporteEnum)
+            {
+                case TipoReporteEntrada.Basico:
+                    rptEntradaProductoBasica rptEntradaImpresionBasico = new rptEntradaProductoBasica();
+
+                    rptEntradaImpresionBasico.SetDataSource(_lista);
+                    rptEntradaImpresionBasico.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
+
+                    rptEntradas.ReportSource = rptEntradaImpresionBasico;
+
+                    break;
+
+                case TipoReporteEntrada.Detallado:
+                    rptEntradasProductos rptEntradaImpresion = new rptEntradasProductos();
+
+                    rptEntradaImpresion.SetDataSource(_lista);
+                    rptEntradaImpresion.SetParameterValue("Empresa", _contexto.Usuario.Sucursal);
+                    rptEntradaImpresion.SetParameterValue("UsuarioEmite", _contexto.Usuario.NombreUsuario);
+
+                    rptEntradas.ReportSource = rptEntradaImpresion;
+
+                    break;
+            }
+
+           
             rptEntradas.Refresh();
         }
     }

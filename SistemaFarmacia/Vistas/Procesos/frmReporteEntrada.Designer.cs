@@ -40,8 +40,9 @@
             this.rptEntradas.Location = new System.Drawing.Point(0, 0);
             this.rptEntradas.Name = "rptEntradas";
             this.rptEntradas.ShowCloseButton = false;
+            this.rptEntradas.ShowCopyButton = false;
             this.rptEntradas.ShowGotoPageButton = false;
-            this.rptEntradas.ShowGroupTreeButton = false;
+            this.rptEntradas.ShowParameterPanelButton = false;
             this.rptEntradas.Size = new System.Drawing.Size(964, 645);
             this.rptEntradas.TabIndex = 0;
             this.rptEntradas.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
