@@ -21,9 +21,9 @@ namespace SistemaFarmacia.Controladores.Ventas
             _servicioCortesCaja = new ServicioCortesCaja(BaseDeDatosTienda);
         }
 
-        public void ObtenerListaVendedores(DateTime fecha)
+        public void ObtenerListaVendedores(DateTime fechaInicio, DateTime fechaFin)
         {
-            ExcepcionPersonalizada resultado = _servicioCortesCaja.ObtenerListaUsuariosCortesCajaReporte(fecha);
+            ExcepcionPersonalizada resultado = _servicioCortesCaja.ObtenerListaUsuariosCortesCajaReporte(fechaInicio, fechaFin);
 
             if (resultado != null)
             {
@@ -35,9 +35,9 @@ namespace SistemaFarmacia.Controladores.Ventas
             _vista.LlenarComboVendedores(lista);
         }
 
-        public void GenerarCortesCajaReporte(DateTime fecha, int idVendedor)
+        public void GenerarCortesCajaReporte(DateTime fechaInicio, DateTime fechaFin, int idVendedor)
         {
-            ExcepcionPersonalizada resultado = _servicioCortesCaja.GenerarCortesCajaReporte(fecha, idVendedor);
+            ExcepcionPersonalizada resultado = _servicioCortesCaja.GenerarCortesCajaReporte(fechaInicio, fechaFin, idVendedor);
 
             if (resultado != null)
             {

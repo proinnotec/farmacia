@@ -116,7 +116,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
             }
         }
 
-        public ExcepcionPersonalizada ObtenerListaUsuariosCortesCajaReporte(DateTime fecha)
+        public ExcepcionPersonalizada ObtenerListaUsuariosCortesCajaReporte(DateTime fechaInicio, DateTime fechaFin)
         {
             ListaVendedores = new List<Usuario>();
 
@@ -127,8 +127,11 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                 conexion = _baseDatos.CrearConexionAbierta();
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_UsuariosCorteCaja", conexion);
 
-                IDataParameter parametroFechaInicio = _baseDatos.CrearParametro("@Fecha", fecha, ParameterDirection.Input);
+                IDataParameter parametroFechaInicio = _baseDatos.CrearParametro("@FechaInicio", fechaInicio, ParameterDirection.Input);
                 comando.Parameters.Add(parametroFechaInicio);
+
+                IDataParameter parametroFechaFin = _baseDatos.CrearParametro("@FechaFin", fechaFin, ParameterDirection.Input);
+                comando.Parameters.Add(parametroFechaFin);
 
                 IDataReader lector = comando.ExecuteReader();
 
@@ -161,7 +164,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
             }
         }
 
-        public ExcepcionPersonalizada GenerarCortesCajaReporte(DateTime fecha, int idVendedor)
+        public ExcepcionPersonalizada GenerarCortesCajaReporte(DateTime fechaInicio, DateTime fechaFin, int idVendedor)
         {
             ListaCorteCajaReporte = new List<CorteCajaReporte>();
 
@@ -172,10 +175,13 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                 conexion = _baseDatos.CrearConexionAbierta();
                 IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_CorteCajaReporte", conexion);
 
-                IDataParameter parametroFechaInicio = _baseDatos.CrearParametro("@Fecha", fecha, ParameterDirection.Input);
+                IDataParameter parametroFechaInicio = _baseDatos.CrearParametro("@FechaInicio", fechaInicio, ParameterDirection.Input);
                 comando.Parameters.Add(parametroFechaInicio);
 
-                if( idVendedor > 0 )
+                IDataParameter parametroFechaFin = _baseDatos.CrearParametro("@FechaFin", fechaFin, ParameterDirection.Input);
+                comando.Parameters.Add(parametroFechaFin);
+
+                if ( idVendedor > 0 )
                 {
                     IDataParameter parametroVendedor = _baseDatos.CrearParametro("@IdVendedor", idVendedor, ParameterDirection.Input);
                     comando.Parameters.Add(parametroVendedor);

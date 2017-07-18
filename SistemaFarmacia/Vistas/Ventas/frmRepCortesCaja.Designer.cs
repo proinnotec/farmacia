@@ -30,11 +30,14 @@
         {
             this.crvReporte = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.gpbConsulta = new System.Windows.Forms.GroupBox();
+            this.lblAl = new System.Windows.Forms.Label();
+            this.lblDel = new System.Windows.Forms.Label();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.btnImprimir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.cmbVendedores = new System.Windows.Forms.ComboBox();
             this.chbTodos = new System.Windows.Forms.CheckBox();
             this.lblFecha = new System.Windows.Forms.Label();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.gpbConsulta.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,11 +62,14 @@
             // 
             this.gpbConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbConsulta.Controls.Add(this.lblAl);
+            this.gpbConsulta.Controls.Add(this.lblDel);
+            this.gpbConsulta.Controls.Add(this.dtpFechaFin);
             this.gpbConsulta.Controls.Add(this.btnImprimir);
             this.gpbConsulta.Controls.Add(this.cmbVendedores);
             this.gpbConsulta.Controls.Add(this.chbTodos);
             this.gpbConsulta.Controls.Add(this.lblFecha);
-            this.gpbConsulta.Controls.Add(this.dtpFecha);
+            this.gpbConsulta.Controls.Add(this.dtpFechaInicio);
             this.gpbConsulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbConsulta.Location = new System.Drawing.Point(0, 0);
             this.gpbConsulta.Name = "gpbConsulta";
@@ -71,6 +77,34 @@
             this.gpbConsulta.TabIndex = 0;
             this.gpbConsulta.TabStop = false;
             this.gpbConsulta.Text = "Parámetros de Consulta";
+            // 
+            // lblAl
+            // 
+            this.lblAl.AutoSize = true;
+            this.lblAl.Location = new System.Drawing.Point(173, 48);
+            this.lblAl.Name = "lblAl";
+            this.lblAl.Size = new System.Drawing.Size(26, 16);
+            this.lblAl.TabIndex = 27;
+            this.lblAl.Text = "Al:";
+            // 
+            // lblDel
+            // 
+            this.lblDel.AutoSize = true;
+            this.lblDel.Location = new System.Drawing.Point(6, 48);
+            this.lblDel.Name = "lblDel";
+            this.lblDel.Size = new System.Drawing.Size(36, 16);
+            this.lblDel.TabIndex = 26;
+            this.lblDel.Text = "Del:";
+            // 
+            // dtpFechaFin
+            // 
+            this.dtpFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaFin.Location = new System.Drawing.Point(201, 45);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(125, 22);
+            this.dtpFechaFin.TabIndex = 25;
+            this.dtpFechaFin.ValueChanged += new System.EventHandler(this.dtpFechaFin_ValueChanged);
             // 
             // btnImprimir
             // 
@@ -91,7 +125,7 @@
             // 
             this.cmbVendedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVendedores.FormattingEnabled = true;
-            this.cmbVendedores.Location = new System.Drawing.Point(270, 45);
+            this.cmbVendedores.Location = new System.Drawing.Point(378, 45);
             this.cmbVendedores.Name = "cmbVendedores";
             this.cmbVendedores.Size = new System.Drawing.Size(238, 24);
             this.cmbVendedores.TabIndex = 11;
@@ -101,7 +135,7 @@
             this.chbTodos.AutoSize = true;
             this.chbTodos.Checked = true;
             this.chbTodos.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbTodos.Location = new System.Drawing.Point(273, 17);
+            this.chbTodos.Location = new System.Drawing.Point(381, 17);
             this.chbTodos.Name = "chbTodos";
             this.chbTodos.Size = new System.Drawing.Size(186, 20);
             this.chbTodos.TabIndex = 10;
@@ -112,21 +146,21 @@
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(80, 21);
+            this.lblFecha.Location = new System.Drawing.Point(47, 21);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(129, 16);
+            this.lblFecha.Size = new System.Drawing.Size(219, 16);
             this.lblFecha.TabIndex = 7;
-            this.lblFecha.Text = "Seleccione el día";
+            this.lblFecha.Text = "Seleccione el rango de fechas";
             // 
-            // dtpFecha
+            // dtpFechaInicio
             // 
-            this.dtpFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(83, 45);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(125, 22);
-            this.dtpFecha.TabIndex = 5;
-            this.dtpFecha.ValueChanged += new System.EventHandler(this.dtpFecha_ValueChanged);
+            this.dtpFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(42, 45);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(125, 22);
+            this.dtpFechaInicio.TabIndex = 5;
+            this.dtpFechaInicio.ValueChanged += new System.EventHandler(this.dtpFechaInicio_ValueChanged);
             // 
             // frmRepCortesCaja
             // 
@@ -148,10 +182,13 @@
 
         private System.Windows.Forms.GroupBox gpbConsulta;
         private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
         private System.Windows.Forms.ComboBox cmbVendedores;
         private System.Windows.Forms.CheckBox chbTodos;
         private ControlesPersonalizados.BotonPersonalizado btnImprimir;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crvReporte;
+        private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.Label lblAl;
+        private System.Windows.Forms.Label lblDel;
     }
 }

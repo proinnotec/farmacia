@@ -34,7 +34,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             toolTipImprimir.SetToolTip(btnImprimir, "Imprimir");
 
             HabilitarDesabilitarControles(chbTodos.Checked);
-            _cortesCajaRepController.ObtenerListaVendedores(dtpFecha.Value);
+            _cortesCajaRepController.ObtenerListaVendedores(dtpFechaInicio.Value, dtpFechaFin.Value);
         }
 
         private void HabilitarDesabilitarControles(bool habilita)
@@ -57,32 +57,42 @@ namespace SistemaFarmacia.Vistas.Ventas
             HabilitarDesabilitarControles(chbTodos.Checked);
         }
 
-        private void dtpFecha_ValueChanged(object sender, EventArgs e)
-        {
-            _cortesCajaRepController.ObtenerListaVendedores(dtpFecha.Value);
-        }
-
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            DateTime fecha;
+            DateTime fechaInicio, fechaFin;
             int idVendedor = 0;
 
-            fecha = dtpFecha.Value;
+            fechaInicio = dtpFechaInicio.Value;
+            fechaFin = dtpFechaFin.Value;
 
-            if (!chbTodos.Checked)
-            {
-                if(cmbVendedores.SelectedValue == null )
-                {
-                    MostrarDialogoResultado(this.Text, "Si la casilla de ver todos los vendedores no está activa, debe seleccionar un vendedor, favor de verificar.", string.Empty, false);
-                    return;
-                }
-
-                idVendedor = (int)cmbVendedores.SelectedValue;
-            }                
+            if (!ValidarParametros(ref idVendedor))
+                return;
 
             Cursor.Current = Cursors.WaitCursor;
 
-            _cortesCajaRepController.GenerarCortesCajaReporte(fecha, idVendedor);
+            _cortesCajaRepController.GenerarCortesCajaReporte(fechaInicio, fechaFin, idVendedor);
+        }
+
+        private bool ValidarParametros(ref int idVendedor)
+        {
+            if(dtpFechaInicio.Value.Date > dtpFechaFin.Value.Date)
+            {
+                MostrarDialogoResultado(this.Text, "La fecha de inicio, no puede ser mayor a la fecha final, favor de verificar.", string.Empty, false);
+                return false;
+            }
+
+            if (!chbTodos.Checked)
+            {
+                if (cmbVendedores.SelectedValue == null)
+                {
+                    MostrarDialogoResultado(this.Text, "Si la casilla de ver todos los vendedores no está activa, debe seleccionar un vendedor, favor de verificar.", string.Empty, false);
+                    return false;
+                }
+
+                idVendedor = (int)cmbVendedores.SelectedValue;
+            }
+
+            return true;
         }
 
         public void LlenarDatosReporte(List<CorteCajaReporte> lista)
@@ -107,15 +117,24 @@ namespace SistemaFarmacia.Vistas.Ventas
             else
                 complementoDetalle = "de un solo vendedor";
 
-            string detalle = string.Format("De la fecha {0} {1}", dtpFecha.Value.ToShortDateString(), complementoDetalle);
+            string detalle = string.Format("Del {0} al {1} {2}", dtpFechaInicio.Value.ToShortDateString(), dtpFechaFin.Value.ToShortDateString(), complementoDetalle);
 
             reporte.SetParameterValue("DetalleReporte", detalle);
-
 
             crvReporte.ReportSource = reporte;
             crvReporte.Refresh();
 
             Cursor.Current = Cursors.Default;
+        }
+
+        private void dtpFechaFin_ValueChanged(object sender, EventArgs e)
+        {
+            _cortesCajaRepController.ObtenerListaVendedores(dtpFechaInicio.Value, dtpFechaFin.Value);
+        }
+
+        private void dtpFechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+            _cortesCajaRepController.ObtenerListaVendedores(dtpFechaInicio.Value, dtpFechaFin.Value);
         }
     }
 }
