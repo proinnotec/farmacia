@@ -30,6 +30,8 @@
         {
             this.crvReporte = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.gpbConsulta = new System.Windows.Forms.GroupBox();
+            this.rdbAbierto = new System.Windows.Forms.RadioButton();
+            this.rdbCerrado = new System.Windows.Forms.RadioButton();
             this.lblAl = new System.Windows.Forms.Label();
             this.lblDel = new System.Windows.Forms.Label();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
@@ -62,6 +64,8 @@
             // 
             this.gpbConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbConsulta.Controls.Add(this.rdbAbierto);
+            this.gpbConsulta.Controls.Add(this.rdbCerrado);
             this.gpbConsulta.Controls.Add(this.lblAl);
             this.gpbConsulta.Controls.Add(this.lblDel);
             this.gpbConsulta.Controls.Add(this.dtpFechaFin);
@@ -77,6 +81,28 @@
             this.gpbConsulta.TabIndex = 0;
             this.gpbConsulta.TabStop = false;
             this.gpbConsulta.Text = "Parámetros de Consulta";
+            // 
+            // rdbAbierto
+            // 
+            this.rdbAbierto.AutoSize = true;
+            this.rdbAbierto.Location = new System.Drawing.Point(691, 42);
+            this.rdbAbierto.Name = "rdbAbierto";
+            this.rdbAbierto.Size = new System.Drawing.Size(142, 20);
+            this.rdbAbierto.TabIndex = 5;
+            this.rdbAbierto.Text = "Ver corte abierto";
+            this.rdbAbierto.UseVisualStyleBackColor = true;
+            // 
+            // rdbCerrado
+            // 
+            this.rdbCerrado.AutoSize = true;
+            this.rdbCerrado.Checked = true;
+            this.rdbCerrado.Location = new System.Drawing.Point(691, 19);
+            this.rdbCerrado.Name = "rdbCerrado";
+            this.rdbCerrado.Size = new System.Drawing.Size(163, 20);
+            this.rdbCerrado.TabIndex = 4;
+            this.rdbCerrado.TabStop = true;
+            this.rdbCerrado.Text = "Ver cortes cerrados";
+            this.rdbCerrado.UseVisualStyleBackColor = true;
             // 
             // lblAl
             // 
@@ -117,7 +143,7 @@
             this.btnImprimir.Location = new System.Drawing.Point(1026, 12);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(50, 50);
-            this.btnImprimir.TabIndex = 4;
+            this.btnImprimir.TabIndex = 6;
             this.btnImprimir.UseVisualStyleBackColor = false;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
@@ -190,5 +216,7 @@
         private System.Windows.Forms.DateTimePicker dtpFechaFin;
         private System.Windows.Forms.Label lblAl;
         private System.Windows.Forms.Label lblDel;
+        private System.Windows.Forms.RadioButton rdbAbierto;
+        private System.Windows.Forms.RadioButton rdbCerrado;
     }
 }

@@ -20,6 +20,7 @@ namespace SistemaFarmacia.Vistas.Ventas
     {
         private ContextoAplicacion _contexto;
         private CortesCajaRepController _cortesCajaRepController;
+        private bool _esCorteAbierto = false;
 
         public frmRepCortesCaja(ContextoAplicacion contextoAplicacion)
         {
@@ -61,6 +62,7 @@ namespace SistemaFarmacia.Vistas.Ventas
         {
             DateTime fechaInicio, fechaFin;
             int idVendedor = 0;
+            
 
             fechaInicio = dtpFechaInicio.Value;
             fechaFin = dtpFechaFin.Value;
@@ -70,7 +72,7 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             Cursor.Current = Cursors.WaitCursor;
 
-            _cortesCajaRepController.GenerarCortesCajaReporte(fechaInicio, fechaFin, idVendedor);
+            _cortesCajaRepController.GenerarCortesCajaReporte(fechaInicio, fechaFin, idVendedor, _esCorteAbierto);
         }
 
         private bool ValidarParametros(ref int idVendedor)
@@ -91,6 +93,12 @@ namespace SistemaFarmacia.Vistas.Ventas
 
                 idVendedor = (int)cmbVendedores.SelectedValue;
             }
+
+            if (rdbAbierto.Checked)
+                _esCorteAbierto = true;
+
+            if (rdbCerrado.Checked)
+                _esCorteAbierto = false;
 
             return true;
         }
@@ -116,6 +124,12 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             else
                 complementoDetalle = "de un solo vendedor";
+
+            if (_esCorteAbierto)
+                complementoDetalle = complementoDetalle + " del corte abierto";
+
+            else
+                complementoDetalle = complementoDetalle + " de cortes cerrados";
 
             string detalle = string.Format("Del {0} al {1} {2}", dtpFechaInicio.Value.ToShortDateString(), dtpFechaFin.Value.ToShortDateString(), complementoDetalle);
 

@@ -164,7 +164,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
             }
         }
 
-        public ExcepcionPersonalizada GenerarCortesCajaReporte(DateTime fechaInicio, DateTime fechaFin, int idVendedor)
+        public ExcepcionPersonalizada GenerarCortesCajaReporte(DateTime fechaInicio, DateTime fechaFin, int idVendedor, bool esCorteAbierto)
         {
             ListaCorteCajaReporte = new List<CorteCajaReporte>();
 
@@ -186,6 +186,9 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                     IDataParameter parametroVendedor = _baseDatos.CrearParametro("@IdVendedor", idVendedor, ParameterDirection.Input);
                     comando.Parameters.Add(parametroVendedor);
                 }
+
+                IDataParameter parametroCorteAbierto = _baseDatos.CrearParametro("@CorteAbierto", esCorteAbierto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroCorteAbierto);
 
                 IDataReader lector = comando.ExecuteReader();
 
