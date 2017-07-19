@@ -56,7 +56,7 @@
             this.crvReporte.ShowParameterPanelButton = false;
             this.crvReporte.ShowRefreshButton = false;
             this.crvReporte.Size = new System.Drawing.Size(1082, 511);
-            this.crvReporte.TabIndex = 1;
+            this.crvReporte.TabIndex = 6;
             // 
             // gpbConsulta
             // 
@@ -103,7 +103,7 @@
             this.dtpFechaFin.Location = new System.Drawing.Point(201, 45);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.Size = new System.Drawing.Size(125, 22);
-            this.dtpFechaFin.TabIndex = 25;
+            this.dtpFechaFin.TabIndex = 2;
             this.dtpFechaFin.ValueChanged += new System.EventHandler(this.dtpFechaFin_ValueChanged);
             // 
             // btnImprimir
@@ -117,7 +117,7 @@
             this.btnImprimir.Location = new System.Drawing.Point(1026, 12);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(50, 50);
-            this.btnImprimir.TabIndex = 24;
+            this.btnImprimir.TabIndex = 4;
             this.btnImprimir.UseVisualStyleBackColor = false;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
@@ -128,7 +128,7 @@
             this.cmbVendedores.Location = new System.Drawing.Point(378, 45);
             this.cmbVendedores.Name = "cmbVendedores";
             this.cmbVendedores.Size = new System.Drawing.Size(238, 24);
-            this.cmbVendedores.TabIndex = 11;
+            this.cmbVendedores.TabIndex = 5;
             // 
             // chbTodos
             // 
@@ -138,7 +138,7 @@
             this.chbTodos.Location = new System.Drawing.Point(381, 17);
             this.chbTodos.Name = "chbTodos";
             this.chbTodos.Size = new System.Drawing.Size(186, 20);
-            this.chbTodos.TabIndex = 10;
+            this.chbTodos.TabIndex = 3;
             this.chbTodos.Text = "Todos los Vendedores";
             this.chbTodos.UseVisualStyleBackColor = true;
             this.chbTodos.CheckedChanged += new System.EventHandler(this.chbTodos_CheckedChanged);
@@ -159,7 +159,7 @@
             this.dtpFechaInicio.Location = new System.Drawing.Point(42, 45);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(125, 22);
-            this.dtpFechaInicio.TabIndex = 5;
+            this.dtpFechaInicio.TabIndex = 1;
             this.dtpFechaInicio.ValueChanged += new System.EventHandler(this.dtpFechaInicio_ValueChanged);
             // 
             // frmRepCortesCaja
