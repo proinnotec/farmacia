@@ -82,6 +82,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             txtAMaterno.Text = _usuarioGuardar.ApellidoMaterno;
             txtUsuario.Text = _usuarioGuardar.NombreUsuario;
             txtPass.Text = _usuarioGuardar.UserPassword;
+            txtPassComprobar.Text = _usuarioGuardar.UserPassword;
 
             txtUsuario.Enabled = false;
         }
@@ -93,8 +94,9 @@ namespace SistemaFarmacia.Vistas.Administracion
             string aMaterno = txtAMaterno.Text.TrimEnd().TrimStart();
             string usuarioLogin = txtUsuario.Text.TrimEnd().TrimStart();
             string password = txtPass.Text.TrimEnd().TrimStart();
-            int perfil = (int)cmbPerfiles.SelectedValue;
+            string passwordConfirmacion = txtPassComprobar.Text.TrimEnd().TrimStart();
             string mensaje = string.Empty;
+            int perfil = (int)cmbPerfiles.SelectedValue;
 
             if (string.IsNullOrEmpty(nombre))
                 mensaje = " Capture el nombre \n";
@@ -111,8 +113,14 @@ namespace SistemaFarmacia.Vistas.Administracion
             if (string.IsNullOrEmpty(password))
                 mensaje = mensaje + " Capture el password \n";
 
+            if (string.IsNullOrEmpty(passwordConfirmacion))
+                mensaje = mensaje + " Capture la comprobación del password \n";
+
             if (perfil <= 0)
-                mensaje = mensaje + " Seleccione un perfil para el usuario";
+                mensaje = mensaje + " Seleccione un perfil para el usuario \n";
+
+            if (password != passwordConfirmacion)
+                mensaje = mensaje + " No coinciden las contraseñas, favor de verificar. ";
 
             if (mensaje.Length > 0)
             {

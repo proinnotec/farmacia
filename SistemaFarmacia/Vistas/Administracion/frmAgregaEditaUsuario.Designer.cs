@@ -43,12 +43,16 @@
             this.txtAMaterno = new System.Windows.Forms.MaskedTextBox();
             this.txtAPaterno = new System.Windows.Forms.MaskedTextBox();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.txtPassComprobar = new System.Windows.Forms.MaskedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtPassComprobar);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.lblPerfil);
             this.groupBox2.Controls.Add(this.txtUsuario);
             this.groupBox2.Controls.Add(this.txtPass);
@@ -58,7 +62,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(9, 83);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(461, 84);
+            this.groupBox2.Size = new System.Drawing.Size(461, 125);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de Login";
@@ -77,14 +81,14 @@
             this.txtUsuario.Location = new System.Drawing.Point(9, 49);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(145, 22);
-            this.txtUsuario.TabIndex = 17;
+            this.txtUsuario.TabIndex = 4;
             // 
             // txtPass
             // 
             this.txtPass.Location = new System.Drawing.Point(156, 49);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(145, 22);
-            this.txtPass.TabIndex = 18;
+            this.txtPass.TabIndex = 5;
             this.txtPass.UseSystemPasswordChar = true;
             // 
             // cmbPerfiles
@@ -94,7 +98,7 @@
             this.cmbPerfiles.Location = new System.Drawing.Point(307, 49);
             this.cmbPerfiles.Name = "cmbPerfiles";
             this.cmbPerfiles.Size = new System.Drawing.Size(145, 24);
-            this.cmbPerfiles.TabIndex = 19;
+            this.cmbPerfiles.TabIndex = 7;
             // 
             // lblUsuario
             // 
@@ -162,21 +166,21 @@
             this.txtNombre.Location = new System.Drawing.Point(6, 37);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(145, 22);
-            this.txtNombre.TabIndex = 14;
+            this.txtNombre.TabIndex = 1;
             // 
             // txtAMaterno
             // 
             this.txtAMaterno.Location = new System.Drawing.Point(306, 37);
             this.txtAMaterno.Name = "txtAMaterno";
             this.txtAMaterno.Size = new System.Drawing.Size(145, 22);
-            this.txtAMaterno.TabIndex = 16;
+            this.txtAMaterno.TabIndex = 3;
             // 
             // txtAPaterno
             // 
             this.txtAPaterno.Location = new System.Drawing.Point(156, 37);
             this.txtAPaterno.Name = "txtAPaterno";
             this.txtAPaterno.Size = new System.Drawing.Size(145, 22);
-            this.txtAPaterno.TabIndex = 15;
+            this.txtAPaterno.TabIndex = 2;
             // 
             // btnGuardar
             // 
@@ -193,11 +197,28 @@
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // txtPassComprobar
+            // 
+            this.txtPassComprobar.Location = new System.Drawing.Point(156, 96);
+            this.txtPassComprobar.Name = "txtPassComprobar";
+            this.txtPassComprobar.Size = new System.Drawing.Size(145, 22);
+            this.txtPassComprobar.TabIndex = 6;
+            this.txtPassComprobar.UseSystemPasswordChar = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(153, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(168, 16);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Comprobar Contraseña";
+            // 
             // frmAgregaEditaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 180);
+            this.ClientSize = new System.Drawing.Size(543, 215);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGuardar);
@@ -229,5 +250,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblPerfil;
+        private System.Windows.Forms.MaskedTextBox txtPassComprobar;
+        private System.Windows.Forms.Label label1;
     }
 }
