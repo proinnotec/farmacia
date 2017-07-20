@@ -460,5 +460,10 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             return false;
         }
+
+        private void btnCortes_Click(object sender, EventArgs e)
+        {
+            GenerarCorte();
+        }
     }
 }
