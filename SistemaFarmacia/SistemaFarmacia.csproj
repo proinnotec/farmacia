@@ -194,6 +194,14 @@
       <DependentUpon>rptTicket.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\Ticket.cs">
+      <DependentUpon>Ticket.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Ticket.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ticket.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -610,6 +618,17 @@
     </None>
     <None Include="Reportes\Kardex.xss">
       <DependentUpon>Kardex.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Ticket.xsc">
+      <DependentUpon>Ticket.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\Ticket.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ticket.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\Ticket.xss">
+      <DependentUpon>Ticket.xsd</DependentUpon>
     </None>
     <None Include="Resources\Correcto.png" />
   </ItemGroup>

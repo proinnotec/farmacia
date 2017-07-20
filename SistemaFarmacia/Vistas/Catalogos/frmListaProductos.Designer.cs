@@ -35,6 +35,10 @@
             this.cmbFamilias = new SistemaFarmacia.ControlesPersonalizados.ComboPersonalizado();
             this.lblFamilia = new System.Windows.Forms.Label();
             this.gridProductos = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
+            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnSalir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdFamiliaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,10 +46,6 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AplicaDescuentoCatalogo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnSalir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,63 +122,6 @@
             this.gridProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellClick);
             this.gridProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellContentDoubleClick);
             // 
-            // ClaveProducto
-            // 
-            this.ClaveProducto.DataPropertyName = "ClaveProducto";
-            this.ClaveProducto.FillWeight = 50.76142F;
-            this.ClaveProducto.HeaderText = "ClaveProducto";
-            this.ClaveProducto.Name = "ClaveProducto";
-            this.ClaveProducto.ReadOnly = true;
-            // 
-            // IdProducto
-            // 
-            this.IdProducto.DataPropertyName = "IdProducto";
-            this.IdProducto.HeaderText = "IdProducto";
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.ReadOnly = true;
-            this.IdProducto.Visible = false;
-            // 
-            // IdFamiliaProducto
-            // 
-            this.IdFamiliaProducto.DataPropertyName = "IdFamiliaProducto";
-            this.IdFamiliaProducto.HeaderText = "IdFamiliaProducto";
-            this.IdFamiliaProducto.Name = "IdFamiliaProducto";
-            this.IdFamiliaProducto.ReadOnly = true;
-            this.IdFamiliaProducto.Visible = false;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "Descripcion";
-            this.Descripcion.FillWeight = 116.4129F;
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            this.Precio.DataPropertyName = "Precio";
-            this.Precio.FillWeight = 116.4129F;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
-            // AplicaDescuentoCatalogo
-            // 
-            this.AplicaDescuentoCatalogo.DataPropertyName = "AplicaDescuentoCatalogo";
-            this.AplicaDescuentoCatalogo.FillWeight = 116.4129F;
-            this.AplicaDescuentoCatalogo.HeaderText = "Descuento";
-            this.AplicaDescuentoCatalogo.Name = "AplicaDescuentoCatalogo";
-            this.AplicaDescuentoCatalogo.ReadOnly = true;
-            this.AplicaDescuentoCatalogo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AplicaDescuentoCatalogo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // EsActivo
-            // 
-            this.EsActivo.DataPropertyName = "EsActivo";
-            this.EsActivo.HeaderText = "EsActivo";
-            this.EsActivo.Name = "EsActivo";
-            this.EsActivo.ReadOnly = true;
-            // 
             // btnNuevo
             // 
             this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
@@ -234,6 +177,64 @@
             this.btnActDes.TabIndex = 21;
             this.btnActDes.UseVisualStyleBackColor = false;
             this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
+            // 
+            // ClaveProducto
+            // 
+            this.ClaveProducto.DataPropertyName = "ClaveProducto";
+            this.ClaveProducto.FillWeight = 190.3553F;
+            this.ClaveProducto.HeaderText = "Clave";
+            this.ClaveProducto.Name = "ClaveProducto";
+            this.ClaveProducto.ReadOnly = true;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.DataPropertyName = "IdProducto";
+            this.IdProducto.HeaderText = "IdProducto";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
+            this.IdProducto.Visible = false;
+            // 
+            // IdFamiliaProducto
+            // 
+            this.IdFamiliaProducto.DataPropertyName = "IdFamiliaProducto";
+            this.IdFamiliaProducto.HeaderText = "IdFamiliaProducto";
+            this.IdFamiliaProducto.Name = "IdFamiliaProducto";
+            this.IdFamiliaProducto.ReadOnly = true;
+            this.IdFamiliaProducto.Visible = false;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.FillWeight = 162.154F;
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.DataPropertyName = "Precio";
+            this.Precio.FillWeight = 43.48456F;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // AplicaDescuentoCatalogo
+            // 
+            this.AplicaDescuentoCatalogo.DataPropertyName = "AplicaDescuentoCatalogo";
+            this.AplicaDescuentoCatalogo.FillWeight = 48.96635F;
+            this.AplicaDescuentoCatalogo.HeaderText = "Descuento";
+            this.AplicaDescuentoCatalogo.Name = "AplicaDescuentoCatalogo";
+            this.AplicaDescuentoCatalogo.ReadOnly = true;
+            this.AplicaDescuentoCatalogo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AplicaDescuentoCatalogo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // EsActivo
+            // 
+            this.EsActivo.DataPropertyName = "EsActivo";
+            this.EsActivo.FillWeight = 55.03981F;
+            this.EsActivo.HeaderText = "EsActivo";
+            this.EsActivo.Name = "EsActivo";
+            this.EsActivo.ReadOnly = true;
             // 
             // frmListaProductos
             // 
