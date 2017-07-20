@@ -354,12 +354,15 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             foreach (VentaDetalle ventaDetalle in _listaVentaDetalle)
             {
-                CatProducto producto = _complementoVenta.ListaProductos.Find(elemento => elemento.IdProducto == ventaDetalle.IdProducto);
-
-                if (producto.AplicaPromocion)
+                if (venta.IdDescuento.Equals(0))
                 {
-                    ventaDetalle.CantidadPromocion = producto.CantidadPromocion;
-                    ventaDetalle.PrecioPromocion = producto.PrecioPromocion;
+                    CatProducto producto = _complementoVenta.ListaProductos.Find(elemento => elemento.IdProducto == ventaDetalle.IdProducto);
+
+                    if (producto.AplicaPromocion)
+                    {
+                        ventaDetalle.CantidadPromocion = producto.CantidadPromocion;
+                        ventaDetalle.PrecioPromocion = producto.PrecioPromocion;
+                    }
                 }
 
                 List<ProductoVentaImpuesto> listaProductoVentaImpuesto = _complementoVenta.ListaProductoVentaImpuesto.FindAll(elemento => elemento.IdProducto == ventaDetalle.IdProducto);
