@@ -215,11 +215,11 @@ namespace SistemaFarmacia.Vistas.Ventas
 
                         if (cantidadProductosPrecioEspecial > 0)
                         {
-                            totalPrecioEspecial = (cantidadProductosPrecioEspecial * productoDescuento.PrecioPromocion);
-                            _ventaImporte.Ahorro = _ventaImporte.Ahorro + (ventaDetalle.Total - totalPrecioEspecial);
+                            totalPrecioEspecial = (cantidadProductosPrecioEspecial * productoDescuento.PrecioPromocion);                           
                         }
 
                         nuevoTotal = totalSobrante + totalPrecioEspecial;
+                        _ventaImporte.Ahorro = _ventaImporte.Ahorro + (ventaDetalle.Total - nuevoTotal);
                     }
                 }
 
@@ -348,6 +348,7 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             Venta venta = new Venta();
             venta.IdUsuario = (int) frmVendedores.cmbVendedores.SelectedValue;
+            venta.NombreVendedor = frmVendedores.cmbVendedores.Text;
             venta.DetalleVenta = _listaVentaDetalle;
             venta.Descuento = _ventaImporte.Ahorro;
             venta.IdDescuento = _descuentoVenta.Descuento.IdDescuento;

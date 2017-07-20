@@ -13,6 +13,8 @@ using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Servicios.Negocio.Busqueda;
 using SistemaFarmacia.Entidades.Negocio.Busqueda;
 using SistemaFarmacia.Servicios.Negocio.Administracion;
+using SistemaFarmacia.Reportes;
+using CrystalDecisions.Shared;
 
 namespace SistemaFarmacia.Controladores.Ventas
 {
@@ -113,6 +115,35 @@ namespace SistemaFarmacia.Controladores.Ventas
             }
         }
 
+        private void ImprimirTicket(Venta venta)
+        {
+            rptTicket rptTicket = new rptTicket();
+            List<ContextoTicket> listaTicket = new List<ContextoTicket>();
+
+            foreach (VentaDetalle ventaDetalle in venta.DetalleVenta)
+            {
+                ContextoTicket contextoTicket = new ContextoTicket();
+                contextoTicket.Cantidad = ventaDetalle.Cantidad;
+                contextoTicket.ClaveProducto = ventaDetalle.ClaveProducto;
+                contextoTicket.Consecutivo = venta.Consecutivo;
+                contextoTicket.Descripcion = ventaDetalle.Descripcion;
+                contextoTicket.Descuento = venta.Descuento;
+                contextoTicket.FechaRegistro = venta.FechaRegistro;
+                contextoTicket.Porcentaje = venta.Porcentaje;
+                contextoTicket.Precio = ventaDetalle.Precio;
+                contextoTicket.Subtotal = venta.SubTotal;
+                contextoTicket.Total = venta.Total;
+                listaTicket.Add(contextoTicket);
+            }            
+            
+            rptTicket.SetDataSource(listaTicket);
+            rptTicket.SetParameterValue("Vendedor", venta.NombreVendedor);
+            rptTicket.SetParameterValue("Direccion", _servicioVentas.DireccionSucursal);
+            rptTicket.SetParameterValue("Sucursal", string.Format("Farmacia de Genéricos: {0}", _servicioVentas.Sucursal));
+            rptTicket.PrintToPrinter(0, false, 1, 1);
+
+        }        
+
         public void GuardarVenta(Venta venta)
         {
             ExcepcionPersonalizada excepcionGuardarVenta = _servicioVentas.GuardarVenta(venta);
@@ -120,6 +151,9 @@ namespace SistemaFarmacia.Controladores.Ventas
             {
                 _vista.MostrarDialogoResultado(_vista.Text, "La venta se guardó correctamente.", string.Empty, true);
                 _vista.LimpiarFormulario();
+                venta.Consecutivo = _servicioVentas.Consecutivo;
+                venta.FechaRegistro = _servicioVentas.FechaRegistro;
+                ImprimirTicket(venta);
             }
             else
             {

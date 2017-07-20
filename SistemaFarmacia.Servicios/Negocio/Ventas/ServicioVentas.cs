@@ -17,6 +17,10 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
     {
         private IBaseDeDatos _baseDatos;
         public ContextoVenta ContextoVenta { get; private set; }
+        public Int64 Consecutivo { get; private set; }
+        public DateTime FechaRegistro { get; private set; }
+        public string DireccionSucursal { get; private set; }
+        public string Sucursal { get; private set; }
 
         public ServicioVentas(IBaseDeDatos baseDatos)
         {
@@ -127,13 +131,21 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                 IDataParameter parametroXmlVentaDetalleImpuesto = _baseDatos.CrearParametro("@XmlVentaDetalleImpuesto", xmlVentaDetalleImpuesto, ParameterDirection.Input);
                 comando.Parameters.Add(parametroXmlVentaDetalleImpuesto);
 
-                int filasAfectadas = comando.ExecuteNonQuery();
+                IDataReader lector = comando.ExecuteReader();
 
-                if (filasAfectadas.Equals(0))
+                if (lector.Read())
+                {
+                    Consecutivo = (Int64) lector["Consecutivo"];
+                    FechaRegistro = (DateTime) lector["FechaRegistro"];
+                    DireccionSucursal = (string) lector["Direccion"];
+                    Sucursal = (string)lector["Sucursal"];
+                }
+                else
                 {
                     throw new Exception("No se afectaron filas (spI_Venta).");
                 }
 
+                lector.Close();
                 transaccion.Commit();
 
                 return null;
