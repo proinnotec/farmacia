@@ -21,7 +21,7 @@ namespace SistemaFarmacia.Controladores.Ventas
             _vista = vista;
         }
 
-        public void ObtenerCortesCaja(int anio)
+        public void ObtenerCortesCaja(int anio, bool verReporte)
         {
             ExcepcionPersonalizada resultado = _servicioCortesCaja.ObtenerCortesCaja(anio);
 
@@ -32,10 +32,10 @@ namespace SistemaFarmacia.Controladores.Ventas
             }
 
             List<CorteCaja> lista = _servicioCortesCaja.ListaCortesCaja;
-            _vista.AsignarListaDeCortes(lista);
+            _vista.AsignarListaDeCortes(lista, verReporte);
         }
 
-        public void GenerarCorteCaja(CorteCaja corte)
+        public void GenerarCorteCaja(CorteCaja corte, bool verReporte)
         {
             ExcepcionPersonalizada resultado = _servicioCortesCaja.GenerarCorteCaja(corte);
 
@@ -47,7 +47,7 @@ namespace SistemaFarmacia.Controladores.Ventas
 
             _vista.MostrarDialogoResultado(_vista.Text, "Se generó correctamente el corte de caja", string.Empty, true);
 
-            ObtenerCortesCaja(corte.Fecha.Year);
+            ObtenerCortesCaja(corte.Fecha.Year, verReporte);
         }
     }
 }

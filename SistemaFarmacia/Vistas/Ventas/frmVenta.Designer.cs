@@ -53,6 +53,7 @@
             this.btnRemover = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnAplicarDescuento = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnCortes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridImportes)).BeginInit();
             this.SuspendLayout();
@@ -294,11 +295,26 @@
             this.btnAplicarDescuento.UseVisualStyleBackColor = true;
             this.btnAplicarDescuento.Click += new System.EventHandler(this.btnAplicarDescuento_Click);
             // 
+            // btnCortes
+            // 
+            this.btnCortes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCortes.BackColor = System.Drawing.Color.LightGray;
+            this.btnCortes.BackgroundImage = global::SistemaFarmacia.Resource.registradora;
+            this.btnCortes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCortes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCortes.Location = new System.Drawing.Point(26, 469);
+            this.btnCortes.Name = "btnCortes";
+            this.btnCortes.Size = new System.Drawing.Size(50, 50);
+            this.btnCortes.TabIndex = 44;
+            this.btnCortes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCortes.UseVisualStyleBackColor = true;
+            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 524);
+            this.Controls.Add(this.btnCortes);
             this.Controls.Add(this.btnAplicarDescuento);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnRemover);
@@ -335,5 +351,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
         private ControlesPersonalizados.BotonPersonalizado btnAplicarDescuento;
+        private ControlesPersonalizados.BotonPersonalizado btnCortes;
     }
 }

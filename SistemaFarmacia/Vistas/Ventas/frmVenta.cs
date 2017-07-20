@@ -27,6 +27,7 @@ namespace SistemaFarmacia.Vistas.Ventas
         VentaDetalle _ventaDetalle;        
         DescuentoVenta _descuentoVenta;
         VentaImportes _ventaImporte;
+        ContextoAplicacion _contexto;
 
         public frmVenta(ContextoAplicacion contexto)
         {
@@ -36,6 +37,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             MensajeDescuentosAplicables();
             ToolTips();
             txtBusqueda.Select();
+            _contexto = contexto;
         }
 
         private void ToolTips()
@@ -48,6 +50,9 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             ToolTip toolbtnRemover = new ToolTip();
             toolbtnRemover.SetToolTip(btnRemover, "Quitar producto");
+
+            ToolTip toolbtnCortes = new ToolTip();
+            toolbtnCortes.SetToolTip(btnCortes, "Ver Cortes de Caja F9");
         }
 
         private void InicializaRecursos()
@@ -425,6 +430,35 @@ namespace SistemaFarmacia.Vistas.Ventas
             {
                 txtBusqueda.Select();
             }
+        }
+
+        private void CerrarVentana()
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void GenerarCorte()
+        {
+            frmCortesCaja cortes = new frmCortesCaja(_contexto);
+            cortes.Show();
+
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    CerrarVentana();
+                    break;
+
+                case Keys.F9:
+                    GenerarCorte();
+                    break;
+            }
+
+            return false;
         }
     }
 }

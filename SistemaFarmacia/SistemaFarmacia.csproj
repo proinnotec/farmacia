@@ -640,6 +640,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
+    <None Include="Resources\registradora.jpg" />
     <None Include="Resources\login2.jpg" />
     <None Include="Resources\login.jpg" />
     <None Include="Resources\candado.jpg" />

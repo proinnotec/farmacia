@@ -4,12 +4,6 @@ using SistemaFarmacia.Entidades.Negocio.Ventas;
 using SistemaFarmacia.Vistas.Base;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaFarmacia.Vistas.Ventas
@@ -29,28 +23,41 @@ namespace SistemaFarmacia.Vistas.Ventas
 
         private void frmCortesCaja_Load(object sender, EventArgs e)
         {
-            ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTip toolTipNuevo = new ToolTip();
+            toolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
-            ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+            ToolTip toolTipRecargar = new ToolTip();
+            toolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
-            ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar");
+            ToolTip toolTipImprimir = new ToolTip();
+            toolTipImprimir.SetToolTip(btnImprimir, "Ver reporte de Cortes F10");
+
+            ToolTip toolTipSalir = new ToolTip();
+            toolTipSalir.SetToolTip(btnCancelar, "Cerrar F4");
 
             ConsultarCortes();
         }
 
         private void ConsultarCortes()
         {
-            _cortesCajaController.ObtenerCortesCaja((int)nudAnio.Value);
+            _cortesCajaController.ObtenerCortesCaja((int)nudAnio.Value, false);
         }
 
-        public void AsignarListaDeCortes(List<CorteCaja> lista)
+        public void AsignarListaDeCortes(List<CorteCaja> lista, bool verReporte)
         {
             gridCortes.AutoGenerateColumns = false;
             gridCortes.DataSource = null;
             gridCortes.DataSource = lista;
+
+            if (verReporte)
+                MostrarReporte();
+        }
+
+        private void MostrarReporte()
+        {
+            frmRepCortesCaja reporte = new frmRepCortesCaja(_contextoAplicacion);
+            reporte.Show();
+
         }
 
         private void nudAnio_ValueChanged(object sender, EventArgs e)
@@ -65,8 +72,7 @@ namespace SistemaFarmacia.Vistas.Ventas
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
-            this.Dispose();
+            CerrarVentana();
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -86,7 +92,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             corte.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
             corte.Fecha = DateTime.Now;
 
-            _cortesCajaController.GenerarCorteCaja(corte);
+            _cortesCajaController.GenerarCorteCaja(corte, true);
         }
 
         private bool ConfirmarGuardado()
@@ -100,6 +106,41 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             else
                 return false;
+        }
+
+        private void CerrarVentana()
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    GenerarCorte();
+                    break;
+
+                case Keys.F3:
+                    ConsultarCortes();
+                    break;
+
+                case Keys.F4:
+                    CerrarVentana();
+                    break;
+
+                case Keys.F10:
+                    MostrarReporte();
+                    break;
+            }
+
+            return false;
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            MostrarReporte();
         }
     }
 }
