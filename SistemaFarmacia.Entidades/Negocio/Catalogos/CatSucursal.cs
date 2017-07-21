@@ -10,6 +10,7 @@ namespace SistemaFarmacia.Entidades.Negocio.Catalogos
     {
         public int IdSucursalObjeto { get; set; }
         public string SucursalObjeto { get; set; }
+        public string DireccionObjeto { get; set; }
         public Usuario Usuario { get; set; }
 
         public CatSucursal()

@@ -325,7 +325,7 @@
             this.Controls.Add(this.ltbResultados);
             this.Controls.Add(this.gridVenta);
             this.Name = "frmVenta";
-            this.Text = "3";
+            this.Text = "Venta";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gridVenta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridImportes)).EndInit();

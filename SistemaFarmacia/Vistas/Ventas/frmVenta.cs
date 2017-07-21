@@ -336,7 +336,7 @@ namespace SistemaFarmacia.Vistas.Ventas
                 return;
             }
 
-            frmVendedores frmVendedores = new frmVendedores(_listaUsuarios);
+            frmVendedores frmVendedores = new frmVendedores(_listaUsuarios, _contexto);
             DialogResult resultado = frmVendedores.ShowDialog();
 
             if (resultado == DialogResult.Cancel)

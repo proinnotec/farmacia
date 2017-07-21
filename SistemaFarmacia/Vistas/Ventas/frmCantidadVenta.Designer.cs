@@ -84,6 +84,7 @@
             this.Controls.Add(this.nupCantidad);
             this.Name = "frmCantidadVenta";
             this.Text = "Capturar cantidad";
+            this.Load += new System.EventHandler(this.frmCantidadVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

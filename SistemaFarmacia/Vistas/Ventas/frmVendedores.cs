@@ -9,19 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SistemaFarmacia.Vistas.Base;
 using SistemaFarmacia.Entidades.Negocio;
+using SistemaFarmacia.Entidades.Contextos;
 
 namespace SistemaFarmacia.Vistas.Ventas
 {
     public partial class frmVendedores : frmBase
     {
-        public frmVendedores(List<Usuario> _listaUsuarios)
+        public frmVendedores(List<Usuario> _listaUsuarios, ContextoAplicacion contexto)
         {
             InitializeComponent();
             cmbVendedores.Items.Clear();
             cmbVendedores.DataSource = _listaUsuarios;
             cmbVendedores.ValueMember = "IdUsuario";
             cmbVendedores.DisplayMember = "Nombre";
-            cmbVendedores.SelectedIndex = 0;
+            cmbVendedores.SelectedValue = contexto.Usuario.IdUsuario;
         }
 
         private void btnAplicar_Click(object sender, EventArgs e)

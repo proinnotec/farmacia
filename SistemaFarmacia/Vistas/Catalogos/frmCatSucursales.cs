@@ -42,6 +42,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         {
             lblId.Text = lista[0].IdSucursalObjeto.ToString();
             txtSucursal.Text = lista[0].SucursalObjeto;
+            txtDireccion.Text = lista[0].DireccionObjeto;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -58,6 +59,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             sucursal.IdSucursal = Convert.ToInt32(lblId.Text);
             sucursal.Sucursal = txtSucursal.Text.TrimEnd().TrimStart();
+            sucursal.DireccionObjeto = txtDireccion.Text.TrimEnd().TrimStart();
             sucursal.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
 
             _catSucursalesController.ActualizarSucursal(sucursal);

@@ -38,6 +38,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
 
                     sucursal.IdSucursalObjeto = (int)lector["IdSucursal"];
                     sucursal.SucursalObjeto = lector["Sucursal"].ToString();
+                    sucursal.DireccionObjeto = lector["Direccion"].ToString();
 
                     ListaSucursales.Add(sucursal);
                 }
@@ -77,6 +78,9 @@ namespace SistemaFarmacia.Servicios.Negocio.Catalogos
                 
                 IDataParameter parametroSucursal = _baseDatos.CrearParametro("@Sucursal", sucursal.Sucursal, ParameterDirection.Input);
                 comando.Parameters.Add(parametroSucursal);
+
+                IDataParameter parametroDireccion = _baseDatos.CrearParametro("@Direccion", sucursal.DireccionObjeto, ParameterDirection.Input);
+                comando.Parameters.Add(parametroDireccion);
 
                 IDataParameter parametroIdUsuario = _baseDatos.CrearParametro("@IdUsuario", sucursal.IdUsuario, ParameterDirection.Input);
                 comando.Parameters.Add(parametroIdUsuario);

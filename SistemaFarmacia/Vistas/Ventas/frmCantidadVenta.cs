@@ -41,5 +41,10 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             this.DialogResult = DialogResult.Yes;
         }
+
+        private void frmCantidadVenta_Load(object sender, EventArgs e)
+        {
+            nupCantidad.Select(0, 1);
+        }
     }
 }
