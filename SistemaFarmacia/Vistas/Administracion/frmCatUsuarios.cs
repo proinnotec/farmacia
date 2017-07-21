@@ -27,22 +27,27 @@ namespace SistemaFarmacia.Vistas.Administracion
             _usuarioLocal.IdUsuarioRegistra = contextoAplicacion.Usuario.IdUsuario;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void Cerrar()
         {
             this.Close();
             this.Dispose();
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cerrar();
+        }
+
         private void frmCatUsuarios_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
             ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
+            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo F4");
 
             ObtenerUsuarios();
         }
@@ -81,7 +86,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             if (_usuarioLocal.EsActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro";
+                mensajeToolTip = "Dar de baja el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -89,7 +94,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro";
+                mensajeToolTip = "Reactivar el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -123,7 +128,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             return true;
         }
 
-        private void btnActDes_Click(object sender, EventArgs e)
+        private void ActivaDesactivaRegistro()
         {
             if (!VerificaExistenciaRegistros())
                 return;
@@ -143,15 +148,19 @@ namespace SistemaFarmacia.Vistas.Administracion
                 _enumeradoAccion = EnumeradoAccion.Reactivacion;
                 esActivo = true;
             }
-            
+
             bool respuesta = ConfirmarActivacionDesactivacion(accion);
 
             if (respuesta)
             {
                 _usuarioLocal.EsActivo = esActivo;
                 _catUsuariosController.ActivarDesactivarUsuario(_usuarioLocal);
-            }                
+            }
+        }
 
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            ActivaDesactivaRegistro();
         }
 
         private void gridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -159,7 +168,7 @@ namespace SistemaFarmacia.Vistas.Administracion
             CargarDatosDeGridAObjeto();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void Nuevo()
         {
             _enumeradoAccion = EnumeradoAccion.Alta;
 
@@ -168,6 +177,11 @@ namespace SistemaFarmacia.Vistas.Administracion
 
             frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_enumeradoAccion, this, usuarioNuevo);
             vistaEdicion.ShowDialog();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Nuevo();
         }
 
         private void gridUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -189,6 +203,30 @@ namespace SistemaFarmacia.Vistas.Administracion
         private void btnRecargar_Click(object sender, EventArgs e)
         {
             ObtenerUsuarios();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    Nuevo();
+                    break;
+
+                case Keys.F3:
+                    ObtenerUsuarios();
+                    break;
+
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F7:
+                    ActivaDesactivaRegistro();
+                    break;
+            }
+
+            return false;
         }
     }
 }

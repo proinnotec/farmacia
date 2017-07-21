@@ -44,7 +44,7 @@ namespace SistemaFarmacia.Vistas.Administracion
         private void frmAgregaEditaUsuario_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipGuardar = new ToolTip();
-            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar F5");
 
             if (_accion == EnumeradoAccion.Edicion)
                 AsignarDatosAControles();
@@ -171,6 +171,22 @@ namespace SistemaFarmacia.Vistas.Administracion
             else
                 return false;
 
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F5:
+                    GuardarUsuario();
+                    break;
+            }
+
+            return false;
         }
     }
 }

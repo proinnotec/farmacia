@@ -30,7 +30,9 @@ namespace SistemaFarmacia.Vistas.Procesos
             DialogResult respuesta = tipoReporte.ShowDialog();
 
             if (respuesta != DialogResult.Yes)
-                Close();
+            {
+                return;
+            }                
 
             TipoReporteEntrada tipoReporteEnum = tipoReporte.TipoReporte;
 
@@ -60,6 +62,24 @@ namespace SistemaFarmacia.Vistas.Procesos
 
            
             rptEntradas.Refresh();
+        }
+
+        private void Cerrar()
+        {
+            Close();
+            Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+            }
+
+            return false;
         }
     }
 }

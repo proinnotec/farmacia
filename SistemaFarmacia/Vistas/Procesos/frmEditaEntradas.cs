@@ -43,16 +43,16 @@ namespace SistemaFarmacia.Vistas.Procesos
         private void frmEditaEntradas_Load(object sender, EventArgs e)
         {
             ToolTip toolTipNuevo = new ToolTip();
-            toolTipNuevo.SetToolTip(btnBuscar, "Buscar Archivo de Excel");
+            toolTipNuevo.SetToolTip(btnBuscar, "Buscar Archivo de Excel F6");
                         
             ToolTip toolTipGuardar = new ToolTip();
-            toolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+            toolTipGuardar.SetToolTip(btnGuardar, "Guardar F5");
 
             ToolTip toolTipQuitar = new ToolTip();
-            toolTipQuitar.SetToolTip(btnActDes, "Quitar");
+            toolTipQuitar.SetToolTip(btnActDes, "Quitar F7");
 
             ToolTip toolTipSalir = new ToolTip();
-            toolTipSalir.SetToolTip(btnCancelar, "Cerrar");
+            toolTipSalir.SetToolTip(btnCancelar, "Cerrar F4");
 
             dtpFecha.Enabled = false;
 
@@ -102,10 +102,10 @@ namespace SistemaFarmacia.Vistas.Procesos
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            importarExcel();
+            ImportarExcel();
 
         }
-        public void importarExcel()
+        public void ImportarExcel()
         {
             OleDbConnection conn;
             OleDbDataAdapter MyDataAdapter;
@@ -257,7 +257,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             return true;
         }
 
-        private void btnActDes_Click(object sender, EventArgs e)
+        private void QuitarPartidas()
         {
             if (!VerificaExistenciaRegistros())
                 return;
@@ -271,12 +271,17 @@ namespace SistemaFarmacia.Vistas.Procesos
             gridPartidas.Rows.Remove(gridPartidas.CurrentRow);
         }
 
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            QuitarPartidas();
+        }
+
         private void gridPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             RecuperaDatosDeGrid();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void Guardar()
         {
             if (!VerificaExistenciaRegistros())
                 return;
@@ -293,7 +298,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             entrada.IdSucursal = _contextoAplicacion.Usuario.IdSucursal;
             entrada.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
 
-            foreach(DataGridViewRow fila in gridPartidas.Rows)
+            foreach (DataGridViewRow fila in gridPartidas.Rows)
             {
                 EntradaProductoDetalle detalle = new EntradaProductoDetalle();
                 detalle.IdProducto = (int)fila.Cells["IdProducto"].Value;
@@ -306,7 +311,7 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                 if (!sePuedeConvertirCantidad)
                 {
-                    string mensajeConversion = string.Format("{0} {1} {2} {3}", "El valor de la cantidad no es numérico en el producto", detalle.ClaveProducto, detalle.Descripcion , "favor de verificar");
+                    string mensajeConversion = string.Format("{0} {1} {2} {3}", "El valor de la cantidad no es numérico en el producto", detalle.ClaveProducto, detalle.Descripcion, "favor de verificar");
                     MostrarDialogoResultado(this.Text, mensajeConversion, string.Empty, false);
                     return;
                 }
@@ -365,11 +370,17 @@ namespace SistemaFarmacia.Vistas.Procesos
                 }
 
                 entrada.EntradaDetalles.Add(detalle);
-                
+
             }
 
             _entradasEditaController.GuardarDescuentoConfiguracion(entrada);
 
+        }
+
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Guardar();
         }
 
         public void Cerrar()
@@ -483,6 +494,31 @@ namespace SistemaFarmacia.Vistas.Procesos
             EsconderResultados();
             btnBuscar.Enabled = false;
             txtBusqueda.Select();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Close();
+                    Dispose();
+                    break;
+
+                case Keys.F5:
+                    Guardar();
+                    break;
+
+                case Keys.F6:
+                    ImportarExcel();
+                    break;
+
+                case Keys.F7:
+                    QuitarPartidas();
+                    break;
+            }
+
+            return false;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SistemaFarmacia.Vistas.Procesos
         private void frmReporteInventario_Load(object sender, EventArgs e)
         {
             ToolTip toolTipImprimir = new ToolTip();
-            toolTipImprimir.SetToolTip(btnImprimir, "Imprimir");
+            toolTipImprimir.SetToolTip(btnImprimir, "Imprimir F8");
 
             LlenarListaProductos();
 
@@ -126,8 +126,8 @@ namespace SistemaFarmacia.Vistas.Procesos
             HabilitarDesabilitarProductos(chbTodos.Checked);
         }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {           
+        private void Imprimir()
+        {
             if (!chbTodos.Checked && _idProducto == 0)
             {
                 MostrarDialogoResultado(this.Text, "Debe seleccionar un producto para consultar el reporte", string.Empty, false);
@@ -137,6 +137,11 @@ namespace SistemaFarmacia.Vistas.Procesos
             Cursor.Current = Cursors.WaitCursor;
             _inventariosController.ConsultaInventario(_idProducto, chbValuado.Checked);
 
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            Imprimir();
         }
 
         private void SeleccionarItemLista()
@@ -204,6 +209,28 @@ namespace SistemaFarmacia.Vistas.Procesos
         private void ltbResultados_Click(object sender, EventArgs e)
         {
             SeleccionarItemLista();
+        }
+
+        private void Cerrar()
+        {
+            Close();
+            Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F8:
+                    Imprimir();
+                    break;
+            }
+
+            return false;
         }
     }
 }

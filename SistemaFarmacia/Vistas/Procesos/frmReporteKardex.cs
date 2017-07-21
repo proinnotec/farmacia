@@ -115,7 +115,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             }
         }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
+        private void Imprimir()
         {
             _fechaInicio = dtpDel.Value;
             _fechaFin = dtpAl.Value;
@@ -123,7 +123,7 @@ namespace SistemaFarmacia.Vistas.Procesos
             _fechaInicio = new DateTime(_fechaInicio.Year, _fechaInicio.Month, _fechaInicio.Day, 00, 00, 00);
             _fechaFin = new DateTime(_fechaFin.Year, _fechaFin.Month, _fechaFin.Day, 23, 59, 59);
 
-            if(!chbTodos.Checked && _idProducto == 0)
+            if (!chbTodos.Checked && _idProducto == 0)
             {
                 MostrarDialogoResultado(this.Text, "Debe seleccionar un producto para consultar el reporte", string.Empty, false);
                 return;
@@ -131,6 +131,11 @@ namespace SistemaFarmacia.Vistas.Procesos
 
             Cursor.Current = Cursors.WaitCursor;
             _kardexController.ConsultaKardex(_fechaInicio, _fechaFin, _idProducto);
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            Imprimir();
         }
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
@@ -237,6 +242,28 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                     break;
             }
+        }
+
+        private void Cerrar()
+        {
+            Close();
+            Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F8:
+                    Imprimir();
+                    break;
+            }
+
+            return false;
         }
     }
 }

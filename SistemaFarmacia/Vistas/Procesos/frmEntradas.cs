@@ -25,32 +25,42 @@ namespace SistemaFarmacia.Vistas.Procesos
         private void frmEntradas_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
             ToolTip toolTipImprimir = new ToolTip();
-            toolTipImprimir.SetToolTip(btnImprimir, "Imprimir");
+            toolTipImprimir.SetToolTip(btnImprimir, "Imprimir F8");
 
             ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar");
+            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar F4");
 
             CargarDatos();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void Cerrar()
         {
             this.Close();
             this.Dispose();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cerrar();
+        }
+
+        private void Nuevo()
         {
             EntradaProductoListado entradaProductoListado = new EntradaProductoListado();
 
             frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion, EnumeradoAccion.Alta, this, entradaProductoListado);
             vistaEditaEntradas.ShowDialog();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Nuevo();
         }
 
         public void CargarDatos(bool realizarImpresion = false)
@@ -130,7 +140,30 @@ namespace SistemaFarmacia.Vistas.Procesos
         {
             frmReporteEntrada reporte = new frmReporteEntrada(lista, _contextoAplicacion);
             reporte.Show();
+        }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    Nuevo();
+                    break;
+
+                case Keys.F3:
+                    CargarDatos();
+                    break;
+
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F8:
+                    ImprimirEntrada();
+                    break;
+            }
+
+            return false;
         }
     }
 }
