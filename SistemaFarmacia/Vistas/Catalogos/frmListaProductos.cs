@@ -21,6 +21,8 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private frmListaProductosContoller _frmCatProductosContoller;
         public CatProducto Producto { get; set; }
 
+        List<CatProducto> _listaProductos;
+
         public frmListaProductos(ContextoAplicacion contextoAplicacion)
         {
             InitializeComponent();
@@ -38,14 +40,27 @@ namespace SistemaFarmacia.Vistas.Catalogos
             ToolTipSalir.SetToolTip(btnSalir, "Cerrar el catálogo");
 
             ToolTip ToolTipActDes = new ToolTip();
-            ToolTipActDes.SetToolTip(btnActDes, "Baja");        
+            ToolTipActDes.SetToolTip(btnActDes, "Baja");
+
+            ColumnasGrid();
+        }
+
+        private void ColumnasGrid()
+        {
+            gridProductos.Columns["ClaveProducto"].FillWeight = 10;
+            gridProductos.Columns["Descripcion"].FillWeight = 60;
+            gridProductos.Columns["Precio"].FillWeight = 10;
+            gridProductos.Columns["AplicaDescuentoCatalogo"].FillWeight = 10;
+            gridProductos.Columns["EsActivo"].FillWeight = 10;
+
         }
 
         private void AsigarListaProductos(List<CatProducto> listaProductos)
         {
+            _listaProductos = listaProductos;
             gridProductos.AutoGenerateColumns = false;
             gridProductos.DataSource = null;
-            gridProductos.DataSource = listaProductos;
+            gridProductos.DataSource = _listaProductos;
         }
 
         public void AsigarListaFamilias(List<CatFamilias> listaFamilias)
@@ -201,6 +216,24 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 ToolTip ToolTipActDes = new ToolTip();
                 ToolTipActDes.SetToolTip(btnActDes, "Activar");
                 btnActDes.BackgroundImage = Resource.activar;
+            }
+        }
+
+        private void txtProductoFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Enter)
+            {
+                gridProductos.AutoGenerateColumns = false;
+                gridProductos.DataSource = null;
+
+                if (string.IsNullOrEmpty(txtProductoFiltro.Text.TrimStart().TrimEnd()))
+                {
+                    gridProductos.DataSource = _listaProductos;
+                    return;
+                }
+
+                List<CatProducto> listaProductosFiltro = _listaProductos.FindAll(elemento => elemento.Descripcion.ToUpper().Contains(txtProductoFiltro.Text.TrimStart().TrimEnd().ToUpper()));                
+                gridProductos.DataSource = listaProductosFiltro;
             }
         }
     }

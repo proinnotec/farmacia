@@ -35,10 +35,6 @@
             this.cmbFamilias = new SistemaFarmacia.ControlesPersonalizados.ComboPersonalizado();
             this.lblFamilia = new System.Windows.Forms.Label();
             this.gridProductos = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
-            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnSalir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
-            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdFamiliaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +42,12 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AplicaDescuentoCatalogo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.EsActivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnNuevo = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnSalir = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnRecargar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnActDes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.txtProductoFiltro = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +106,7 @@
             this.AplicaDescuentoCatalogo,
             this.EsActivo});
             this.gridProductos.EnableHeadersVisualStyles = false;
-            this.gridProductos.Location = new System.Drawing.Point(12, 66);
+            this.gridProductos.Location = new System.Drawing.Point(15, 112);
             this.gridProductos.MultiSelect = false;
             this.gridProductos.Name = "gridProductos";
             this.gridProductos.ReadOnly = true;
@@ -117,66 +119,10 @@
             this.gridProductos.RowTemplate.Height = 20;
             this.gridProductos.RowTemplate.ReadOnly = true;
             this.gridProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridProductos.Size = new System.Drawing.Size(670, 365);
+            this.gridProductos.Size = new System.Drawing.Size(670, 508);
             this.gridProductos.TabIndex = 2;
             this.gridProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellClick);
             this.gridProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellContentDoubleClick);
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
-            this.btnNuevo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNuevo.BackgroundImage")));
-            this.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnNuevo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(688, 66);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(50, 50);
-            this.btnNuevo.TabIndex = 7;
-            this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.BackColor = System.Drawing.Color.LightGray;
-            this.btnSalir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSalir.BackgroundImage")));
-            this.btnSalir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(688, 381);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(50, 50);
-            this.btnSalir.TabIndex = 17;
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // btnRecargar
-            // 
-            this.btnRecargar.BackColor = System.Drawing.Color.LightGray;
-            this.btnRecargar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRecargar.BackgroundImage")));
-            this.btnRecargar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRecargar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecargar.Location = new System.Drawing.Point(686, 178);
-            this.btnRecargar.Name = "btnRecargar";
-            this.btnRecargar.Size = new System.Drawing.Size(50, 50);
-            this.btnRecargar.TabIndex = 20;
-            this.btnRecargar.UseVisualStyleBackColor = false;
-            this.btnRecargar.Click += new System.EventHandler(this.btnRecargar_Click);
-            // 
-            // btnActDes
-            // 
-            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
-            this.btnActDes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnActDes.BackgroundImage")));
-            this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnActDes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActDes.Location = new System.Drawing.Point(688, 122);
-            this.btnActDes.Name = "btnActDes";
-            this.btnActDes.Size = new System.Drawing.Size(50, 50);
-            this.btnActDes.TabIndex = 21;
-            this.btnActDes.UseVisualStyleBackColor = false;
-            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
             // 
             // ClaveProducto
             // 
@@ -236,11 +182,86 @@
             this.EsActivo.Name = "EsActivo";
             this.EsActivo.ReadOnly = true;
             // 
+            // btnNuevo
+            // 
+            this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
+            this.btnNuevo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNuevo.BackgroundImage")));
+            this.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNuevo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevo.Location = new System.Drawing.Point(691, 112);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(50, 50);
+            this.btnNuevo.TabIndex = 7;
+            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.BackColor = System.Drawing.Color.LightGray;
+            this.btnSalir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSalir.BackgroundImage")));
+            this.btnSalir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(691, 570);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(50, 50);
+            this.btnSalir.TabIndex = 17;
+            this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // btnRecargar
+            // 
+            this.btnRecargar.BackColor = System.Drawing.Color.LightGray;
+            this.btnRecargar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRecargar.BackgroundImage")));
+            this.btnRecargar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRecargar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRecargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecargar.Location = new System.Drawing.Point(689, 224);
+            this.btnRecargar.Name = "btnRecargar";
+            this.btnRecargar.Size = new System.Drawing.Size(50, 50);
+            this.btnRecargar.TabIndex = 20;
+            this.btnRecargar.UseVisualStyleBackColor = false;
+            this.btnRecargar.Click += new System.EventHandler(this.btnRecargar_Click);
+            // 
+            // btnActDes
+            // 
+            this.btnActDes.BackColor = System.Drawing.Color.LightGray;
+            this.btnActDes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnActDes.BackgroundImage")));
+            this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnActDes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActDes.Location = new System.Drawing.Point(691, 168);
+            this.btnActDes.Name = "btnActDes";
+            this.btnActDes.Size = new System.Drawing.Size(50, 50);
+            this.btnActDes.TabIndex = 21;
+            this.btnActDes.UseVisualStyleBackColor = false;
+            this.btnActDes.Click += new System.EventHandler(this.btnActDes_Click);
+            // 
+            // txtProductoFiltro
+            // 
+            this.txtProductoFiltro.Location = new System.Drawing.Point(15, 71);
+            this.txtProductoFiltro.Name = "txtProductoFiltro";
+            this.txtProductoFiltro.Size = new System.Drawing.Size(667, 20);
+            this.txtProductoFiltro.TabIndex = 22;
+            this.txtProductoFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductoFiltro_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Filtro de Producto:";
+            // 
             // frmListaProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 457);
+            this.ClientSize = new System.Drawing.Size(748, 632);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtProductoFiltro);
             this.Controls.Add(this.btnActDes);
             this.Controls.Add(this.btnRecargar);
             this.Controls.Add(this.btnSalir);
@@ -272,5 +293,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn AplicaDescuentoCatalogo;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EsActivo;
+        private System.Windows.Forms.TextBox txtProductoFiltro;
+        private System.Windows.Forms.Label label1;
     }
 }
