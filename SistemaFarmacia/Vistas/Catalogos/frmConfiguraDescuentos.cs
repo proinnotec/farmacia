@@ -32,7 +32,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void frmConfiguraDescuentos_Load(object sender, EventArgs e)
         {
             ToolTip ToolAgregar = new ToolTip();
-            ToolAgregar.SetToolTip(btnAgregar, "Agregar");
+            ToolAgregar.SetToolTip(btnAgregar, "Agregar F5");
             
             AsignarDatosCabecera();
             _configuraDescuentoController.ConsultarDiasSemana();
@@ -115,7 +115,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_descuentoGrid.EsActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro";
+                mensajeToolTip = "Dar de baja el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -123,7 +123,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro";
+                mensajeToolTip = "Reactivar el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -172,13 +172,18 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void Cerrar()
         {
             this.Close();
             this.Dispose();
         }
 
-        private void btnActDes_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cerrar();
+        }
+
+        private void ActivarDesactivarRegistro()
         {
             string accion;
             bool esActivo;
@@ -204,7 +209,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 _descuentoGrid.EsActivo = esActivo;
                 _configuraDescuentoController.ActivarDesactivarDescuentoConfiguracion(_descuentoGrid);
             }
-            
+
+        }
+
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            ActivarDesactivarRegistro();
         }
 
         private bool ValidaTraslapes(ConfiguracionDescuento confDescuento)
@@ -259,6 +269,27 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void gridConfiguracionDescuentos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             AsignarDatosDeGridAObjeto();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F5:
+                    AsignarDatosAObjeto();
+                    GuardarConfiguracion();
+                    break;
+
+                case Keys.F7:
+                    ActivarDesactivarRegistro();
+                    break;
+            }
+
+            return false;
         }
     }
 }

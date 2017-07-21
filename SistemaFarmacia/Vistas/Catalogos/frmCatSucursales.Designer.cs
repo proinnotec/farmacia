@@ -109,7 +109,6 @@
             this.txtSucursal.Name = "txtSucursal";
             this.txtSucursal.Size = new System.Drawing.Size(430, 22);
             this.txtSucursal.TabIndex = 0;
-            this.txtSucursal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSucursal_KeyPress);
             // 
             // frmCatSucursales
             // 

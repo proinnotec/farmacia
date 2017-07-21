@@ -28,25 +28,30 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void frmCatDescuentos_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
             ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             ToolTip ToolTipConfiguraciones = new ToolTip();
-            ToolTipConfiguraciones.SetToolTip(btnConfiguraciones, "Configurar descuento");
+            ToolTipConfiguraciones.SetToolTip(btnConfiguraciones, "Configurar descuento F6");
 
             ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
+            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo F4");
 
             ConsultarDescuentos();
 
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void Cerrar()
         {
             this.Close();
             this.Dispose();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cerrar();
         }
 
         public void ConsultarDescuentos()
@@ -79,7 +84,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_descuentoLocal.EsActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro";
+                mensajeToolTip = "Dar de baja el registro F8";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -87,7 +92,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro";
+                mensajeToolTip = "Reactivar el registro F8";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -99,14 +104,19 @@ namespace SistemaFarmacia.Vistas.Catalogos
             ConsultarDescuentos();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void AgregaDescuento()
         {
-            EnumeradoAccion enumeradoAccion  = EnumeradoAccion.Alta;
+            EnumeradoAccion enumeradoAccion = EnumeradoAccion.Alta;
 
             CatDescuentos descuentoNuevo = new CatDescuentos();
-            
+
             frmAgregaEditaDescuentos vistaEdicion = new frmAgregaEditaDescuentos(_contextoAplicacion, enumeradoAccion, this, descuentoNuevo);
             vistaEdicion.ShowDialog();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            AgregaDescuento();
         }
 
         private void gridDescuentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -140,7 +150,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             return true;
         }
 
-        private void btnActDes_Click(object sender, EventArgs e)
+        private void ActivaDesactivaRegistro()
         {
             if (!VerificaExistenciaRegistros())
                 return;
@@ -165,7 +175,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
             {
                 _descuentoLocal.EsActivo = esActivo;
                 _catDescuentosController.ActivarDesactivarDescuento(_descuentoLocal);
-            }   
+            }
+        }
+
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            ActivaDesactivaRegistro();
         }
 
         bool ConfirmarActivacionDesactivacion(string accion)
@@ -181,7 +196,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return false;
         }
 
-        private void btnConfiguraciones_Click(object sender, EventArgs e)
+        private void AbrirConfiguraciones()
         {
             if (!VerificaExistenciaRegistros())
                 return;
@@ -195,6 +210,39 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             frmConfiguraDescuentos vistaConfiguracion = new frmConfiguraDescuentos(_contextoAplicacion, this, _descuentoLocal);
             vistaConfiguracion.ShowDialog();
+        }
+
+        private void btnConfiguraciones_Click(object sender, EventArgs e)
+        {
+            AbrirConfiguraciones();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    AgregaDescuento();
+                    break;
+
+                case Keys.F3:
+                    ConsultarDescuentos();
+                    break;
+                    
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F6:
+                    AbrirConfiguraciones();
+                    break;
+
+                case Keys.F7:
+                    ActivaDesactivaRegistro();
+                    break;
+            }
+
+            return false;
         }
     }
 }

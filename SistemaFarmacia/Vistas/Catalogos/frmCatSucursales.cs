@@ -30,7 +30,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void frmCatSucursales_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipGuardar = new ToolTip();
-            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar F5");
 
             txtSucursal.Select();
 
@@ -83,12 +83,26 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         }
 
-        private void txtSucursal_KeyPress(object sender, KeyPressEventArgs e)
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if ((int)e.KeyChar == (int)Keys.Enter)
+            switch (keyData)
             {
-                GuardarInformacion();
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F5:
+                    GuardarInformacion();
+                    break;
             }
+
+            return false;
+        }
+
+        private void Cerrar()
+        {
+            Close();
+            Dispose();
         }
     }
 }

@@ -123,6 +123,6 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPorcentaje;
-        private System.Windows.Forms.NumericUpDown nudPorcentaje;
+        public System.Windows.Forms.NumericUpDown nudPorcentaje;
     }
 }
