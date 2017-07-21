@@ -96,6 +96,7 @@
             this.gridUsuarios.TabIndex = 5;
             this.gridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellClick);
             this.gridUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridUsuarios_CellDoubleClick);
+            this.gridUsuarios.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridUsuarios_KeyUp);
             // 
             // IdUsuario
             // 

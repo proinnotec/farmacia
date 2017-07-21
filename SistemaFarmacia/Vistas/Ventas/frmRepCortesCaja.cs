@@ -32,7 +32,7 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void frmRepCortesCaja_Load(object sender, EventArgs e)
         {
             ToolTip toolTipImprimir = new ToolTip();
-            toolTipImprimir.SetToolTip(btnImprimir, "Imprimir");
+            toolTipImprimir.SetToolTip(btnImprimir, "Imprimir F8");
 
             HabilitarDesabilitarControles(chbTodos.Checked);
             _cortesCajaRepController.ObtenerListaVendedores(dtpFechaInicio.Value, dtpFechaFin.Value);
@@ -58,11 +58,11 @@ namespace SistemaFarmacia.Vistas.Ventas
             HabilitarDesabilitarControles(chbTodos.Checked);
         }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
+        private void Imprimir()
         {
             DateTime fechaInicio, fechaFin;
             int idVendedor = 0;
-            
+
 
             fechaInicio = dtpFechaInicio.Value;
             fechaFin = dtpFechaFin.Value;
@@ -73,6 +73,11 @@ namespace SistemaFarmacia.Vistas.Ventas
             Cursor.Current = Cursors.WaitCursor;
 
             _cortesCajaRepController.GenerarCortesCajaReporte(fechaInicio, fechaFin, idVendedor, _esCorteAbierto);
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            Imprimir();
         }
 
         private bool ValidarParametros(ref int idVendedor)
@@ -149,6 +154,28 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void dtpFechaInicio_ValueChanged(object sender, EventArgs e)
         {
             _cortesCajaRepController.ObtenerListaVendedores(dtpFechaInicio.Value, dtpFechaFin.Value);
+        }
+
+        private void Cerrar()
+        {
+            Close();
+            Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F8:
+                    Imprimir();
+                    break;
+            }
+
+            return false;
         }
     }
 }

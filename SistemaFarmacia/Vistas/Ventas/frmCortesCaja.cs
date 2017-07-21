@@ -30,7 +30,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             toolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             ToolTip toolTipImprimir = new ToolTip();
-            toolTipImprimir.SetToolTip(btnImprimir, "Ver reporte de Cortes F10");
+            toolTipImprimir.SetToolTip(btnImprimir, "Ver reporte de Cortes F8");
 
             ToolTip toolTipSalir = new ToolTip();
             toolTipSalir.SetToolTip(btnCancelar, "Cerrar F4");
@@ -130,7 +130,7 @@ namespace SistemaFarmacia.Vistas.Ventas
                     CerrarVentana();
                     break;
 
-                case Keys.F10:
+                case Keys.F8:
                     MostrarReporte();
                     break;
             }

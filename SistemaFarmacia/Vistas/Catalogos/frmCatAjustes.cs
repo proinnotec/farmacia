@@ -34,6 +34,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void frmCatAjustes_Load(object sender, EventArgs e)
         {
+            gridTiposAjustes.Select();
             cmbTipoAjuste.Items.Insert(0, "Salida");
             cmbTipoAjuste.Items.Insert(1, "Entrada");
             cmbTipoAjuste.SelectedIndex = 0;
@@ -344,6 +345,24 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             return false;
+        }
+
+        private void gridTiposAjustes_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    CargarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Up:
+                    CargarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Enter:
+                    CargarDatosDeGridAObjeto();
+                    break;
+            }
         }
     }
 }

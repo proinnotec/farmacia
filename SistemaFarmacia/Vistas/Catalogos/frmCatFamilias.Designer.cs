@@ -138,6 +138,7 @@
             this.gridFamilia.Size = new System.Drawing.Size(471, 268);
             this.gridFamilia.TabIndex = 4;
             this.gridFamilia.Click += new System.EventHandler(this.gridFamilia_Click);
+            this.gridFamilia.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridFamilia_KeyUp);
             // 
             // IdFamiliaProducto
             // 

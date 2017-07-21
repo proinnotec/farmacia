@@ -294,5 +294,23 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             return false;
         }
+
+        private void gridConfiguracionDescuentos_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    AsignarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Up:
+                    AsignarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Enter:
+                    AsignarDatosDeGridAObjeto();
+                    break;
+            }
+        }
     }
 }

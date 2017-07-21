@@ -292,7 +292,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             txtCodigoBarra.Focus();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void Guardar()
         {
             if (!ValidarFormulario())
             {
@@ -313,8 +313,8 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 if (_frmCatProductoController.GuardarProducto(producto))
                 {
                     this.DialogResult = DialogResult.Yes;
-                }    
-                            
+                }
+
                 Cursor.Current = Cursors.Default;
             }
 
@@ -324,10 +324,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 {
                     this.DialogResult = DialogResult.Yes;
                 }
-                
+
                 Cursor.Current = Cursors.Default;
             }
-            
+
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Guardar();
         }
 
         private void tbnQuitar_Click(object sender, EventArgs e)
@@ -392,6 +397,34 @@ namespace SistemaFarmacia.Vistas.Catalogos
             nupPrecioPromocion.Enabled = chkPromocion.Checked;
             nupCantidadPromocion.Value = 0;
             nupPrecioPromocion.Value = 0;
+        }
+
+        private void Cerrar()
+        {
+            Close();
+            Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F5:
+                    Guardar();
+                    break;
+            }
+
+            return false;
+        }
+
+        private void frmCatProducto_Load(object sender, EventArgs e)
+        {
+            ToolTip toolTipGuardar = new ToolTip();
+            toolTipGuardar.SetToolTip(btnGuardar, "Guardar F5");
         }
     }
 }

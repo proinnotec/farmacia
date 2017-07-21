@@ -149,6 +149,7 @@
             this.gridConfiguracionDescuentos.Size = new System.Drawing.Size(598, 214);
             this.gridConfiguracionDescuentos.TabIndex = 7;
             this.gridConfiguracionDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridConfiguracionDescuentos_CellClick);
+            this.gridConfiguracionDescuentos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridConfiguracionDescuentos_KeyUp);
             // 
             // IdDescuentoConfiguracion
             // 

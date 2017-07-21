@@ -165,5 +165,23 @@ namespace SistemaFarmacia.Vistas.Procesos
 
             return false;
         }
+
+        private void gridListadoEntradas_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    RecuperarDatosDeGrid();
+                    break;
+
+                case Keys.Up:
+                    RecuperarDatosDeGrid();
+                    break;
+
+                case Keys.Enter:
+                    RecuperarDatosDeGrid();
+                    break;
+            }
+        }
     }
 }

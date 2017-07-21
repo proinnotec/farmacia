@@ -41,5 +41,19 @@ namespace SistemaFarmacia.Vistas.Dialogos
 
             btnCancelar.Select();
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Escape:
+                    DialogResult = DialogResult.Cancel;
+                    Close();
+
+                    break;
+            }
+
+            return false;
+        }
     }
 }

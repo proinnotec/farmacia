@@ -87,6 +87,7 @@
             this.gridImpuestos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridImpuestos_CellClick);
             this.gridImpuestos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridImpuestos_CellContentClick);
             this.gridImpuestos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridImpuestos_CellDoubleClick);
+            this.gridImpuestos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridImpuestos_KeyUp);
             // 
             // IdImpuesto
             // 

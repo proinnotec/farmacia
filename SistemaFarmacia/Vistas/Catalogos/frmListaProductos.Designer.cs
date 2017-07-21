@@ -57,20 +57,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbFamilias.BackColor = System.Drawing.Color.White;
             this.cmbFamilias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFamilias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFamilias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFamilias.FormattingEnabled = true;
             this.cmbFamilias.Location = new System.Drawing.Point(12, 25);
             this.cmbFamilias.Name = "cmbFamilias";
-            this.cmbFamilias.Size = new System.Drawing.Size(670, 21);
+            this.cmbFamilias.Size = new System.Drawing.Size(670, 24);
             this.cmbFamilias.TabIndex = 0;
             this.cmbFamilias.SelectedIndexChanged += new System.EventHandler(this.cmbFamilias_SelectedIndexChanged);
             // 
             // lblFamilia
             // 
             this.lblFamilia.AutoSize = true;
+            this.lblFamilia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFamilia.Location = new System.Drawing.Point(12, 9);
             this.lblFamilia.Name = "lblFamilia";
-            this.lblFamilia.Size = new System.Drawing.Size(112, 13);
+            this.lblFamilia.Size = new System.Drawing.Size(166, 16);
             this.lblFamilia.TabIndex = 1;
             this.lblFamilia.Text = "Familias de productos:";
             // 
@@ -184,6 +185,7 @@
             // 
             // btnNuevo
             // 
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNuevo.BackColor = System.Drawing.Color.LightGray;
             this.btnNuevo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNuevo.BackgroundImage")));
             this.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -198,6 +200,7 @@
             // 
             // btnSalir
             // 
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSalir.BackColor = System.Drawing.Color.LightGray;
             this.btnSalir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSalir.BackgroundImage")));
             this.btnSalir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -212,12 +215,13 @@
             // 
             // btnRecargar
             // 
+            this.btnRecargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRecargar.BackColor = System.Drawing.Color.LightGray;
             this.btnRecargar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRecargar.BackgroundImage")));
             this.btnRecargar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRecargar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRecargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecargar.Location = new System.Drawing.Point(689, 224);
+            this.btnRecargar.Location = new System.Drawing.Point(691, 224);
             this.btnRecargar.Name = "btnRecargar";
             this.btnRecargar.Size = new System.Drawing.Size(50, 50);
             this.btnRecargar.TabIndex = 20;
@@ -226,6 +230,7 @@
             // 
             // btnActDes
             // 
+            this.btnActDes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnActDes.BackColor = System.Drawing.Color.LightGray;
             this.btnActDes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnActDes.BackgroundImage")));
             this.btnActDes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -240,18 +245,22 @@
             // 
             // txtProductoFiltro
             // 
+            this.txtProductoFiltro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProductoFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductoFiltro.Location = new System.Drawing.Point(15, 71);
             this.txtProductoFiltro.Name = "txtProductoFiltro";
-            this.txtProductoFiltro.Size = new System.Drawing.Size(667, 20);
-            this.txtProductoFiltro.TabIndex = 22;
+            this.txtProductoFiltro.Size = new System.Drawing.Size(667, 22);
+            this.txtProductoFiltro.TabIndex = 1;
             this.txtProductoFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProductoFiltro_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.Size = new System.Drawing.Size(135, 16);
             this.label1.TabIndex = 23;
             this.label1.Text = "Filtro de Producto:";
             // 

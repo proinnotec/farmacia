@@ -228,5 +228,23 @@ namespace SistemaFarmacia.Vistas.Administracion
 
             return false;
         }
+
+        private void gridUsuarios_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    CargarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Up:
+                    CargarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Enter:
+                    CargarDatosDeGridAObjeto();
+                    break;
+            }
+        }
     }
 }

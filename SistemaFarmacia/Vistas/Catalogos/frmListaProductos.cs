@@ -31,16 +31,16 @@ namespace SistemaFarmacia.Vistas.Catalogos
             AsigarListaFamilias(_frmCatProductosContoller.ListaFamilias());
 
             ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
             ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnSalir, "Cerrar el catálogo");
+            ToolTipSalir.SetToolTip(btnSalir, "Cerrar el catálogo F4");
 
             ToolTip ToolTipActDes = new ToolTip();
-            ToolTipActDes.SetToolTip(btnActDes, "Baja");
+            ToolTipActDes.SetToolTip(btnActDes, "Baja F7");
 
             ColumnasGrid();
         }
@@ -80,7 +80,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void Nuevo()
         {
             CatProducto producto = new CatProducto();
             producto.IdUsuario = _contextoAplicacion.Usuario.IdUsuario;
@@ -95,6 +95,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             Cursor.Current = Cursors.Default;
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Nuevo();
         }
 
         bool ConfirmarActivarReactivar(bool accion)
@@ -158,7 +163,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             this.Dispose();
         }
 
-        private void btnRecargar_Click(object sender, EventArgs e)
+        private void RecargarDatos()
         {
             if (cmbFamilias.SelectedValue is int)
             {
@@ -166,7 +171,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
         }
 
-        private void btnActDes_Click(object sender, EventArgs e)
+        private void btnRecargar_Click(object sender, EventArgs e)
+        {
+            RecargarDatos();
+        }
+
+        private void ActivaDesactivaRegistro()
         {
             if (gridProductos.SelectedRows.Count == 0)
             {
@@ -186,18 +196,23 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 if (producto.EsActivo)
                 {
                     ToolTip ToolTipActDes = new ToolTip();
-                    ToolTipActDes.SetToolTip(btnActDes, "Baja");
+                    ToolTipActDes.SetToolTip(btnActDes, "Baja F7");
                     btnActDes.BackgroundImage = Resource.bloquear;
                 }
                 else
                 {
                     ToolTip ToolTipActDes = new ToolTip();
-                    ToolTipActDes.SetToolTip(btnActDes, "Activar");
+                    ToolTipActDes.SetToolTip(btnActDes, "Activar F7");
                     btnActDes.BackgroundImage = Resource.activar;
                 }
 
             }
 
+        }
+
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            ActivaDesactivaRegistro();
         }
 
         private void gridProductos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -208,13 +223,13 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (producto.EsActivo)
             {
                 ToolTip ToolTipActDes = new ToolTip();
-                ToolTipActDes.SetToolTip(btnActDes, "Baja");
+                ToolTipActDes.SetToolTip(btnActDes, "Baja F7");
                 btnActDes.BackgroundImage = Resource.bloquear;
             }
             else
             {
                 ToolTip ToolTipActDes = new ToolTip();
-                ToolTipActDes.SetToolTip(btnActDes, "Activar");
+                ToolTipActDes.SetToolTip(btnActDes, "Activar F7");
                 btnActDes.BackgroundImage = Resource.activar;
             }
         }
@@ -235,6 +250,36 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 List<CatProducto> listaProductosFiltro = _listaProductos.FindAll(elemento => elemento.Descripcion.ToUpper().Contains(txtProductoFiltro.Text.TrimStart().TrimEnd().ToUpper()));                
                 gridProductos.DataSource = listaProductosFiltro;
             }
+        }
+
+        private void Cerrar()
+        {
+            Close();
+            Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    Nuevo();
+                    break;
+
+                case Keys.F3:
+                    RecargarDatos();
+                    break;
+
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F7:
+                    ActivaDesactivaRegistro();
+                    break;
+            }
+
+            return false;
         }
     }
 }

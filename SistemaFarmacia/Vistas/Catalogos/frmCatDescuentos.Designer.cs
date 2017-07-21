@@ -143,6 +143,7 @@
             this.gridDescuentos.TabIndex = 6;
             this.gridDescuentos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDescuentos_CellClick);
             this.gridDescuentos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridDescuentos_CellDoubleClick);
+            this.gridDescuentos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridDescuentos_KeyUp);
             // 
             // IdDescuento
             // 

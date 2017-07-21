@@ -31,6 +31,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void frmCatFamilias_Load(object sender, EventArgs e)
         {
+            gridFamilia.Select();
             ToolTip ToolTipNuevo = new ToolTip();
             ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
@@ -326,6 +327,24 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             return false;
+        }
+
+        private void gridFamilia_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    AsignarDatosDeGrid();
+                    break;
+
+                case Keys.Up:
+                    AsignarDatosDeGrid();
+                    break;
+
+                case Keys.Enter:
+                    AsignarDatosDeGrid();
+                    break;
+            }
         }
     }
 }

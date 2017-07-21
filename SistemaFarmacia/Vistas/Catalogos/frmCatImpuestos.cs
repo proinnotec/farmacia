@@ -26,6 +26,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void frmCatImpuestos_Load(object sender, EventArgs e)
         {
+            gridImpuestos.Select();
             ToolTip ToolTipNuevo = new ToolTip();
             ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
@@ -203,6 +204,24 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             return false;
+        }
+
+        private void gridImpuestos_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Down:
+                    CargarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Up:
+                    CargarDatosDeGridAObjeto();
+                    break;
+
+                case Keys.Enter:
+                    CargarDatosDeGridAObjeto();
+                    break;
+            }
         }
     }
 }
