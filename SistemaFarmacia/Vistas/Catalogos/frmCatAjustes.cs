@@ -38,29 +38,42 @@ namespace SistemaFarmacia.Vistas.Catalogos
             cmbTipoAjuste.Items.Insert(1, "Entrada");
             cmbTipoAjuste.SelectedIndex = 0;
 
-            ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTip toolTipNuevo = new ToolTip();
+            toolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
-            ToolTip ToolTipGuardar = new ToolTip();
-            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+            ToolTip toolTipGuardar = new ToolTip();
+            toolTipGuardar.SetToolTip(btnGuardar, "Guardar F5");
 
-            ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
+            ToolTip toolTipSalir = new ToolTip();
+            toolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo F4");
+
+            ToolTip toolTipRecargar = new ToolTip();
+            toolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             AsignarDatosDeGrid();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void Cerrar()
         {
             this.Close();
             this.Dispose();
         }
 
-        private void btnRecargar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cerrar();
+        }
+
+        private void Consultar()
         {
             ActivarDesactivarControles(true);
 
             LimpiarFormulario();
+        }
+
+        private void btnRecargar_Click(object sender, EventArgs e)
+        {
+            Consultar();
         }
         
         private void AsignarDatosDeGrid()
@@ -76,14 +89,14 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_esActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro";
+                mensajeToolTip = "Dar de baja el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
             }
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro";
+                mensajeToolTip = "Reactivar el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
             }
@@ -136,7 +149,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_ajuste.EsActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro";
+                mensajeToolTip = "Dar de baja el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -144,7 +157,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro";
+                mensajeToolTip = "Reactivar el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -207,7 +220,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             return ajustes;
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void Nuevo()
         {
             txtDescripcion.Select();
 
@@ -216,7 +229,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
             LimpiarFormulario();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            Nuevo();
+        }
+
+        private void Guardar()
         {
             if (!ValidarFormulario())
             {
@@ -231,7 +249,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             Cursor.Current = Cursors.WaitCursor;
 
             CatAjustes ajuste = ContextoAjustes();
-            
+
             if (_enumeradoAccion == EnumeradoAccion.Alta)
             {
                 _frmCatAjustesController.GuardarTipoAjuste(ajuste);
@@ -241,8 +259,13 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             ActivarDesactivarControles(true);
         }
-        
-        private void btnActDes_Click(object sender, EventArgs e)
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Guardar();
+        }
+
+        private void ActivaDesactivaRegistro()
         {
             string accion;
             bool esActivo;
@@ -267,6 +290,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
         }
 
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            ActivaDesactivaRegistro();
+        }
+
         bool ConfirmarActivacionDesactivacion(string accion)
         {
             string mensaje = string.Format("{0} {1} {2} {3}{4}", "¿Seguro que desea", accion, "el tipo de ajuste de", _ajuste.Descripcion, "?");
@@ -288,6 +316,34 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void gridTiposAjustes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             CargarDatosDeGridAObjeto();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    Nuevo();
+                    break;
+
+                case Keys.F3:
+                    Consultar();
+                    break;
+
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F5:
+                    Guardar();
+                    break;
+
+                case Keys.F7:
+                    ActivaDesactivaRegistro();
+                    break;
+            }
+
+            return false;
         }
     }
 }

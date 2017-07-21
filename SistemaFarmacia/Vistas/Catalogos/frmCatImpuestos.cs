@@ -27,13 +27,13 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void frmCatImpuestos_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
             ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
+            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo F4");
 
             ConsultarImpuestos();
         }
@@ -68,7 +68,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_impuestoLocal.EsActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro";
+                mensajeToolTip = "Dar de baja el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -76,14 +76,14 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro";
+                mensajeToolTip = "Reactivar el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
             }
         }
 
-        private void btnActDes_Click(object sender, EventArgs e)
+        private void ActivaDesactivaRegistro()
         {
             string accion;
             bool esActivo;
@@ -108,6 +108,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
         }
 
+        private void btnActDes_Click(object sender, EventArgs e)
+        {
+            ActivaDesactivaRegistro();
+        }
+
         bool ConfirmarActivacionDesactivacion(string accion)
         {
             string mensaje = string.Format("{0} {1} {2} {3}{4}", "¿Seguro que desea", accion, "el impuesto de", _impuestoLocal.Descripcion, "?");
@@ -121,10 +126,15 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 return false;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void Cerrar()
         {
             this.Close();
             this.Dispose();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cerrar();
         }
 
         private void btnRecargar_Click(object sender, EventArgs e)
@@ -132,7 +142,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             ConsultarImpuestos();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void AgregaImpuesto()
         {
             EnumeradoAccion enumeradoAccion = EnumeradoAccion.Alta;
 
@@ -140,6 +150,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             frmAgregaEditaImpuestos vistaEdicion = new frmAgregaEditaImpuestos(_contextoAplicacion, enumeradoAccion, this, impuestoNuevo);
             vistaEdicion.ShowDialog();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            AgregaImpuesto();
         }
 
         private void gridImpuestos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -164,6 +179,30 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             frmAgregaEditaImpuestos vistaEdicion = new frmAgregaEditaImpuestos(_contextoAplicacion, enumeradoAccion, this, _impuestoLocal);
             vistaEdicion.ShowDialog();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    AgregaImpuesto();
+                    break;
+
+                case Keys.F3:
+                    ConsultarImpuestos();
+                    break;
+
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F7:
+                    ActivaDesactivaRegistro();
+                    break;
+            }
+
+            return false;
         }
     }
 }

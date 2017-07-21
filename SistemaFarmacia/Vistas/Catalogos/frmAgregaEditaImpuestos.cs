@@ -42,12 +42,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void frmAgregaEditaImpuestos_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipGuardar = new ToolTip();
-            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar F5");
 
             if (_accion == EnumeradoAccion.Edicion)
                 AsignaDatosAControles();
 
-            nudPorcentaje.Focus();
+            nudPorcentaje.Select();
         }
 
         private void AsignaDatosAControles()
@@ -125,6 +125,22 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
                 return false;
 
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F5:
+                    GuardarImpuesto();
+                    break;
+            }
+
+            return false;
         }
     }
 }

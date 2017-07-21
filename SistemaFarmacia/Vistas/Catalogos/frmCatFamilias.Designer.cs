@@ -216,7 +216,7 @@
             this.nudPrioridad.Location = new System.Drawing.Point(331, 301);
             this.nudPrioridad.Name = "nudPrioridad";
             this.nudPrioridad.Size = new System.Drawing.Size(120, 22);
-            this.nudPrioridad.TabIndex = 8;
+            this.nudPrioridad.TabIndex = 1;
             // 
             // btnRecargar
             // 

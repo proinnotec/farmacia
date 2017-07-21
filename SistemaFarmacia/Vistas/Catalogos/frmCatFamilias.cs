@@ -32,24 +32,29 @@ namespace SistemaFarmacia.Vistas.Catalogos
         private void frmCatFamilias_Load(object sender, EventArgs e)
         {
             ToolTip ToolTipNuevo = new ToolTip();
-            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo");
+            ToolTipNuevo.SetToolTip(btnNuevo, "Nuevo F2");
 
             ToolTip ToolTipGuardar = new ToolTip();
-            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar");
+            ToolTipGuardar.SetToolTip(btnGuardar, "Guardar F5");
 
             ToolTip ToolTipRecargar = new ToolTip();
-            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información");
+            ToolTipRecargar.SetToolTip(btnRecargar, "Recargar información F3");
 
             ToolTip ToolTipSalir = new ToolTip();
-            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo");
+            ToolTipSalir.SetToolTip(btnCancelar, "Cerrar el catálogo F4");
 
             AsignarDatosDeGrid();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {            
+        private void Cerrar()
+        {
             this.Close();
             this.Dispose();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Cerrar();
         }
         
         private void ActivarDesactivarControles(bool seActiva)
@@ -165,7 +170,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             return familia;
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void Guardar()
         {
             if (!ValidarFormulario())
             {
@@ -189,16 +194,21 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
 
             if (_enumeradoAccion == EnumeradoAccion.Alta)
-            {                
+            {
                 _frmCatFamiliasController.GuardarFamilia(familia);
             }
-            
+
             Cursor.Current = Cursors.Default;
 
             ActivarDesactivarControles(true);
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Guardar();
+        }
+
+        private void ActivaDesactivaRegistro()
         {
             if (!ConfirmarBorrado())
             {
@@ -220,13 +230,23 @@ namespace SistemaFarmacia.Vistas.Catalogos
             Cursor.Current = Cursors.Default;
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ActivaDesactivaRegistro();
+        }
+
+        private void AgregarFamilia()
         {
             txtDescripcion.Select();
 
             ActivarDesactivarControles(false);
 
             LimpiarFormulario(false);
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            AgregarFamilia();
         }
 
         private void gridFamilia_Click(object sender, EventArgs e)
@@ -251,7 +271,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_esActivo)
             {
                 btnEliminar.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro";
+                mensajeToolTip = "Dar de baja el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnEliminar, mensajeToolTip);
 
@@ -259,20 +279,53 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
             {
                 btnEliminar.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro";
+                mensajeToolTip = "Reactivar el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnEliminar, mensajeToolTip);
 
             }
         }
 
-        private void btnRecargar_Click(object sender, EventArgs e)
+        private void ConsultarFamilias()
         {
             AsigarListaFamilias(_frmCatFamiliasController.ListaFamilias());
 
             ActivarDesactivarControles(true);
 
             LimpiarFormulario(false);
+        }
+
+        private void btnRecargar_Click(object sender, EventArgs e)
+        {
+            ConsultarFamilias();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.F2:
+                    AgregarFamilia();
+                    break;
+
+                case Keys.F3:
+                    ConsultarFamilias();
+                    break;
+
+                case Keys.F4:
+                    Cerrar();
+                    break;
+
+                case Keys.F5:
+                    Guardar();
+                    break;
+
+                case Keys.F7:
+                    ActivaDesactivaRegistro();
+                    break;
+            }
+
+            return false;
         }
     }
 }
