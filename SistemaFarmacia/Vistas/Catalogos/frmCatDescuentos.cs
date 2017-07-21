@@ -84,7 +84,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             if (_descuentoLocal.EsActivo)
             {
                 btnActDes.BackgroundImage = Resource.bloquear;
-                mensajeToolTip = "Dar de baja el registro F8";
+                mensajeToolTip = "Dar de baja el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 
@@ -92,7 +92,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             else
             {
                 btnActDes.BackgroundImage = Resource.activar;
-                mensajeToolTip = "Reactivar el registro F8";
+                mensajeToolTip = "Reactivar el registro F7";
 
                 _toolTipActivaDesactiva.SetToolTip(btnActDes, mensajeToolTip);
 

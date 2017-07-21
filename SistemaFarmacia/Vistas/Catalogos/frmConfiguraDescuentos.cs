@@ -31,9 +31,12 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
         private void frmConfiguraDescuentos_Load(object sender, EventArgs e)
         {
-            ToolTip ToolAgregar = new ToolTip();
-            ToolAgregar.SetToolTip(btnAgregar, "Agregar F5");
-            
+            ToolTip toolAgregar = new ToolTip();
+            toolAgregar.SetToolTip(btnAgregar, "Agregar F5");
+
+            ToolTip toolCancelar = new ToolTip();
+            toolCancelar.SetToolTip(btnCancelar, "Cerrar F4");
+
             AsignarDatosCabecera();
             _configuraDescuentoController.ConsultarDiasSemana();
         }
