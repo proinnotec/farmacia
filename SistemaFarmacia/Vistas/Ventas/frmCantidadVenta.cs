@@ -13,9 +13,10 @@ namespace SistemaFarmacia.Vistas.Ventas
 {
     public partial class frmCantidadVenta : frmBase
     {
-        public frmCantidadVenta()
+        public frmCantidadVenta(decimal cantidad)
         {
             InitializeComponent();
+            nupCantidad.Value = cantidad;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

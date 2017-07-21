@@ -148,7 +148,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             _ventaDetalle.Descripcion = elementosProducto[2];
             _ventaDetalle.ClaveProducto = elementosProducto[1];
 
-            frmCantidadVenta frmCantidadVenta = new frmCantidadVenta();
+            frmCantidadVenta frmCantidadVenta = new frmCantidadVenta(new decimal(1));
             DialogResult resultado = frmCantidadVenta.ShowDialog();
 
             if (resultado == DialogResult.Yes)
@@ -161,7 +161,7 @@ namespace SistemaFarmacia.Vistas.Ventas
                     return;
                 }
 
-                _ventaDetalle.Cantidad = (Int16) frmCantidadVenta.nupCantidad.Value;
+                _ventaDetalle.Cantidad = frmCantidadVenta.nupCantidad.Value;
                 _ventaDetalle.Total = (_ventaDetalle.Precio * _ventaDetalle.Cantidad);
 
                 ActualizaGrid();
@@ -465,6 +465,28 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void btnCortes_Click(object sender, EventArgs e)
         {
             GenerarCorte();
+        }
+
+        private void gridVenta_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gridVenta.Rows.Count.Equals(0)) { return; }
+
+            if (gridVenta.SelectedRows.Count == 0) { return; }
+
+            VentaDetalle producto = _listaVentaDetalle.Find(elemento => elemento.IdProducto == (int) gridVenta.SelectedRows[0].Cells["IdProducto"].Value);
+
+            frmCantidadVenta frmCantidadVenta = new frmCantidadVenta(producto.Cantidad);
+            DialogResult resultado = frmCantidadVenta.ShowDialog();
+
+            if (resultado == DialogResult.Yes)
+            {
+                producto.Cantidad = frmCantidadVenta.nupCantidad.Value;
+                producto.Total = (producto.Cantidad * producto.Precio);
+                gridVenta.AutoGenerateColumns = false;
+                gridVenta.DataSource = null;
+                gridVenta.DataSource = _listaVentaDetalle;
+                ActualizaImportes();    
+            }
         }
     }
 }

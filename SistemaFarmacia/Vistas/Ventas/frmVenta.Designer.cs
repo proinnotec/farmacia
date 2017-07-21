@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVenta));
             this.gridVenta = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
             this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -119,8 +120,9 @@
             this.gridVenta.RowTemplate.Height = 25;
             this.gridVenta.RowTemplate.ReadOnly = true;
             this.gridVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridVenta.Size = new System.Drawing.Size(1242, 345);
+            this.gridVenta.Size = new System.Drawing.Size(1242, 384);
             this.gridVenta.TabIndex = 0;
+            this.gridVenta.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVenta_CellContentDoubleClick);
             // 
             // ClaveProducto
             // 
@@ -213,7 +215,7 @@
             this.gridImportes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -223,21 +225,29 @@
             this.gridImportes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Leyenda,
             this.Importe});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridImportes.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridImportes.EnableHeadersVisualStyles = false;
-            this.gridImportes.Location = new System.Drawing.Point(1031, 407);
+            this.gridImportes.Location = new System.Drawing.Point(914, 446);
             this.gridImportes.MultiSelect = false;
             this.gridImportes.Name = "gridImportes";
             this.gridImportes.ReadOnly = true;
             this.gridImportes.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridImportes.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridImportes.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gridImportes.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridImportes.RowTemplate.Height = 20;
+            this.gridImportes.RowTemplate.Height = 25;
             this.gridImportes.RowTemplate.ReadOnly = true;
             this.gridImportes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridImportes.Size = new System.Drawing.Size(223, 112);
+            this.gridImportes.Size = new System.Drawing.Size(340, 125);
             this.gridImportes.TabIndex = 40;
             // 
             // Leyenda
@@ -273,7 +283,7 @@
             this.btnGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGuardar.BackgroundImage")));
             this.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(975, 469);
+            this.btnGuardar.Location = new System.Drawing.Point(858, 521);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(50, 50);
             this.btnGuardar.TabIndex = 42;
@@ -302,7 +312,7 @@
             this.btnCortes.BackgroundImage = global::SistemaFarmacia.Resource.registradora;
             this.btnCortes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCortes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCortes.Location = new System.Drawing.Point(26, 469);
+            this.btnCortes.Location = new System.Drawing.Point(26, 521);
             this.btnCortes.Name = "btnCortes";
             this.btnCortes.Size = new System.Drawing.Size(50, 50);
             this.btnCortes.TabIndex = 44;
@@ -314,7 +324,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 524);
+            this.ClientSize = new System.Drawing.Size(1283, 576);
             this.Controls.Add(this.btnCortes);
             this.Controls.Add(this.btnAplicarDescuento);
             this.Controls.Add(this.btnGuardar);
