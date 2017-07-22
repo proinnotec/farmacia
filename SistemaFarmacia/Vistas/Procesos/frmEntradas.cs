@@ -121,10 +121,15 @@ namespace SistemaFarmacia.Vistas.Procesos
             RecuperarDatosDeGrid();
         }
 
-        private void gridListadoEntradas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void Editar()
         {
             frmEditaEntradas vistaEditaEntradas = new frmEditaEntradas(_contextoAplicacion, EnumeradoAccion.Edicion, this, _entradaProductoListado);
             vistaEditaEntradas.ShowDialog();
+        }
+
+        private void gridListadoEntradas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Editar();
         }
         private void btnImprimir_Click(object sender, EventArgs e)
         {
@@ -160,6 +165,10 @@ namespace SistemaFarmacia.Vistas.Procesos
 
                 case Keys.F8:
                     ImprimirEntrada();
+                    break;
+
+                case Keys.F11:
+                    Editar();
                     break;
             }
 

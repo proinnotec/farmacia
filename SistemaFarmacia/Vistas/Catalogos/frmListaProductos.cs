@@ -127,7 +127,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             }
         }
 
-        private void gridProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void Editar()
         {
             if (gridProductos.SelectedRows.Count == 0)
             {
@@ -277,9 +277,18 @@ namespace SistemaFarmacia.Vistas.Catalogos
                 case Keys.F7:
                     ActivaDesactivaRegistro();
                     break;
+
+                case Keys.F11:
+                    Editar();
+                    break;
             }
 
             return false;
+        }
+
+        private void gridProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Editar();
         }
     }
 }

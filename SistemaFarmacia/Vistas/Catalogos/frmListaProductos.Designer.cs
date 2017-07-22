@@ -123,7 +123,7 @@
             this.gridProductos.Size = new System.Drawing.Size(670, 508);
             this.gridProductos.TabIndex = 2;
             this.gridProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellClick);
-            this.gridProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellContentDoubleClick);
+            this.gridProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProductos_CellDoubleClick);
             // 
             // ClaveProducto
             // 

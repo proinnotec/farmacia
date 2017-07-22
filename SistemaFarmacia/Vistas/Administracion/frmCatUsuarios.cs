@@ -184,20 +184,25 @@ namespace SistemaFarmacia.Vistas.Administracion
             Nuevo();
         }
 
-        private void gridUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void Editar()
         {
             if (!_usuarioLocal.EsActivo)
             {
-                string mensaje = string.Format("{0} {1} {2} {3}", "No se puede editar el registro de", _usuarioLocal.Nombre, _usuarioLocal.ApellidoPaterno, "porque está dado de baja. Si quiere hacer cambios tendrá que reactivar el registro, favor de verificar"); 
+                string mensaje = string.Format("{0} {1} {2} {3}", "No se puede editar el registro de", _usuarioLocal.Nombre, _usuarioLocal.ApellidoPaterno, "porque está dado de baja. Si quiere hacer cambios tendrá que reactivar el registro, favor de verificar");
                 MostrarDialogoResultado(this.Text, mensaje, string.Empty, false);
                 return;
             }
-                
+
             _enumeradoAccion = EnumeradoAccion.Edicion;
 
             frmAgregaEditaUsuario vistaEdicion = new frmAgregaEditaUsuario(_enumeradoAccion, this, _usuarioLocal);
             vistaEdicion.ShowDialog();
 
+        }
+
+        private void gridUsuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Editar();
         }
 
         private void btnRecargar_Click(object sender, EventArgs e)
@@ -223,6 +228,9 @@ namespace SistemaFarmacia.Vistas.Administracion
 
                 case Keys.F7:
                     ActivaDesactivaRegistro();
+                    break;
+                case Keys.F11:
+                    Editar();
                     break;
             }
 

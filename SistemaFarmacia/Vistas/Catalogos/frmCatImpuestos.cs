@@ -167,7 +167,8 @@ namespace SistemaFarmacia.Vistas.Catalogos
         {
             CargarDatosDeGridAObjeto();
         }
-        private void gridImpuestos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+
+        private void Editar()
         {
             if (!_impuestoLocal.EsActivo)
             {
@@ -180,6 +181,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             frmAgregaEditaImpuestos vistaEdicion = new frmAgregaEditaImpuestos(_contextoAplicacion, enumeradoAccion, this, _impuestoLocal);
             vistaEdicion.ShowDialog();
+        }
+
+        private void gridImpuestos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Editar();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -200,6 +206,10 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
                 case Keys.F7:
                     ActivaDesactivaRegistro();
+                    break;
+
+                case Keys.F11:
+                    Editar();
                     break;
             }
 

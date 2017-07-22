@@ -119,7 +119,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             AgregaDescuento();
         }
 
-        private void gridDescuentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void Editar()
         {
             if (!_descuentoLocal.EsActivo)
             {
@@ -132,6 +132,11 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
             frmAgregaEditaDescuentos vistaEdicion = new frmAgregaEditaDescuentos(_contextoAplicacion, enumeradoAccion, this, _descuentoLocal);
             vistaEdicion.ShowDialog();
+        }
+
+        private void gridDescuentos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Editar();
         }
 
         private void gridDescuentos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -239,6 +244,10 @@ namespace SistemaFarmacia.Vistas.Catalogos
 
                 case Keys.F7:
                     ActivaDesactivaRegistro();
+                    break;
+
+                case Keys.F11:
+                    Editar();
                     break;
             }
 
