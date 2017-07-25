@@ -123,7 +123,7 @@
             this.gridVenta.RowTemplate.Height = 25;
             this.gridVenta.RowTemplate.ReadOnly = true;
             this.gridVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridVenta.Size = new System.Drawing.Size(1242, 384);
+            this.gridVenta.Size = new System.Drawing.Size(1242, 352);
             this.gridVenta.TabIndex = 0;
             this.gridVenta.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVenta_CellContentDoubleClick);
             // 
@@ -183,7 +183,7 @@
             this.txtBusqueda.Location = new System.Drawing.Point(93, 17);
             this.txtBusqueda.Name = "txtBusqueda";
             this.txtBusqueda.Size = new System.Drawing.Size(932, 22);
-            this.txtBusqueda.TabIndex = 34;
+            this.txtBusqueda.TabIndex = 0;
             this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
             this.txtBusqueda.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBusqueda_PreviewKeyDown);
             // 
@@ -237,14 +237,14 @@
             this.Importe});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridImportes.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridImportes.EnableHeadersVisualStyles = false;
-            this.gridImportes.Location = new System.Drawing.Point(914, 446);
+            this.gridImportes.Location = new System.Drawing.Point(914, 414);
             this.gridImportes.MultiSelect = false;
             this.gridImportes.Name = "gridImportes";
             this.gridImportes.ReadOnly = true;
@@ -257,7 +257,7 @@
             this.gridImportes.RowTemplate.Height = 25;
             this.gridImportes.RowTemplate.ReadOnly = true;
             this.gridImportes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridImportes.Size = new System.Drawing.Size(340, 125);
+            this.gridImportes.Size = new System.Drawing.Size(340, 157);
             this.gridImportes.TabIndex = 40;
             // 
             // Leyenda
@@ -282,7 +282,7 @@
             this.btnRemover.Location = new System.Drawing.Point(1204, 3);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(50, 50);
-            this.btnRemover.TabIndex = 41;
+            this.btnRemover.TabIndex = 2;
             this.btnRemover.UseVisualStyleBackColor = true;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
@@ -296,7 +296,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(858, 521);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(50, 50);
-            this.btnGuardar.TabIndex = 42;
+            this.btnGuardar.TabIndex = 5;
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -311,7 +311,7 @@
             this.btnAplicarDescuento.Location = new System.Drawing.Point(1148, 3);
             this.btnAplicarDescuento.Name = "btnAplicarDescuento";
             this.btnAplicarDescuento.Size = new System.Drawing.Size(50, 50);
-            this.btnAplicarDescuento.TabIndex = 43;
+            this.btnAplicarDescuento.TabIndex = 1;
             this.btnAplicarDescuento.UseVisualStyleBackColor = true;
             this.btnAplicarDescuento.Click += new System.EventHandler(this.btnAplicarDescuento_Click);
             // 
@@ -325,7 +325,7 @@
             this.btnCortes.Location = new System.Drawing.Point(12, 521);
             this.btnCortes.Name = "btnCortes";
             this.btnCortes.Size = new System.Drawing.Size(50, 50);
-            this.btnCortes.TabIndex = 44;
+            this.btnCortes.TabIndex = 3;
             this.btnCortes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCortes.UseVisualStyleBackColor = true;
             this.btnCortes.Click += new System.EventHandler(this.btnCortes_Click);
@@ -340,7 +340,7 @@
             this.btnLimpiarGrid.Location = new System.Drawing.Point(77, 521);
             this.btnLimpiarGrid.Name = "btnLimpiarGrid";
             this.btnLimpiarGrid.Size = new System.Drawing.Size(50, 50);
-            this.btnLimpiarGrid.TabIndex = 45;
+            this.btnLimpiarGrid.TabIndex = 4;
             this.btnLimpiarGrid.UseVisualStyleBackColor = true;
             this.btnLimpiarGrid.Click += new System.EventHandler(this.btnLimpiarGrid_Click);
             // 

@@ -360,11 +360,19 @@ namespace SistemaFarmacia.Vistas.Ventas
                 return;
             }
 
+            if (frmVendedores.nupCantidadPago.Value < _ventaImporte.Total)
+            {
+                MostrarDialogoResultado(this.Text, "No se puede asignar un pago menor al total.", string.Empty, false);
+                txtBusqueda.Focus();
+                return;
+            }
+
             this.Cursor = Cursors.WaitCursor;
 
             Venta venta = new Venta();
             venta.IdUsuario = (int) frmVendedores.cmbVendedores.SelectedValue;
             venta.NombreVendedor = frmVendedores.cmbVendedores.Text;
+            venta.Pago = frmVendedores.nupCantidadPago.Value;
             venta.DetalleVenta = _listaVentaDetalle;
             venta.Descuento = _ventaImporte.Ahorro;
             venta.IdDescuento = _descuentoVenta.Descuento.IdDescuento;

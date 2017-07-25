@@ -299,6 +299,8 @@ namespace SistemaFarmacia.Reportes {
             
             private global::System.Data.DataColumn columnDescripcion;
             
+            private global::System.Data.DataColumn columnPago;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public VentaDataTable() {
@@ -414,6 +416,14 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PagoColumn {
+                get {
+                    return this.columnPago;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +459,7 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public VentaRow AddVentaRow(long Consecutivo, System.DateTime FechaRegistro, decimal Total, decimal Subtotal, decimal Descuento, decimal Porcentaje, decimal Cantidad, decimal Precio, string ClaveProducto, string Descripcion) {
+            public VentaRow AddVentaRow(long Consecutivo, System.DateTime FechaRegistro, decimal Total, decimal Subtotal, decimal Descuento, decimal Porcentaje, decimal Cantidad, decimal Precio, string ClaveProducto, string Descripcion, decimal Pago) {
                 VentaRow rowVentaRow = ((VentaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Consecutivo,
@@ -461,7 +471,8 @@ namespace SistemaFarmacia.Reportes {
                         Cantidad,
                         Precio,
                         ClaveProducto,
-                        Descripcion};
+                        Descripcion,
+                        Pago};
                 rowVentaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowVentaRow);
                 return rowVentaRow;
@@ -494,6 +505,7 @@ namespace SistemaFarmacia.Reportes {
                 this.columnPrecio = base.Columns["Precio"];
                 this.columnClaveProducto = base.Columns["ClaveProducto"];
                 this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnPago = base.Columns["Pago"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +531,8 @@ namespace SistemaFarmacia.Reportes {
                 base.Columns.Add(this.columnClaveProducto);
                 this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcion);
+                this.columnPago = new global::System.Data.DataColumn("Pago", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPago);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -821,6 +835,22 @@ namespace SistemaFarmacia.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Pago {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableVenta.PagoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Pago\' de la tabla \'Venta\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVenta.PagoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsConsecutivoNull() {
                 return this.IsNull(this.tableVenta.ConsecutivoColumn);
             }
@@ -937,6 +967,18 @@ namespace SistemaFarmacia.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDescripcionNull() {
                 this[this.tableVenta.DescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPagoNull() {
+                return this.IsNull(this.tableVenta.PagoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPagoNull() {
+                this[this.tableVenta.PagoColumn] = global::System.Convert.DBNull;
             }
         }
         

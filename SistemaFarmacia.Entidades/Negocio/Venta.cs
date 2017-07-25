@@ -18,6 +18,7 @@ namespace SistemaFarmacia.Entidades.Negocio
         public List<VentaDetalle> DetalleVenta { get; set; }
         public List<VentaDetalleImpuesto> DetalleVentaImpuesto { get; set; }
         public string NombreVendedor { get; set; }
-        
+        public decimal Pago { get; set; }
+
     }
 }

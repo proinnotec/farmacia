@@ -18,8 +18,7 @@ namespace SistemaFarmacia.Entidades.Contextos
         public decimal Precio { get; set; }
         public string ClaveProducto { get; set; }
         public string Descripcion { get; set; }
-
-
+        public decimal Pago { get; set; }
 
     }
 }

@@ -33,6 +33,12 @@ namespace SistemaFarmacia.Vistas.Ventas
                 return;
             }
 
+            if (nupCantidadPago.Value == 0)
+            {
+                MostrarDialogoResultado(this.Text, "Capture un importe mayor a cero.", string.Empty, false);
+                return;
+            }
+
             this.DialogResult = DialogResult.Yes;
         }
     }

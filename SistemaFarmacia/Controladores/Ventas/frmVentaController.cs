@@ -150,6 +150,7 @@ namespace SistemaFarmacia.Controladores.Ventas
                 contextoTicket.Precio = ventaDetalle.Precio;
                 contextoTicket.Subtotal = venta.SubTotal;
                 contextoTicket.Total = venta.Total;
+                contextoTicket.Pago = venta.Pago;
                 listaTicket.Add(contextoTicket);
             }            
             
