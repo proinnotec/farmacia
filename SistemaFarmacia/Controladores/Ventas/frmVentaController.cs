@@ -15,6 +15,7 @@ using SistemaFarmacia.Entidades.Negocio.Busqueda;
 using SistemaFarmacia.Servicios.Negocio.Administracion;
 using SistemaFarmacia.Reportes;
 using CrystalDecisions.Shared;
+using SistemaFarmacia.Servicios.Negocio.Almacen;
 
 namespace SistemaFarmacia.Controladores.Ventas
 {
@@ -27,8 +28,9 @@ namespace SistemaFarmacia.Controladores.Ventas
         ServicioCatalogoDescuentos _servicioCatalogoDescuentos;
         ServicioCatalogoUsuarios _servicioCatalogoUsuarios;
         ServicioCatalogoImpuestos _servicioCatalogoImpuestos;
+        ServicioInventarios _servicioInventarios;
 
-        public frmVentaController (frmVenta vista)
+        public frmVentaController(frmVenta vista)
         {
             _vista = vista;
             _servicioVentas = new ServicioVentas(BaseDeDatosTienda);
@@ -37,6 +39,21 @@ namespace SistemaFarmacia.Controladores.Ventas
             _servicioCatalogoDescuentos = new ServicioCatalogoDescuentos(BaseDeDatosTienda);
             _servicioCatalogoUsuarios = new ServicioCatalogoUsuarios(BaseDeDatosTienda);
             _servicioCatalogoImpuestos = new ServicioCatalogoImpuestos(BaseDeDatosTienda);
+            _servicioInventarios = new ServicioInventarios(BaseDeDatosTienda);
+        }
+
+        public decimal ExistenciaProducto(int idProducto)
+        {
+            ExcepcionPersonalizada resultado = _servicioInventarios.ConsultaInventario(idProducto, false);
+
+            if (resultado != null)
+            {
+                string mensaje = "No fue posible obtener la existencia del producto.";
+                _vista.MostrarDialogoResultado(_vista.Text, mensaje, resultado.ToString(), false);
+                return new decimal();
+            }
+
+            return _servicioInventarios.ListaInventario[0].Existencia;
         }
 
         public List<CatImpuestos> ObtenerListaImpuestos()

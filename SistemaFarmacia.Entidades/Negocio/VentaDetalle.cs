@@ -18,5 +18,7 @@ namespace SistemaFarmacia.Entidades.Negocio
         public decimal Total { get; set; }
         public Int16 CantidadPromocion { get; set; }
         public decimal PrecioPromocion { get; set; }
+
+        public decimal Existencia { get; set; }
     }
 }

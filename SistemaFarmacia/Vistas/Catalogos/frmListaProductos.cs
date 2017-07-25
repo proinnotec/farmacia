@@ -52,7 +52,6 @@ namespace SistemaFarmacia.Vistas.Catalogos
             gridProductos.Columns["Precio"].FillWeight = 10;
             gridProductos.Columns["AplicaDescuentoCatalogo"].FillWeight = 10;
             gridProductos.Columns["EsActivo"].FillWeight = 10;
-
         }
 
         private void AsigarListaProductos(List<CatProducto> listaProductos)

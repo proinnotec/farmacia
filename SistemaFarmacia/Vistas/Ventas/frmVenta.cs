@@ -38,6 +38,17 @@ namespace SistemaFarmacia.Vistas.Ventas
             ToolTips();
             txtBusqueda.Select();
             _contexto = contexto;
+            ColumnasGrid();
+        }
+
+        private void ColumnasGrid()
+        {
+            gridVenta.Columns["ClaveProducto"].FillWeight = 10;
+            gridVenta.Columns["Producto"].FillWeight = 50;
+            gridVenta.Columns["Precio"].FillWeight = 10;
+            gridVenta.Columns["Existencia"].FillWeight = 10;
+            gridVenta.Columns["Cantidad"].FillWeight = 10;
+            gridVenta.Columns["Total"].FillWeight = 10;
         }
 
         private void ToolTips()
@@ -163,6 +174,10 @@ namespace SistemaFarmacia.Vistas.Ventas
 
                 _ventaDetalle.Cantidad = frmCantidadVenta.nupCantidad.Value;
                 _ventaDetalle.Total = (_ventaDetalle.Precio * _ventaDetalle.Cantidad);
+
+                decimal existencia = _frmVentaController.ExistenciaProducto(_ventaDetalle.IdProducto);
+
+                _ventaDetalle.Existencia = existencia;
 
                 ActualizaGrid();
                 ActualizaImportes();
@@ -321,6 +336,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             InicializaGridImportes();
             InicializaRecursos();
             gridVenta.DataSource = null;
+            txtBusqueda.Focus();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -443,7 +459,6 @@ namespace SistemaFarmacia.Vistas.Ventas
         {
             frmCortesCaja cortes = new frmCortesCaja(_contexto);
             cortes.Show();
-
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -487,6 +502,11 @@ namespace SistemaFarmacia.Vistas.Ventas
                 gridVenta.DataSource = _listaVentaDetalle;
                 ActualizaImportes();    
             }
+        }
+
+        private void btnLimpiarGrid_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
         }
     }
 }

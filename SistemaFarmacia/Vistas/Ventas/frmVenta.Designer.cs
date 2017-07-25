@@ -42,6 +42,7 @@
             this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Existencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +56,7 @@
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnAplicarDescuento = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnCortes = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.btnLimpiarGrid = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             ((System.ComponentModel.ISupportInitialize)(this.gridVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridImportes)).BeginInit();
             this.SuspendLayout();
@@ -86,6 +88,7 @@
             this.ClaveProducto,
             this.IdProducto,
             this.Producto,
+            this.Existencia,
             this.Cantidad,
             this.Precio,
             this.Total});
@@ -145,6 +148,13 @@
             this.Producto.HeaderText = "Producto";
             this.Producto.Name = "Producto";
             this.Producto.ReadOnly = true;
+            // 
+            // Existencia
+            // 
+            this.Existencia.DataPropertyName = "Existencia";
+            this.Existencia.HeaderText = "Existencia";
+            this.Existencia.Name = "Existencia";
+            this.Existencia.ReadOnly = true;
             // 
             // Cantidad
             // 
@@ -312,7 +322,7 @@
             this.btnCortes.BackgroundImage = global::SistemaFarmacia.Resource.registradora;
             this.btnCortes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCortes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCortes.Location = new System.Drawing.Point(26, 521);
+            this.btnCortes.Location = new System.Drawing.Point(12, 521);
             this.btnCortes.Name = "btnCortes";
             this.btnCortes.Size = new System.Drawing.Size(50, 50);
             this.btnCortes.TabIndex = 44;
@@ -320,11 +330,26 @@
             this.btnCortes.UseVisualStyleBackColor = true;
             this.btnCortes.Click += new System.EventHandler(this.btnCortes_Click);
             // 
+            // btnLimpiarGrid
+            // 
+            this.btnLimpiarGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLimpiarGrid.BackColor = System.Drawing.Color.LightGray;
+            this.btnLimpiarGrid.BackgroundImage = global::SistemaFarmacia.Resource.menos;
+            this.btnLimpiarGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLimpiarGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarGrid.Location = new System.Drawing.Point(77, 521);
+            this.btnLimpiarGrid.Name = "btnLimpiarGrid";
+            this.btnLimpiarGrid.Size = new System.Drawing.Size(50, 50);
+            this.btnLimpiarGrid.TabIndex = 45;
+            this.btnLimpiarGrid.UseVisualStyleBackColor = true;
+            this.btnLimpiarGrid.Click += new System.EventHandler(this.btnLimpiarGrid_Click);
+            // 
             // frmVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 576);
+            this.Controls.Add(this.btnLimpiarGrid);
             this.Controls.Add(this.btnCortes);
             this.Controls.Add(this.btnAplicarDescuento);
             this.Controls.Add(this.btnGuardar);
@@ -354,14 +379,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Leyenda;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private ControlesPersonalizados.BotonPersonalizado btnRemover;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClaveProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private ControlesPersonalizados.BotonPersonalizado btnGuardar;
         private ControlesPersonalizados.BotonPersonalizado btnAplicarDescuento;
         private ControlesPersonalizados.BotonPersonalizado btnCortes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClaveProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Existencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private ControlesPersonalizados.BotonPersonalizado btnLimpiarGrid;
     }
 }
