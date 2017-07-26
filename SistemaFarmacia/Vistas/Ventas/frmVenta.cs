@@ -54,16 +54,19 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void ToolTips()
         {
             ToolTip toolBtnAplicarDescuento = new ToolTip();
-            toolBtnAplicarDescuento.SetToolTip(btnAplicarDescuento, "Agregar descuento");
+            toolBtnAplicarDescuento.SetToolTip(btnAplicarDescuento, "Agregar descuento F1");
 
             ToolTip toolbtnGuardar = new ToolTip();
-            toolbtnGuardar.SetToolTip(btnGuardar, "Guardar venta");
+            toolbtnGuardar.SetToolTip(btnGuardar, "Guardar venta F5");
 
             ToolTip toolbtnRemover = new ToolTip();
-            toolbtnRemover.SetToolTip(btnRemover, "Quitar producto");
+            toolbtnRemover.SetToolTip(btnRemover, "Quitar producto F8");
 
             ToolTip toolbtnCortes = new ToolTip();
             toolbtnCortes.SetToolTip(btnCortes, "Ver Cortes de Caja F9");
+
+            ToolTip toolbtnBorrarProductos = new ToolTip();
+            toolbtnBorrarProductos.SetToolTip(btnLimpiarGrid, "Quitar todos los productos F2");
         }
 
         private void InicializaRecursos()
@@ -96,9 +99,9 @@ namespace SistemaFarmacia.Vistas.Ventas
         {
             object[] fila;
             gridImportes.Rows.Clear();
-            fila = new object[] { "SubTotal:", 0.ToString("0.0000") };
+            fila = new object[] { "SubTotal:", 0.ToString("0.00") };
             gridImportes.Rows.Add(fila);
-            fila = new object[] { "Total:", 0.ToString("0.0000") };
+            fila = new object[] { "Total:", 0.ToString("0.00") };
             gridImportes.Rows.Add(fila);
         }
 
@@ -268,21 +271,21 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             if (_ventaImporte.Ahorro > 0)
             {
-                fila = new object[] { "Ahorro:", (_ventaImporte.Ahorro).ToString("0.0000") };
+                fila = new object[] { "Ahorro:", (_ventaImporte.Ahorro).ToString("0.00") };
                 gridImportes.Rows.Add(fila);
             }
 
-            fila = new object[] { "SubTotal:", (_ventaImporte.SubTotal).ToString("0.0000") };
+            fila = new object[] { "SubTotal:", (_ventaImporte.SubTotal).ToString("0.00") };
             gridImportes.Rows.Add(fila);
 
             foreach (VentaImpuestos ventaImportes in listaImpuestos)
             {
-                fila = new object[] { ventaImportes.Impuesto, (ventaImportes.Total).ToString("0.0000") };
+                fila = new object[] { ventaImportes.Impuesto, (ventaImportes.Total).ToString("0.00") };
                 gridImportes.Rows.Add(fila);
             }
 
             _ventaImporte.Total = _ventaImporte.SubTotal + listaImpuestos.Sum(e => e.Total);
-            fila = new object[] { "Total:", (_ventaImporte.Total).ToString("0.0000") };
+            fila = new object[] { "Total:", (_ventaImporte.Total).ToString("0.00") };
             gridImportes.Rows.Add(fila);
 
         }
@@ -346,12 +349,7 @@ namespace SistemaFarmacia.Vistas.Ventas
                 MostrarDialogoResultado(this.Text, "Seleccione al menos un producto.", string.Empty, false);
                 return;
             }
-
-            if (MostrarDialogoConfirmacion(this.Text, "¿Están completos los datos de la venta?") == DialogResult.Cancel)
-            {
-                return;
-            }
-
+            
             frmVendedores frmVendedores = new frmVendedores(_listaUsuarios, _contexto);
             DialogResult resultado = frmVendedores.ShowDialog();
 
@@ -479,6 +477,22 @@ namespace SistemaFarmacia.Vistas.Ventas
 
                 case Keys.F9:
                     GenerarCorte();
+                    break;
+
+                case Keys.F2:
+                    LimpiarFormulario();
+                    break;
+
+                case Keys.F5:
+                    btnGuardar_Click(new object(), new EventArgs());
+                    break;
+
+                case Keys.F1:
+                    btnAplicarDescuento_Click(new object(), new EventArgs());
+                    break;
+
+                case Keys.F8:
+                    btnRemover_Click(new object(), new EventArgs());
                     break;
             }
 

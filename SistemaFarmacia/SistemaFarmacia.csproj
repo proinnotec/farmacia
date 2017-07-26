@@ -640,6 +640,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ensamblados\ProInnoTec.Entidades.dll" />
+    <None Include="Resources\cancel.png" />
+    <Content Include="Resources\icon_notification_error_comp.ico" />
     <None Include="Resources\registradora.jpg" />
     <None Include="Resources\login2.jpg" />
     <None Include="Resources\login.jpg" />

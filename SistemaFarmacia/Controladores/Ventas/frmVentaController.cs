@@ -167,11 +167,18 @@ namespace SistemaFarmacia.Controladores.Ventas
             ExcepcionPersonalizada excepcionGuardarVenta = _servicioVentas.GuardarVenta(venta);
             if (excepcionGuardarVenta == null)
             {
-                _vista.MostrarDialogoResultado(_vista.Text, "La venta se guardó correctamente.", string.Empty, true);
                 _vista.LimpiarFormulario();
                 venta.Consecutivo = _servicioVentas.Consecutivo;
                 venta.FechaRegistro = _servicioVentas.FechaRegistro;
-                ImprimirTicket(venta);
+
+                try
+                {
+                    ImprimirTicket(venta);
+                }
+                catch (Exception exception)
+                {
+                    _vista.MostrarDialogoResultado(_vista.Text, "No fue posible imprimir el ticket.", exception.InnerException.ToString(), false);
+                }
             }
             else
             {
