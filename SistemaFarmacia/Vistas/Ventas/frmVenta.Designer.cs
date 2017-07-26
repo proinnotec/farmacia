@@ -33,9 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,14 +40,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVenta));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridVenta = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
-            this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Existencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ltbResultados = new System.Windows.Forms.ListBox();
@@ -62,6 +55,13 @@
             this.btnAplicarDescuento = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnGuardar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.btnRemover = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
+            this.ClaveProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Existencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridImportes)).BeginInit();
             this.SuspendLayout();
@@ -130,69 +130,7 @@
             this.gridVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridVenta.Size = new System.Drawing.Size(1242, 352);
             this.gridVenta.TabIndex = 0;
-            this.gridVenta.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVenta_CellContentDoubleClick);
-            // 
-            // ClaveProducto
-            // 
-            this.ClaveProducto.DataPropertyName = "ClaveProducto";
-            this.ClaveProducto.HeaderText = "Clave";
-            this.ClaveProducto.Name = "ClaveProducto";
-            this.ClaveProducto.ReadOnly = true;
-            // 
-            // IdProducto
-            // 
-            this.IdProducto.DataPropertyName = "IdProducto";
-            this.IdProducto.HeaderText = "IdProducto";
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.ReadOnly = true;
-            this.IdProducto.Visible = false;
-            // 
-            // Producto
-            // 
-            this.Producto.DataPropertyName = "Descripcion";
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            // 
-            // Existencia
-            // 
-            this.Existencia.DataPropertyName = "Existencia";
-            this.Existencia.HeaderText = "Existencia";
-            this.Existencia.Name = "Existencia";
-            this.Existencia.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "Cantidad";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Precio
-            // 
-            this.Precio.DataPropertyName = "Precio";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Precio.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Total";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Total.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
+            this.gridVenta.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridVenta_CellDoubleClick);
             // 
             // txtBusqueda
             // 
@@ -364,6 +302,68 @@
             this.btnRemover.TabIndex = 2;
             this.btnRemover.UseVisualStyleBackColor = true;
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
+            // 
+            // ClaveProducto
+            // 
+            this.ClaveProducto.DataPropertyName = "ClaveProducto";
+            this.ClaveProducto.HeaderText = "Clave";
+            this.ClaveProducto.Name = "ClaveProducto";
+            this.ClaveProducto.ReadOnly = true;
+            // 
+            // IdProducto
+            // 
+            this.IdProducto.DataPropertyName = "IdProducto";
+            this.IdProducto.HeaderText = "IdProducto";
+            this.IdProducto.Name = "IdProducto";
+            this.IdProducto.ReadOnly = true;
+            this.IdProducto.Visible = false;
+            // 
+            // Producto
+            // 
+            this.Producto.DataPropertyName = "Descripcion";
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            // 
+            // Existencia
+            // 
+            this.Existencia.DataPropertyName = "Existencia";
+            this.Existencia.HeaderText = "Existencia";
+            this.Existencia.Name = "Existencia";
+            this.Existencia.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Precio
+            // 
+            this.Precio.DataPropertyName = "Precio";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Precio.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Total.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // frmVenta
             // 

@@ -494,6 +494,10 @@ namespace SistemaFarmacia.Vistas.Ventas
                 case Keys.F8:
                     btnRemover_Click(new object(), new EventArgs());
                     break;
+
+                case Keys.F12:
+                    gridVenta_CellDoubleClick(new object(), new DataGridViewCellEventArgs(0,0));
+                    break;
             }
 
             return false;
@@ -504,14 +508,19 @@ namespace SistemaFarmacia.Vistas.Ventas
             GenerarCorte();
         }
 
-        private void gridVenta_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void btnLimpiarGrid_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
+
+        private void gridVenta_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gridVenta.Rows.Count.Equals(0)) { return; }
 
             if (gridVenta.SelectedRows.Count == 0) { return; }
 
-            VentaDetalle producto = _listaVentaDetalle.Find(elemento => elemento.IdProducto == (int) gridVenta.SelectedRows[0].Cells["IdProducto"].Value);
-
+            VentaDetalle producto = _listaVentaDetalle.Find(elemento => elemento.IdProducto == (int)gridVenta.SelectedRows[0].Cells["IdProducto"].Value);
+            
             frmCantidadVenta frmCantidadVenta = new frmCantidadVenta(producto.Cantidad);
             DialogResult resultado = frmCantidadVenta.ShowDialog();
 
@@ -522,13 +531,8 @@ namespace SistemaFarmacia.Vistas.Ventas
                 gridVenta.AutoGenerateColumns = false;
                 gridVenta.DataSource = null;
                 gridVenta.DataSource = _listaVentaDetalle;
-                ActualizaImportes();    
+                ActualizaImportes();
             }
-        }
-
-        private void btnLimpiarGrid_Click(object sender, EventArgs e)
-        {
-            LimpiarFormulario();
         }
     }
 }
