@@ -60,7 +60,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             toolbtnGuardar.SetToolTip(btnGuardar, "Guardar venta F5");
 
             ToolTip toolbtnRemover = new ToolTip();
-            toolbtnRemover.SetToolTip(btnRemover, "Quitar producto F8");
+            toolbtnRemover.SetToolTip(btnRemover, "Quitar producto F10");
 
             ToolTip toolbtnCortes = new ToolTip();
             toolbtnCortes.SetToolTip(btnCortes, "Ver Cortes de Caja F9");
@@ -491,11 +491,11 @@ namespace SistemaFarmacia.Vistas.Ventas
                     btnAplicarDescuento_Click(new object(), new EventArgs());
                     break;
 
-                case Keys.F8:
+                case Keys.F10:
                     btnRemover_Click(new object(), new EventArgs());
                     break;
 
-                case Keys.F12:
+                case Keys.F11:
                     gridVenta_CellDoubleClick(new object(), new DataGridViewCellEventArgs(0,0));
                     break;
             }
