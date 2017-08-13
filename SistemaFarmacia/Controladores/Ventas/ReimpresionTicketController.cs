@@ -15,13 +15,11 @@ namespace SistemaFarmacia.Controladores.Ventas
     {
         private frmRepTicketReImp _vista;
         private ServicioVentas _servicioVentas;
-        private ServicioCortesCaja _servicioCortesCaja;
 
         public ReimpresionTicketController(frmRepTicketReImp vista)
         {
             _vista = vista;
             _servicioVentas = new ServicioVentas(BaseDeDatosTienda);
-            _servicioCortesCaja = new ServicioCortesCaja(BaseDeDatosTienda);
         }
 
         public void ObtenerListaTickets(Ticket opcionesBusqueda)
@@ -40,7 +38,7 @@ namespace SistemaFarmacia.Controladores.Ventas
 
         public void ObtenerListaVendedores(DateTime fechaInicio, DateTime fechaFin)
         {
-            ExcepcionPersonalizada resultado = _servicioCortesCaja.ObtenerListaUsuariosCortesCajaReporte(fechaInicio, fechaFin);
+            ExcepcionPersonalizada resultado = _servicioVentas.ObtenerListaUsuariosCortesCajaReporte(fechaInicio, fechaFin);
 
             if (resultado != null)
             {
@@ -48,7 +46,7 @@ namespace SistemaFarmacia.Controladores.Ventas
                 return;
             }
 
-            List<Usuario> lista = _servicioCortesCaja.ListaVendedores;
+            List<Usuario> lista = _servicioVentas.ListaVendedores;
             _vista.LlenarComboVendedores(lista);
         }
     }

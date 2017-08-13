@@ -23,6 +23,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
         public string DireccionSucursal { get; private set; }
         public string Sucursal { get; private set; }
         public List<Ticket> ListaTickets { get; private set; }
+        public List<Usuario> ListaVendedores { get; set; }
 
         public ServicioVentas(IBaseDeDatos baseDatos)
         {
@@ -214,6 +215,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                 {
                     Ticket ticket = new Ticket();
 
+                    ticket.IdVenta = (Int64)lector["IdVenta"];
                     ticket.NoTicket = (Int64)lector["Ticket"];
                     ticket.Fecha = (DateTime)lector["Fecha"];
                     ticket.Total = (decimal)lector["Total"];
@@ -242,6 +244,54 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                         conexion.Close();
                         conexion.Dispose();
                     }
+                }
+            }
+        }
+
+        public ExcepcionPersonalizada ObtenerListaUsuariosCortesCajaReporte(DateTime fechaInicio, DateTime fechaFin)
+        {
+            ListaVendedores = new List<Usuario>();
+
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_UsuariosVenta", conexion);
+
+                IDataParameter parametroFechaInicio = _baseDatos.CrearParametro("@FechaInicio", fechaInicio, ParameterDirection.Input);
+                comando.Parameters.Add(parametroFechaInicio);
+
+                IDataParameter parametroFechaFin = _baseDatos.CrearParametro("@FechaFin", fechaFin, ParameterDirection.Input);
+                comando.Parameters.Add(parametroFechaFin);
+
+                IDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    Usuario usuarioVendedor = new Usuario();
+
+                    usuarioVendedor.IdUsuario = (int)lector["IdUsuario"];
+                    usuarioVendedor.NombreUsuario = lector["NombreUsuario"].ToString();
+
+                    ListaVendedores.Add(usuarioVendedor);
+                }
+
+                lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("No fue posible obtener el listado de vendedores.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null && conexion.State != ConnectionState.Closed)
+                {
+                    conexion.Close();
+                    conexion.Dispose();
                 }
             }
         }

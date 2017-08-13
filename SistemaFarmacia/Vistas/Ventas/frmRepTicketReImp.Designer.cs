@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.crvTicket = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.btnBuscar = new SistemaFarmacia.ControlesPersonalizados.BotonPersonalizado();
             this.gpbParametros = new System.Windows.Forms.GroupBox();
+            this.cmbVendedores = new System.Windows.Forms.ComboBox();
+            this.chbTodos = new System.Windows.Forms.CheckBox();
             this.lblFechaFin = new System.Windows.Forms.Label();
             this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.lblFechaInicio = new System.Windows.Forms.Label();
@@ -41,15 +43,14 @@
             this.lblTicket = new System.Windows.Forms.Label();
             this.nudTicket = new System.Windows.Forms.NumericUpDown();
             this.gridTickets = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
+            this.lblTicketsTexto = new System.Windows.Forms.Label();
+            this.lblTicketsNumero = new System.Windows.Forms.Label();
+            this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NoTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VendedorTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorteCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTicketsTexto = new System.Windows.Forms.Label();
-            this.lblTicketsNumero = new System.Windows.Forms.Label();
-            this.cmbVendedores = new System.Windows.Forms.ComboBox();
-            this.chbTodos = new System.Windows.Forms.CheckBox();
             this.gpbParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTicket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTickets)).BeginInit();
@@ -105,6 +106,28 @@
             this.gpbParametros.TabIndex = 26;
             this.gpbParametros.TabStop = false;
             this.gpbParametros.Text = "Parámetros de Consulta";
+            // 
+            // cmbVendedores
+            // 
+            this.cmbVendedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVendedores.FormattingEnabled = true;
+            this.cmbVendedores.Location = new System.Drawing.Point(235, 33);
+            this.cmbVendedores.Name = "cmbVendedores";
+            this.cmbVendedores.Size = new System.Drawing.Size(238, 24);
+            this.cmbVendedores.TabIndex = 8;
+            // 
+            // chbTodos
+            // 
+            this.chbTodos.AutoSize = true;
+            this.chbTodos.Checked = true;
+            this.chbTodos.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbTodos.Location = new System.Drawing.Point(238, 13);
+            this.chbTodos.Name = "chbTodos";
+            this.chbTodos.Size = new System.Drawing.Size(186, 20);
+            this.chbTodos.TabIndex = 7;
+            this.chbTodos.Text = "Todos los Vendedores";
+            this.chbTodos.UseVisualStyleBackColor = true;
+            this.chbTodos.CheckedChanged += new System.EventHandler(this.chbTodos_CheckedChanged);
             // 
             // lblFechaFin
             // 
@@ -163,8 +186,8 @@
             this.gridTickets.AllowUserToAddRows = false;
             this.gridTickets.AllowUserToDeleteRows = false;
             this.gridTickets.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.gridTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.gridTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -172,16 +195,17 @@
             this.gridTickets.BackgroundColor = System.Drawing.Color.White;
             this.gridTickets.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.gridTickets.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gridTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridTickets.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdVenta,
             this.NoTicket,
             this.Fecha,
             this.Total,
@@ -193,10 +217,10 @@
             this.gridTickets.Name = "gridTickets";
             this.gridTickets.ReadOnly = true;
             this.gridTickets.RowHeadersVisible = false;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridTickets.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridTickets.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridTickets.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gridTickets.RowTemplate.Height = 20;
             this.gridTickets.RowTemplate.ReadOnly = true;
@@ -204,7 +228,37 @@
             this.gridTickets.Size = new System.Drawing.Size(488, 598);
             this.gridTickets.TabIndex = 27;
             this.gridTickets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTickets_CellClick);
+            this.gridTickets.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTickets_CellDoubleClick);
+            this.gridTickets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTickets_KeyDown);
             this.gridTickets.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridTickets_KeyUp);
+            // 
+            // lblTicketsTexto
+            // 
+            this.lblTicketsTexto.AutoSize = true;
+            this.lblTicketsTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicketsTexto.Location = new System.Drawing.Point(551, 29);
+            this.lblTicketsTexto.Name = "lblTicketsTexto";
+            this.lblTicketsTexto.Size = new System.Drawing.Size(200, 24);
+            this.lblTicketsTexto.TabIndex = 7;
+            this.lblTicketsTexto.Text = "Tickets Encontrados";
+            // 
+            // lblTicketsNumero
+            // 
+            this.lblTicketsNumero.AutoSize = true;
+            this.lblTicketsNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicketsNumero.Location = new System.Drawing.Point(771, 29);
+            this.lblTicketsNumero.Name = "lblTicketsNumero";
+            this.lblTicketsNumero.Size = new System.Drawing.Size(21, 24);
+            this.lblTicketsNumero.TabIndex = 28;
+            this.lblTicketsNumero.Text = "0";
+            // 
+            // IdVenta
+            // 
+            this.IdVenta.DataPropertyName = "IdVenta";
+            this.IdVenta.HeaderText = "IdVenta";
+            this.IdVenta.Name = "IdVenta";
+            this.IdVenta.ReadOnly = true;
+            this.IdVenta.Visible = false;
             // 
             // NoTicket
             // 
@@ -246,48 +300,6 @@
             this.CorteCaja.Name = "CorteCaja";
             this.CorteCaja.ReadOnly = true;
             // 
-            // lblTicketsTexto
-            // 
-            this.lblTicketsTexto.AutoSize = true;
-            this.lblTicketsTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicketsTexto.Location = new System.Drawing.Point(551, 29);
-            this.lblTicketsTexto.Name = "lblTicketsTexto";
-            this.lblTicketsTexto.Size = new System.Drawing.Size(200, 24);
-            this.lblTicketsTexto.TabIndex = 7;
-            this.lblTicketsTexto.Text = "Tickets Encontrados";
-            // 
-            // lblTicketsNumero
-            // 
-            this.lblTicketsNumero.AutoSize = true;
-            this.lblTicketsNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicketsNumero.Location = new System.Drawing.Point(771, 29);
-            this.lblTicketsNumero.Name = "lblTicketsNumero";
-            this.lblTicketsNumero.Size = new System.Drawing.Size(21, 24);
-            this.lblTicketsNumero.TabIndex = 28;
-            this.lblTicketsNumero.Text = "0";
-            // 
-            // cmbVendedores
-            // 
-            this.cmbVendedores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbVendedores.FormattingEnabled = true;
-            this.cmbVendedores.Location = new System.Drawing.Point(235, 33);
-            this.cmbVendedores.Name = "cmbVendedores";
-            this.cmbVendedores.Size = new System.Drawing.Size(238, 24);
-            this.cmbVendedores.TabIndex = 8;
-            // 
-            // chbTodos
-            // 
-            this.chbTodos.AutoSize = true;
-            this.chbTodos.Checked = true;
-            this.chbTodos.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbTodos.Location = new System.Drawing.Point(238, 13);
-            this.chbTodos.Name = "chbTodos";
-            this.chbTodos.Size = new System.Drawing.Size(186, 20);
-            this.chbTodos.TabIndex = 7;
-            this.chbTodos.Text = "Todos los Vendedores";
-            this.chbTodos.UseVisualStyleBackColor = true;
-            this.chbTodos.CheckedChanged += new System.EventHandler(this.chbTodos_CheckedChanged);
-            // 
             // frmRepTicketReImp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,14 +335,15 @@
         private ControlesPersonalizados.GridPersonalizado gridTickets;
         private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.Label lblTicketsTexto;
+        private System.Windows.Forms.Label lblTicketsNumero;
+        private System.Windows.Forms.ComboBox cmbVendedores;
+        private System.Windows.Forms.CheckBox chbTodos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn NoTicket;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn VendedorTicket;
         private System.Windows.Forms.DataGridViewTextBoxColumn CorteCaja;
-        private System.Windows.Forms.Label lblTicketsTexto;
-        private System.Windows.Forms.Label lblTicketsNumero;
-        private System.Windows.Forms.ComboBox cmbVendedores;
-        private System.Windows.Forms.CheckBox chbTodos;
     }
 }

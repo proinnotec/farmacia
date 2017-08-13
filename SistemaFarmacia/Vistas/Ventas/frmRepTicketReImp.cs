@@ -19,6 +19,7 @@ namespace SistemaFarmacia.Vistas.Ventas
     public partial class frmRepTicketReImp : frmBase
     {
         private ReimpresionTicketController _reimpresionTicketController;
+        private Int64 _idTicket;
         public frmRepTicketReImp(ContextoAplicacion contexto)
         {
             InitializeComponent();
@@ -27,8 +28,10 @@ namespace SistemaFarmacia.Vistas.Ventas
 
         private void frmRepTicketReImp_Load(object sender, EventArgs e)
         {
-            ToolTip toolTipImprimir = new ToolTip();
-            toolTipImprimir.SetToolTip(btnBuscar, "Imprimir");
+            ToolTip toolTipBuscar = new ToolTip();
+            toolTipBuscar.SetToolTip(btnBuscar, "Buscar");
+
+            _reimpresionTicketController.ObtenerListaVendedores(dtpInicio.Value, dtpFechaFin.Value);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -68,8 +71,8 @@ namespace SistemaFarmacia.Vistas.Ventas
             Entidades.Negocio.Ventas.Ticket opcionesBusqueda = new Entidades.Negocio.Ventas.Ticket();
 
             opcionesBusqueda.NoTicket = (Int64)nudTicket.Value;
-            opcionesBusqueda.FechaInicio = dtpInicio.Value;
-            opcionesBusqueda.FechaFin = dtpFechaFin.Value;
+            opcionesBusqueda.FechaInicio = new DateTime(dtpInicio.Value.Year, dtpInicio.Value.Month, dtpInicio.Value.Day, 00, 00, 00);
+            opcionesBusqueda.FechaFin = new DateTime(dtpFechaFin.Value.Year, dtpFechaFin.Value.Month, dtpFechaFin.Value.Day, 23, 59, 59);
             opcionesBusqueda.IdUsuarioTicket = idVendedor;
 
             gridTickets.Select();
@@ -98,9 +101,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             if (!VerificaExistenciaRegistros())
                 return;
 
-            Entidades.Negocio.Ventas.Ticket opcionesBusqueda = new Entidades.Negocio.Ventas.Ticket();
-
-            opcionesBusqueda.NoTicket = (Int64)gridTickets.SelectedRows[0].Cells["NoTicket"].Value;
+            _idTicket = (Int64)gridTickets.SelectedRows[0].Cells["IdVenta"].Value;
 
         }
 
@@ -132,6 +133,7 @@ namespace SistemaFarmacia.Vistas.Ventas
                     break;
 
                 case Keys.Enter:
+                    MostrarTicket();
                     RecuperarDatosDeGrid();
                     break;
             }
@@ -165,6 +167,26 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void dtpFechaFin_ValueChanged(object sender, EventArgs e)
         {
             _reimpresionTicketController.ObtenerListaVendedores(dtpInicio.Value, dtpFechaFin.Value);
+        }
+
+        private void gridTickets_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MostrarTicket();
+        }
+
+        private void MostrarTicket()
+        {
+            MessageBox.Show(_idTicket.ToString());
+        }
+
+        private void gridTickets_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                RecuperarDatosDeGrid();
+                e.SuppressKeyPress = true;
+            }
+            
         }
     }
 }
