@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaFarmacia.Entidades.Negocio;
 
 namespace SistemaFarmacia.Vistas.Ventas
 {
@@ -35,13 +36,42 @@ namespace SistemaFarmacia.Vistas.Ventas
             BuscarTickets();
         }
 
+        private bool ValidarParametros(ref int idVendedor)
+        {
+            if (dtpInicio.Value.Date > dtpFechaFin.Value.Date)
+            {
+                MostrarDialogoResultado(this.Text, "La fecha de inicio, no puede ser mayor a la fecha final, favor de verificar.", string.Empty, false);
+                return false;
+            }
+
+            if (!chbTodos.Checked)
+            {
+                if (cmbVendedores.SelectedValue == null)
+                {
+                    MostrarDialogoResultado(this.Text, "Si la casilla de ver todos los vendedores no está activa, debe seleccionar un vendedor, favor de verificar.", string.Empty, false);
+                    return false;
+                }
+
+                idVendedor = (int)cmbVendedores.SelectedValue;
+            }
+
+            return true;
+        }
+
         private void BuscarTickets()
         {
+            int idVendedor = 0;
+
+            if (!ValidarParametros(ref idVendedor))
+                return;
+
             Entidades.Negocio.Ventas.Ticket opcionesBusqueda = new Entidades.Negocio.Ventas.Ticket();
 
             opcionesBusqueda.NoTicket = (Int64)nudTicket.Value;
             opcionesBusqueda.FechaInicio = dtpInicio.Value;
             opcionesBusqueda.FechaFin = dtpFechaFin.Value;
+            opcionesBusqueda.IdUsuarioTicket = idVendedor;
+
             gridTickets.Select();
 
             _reimpresionTicketController.ObtenerListaTickets(opcionesBusqueda);
@@ -107,12 +137,34 @@ namespace SistemaFarmacia.Vistas.Ventas
             }
         }
 
-        /*private void btnImprimir_Click(object sender, EventArgs e)
+        public void LlenarComboVendedores(List<Usuario> lista)
         {
-            rptTicket ticket = new rptTicket();
+            cmbVendedores.DataSource = null;
+            cmbVendedores.DataSource = lista;
+            cmbVendedores.DisplayMember = "NombreUsuario";
+            cmbVendedores.ValueMember = "IdUsuario";
+            cmbVendedores.SelectedValue = -1;
+        }
 
-            crvTicket.ReportSource = ticket;
-            crvTicket.RefreshReport();
-        }*/
+        private void HabilitarDesabilitarControles(bool habilita)
+        {
+            cmbVendedores.Enabled = !habilita;
+            cmbVendedores.SelectedValue = -1;
+        }
+
+        private void chbTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            HabilitarDesabilitarControles(chbTodos.Checked);
+        }
+
+        private void dtpInicio_ValueChanged(object sender, EventArgs e)
+        {
+            _reimpresionTicketController.ObtenerListaVendedores(dtpInicio.Value, dtpFechaFin.Value);
+        }
+
+        private void dtpFechaFin_ValueChanged(object sender, EventArgs e)
+        {
+            _reimpresionTicketController.ObtenerListaVendedores(dtpInicio.Value, dtpFechaFin.Value);
+        }
     }
 }
