@@ -65,6 +65,7 @@ namespace SistemaFarmacia.Vistas.Catalogos
             _catSucursalesController.ActualizarSucursal(sucursal);
 
             _contextoAplicacion.Usuario.Sucursal = sucursal.Sucursal;
+            _contextoAplicacion.Usuario.Direccion = sucursal.DireccionObjeto;
         }
 
         bool ConfirmarGuardado()

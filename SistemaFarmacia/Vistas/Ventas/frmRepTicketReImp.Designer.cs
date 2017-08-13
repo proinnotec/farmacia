@@ -43,14 +43,14 @@
             this.lblTicket = new System.Windows.Forms.Label();
             this.nudTicket = new System.Windows.Forms.NumericUpDown();
             this.gridTickets = new SistemaFarmacia.ControlesPersonalizados.GridPersonalizado();
-            this.lblTicketsTexto = new System.Windows.Forms.Label();
-            this.lblTicketsNumero = new System.Windows.Forms.Label();
             this.IdVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NoTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VendedorTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CorteCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblTicketsTexto = new System.Windows.Forms.Label();
+            this.lblTicketsNumero = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTicket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTickets)).BeginInit();
@@ -70,7 +70,7 @@
             this.crvTicket.ShowCopyButton = false;
             this.crvTicket.ShowParameterPanelButton = false;
             this.crvTicket.ShowRefreshButton = false;
-            this.crvTicket.Size = new System.Drawing.Size(660, 598);
+            this.crvTicket.Size = new System.Drawing.Size(660, 715);
             this.crvTicket.TabIndex = 0;
             this.crvTicket.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -225,32 +225,12 @@
             this.gridTickets.RowTemplate.Height = 20;
             this.gridTickets.RowTemplate.ReadOnly = true;
             this.gridTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridTickets.Size = new System.Drawing.Size(488, 598);
+            this.gridTickets.Size = new System.Drawing.Size(488, 715);
             this.gridTickets.TabIndex = 27;
             this.gridTickets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTickets_CellClick);
             this.gridTickets.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTickets_CellDoubleClick);
             this.gridTickets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTickets_KeyDown);
             this.gridTickets.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridTickets_KeyUp);
-            // 
-            // lblTicketsTexto
-            // 
-            this.lblTicketsTexto.AutoSize = true;
-            this.lblTicketsTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicketsTexto.Location = new System.Drawing.Point(551, 29);
-            this.lblTicketsTexto.Name = "lblTicketsTexto";
-            this.lblTicketsTexto.Size = new System.Drawing.Size(200, 24);
-            this.lblTicketsTexto.TabIndex = 7;
-            this.lblTicketsTexto.Text = "Tickets Encontrados";
-            // 
-            // lblTicketsNumero
-            // 
-            this.lblTicketsNumero.AutoSize = true;
-            this.lblTicketsNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicketsNumero.Location = new System.Drawing.Point(771, 29);
-            this.lblTicketsNumero.Name = "lblTicketsNumero";
-            this.lblTicketsNumero.Size = new System.Drawing.Size(21, 24);
-            this.lblTicketsNumero.TabIndex = 28;
-            this.lblTicketsNumero.Text = "0";
             // 
             // IdVenta
             // 
@@ -300,11 +280,31 @@
             this.CorteCaja.Name = "CorteCaja";
             this.CorteCaja.ReadOnly = true;
             // 
+            // lblTicketsTexto
+            // 
+            this.lblTicketsTexto.AutoSize = true;
+            this.lblTicketsTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicketsTexto.Location = new System.Drawing.Point(551, 29);
+            this.lblTicketsTexto.Name = "lblTicketsTexto";
+            this.lblTicketsTexto.Size = new System.Drawing.Size(200, 24);
+            this.lblTicketsTexto.TabIndex = 7;
+            this.lblTicketsTexto.Text = "Tickets Encontrados";
+            // 
+            // lblTicketsNumero
+            // 
+            this.lblTicketsNumero.AutoSize = true;
+            this.lblTicketsNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicketsNumero.Location = new System.Drawing.Point(771, 29);
+            this.lblTicketsNumero.Name = "lblTicketsNumero";
+            this.lblTicketsNumero.Size = new System.Drawing.Size(21, 24);
+            this.lblTicketsNumero.TabIndex = 28;
+            this.lblTicketsNumero.Text = "0";
+            // 
             // frmRepTicketReImp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1162, 703);
+            this.ClientSize = new System.Drawing.Size(1162, 820);
             this.Controls.Add(this.lblTicketsNumero);
             this.Controls.Add(this.lblTicketsTexto);
             this.Controls.Add(this.gridTickets);

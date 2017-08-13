@@ -20,10 +20,13 @@ namespace SistemaFarmacia.Vistas.Ventas
     {
         private ReimpresionTicketController _reimpresionTicketController;
         private Int64 _idTicket;
+        private string _vendedor;
+        private ContextoAplicacion _contexto;
         public frmRepTicketReImp(ContextoAplicacion contexto)
         {
             InitializeComponent();
             _reimpresionTicketController = new ReimpresionTicketController(this);
+            _contexto = contexto;
         }
 
         private void frmRepTicketReImp_Load(object sender, EventArgs e)
@@ -64,7 +67,7 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void BuscarTickets()
         {
             int idVendedor = 0;
-
+            
             if (!ValidarParametros(ref idVendedor))
                 return;
 
@@ -93,7 +96,7 @@ namespace SistemaFarmacia.Vistas.Ventas
             gridTickets.AutoGenerateColumns = false;
             gridTickets.DataSource = null;
             gridTickets.DataSource = lista;
-
+            
         }
 
         private void RecuperarDatosDeGrid()
@@ -102,10 +105,11 @@ namespace SistemaFarmacia.Vistas.Ventas
                 return;
 
             _idTicket = (Int64)gridTickets.SelectedRows[0].Cells["IdVenta"].Value;
+            _vendedor = gridTickets.SelectedRows[0].Cells["VendedorTicket"].Value.ToString();
 
         }
 
-        private bool VerificaExistenciaRegistros()
+    private bool VerificaExistenciaRegistros()
         {
             if (gridTickets.RowCount <= 0)
             {
@@ -176,7 +180,23 @@ namespace SistemaFarmacia.Vistas.Ventas
 
         private void MostrarTicket()
         {
-            MessageBox.Show(_idTicket.ToString());
+            _reimpresionTicketController.ObtenerTicket(_idTicket);
+
+        }
+
+        public void VerReporte(List<ContextoTicket> lista)
+        {
+            rptTicket rptTicket = new rptTicket();
+
+            rptTicket.SetDataSource(lista);
+            rptTicket.SetParameterValue("Vendedor", _vendedor);
+            rptTicket.SetParameterValue("Direccion", _contexto.Usuario.Direccion);
+            rptTicket.SetParameterValue("Sucursal", string.Format("Farmacia de Genéricos: {0}", _contexto.Usuario.Sucursal));
+
+            crvTicket.ReportSource = rptTicket;
+            crvTicket.Zoom(Convert.ToInt32(150));
+            crvTicket.Refresh();
+
         }
 
         private void gridTickets_KeyDown(object sender, KeyEventArgs e)

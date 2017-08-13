@@ -12,6 +12,7 @@ namespace SistemaFarmacia.Entidades.Negocio
         public bool EsActivo { get; set; }
         public int IdSucursal { get; set; }
         public string Sucursal { get; set; }
+        public string Direccion { get; set; }
         public DateTime FechaRegistro { get; set; }
     }
 }

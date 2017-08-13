@@ -1,4 +1,5 @@
 ﻿using ProInnotec.Core.Entidades.ManejoExcepciones;
+using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Entidades.Negocio;
 using SistemaFarmacia.Entidades.Negocio.Ventas;
 using SistemaFarmacia.Servicios.Negocio.Ventas;
@@ -34,6 +35,20 @@ namespace SistemaFarmacia.Controladores.Ventas
 
             List<Ticket> lista = _servicioVentas.ListaTickets;
             _vista.AsignarListaDeTickets(lista);
+        }
+
+        public void ObtenerTicket(Int64 IdVenta)
+        {
+            ExcepcionPersonalizada resultado = _servicioVentas.ObtenerTicket(IdVenta);
+
+            if (resultado != null)
+            {
+                _vista.MostrarDialogoResultado(_vista.Text, resultado.Message, resultado.ToString(), false);
+                return;
+            }
+
+            List<ContextoTicket> lista = _servicioVentas.ListaTicket;
+            _vista.VerReporte(lista);
         }
 
         public void ObtenerListaVendedores(DateTime fechaInicio, DateTime fechaFin)

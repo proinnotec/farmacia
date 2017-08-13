@@ -24,6 +24,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
         public string Sucursal { get; private set; }
         public List<Ticket> ListaTickets { get; private set; }
         public List<Usuario> ListaVendedores { get; set; }
+        public List<ContextoTicket> ListaTicket = new List<ContextoTicket>();
 
         public ServicioVentas(IBaseDeDatos baseDatos)
         {
@@ -233,6 +234,63 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
             catch (Exception excepcionCapturada)
             {
                 ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("Error al obtener la lista de tickets.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    if (conexion.State != ConnectionState.Closed)
+                    {
+                        conexion.Close();
+                        conexion.Dispose();
+                    }
+                }
+            }
+        }
+
+        public ExcepcionPersonalizada ObtenerTicket(Int64 idVenta)
+        {
+            ListaTicket = new List<ContextoTicket>();
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_Ticket", conexion);
+
+               
+                IDataParameter parametroTicket = _baseDatos.CrearParametro("@IdVenta", idVenta, ParameterDirection.Input);
+                comando.Parameters.Add(parametroTicket);
+                
+                IDataReader lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    ContextoTicket ticket = new ContextoTicket();
+
+                    ticket.Cantidad = (decimal)lector["Cantidad"];
+                    ticket.ClaveProducto = lector["ClaveProducto"].ToString();
+                    ticket.Consecutivo = (Int64)lector["Consecutivo"];
+                    ticket.Descripcion = lector["Descripcion"].ToString();
+                    ticket.Descuento = (decimal)lector["Descuento"];
+                    ticket.FechaRegistro = (DateTime)lector["FechaRegistro"];
+                    ticket.Porcentaje = (decimal)lector["Porcentaje"];
+                    ticket.Precio = (decimal)lector["Precio"];
+                    ticket.Subtotal = (decimal)lector["Subtotal"];
+                    ticket.Total = (decimal)lector["Total"];
+                    ticket.Pago = (decimal)lector["Pago"];
+
+                    ListaTicket.Add(ticket);
+                }
+
+                lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("Error al obtener el ticket seleccionado.", excepcionCapturada);
                 return excepcion;
             }
             finally

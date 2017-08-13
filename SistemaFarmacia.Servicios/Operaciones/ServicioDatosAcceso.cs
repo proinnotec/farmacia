@@ -50,6 +50,7 @@ namespace SistemaFarmacia.Servicios.Operaciones
                     LoginUsuario.NombreUsuario = usuario.NombreUsuario;
                     LoginUsuario.IdSucursal = usuario.IdSucursal;
                     LoginUsuario.Sucursal = usuario.Sucursal;
+                    LoginUsuario.Direccion = lector["Direccion"].ToString();
                     
                 }
 
