@@ -114,6 +114,7 @@
     <Compile Include="Controladores\Ventas\CortesCajaController.cs" />
     <Compile Include="Controladores\Ventas\CortesCajaRepController.cs" />
     <Compile Include="Controladores\Ventas\frmVentaController.cs" />
+    <Compile Include="Controladores\Ventas\ReimpresionTicketController.cs" />
     <Compile Include="ControlesPersonalizados\BotonPersonalizado.cs">
       <SubType>Component</SubType>
     </Compile>

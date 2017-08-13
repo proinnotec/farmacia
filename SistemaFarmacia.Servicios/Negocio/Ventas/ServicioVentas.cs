@@ -10,6 +10,7 @@ using SistemaFarmacia.Entidades.Negocio;
 using SistemaFarmacia.Servicios.Utilerias;
 using SistemaFarmacia.Entidades.Contextos;
 using SistemaFarmacia.Entidades.Negocio.Catalogos;
+using SistemaFarmacia.Entidades.Negocio.Ventas;
 
 namespace SistemaFarmacia.Servicios.Negocio.Ventas
 {
@@ -21,6 +22,7 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
         public DateTime FechaRegistro { get; private set; }
         public string DireccionSucursal { get; private set; }
         public string Sucursal { get; private set; }
+        public List<Ticket> ListaTickets { get; private set; }
 
         public ServicioVentas(IBaseDeDatos baseDatos)
         {
@@ -172,6 +174,74 @@ namespace SistemaFarmacia.Servicios.Negocio.Ventas
                     }
 
                     conexion.Dispose();
+                }
+            }
+        }
+
+        public ExcepcionPersonalizada ObtenerListaTickets(Ticket opcionesBusqueda)
+        {
+            ListaTickets = new List<Ticket>();
+            IDbConnection conexion = null;
+
+            try
+            {
+                conexion = _baseDatos.CrearConexionAbierta();
+                IDbCommand comando = _baseDatos.CrearComandoStoredProcedure("spS_TicketsLista", conexion);
+
+                if(opcionesBusqueda.NoTicket > 0 )
+                {
+                    IDataParameter parametroTicket = _baseDatos.CrearParametro("@Ticket", opcionesBusqueda.NoTicket, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroTicket);
+                }
+                else
+                {
+                    if(opcionesBusqueda.IdUsuarioTicket > 0)
+                    {
+                        IDataParameter parametroUsuario = _baseDatos.CrearParametro("@Idusuario", opcionesBusqueda.IdUsuarioTicket, ParameterDirection.Input);
+                        comando.Parameters.Add(parametroUsuario);
+                    }
+
+                    IDataParameter parametroFechaInicio = _baseDatos.CrearParametro("@FechaInicio", opcionesBusqueda.FechaInicio, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroFechaInicio);
+
+                    IDataParameter parametroFechaFin = _baseDatos.CrearParametro("@FechaFin", opcionesBusqueda.FechaFin, ParameterDirection.Input);
+                    comando.Parameters.Add(parametroFechaFin);
+                }
+
+                IDataReader lector = comando.ExecuteReader();
+
+                while(lector.Read())
+                {
+                    Ticket ticket = new Ticket();
+
+                    ticket.NoTicket = (Int64)lector["Ticket"];
+                    ticket.Fecha = (DateTime)lector["Fecha"];
+                    ticket.Total = (decimal)lector["Total"];
+                    ticket.IdUsuarioTicket = (int)lector["IdUsuario"];
+                    ticket.VendedorTicket = lector["Vendedor"].ToString();
+                    ticket.CorteCaja = (int)lector["Corte"];
+
+                    ListaTickets.Add(ticket);
+                }               
+
+                lector.Close();
+
+                return null;
+            }
+            catch (Exception excepcionCapturada)
+            {
+                ExcepcionPersonalizada excepcion = new ExcepcionPersonalizada("Error al obtener la lista de tickets.", excepcionCapturada);
+                return excepcion;
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    if (conexion.State != ConnectionState.Closed)
+                    {
+                        conexion.Close();
+                        conexion.Dispose();
+                    }
                 }
             }
         }
