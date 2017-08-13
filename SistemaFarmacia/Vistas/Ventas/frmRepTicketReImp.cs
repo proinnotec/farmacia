@@ -32,7 +32,7 @@ namespace SistemaFarmacia.Vistas.Ventas
         private void frmRepTicketReImp_Load(object sender, EventArgs e)
         {
             ToolTip toolTipBuscar = new ToolTip();
-            toolTipBuscar.SetToolTip(btnBuscar, "Buscar");
+            toolTipBuscar.SetToolTip(btnBuscar, "Buscar F3");
 
             _reimpresionTicketController.ObtenerListaVendedores(dtpInicio.Value, dtpFechaFin.Value);
         }
@@ -207,6 +207,18 @@ namespace SistemaFarmacia.Vistas.Ventas
                 e.SuppressKeyPress = true;
             }
             
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {               
+                case Keys.F3:
+                    BuscarTickets();
+                    break;
+            }
+
+            return false;
         }
     }
 }
