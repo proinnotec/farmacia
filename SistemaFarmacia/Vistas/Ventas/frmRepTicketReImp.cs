@@ -34,6 +34,11 @@ namespace SistemaFarmacia.Vistas.Ventas
             ToolTip toolTipBuscar = new ToolTip();
             toolTipBuscar.SetToolTip(btnBuscar, "Buscar F3");
 
+            lblTicketsNumero.ForeColor = Color.Red;
+            lblImporteTotal.ForeColor = Color.Red;
+
+            lblImporteTotal.Text = string.Format("{0}", "$ 0");
+
             _reimpresionTicketController.ObtenerListaVendedores(dtpInicio.Value, dtpFechaFin.Value);
         }
 
@@ -99,9 +104,15 @@ namespace SistemaFarmacia.Vistas.Ventas
 
             if (lista.Count <= 0)
             {
+                lblTicketsNumero.ForeColor = Color.Red;
+                lblImporteTotal.ForeColor = Color.Red;
+
                 MostrarDialogoResultado(this.Text, "No se encontraron registros con los parámetros de búsqueda especificados, favor de verificar.", string.Empty, false);
                 return;
             }
+
+            lblTicketsNumero.ForeColor = Color.Green;
+            lblImporteTotal.ForeColor = Color.Green;
 
             gridTickets.AutoGenerateColumns = false;
             gridTickets.DataSource = null;
