@@ -51,6 +51,8 @@
             this.CorteCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTicketsTexto = new System.Windows.Forms.Label();
             this.lblTicketsNumero = new System.Windows.Forms.Label();
+            this.lblImporteTotal = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.gpbParametros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTicket)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridTickets)).BeginInit();
@@ -284,27 +286,49 @@
             // 
             this.lblTicketsTexto.AutoSize = true;
             this.lblTicketsTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicketsTexto.Location = new System.Drawing.Point(551, 29);
+            this.lblTicketsTexto.Location = new System.Drawing.Point(506, 9);
             this.lblTicketsTexto.Name = "lblTicketsTexto";
-            this.lblTicketsTexto.Size = new System.Drawing.Size(200, 24);
+            this.lblTicketsTexto.Size = new System.Drawing.Size(206, 24);
             this.lblTicketsTexto.TabIndex = 7;
-            this.lblTicketsTexto.Text = "Tickets Encontrados";
+            this.lblTicketsTexto.Text = "Tickets Encontrados:";
             // 
             // lblTicketsNumero
             // 
             this.lblTicketsNumero.AutoSize = true;
             this.lblTicketsNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicketsNumero.Location = new System.Drawing.Point(771, 29);
+            this.lblTicketsNumero.Location = new System.Drawing.Point(726, 9);
             this.lblTicketsNumero.Name = "lblTicketsNumero";
             this.lblTicketsNumero.Size = new System.Drawing.Size(21, 24);
             this.lblTicketsNumero.TabIndex = 28;
             this.lblTicketsNumero.Text = "0";
+            // 
+            // lblImporteTotal
+            // 
+            this.lblImporteTotal.AutoSize = true;
+            this.lblImporteTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImporteTotal.Location = new System.Drawing.Point(726, 50);
+            this.lblImporteTotal.Name = "lblImporteTotal";
+            this.lblImporteTotal.Size = new System.Drawing.Size(21, 24);
+            this.lblImporteTotal.TabIndex = 29;
+            this.lblImporteTotal.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(506, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 24);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Total de Venta:";
             // 
             // frmRepTicketReImp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1162, 820);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblImporteTotal);
             this.Controls.Add(this.lblTicketsNumero);
             this.Controls.Add(this.lblTicketsTexto);
             this.Controls.Add(this.gridTickets);
@@ -345,5 +369,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn VendedorTicket;
         private System.Windows.Forms.DataGridViewTextBoxColumn CorteCaja;
+        private System.Windows.Forms.Label lblImporteTotal;
+        private System.Windows.Forms.Label label1;
     }
 }

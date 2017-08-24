@@ -85,9 +85,19 @@ namespace SistemaFarmacia.Vistas.Ventas
         }
         public void AsignarListaDeTickets(List<Entidades.Negocio.Ventas.Ticket> lista)
         {
+            decimal importeTotalVentas = lista.Sum(tot => tot.Total);
+                       
+            importeTotalVentas = Math.Round(importeTotalVentas, 2);
+
+            string importeTotal;
+
+            importeTotal = string.Format("{0} {1}","$", importeTotalVentas.ToString());
+
+            lblImporteTotal.Text = importeTotal;
+
             lblTicketsNumero.Text = lista.Count.ToString();
 
-            if(lista.Count <= 0)
+            if (lista.Count <= 0)
             {
                 MostrarDialogoResultado(this.Text, "No se encontraron registros con los parámetros de búsqueda especificados, favor de verificar.", string.Empty, false);
                 return;
